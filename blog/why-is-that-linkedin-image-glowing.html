@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why is that LinkedIn image glowing brighter than white?</title>
+<meta name="description" content="Seen a LinkedIn post where the image glows brighter than your screen's white? It's not a filter - it's an HDR trick. Here's how it works and how to make your own.">
+<link rel="canonical" href="https://superwhite.app/blog/why-is-that-linkedin-image-glowing.html">
+<meta property="og:title" content="Why is that LinkedIn image glowing brighter than white?">
+<meta property="og:description" content="It's not a filter. It's an HDR trick - and you can do it too, free, in your browser.">
+<meta property="og:url" content="https://superwhite.app/blog/why-is-that-linkedin-image-glowing.html">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://superwhite.app/og.jpg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Why is that LinkedIn image glowing brighter than white?","author":{"@type":"Organization","name":"Superwhite"},"publisher":{"@type":"Organization","name":"Superwhite","url":"https://superwhite.app"},"mainEntityOfPage":"https://superwhite.app/blog/why-is-that-linkedin-image-glowing.html","image":"https://superwhite.app/og.jpg"}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HE8J29XL52');
+</script>
+<style>
+:root{--bg:#0D0B14;--surface:#161221;--line:#292139;--violet:#6B2EF5;--violet-hot:#8B5CF6;
+--brand:#5B21F5;--ink:#F2EFFA;--dim:#A79BD9;--faint:#6C6285}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.75 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{padding:24px 0;display:flex;align-items:center;justify-content:space-between}
+.logo{font:800 26px/1 'Baloo 2',sans-serif;color:var(--brand);-webkit-text-stroke:6px #fff;paint-order:stroke fill;
+text-shadow:0 3px 0 rgba(0,0,0,.35);transform:rotate(-2deg);text-decoration:none}
+.back{font:500 14px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+article{padding:30px 0 60px}
+h1{font:700 clamp(30px,5vw,44px)/1.15 'Inter',sans-serif;letter-spacing:-.03em;margin-bottom:14px}
+.byline{font:500 13px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:36px}
+h2{font:700 24px 'Inter',sans-serif;letter-spacing:-.02em;margin:44px 0 14px}
+p{color:var(--dim);margin-bottom:18px}
+p strong,li strong{color:var(--ink);font-weight:600}
+a{color:var(--violet-hot)}
+ul{margin:0 0 18px 22px;color:var(--dim)}
+li{margin-bottom:8px}
+.callout{border-left:3px solid var(--violet);background:var(--surface);border-radius:0 10px 10px 0;padding:16px 18px;margin-bottom:18px}
+.callout p{margin:0}
+.cta{margin-top:50px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:28px;text-align:center}
+.cta a{display:inline-block;margin-top:14px;background:var(--violet);color:#fff;text-decoration:none;
+font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
+footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
+footer a{color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="logo" href="/">superwhite</a>
+  <a class="back" href="/">&larr; try the tool</a>
+</header>
+
+<article>
+<h1>Why is that LinkedIn image glowing brighter than white?</h1>
+<p class="byline">superwhite.app &middot; explainer</p>
+
+<p>You're scrolling LinkedIn and one image stops you: it looks <strong>lit from behind</strong> - noticeably brighter than the white page around it. You screenshot it to show someone, and the screenshot looks completely normal. You're not imagining it, and your screen isn't broken.</p>
+
+<h2>It's an HDR trick, not a filter</h2>
+<p>Modern screens - recent MacBooks, iPhones, Pixels, most OLED displays - are far brighter than the "white" you normally see. Your operating system keeps regular content at a comfortable level (roughly 200 nits) and reserves the rest, often 1,000+ nits, for HDR video highlights.</p>
+<p>The glowing image is exploiting that reserve. It carries an <strong>HDR color profile</strong> (Rec.2100 PQ - the same signal HDR movies use) that tells your browser: render my bright areas using the display's full power. The whites in the image land at 1,000+ nits while the page around them sits at ~200. Result: the image physically out-glows the interface.</p>
+
+<div class="callout"><p><strong>Why your screenshot looks normal:</strong> screenshots capture what the system renders in standard range, not the HDR signal. The profile is in the original file only - copying pixels doesn't copy the glow.</p></div>
+
+<h2>Why only some people see it</h2>
+<ul>
+<li><strong>HDR display required</strong> - recent MacBook Pro/Air, iPhone, Pixel, OLED monitors. Older or budget screens show a normal image.</li>
+<li><strong>Battery saver off</strong> - low-power modes disable HDR rendering.</li>
+<li><strong>The original file only</strong> - re-saves, forwards through WhatsApp, and screenshots all strip the profile.</li>
+</ul>
+
+<h2>Is it safe? Is it allowed?</h2>
+<p>It's harmless to your screen - displays are built to run at these brightness levels for HDR films. As for platforms: LinkedIn's image pipeline currently preserves the color profile, so the effect works in feed posts today. Platforms clamped the same trick for HDR <em>video</em> after it flooded Reels and Shorts, so expect still images to be tone-mapped eventually too. It's a window, not a permanent feature.</p>
+
+<h2>How to make your own</h2>
+<p>You need to re-encode your image with the PQ profile while keeping colors accurate and boosting only the whites - done manually, it involves color-space math and byte-level JPEG editing. Or you can use the free tool this site exists for: drop an image, set the brightness, download. It runs entirely in your browser; nothing is uploaded.</p>
+<p>For the full technical breakdown - transfer functions, ICC profile splicing, where the trick survives and dies - read <a href="/blog/how-it-works.html">How Superwhite works, technically</a>.</p>
+
+<div class="cta">
+  <strong>Make your image glow</strong>
+  <p style="margin-top:6px">Free &middot; no signup &middot; ~10 seconds</p>
+  <a href="/">Open Superwhite &rarr;</a>
+</div>
+</article>
+
+<footer>superwhite.app &middot; runs 100% client-side &middot; <a href="/blog/how-it-works.html">technical write-up</a></footer>
+</div>
+</body>
+</html>
