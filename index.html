@@ -226,7 +226,7 @@ input[type=file]{display:none}
       <a class="btn primary" id="download" download>Download HDR JPEG</a>
       <button class="btn ghost" id="reset">Start over</button>
     </div>
-    <p class="limit-note">Free: up to 2048&nbsp;px with a small glowing watermark · <a href="#pricing">Pro removes it &amp; unlocks 4K</a></p>
+    <p class="limit-note">Free exports up to 2048&nbsp;px · <a href="#pricing">Pro unlocks 4K &amp; Instagram export</a></p>
     <p class="busy" id="busy"></p>
   </section>
 
@@ -244,7 +244,7 @@ input[type=file]{display:none}
           <li>LinkedIn-ready HDR JPEG</li>
           <li>Brightness &amp; threshold controls</li>
           <li>Exports up to 2048 px</li>
-          <li>Small glowing watermark</li>
+          <li>No watermark, ever</li>
         </ul>
         <a class="btn ghost" href="#try" >Start converting</a>
       </div>
@@ -255,7 +255,7 @@ input[type=file]{display:none}
         <p class="for">For creators posting daily</p>
         <ul>
           <li>Everything in Free</li>
-          <li>No watermark</li>
+          <li>Early feature access</li>
           <li>Full-resolution 4K exports</li>
           <li class="soon">Instagram Ultra HDR export</li>
           <li>Glow presets per platform</li>
@@ -498,7 +498,7 @@ async function render() {
     peak: +$('nits').value,
     threshold: +$('thresh').value / 100,
     mode,
-    watermark: !IS_PRO
+    watermark: false
   });
   if (currentURL) URL.revokeObjectURL(currentURL);
   currentURL = url;
