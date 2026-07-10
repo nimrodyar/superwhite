@@ -5,17 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Superwhite — make your images glow brighter than white</title>
 <meta name="description" content="Free in-browser tool that makes the whites in your image physically brighter than your screen's white. Built for LinkedIn posts. Nothing is uploaded — everything runs locally.">
-<link rel="canonical" href="https://superwhite.io/">
+<link rel="canonical" href="https://superwhite.app/">
 <meta property="og:title" content="Superwhite — images brighter than white">
 <meta property="og:description" content="Push your image's whites into your screen's HDR headroom. Free, in-browser, built for LinkedIn.">
-<meta property="og:url" content="https://superwhite.io/">
+<meta property="og:url" content="https://superwhite.app/">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://superwhite.io/og.jpg">
+<meta property="og:image" content="https://superwhite.app/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <!-- ANALYTICS: uncomment after creating your Plausible site (or swap for GA4)
-<script defer data-domain="superwhite.io" src="https://plausible.io/js/script.js"></script>
+<script defer data-domain="superwhite.app" src="https://plausible.io/js/script.js"></script>
 -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -293,7 +293,7 @@ input[type=file]{display:none}
 
   <footer>
     <span>Superwhite runs 100% client-side. Your images never leave your device.</span>
-    <span><a href="/blog/how-it-works.html">How it works, technically</a> · <a href="https://superwhite.io">superwhite.io</a></span>
+    <span><a href="/blog/how-it-works.html">How it works, technically</a> · <a href="https://superwhite.app">superwhite.app</a></span>
   </footer>
 </div>
 
@@ -336,7 +336,7 @@ function toHDR(canvas, { peak=1000, threshold=0.7, mode='hi', watermark=false } 
     wctx.font = `600 ${fs}px Inter, sans-serif`;
     wctx.textAlign = 'right'; wctx.textBaseline = 'bottom';
     wctx.fillStyle = 'rgba(255,255,255,0.95)';
-    wctx.fillText('superwhite.io', w - fs, h - fs * 0.8);
+    wctx.fillText('superwhite.app', w - fs, h - fs * 0.8);
   }
 
   const src = wctx.getImageData(0, 0, w, h).data;
