@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Superwhite works: abusing Rec.2100 PQ profiles to render brighter than white</title>
+<meta name="description" content="The technical mechanism behind images that glow brighter than white on LinkedIn: PQ transfer functions, ICC profile splicing into JPEGs, EDR headroom, and where the trick survives.">
+<link rel="canonical" href="https://superwhite.io/blog/how-it-works.html">
+<meta property="og:title" content="How images can render brighter than your screen's white">
+<meta property="og:description" content="PQ transfer functions, ICC splicing, and EDR headroom — the mechanism behind the glowing-post trick.">
+<meta property="og:url" content="https://superwhite.io/blog/how-it-works.html">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://superwhite.io/og.jpg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0D0B14;--surface:#161221;--line:#292139;--violet:#6B2EF5;--violet-hot:#8B5CF6;
+--brand:#5B21F5;--ink:#F2EFFA;--dim:#A79BD9;--faint:#6C6285}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.75 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{padding:24px 0;display:flex;align-items:center;justify-content:space-between}
+.logo{font:800 26px/1 'Baloo 2',sans-serif;color:var(--brand);-webkit-text-stroke:6px #fff;paint-order:stroke fill;
+text-shadow:0 3px 0 rgba(0,0,0,.35);transform:rotate(-2deg);text-decoration:none}
+.back{font:500 14px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+article{padding:30px 0 60px}
+h1{font:700 clamp(30px,5vw,44px)/1.15 'Inter',sans-serif;letter-spacing:-.03em;margin-bottom:14px}
+.byline{font:500 13px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:36px}
+h2{font:700 24px 'Inter',sans-serif;letter-spacing:-.02em;margin:44px 0 14px}
+p{color:var(--dim);margin-bottom:18px}
+p strong,li strong{color:var(--ink);font-weight:600}
+a{color:var(--violet-hot)}
+ul{margin:0 0 18px 22px;color:var(--dim)}
+li{margin-bottom:8px}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;overflow-x:auto;
+font:400 13px/1.6 'JetBrains Mono',monospace;color:var(--ink);margin-bottom:18px}
+code{font:400 .92em 'JetBrains Mono',monospace;background:var(--surface);padding:2px 6px;border-radius:5px}
+pre code{background:none;padding:0}
+.callout{border-left:3px solid var(--violet);background:var(--surface);border-radius:0 10px 10px 0;padding:16px 18px;margin-bottom:18px}
+.callout p{margin:0}
+.cta{margin-top:50px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:28px;text-align:center}
+.cta a{display:inline-block;margin-top:14px;background:var(--violet);color:#fff;text-decoration:none;
+font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
+footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="logo" href="/">superwhite</a>
+  <a class="back" href="/">← back to the tool</a>
+</header>
+
+<article>
+<h1>How an image can render brighter than your screen's white</h1>
+<p class="byline">superwhite.io · technical notes</p>
+
+<p>You may have seen posts on LinkedIn or Instagram where the image seems to <strong>glow</strong> — visibly brighter than the white page around it. It looks like it breaks the rules of the screen. It doesn't. It exploits a real, documented gap between what "white" means in SDR and what modern displays can actually output.</p>
+
+<h2>SDR white is not your display's maximum</h2>
+<p>A normal image tops out at signal value 255 — "white." Your operating system maps that to a comfortable reference level, roughly 200&nbsp;nits. But an HDR-capable panel (recent MacBook Pro, iPhone, Pixel, most OLED TVs) can physically output 1,000–1,600&nbsp;nits. The gap between reference white and panel peak is <strong>headroom</strong> — Apple calls its implementation EDR. It's reserved for HDR content: video highlights, HDR photos. Regular UI never touches it.</p>
+<p>The trick is convincing the renderer that your still image <em>is</em> HDR content.</p>
+
+<h2>The signal: a Rec.2100 PQ color profile</h2>
+<p>HDR video signals its brightness using the <strong>PQ (Perceptual Quantizer) transfer function</strong>, standardized in ITU-R BT.2100. Unlike sRGB's relative curve, PQ is absolute: each code value maps to a specific luminance, up to a theoretical 10,000&nbsp;nits.</p>
+<p>ICC color profiles can describe a PQ encoding. And it turns out that if you embed a Rec.2100 PQ profile into an ordinary 8-bit JPEG, color-managed renderers — Chrome, Safari, macOS, iOS — will honor it and render the image's bright values into the display's headroom. White in the image lands at 1,000+ nits while the page's white sits at ~200. The image out-glows the interface.</p>
+
+<div class="callout"><p><strong>Why this survives LinkedIn:</strong> platforms re-encode uploaded images, which strips most HDR metadata — Ultra HDR gain maps don't make it through. But ICC profiles are preserved through LinkedIn's JPEG pipeline. The profile <em>is</em> the payload.</p></div>
+
+<h2>The pipeline</h2>
+<p>Naively tagging an sRGB image as PQ remaps everything — colors shift and the entire image blows out. Superwhite does it properly, per pixel:</p>
+<ul>
+<li><strong>Decode</strong> sRGB to linear light</li>
+<li><strong>Convert primaries</strong> from sRGB to Rec.2020 with a 3×3 matrix, so hues stay accurate under the new profile</li>
+<li><strong>Mask</strong>: compute a "whiteness" mask (min channel above a threshold). Non-white content is pinned at 203&nbsp;nits — SDR reference — so it looks completely normal</li>
+<li><strong>Boost</strong>: masked (white) regions are scaled to the chosen peak, e.g. 1,000&nbsp;nits</li>
+<li><strong>Encode</strong> with the PQ curve, write an 8-bit JPEG, and splice in the Rec.2100 PQ ICC profile</li>
+</ul>
+
+<p>The ICC embed itself is a small APP2 segment inserted after the JPEG's SOI marker:</p>
+<pre><code>FF E2 [len] "ICC_PROFILE\0" 01 01 [profile bytes]</code></pre>
+<p>That's it. No 10-bit encoding, no gain maps, no video container. An 8-bit JPEG is enough — which is also why simple, flat graphics work best: smooth gradients can band at 8 bits under the aggressive PQ curve, but logos and wordmarks are ideal.</p>
+
+<h2>Where it works — and dies</h2>
+<ul>
+<li><strong>Survives:</strong> LinkedIn feed posts, uploaded directly as JPEG. No cropping or editing in the composer — re-processing strips the profile.</li>
+<li><strong>Dies:</strong> screenshots (they capture the tone-mapped SDR result), re-saving in most editors, messenger compression, copy-paste.</li>
+<li><strong>Visible to:</strong> viewers on HDR displays in color-managed apps, with battery saver off. Everyone else sees a normal image with marginally dimmer whites.</li>
+</ul>
+
+<h2>The honest caveats</h2>
+<p>This is attention arbitrage, and it lives on borrowed time. Platforms clamped auto-HDR video brightness after the same trick flooded Reels and Shorts; still images will likely follow. Treat it as a novelty with a window, not infrastructure. And use taste — a subtle glow on a logo reads as craft; a 4,000-nit full-frame flashbang reads as a pop-up ad. The feed will tune out whatever gets abused.</p>
+
+<p>Everything Superwhite does happens in your browser — canvas pixel math plus the byte splice above. Your image never touches a server.</p>
+
+<div class="cta">
+  <strong>Try it on your own logo</strong>
+  <p style="margin-top:6px">Free, in-browser, ~10 seconds.</p>
+  <a href="/">Open Superwhite →</a>
+</div>
+</article>
+
+<footer>superwhite.io · runs 100% client-side</footer>
+</div>
+</body>
+</html>
