@@ -155,6 +155,16 @@ footer{padding:40px 0 60px;color:var(--faint);font-size:13px;border-top:1px soli
 footer a{color:var(--dim);text-decoration:none}
 input[type=file]{display:none}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Superwhite","url":"https://superwhite.app/","applicationCategory":"DesignApplication","operatingSystem":"Any","browserRequirements":"Requires HTML5 canvas support","description":"Free in-browser tool that makes the whites in your image render brighter than your screen's white using HDR PQ color profiles. Built for LinkedIn posts.","offers":[{"@type":"Offer","name":"Free","price":"0","priceCurrency":"EUR"},{"@type":"Offer","name":"Pro","price":"9","priceCurrency":"EUR"},{"@type":"Offer","name":"Agency","price":"29","priceCurrency":"EUR"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How can an image be brighter than white?","acceptedAnswer":{"@type":"Answer","text":"HDR-capable displays reserve extra brightness headroom above normal SDR white for HDR content. By re-encoding an image with a Rec.2100 PQ color profile, browsers render its bright areas into that headroom - physically brighter than the surrounding page."}},
+{"@type":"Question","name":"Where do glowing HDR images work?","acceptedAnswer":{"@type":"Answer","text":"LinkedIn feed posts uploaded directly as JPEG preserve the HDR color profile. Screenshots, re-saving in editors, and messenger compression strip the effect. The glow is visible only on HDR displays such as recent MacBooks, iPhones, and Pixels."}},
+{"@type":"Question","name":"Is Superwhite free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Converting images for LinkedIn is free with no signup and no watermark. Everything runs in your browser - images never leave your device. Paid tiers add 4K exports, Instagram Ultra HDR, and batch processing."}},
+{"@type":"Question","name":"Why does the image look normal on my screen?","acceptedAnswer":{"@type":"Answer","text":"The glow requires an HDR display with battery saver off. On standard (SDR) screens the image simply looks normal, with slightly dimmer whites."}}
+]}]}
+</script>
 </head>
 <body>
 <div class="wrap">
