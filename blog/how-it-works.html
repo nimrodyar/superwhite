@@ -76,6 +76,8 @@ footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px soli
 
 <div class="callout"><p><strong>Why this survives LinkedIn:</strong> platforms re-encode uploaded images, which strips most HDR metadata — Ultra HDR gain maps don't make it through. But ICC profiles are preserved through LinkedIn's JPEG pipeline. The profile <em>is</em> the payload.</p></div>
 
+<div class="callout"><p><strong>Credit where due:</strong> the PQ-profile technique and the finding that it survives LinkedIn's image pipeline were first documented by <a href="https://tn1ck.com/blog/abuse-hdr-images-for-marketing" rel="noopener">Tom Nick in his excellent write-up</a>. Superwhite builds on that research and turns it into a self-serve tool - adding luminance masking so only the whites glow while colors stay accurate.</p></div>
+
 <h2>The pipeline</h2>
 <p>Naively tagging an sRGB image as PQ remaps everything — colors shift and the entire image blows out. Superwhite does it properly, per pixel:</p>
 <ul>
