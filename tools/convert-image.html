@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convert JPG, PNG & WebP Online — Free, Private, In-Browser | Superwhite Tools</title>
+<meta name="description" content="Convert images between JPG, PNG and WebP with quality control, entirely in your browser. No upload, no signup, no watermark, no limits.">
+<link rel="canonical" href="https://superwhite.app/tools/convert-image.html">
+<meta property="og:title" content="Convert JPG, PNG & WebP Online — Free, Private, In-Browser | Superwhite Tools">
+<meta property="og:description" content="Convert images between JPG, PNG and WebP with quality control, entirely in your browser. No upload, no signup, no watermark, no limits.">
+<meta property="og:url" content="https://superwhite.app/tools/convert-image.html">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="/favicon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date()); gtag('config', 'G-HE8J29XL52');
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I convert PNG to JPG without uploading it?", "acceptedAnswer": {"@type": "Answer", "text": "Drop the PNG above, choose JPG, and download. The conversion happens in your browser's canvas engine — the file never leaves your device. Transparent areas become white in JPG, which has no transparency."}}, {"@type": "Question", "name": "Should I use JPG, PNG, or WebP?", "acceptedAnswer": {"@type": "Answer", "text": "JPG is best for photos and social uploads, PNG for graphics needing transparency or crisp text, and WebP for the web where you want the smallest file at the same quality."}}, {"@type": "Question", "name": "Can I convert HEIC photos here?", "acceptedAnswer": {"@type": "Answer", "text": "Browsers can't decode HEIC natively yet, so iPhone HEIC files aren't supported. Set your iPhone camera to 'Most Compatible' to shoot JPG, or export from Photos as JPG first."}}]}</script>
+<style>
+:root{
+  --bg:#0D0B14; --surface:#161221; --line:#292139;
+  --violet:#6B2EF5; --violet-hot:#8B5CF6; --violet-deep:#4316B8; --brand:#5B21F5;
+  --ink:#F2EFFA; --dim:#A79BD9; --faint:#6C6285; --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+nav{display:flex;align-items:center;gap:18px;padding:22px 0;flex-wrap:wrap}
+.logo{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:20px;color:var(--ink);text-decoration:none}
+.logo span{color:var(--violet-hot)}
+nav a.t{color:var(--dim);text-decoration:none;font-size:14px}
+nav a.t:hover,nav a.t.on{color:var(--ink)}
+h1{font-family:'Baloo 2',sans-serif;font-size:clamp(30px,5vw,42px);line-height:1.15;margin:26px 0 10px}
+.sub{color:var(--dim);max-width:600px;margin-bottom:28px}
+.drop{border:2px dashed var(--line);border-radius:var(--radius);padding:56px 20px;text-align:center;
+  color:var(--dim);cursor:pointer;transition:border-color .15s,background .15s;background:var(--surface)}
+.drop.over,.drop:hover{border-color:var(--violet-hot)}
+.drop b{color:var(--ink)}
+.panel{display:none;margin-top:22px;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:24px}
+.panel.on{display:block}
+.row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:14px 0}
+label{font-size:14px;color:var(--dim)}
+input[type=number]{width:110px;background:var(--bg);border:1px solid var(--line);border-radius:8px;
+  color:var(--ink);padding:9px 12px;font:500 14px 'JetBrains Mono',monospace}
+input[type=range]{accent-color:var(--violet-hot);width:200px}
+select{background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--ink);
+  padding:9px 12px;font:500 14px 'Inter',sans-serif}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--dim);border-radius:999px;
+  padding:7px 13px;font-size:13px;cursor:pointer;transition:border-color .15s,color .15s}
+.chip:hover,.chip.on{border-color:var(--violet-hot);color:var(--ink)}
+.btn{display:inline-block;border:none;border-radius:999px;padding:13px 26px;font:600 15px 'Inter',sans-serif;
+  cursor:pointer;text-decoration:none;text-align:center}
+.btn.primary{background:linear-gradient(135deg,var(--violet),var(--violet-hot));color:#fff}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+.stats{font:500 13px 'JetBrains Mono',monospace;color:var(--dim);margin:12px 0}
+.stats b{color:var(--ink)}
+.stats .save{color:#5AE0A8}
+.preview{max-width:100%;border-radius:10px;border:1px solid var(--line);margin-top:10px;display:block}
+.glow-card{margin:44px 0;background:linear-gradient(135deg,var(--violet-deep),var(--violet));
+  border-radius:var(--radius);padding:28px;display:flex;justify-content:space-between;
+  align-items:center;gap:18px;flex-wrap:wrap}
+.glow-card h2{font-family:'Baloo 2',sans-serif;font-size:22px;color:#fff}
+.glow-card p{color:#E4DBFF;font-size:14px;max-width:440px}
+.glow-card .btn{background:#fff;color:var(--violet-deep)}
+.faq{margin:44px 0}
+.faq h2{font-family:'Baloo 2',sans-serif;font-size:24px;margin-bottom:16px}
+.faq h3{font-size:16px;margin:18px 0 6px}
+.faq p{color:var(--dim);font-size:14.5px}
+footer{padding:40px 0 60px;color:var(--faint);font-size:13px;border-top:1px solid var(--line);
+  margin-top:40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer a{color:var(--dim);text-decoration:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:30px 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;text-decoration:none;transition:border-color .15s}
+.card:hover{border-color:var(--violet-hot)}
+.card h2{font-family:'Baloo 2',sans-serif;font-size:19px;color:var(--ink);margin-bottom:6px}
+.card p{color:var(--dim);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="/">super<span>white</span> <span style="color:var(--faint);font-weight:400;font-size:14px">tools</span></a>
+    <a class="t" href="/tools/compress-image.html">Compress</a><a class="t" href="/tools/resize-image.html">Resize</a><a class="t on" href="/tools/convert-image.html">Convert</a>
+  </nav>
+  <h1>Convert an image format</h1>
+  <p class="sub">JPG ↔ PNG ↔ WebP in one click, with quality control for lossy formats. Runs on your device — your image never leaves it.</p>
+  <div class="drop" id="drop" tabindex="0" role="button" aria-label="Choose an image">
+    <b>Drop an image here</b> or click to browse<br>
+    <span style="font-size:13px">JPG · PNG · WebP — processed on your device, never uploaded</span>
+  </div>
+  <input type="file" id="file" accept="image/*" hidden>
+
+  <div class="panel" id="panel">
+    <div class="row">
+      <label>Convert to</label>
+      <select id="fmt">
+        <option value="image/jpeg">JPG</option>
+        <option value="image/png">PNG</option>
+        <option value="image/webp">WebP</option>
+      </select>
+      <span id="qWrap"><label>Quality</label>
+      <input type="range" id="q" min="30" max="100" value="90">
+      <span class="stats" id="qOut">90%</span></span>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="row">
+      <a class="btn primary" id="dl" download>Download converted image</a>
+      <button class="btn ghost" id="reset">Start over</button>
+    </div>
+    <img class="preview" id="preview" alt="Converted preview">
+  </div>
+
+  <div class="glow-card">
+    <div>
+      <h2>Now make it glow ✨</h2>
+      <p>Superwhite pushes your image's whites brighter than the screen itself — the HDR trick that stops the LinkedIn scroll. Free, in-browser, same privacy.</p>
+    </div>
+    <a class="btn" href="/">Try Superwhite →</a>
+  </div>
+  <section class="faq"><h2>FAQ</h2><h3>How do I convert PNG to JPG without uploading it?</h3><p>Drop the PNG above, choose JPG, and download. The conversion happens in your browser's canvas engine — the file never leaves your device. Transparent areas become white in JPG, which has no transparency.</p><h3>Should I use JPG, PNG, or WebP?</h3><p>JPG is best for photos and social uploads, PNG for graphics needing transparency or crisp text, and WebP for the web where you want the smallest file at the same quality.</p><h3>Can I convert HEIC photos here?</h3><p>Browsers can't decode HEIC natively yet, so iPhone HEIC files aren't supported. Set your iPhone camera to 'Most Compatible' to shoot JPG, or export from Photos as JPG first.</p></section>
+  <footer>
+    <span>Runs 100% client-side. Your images never leave your device.</span>
+    <span><a href="/">superwhite.app</a> · <a href="/tools/">All tools</a></span>
+  </footer>
+</div>
+<script>
+
+const $ = id => document.getElementById(id);
+let origFile = null, bmp = null;
+const fmtKB = b => b < 1024*1024 ? (b/1024).toFixed(0)+' KB' : (b/1024/1024).toFixed(2)+' MB';
+async function loadBitmap(file){
+  try { return await createImageBitmap(file, { imageOrientation:'from-image' }); }
+  catch(e){
+    return new Promise((res, rej) => {
+      const img = new Image();
+      img.onload = () => { URL.revokeObjectURL(img.src); res(img); };
+      img.onerror = rej; img.src = URL.createObjectURL(file);
+    });
+  }
+}
+function toBlob(canvas, type, q){ return new Promise(r => canvas.toBlob(r, type, q)); }
+function wireDrop(onFile){
+  const drop = $('drop'), fi = $('file');
+  drop.addEventListener('click', () => fi.click());
+  drop.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') fi.click(); });
+  drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('over'); });
+  drop.addEventListener('dragleave', () => drop.classList.remove('over'));
+  drop.addEventListener('drop', e => { e.preventDefault(); drop.classList.remove('over');
+    if (e.dataTransfer.files[0]) onFile(e.dataTransfer.files[0]); });
+  fi.addEventListener('change', () => { if (fi.files[0]) onFile(fi.files[0]); });
+}
+function baseName(f){ return f.name.replace(/\.[^.]+$/, '') || 'image'; }
+
+
+let busy = false;
+const EXT = { 'image/jpeg':'.jpg', 'image/png':'.png', 'image/webp':'.webp' };
+wireDrop(async f => { origFile = f; bmp = await loadBitmap(f); $('panel').classList.add('on'); run(); });
+$('fmt').addEventListener('change', () => { $('qWrap').style.opacity = $('fmt').value==='image/png' ? .35 : 1; run(); });
+$('q').addEventListener('input', () => { $('qOut').textContent = $('q').value+'%'; run(); });
+$('reset').addEventListener('click', () => { $('panel').classList.remove('on'); $('file').value=''; });
+$('dl').addEventListener('click', () => gtag('event','tool_used',{tool:'convert',action:'download'}));
+
+async function run(){
+  if (!bmp || busy) return; busy = true;
+  const fmt = $('fmt').value;
+  const c = document.createElement('canvas');
+  c.width = bmp.width; c.height = bmp.height;
+  const ctx = c.getContext('2d');
+  if (fmt === 'image/jpeg'){ ctx.fillStyle = '#fff'; ctx.fillRect(0,0,c.width,c.height); }
+  ctx.drawImage(bmp,0,0);
+  const blob = await toBlob(c, fmt, fmt==='image/png' ? undefined : $('q').value/100);
+  const url = URL.createObjectURL(blob);
+  $('stats').innerHTML = (origFile.type.split('/')[1]||'image').toUpperCase()+' '+fmtKB(origFile.size)
+    +' → <b>'+fmt.split('/')[1].toUpperCase()+' '+fmtKB(blob.size)+'</b>';
+  $('preview').src = url;
+  $('dl').href = url;
+  $('dl').download = baseName(origFile)+EXT[fmt];
+  busy = false;
+}
+
+</script>
+</body>
+</html>
