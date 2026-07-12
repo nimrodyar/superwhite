@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resize Image for LinkedIn & Social — Free In-Browser Tool | Superwhite Tools</title>
+<meta name="description" content="Resize images to exact pixel dimensions with one-click presets for LinkedIn posts (1200×1350), banners (1584×396), stories and more. 100% in-browser, nothing uploaded.">
+<link rel="canonical" href="https://superwhite.app/tools/resize-image.html">
+<meta property="og:title" content="Resize Image for LinkedIn & Social — Free In-Browser Tool | Superwhite Tools">
+<meta property="og:description" content="Resize images to exact pixel dimensions with one-click presets for LinkedIn posts (1200×1350), banners (1584×396), stories and more. 100% in-browser, nothing uploaded.">
+<meta property="og:url" content="https://superwhite.app/tools/resize-image.html">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="/favicon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date()); gtag('config', 'G-HE8J29XL52');
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the best image size for a LinkedIn post?", "acceptedAnswer": {"@type": "Answer", "text": "1200×1350 pixels (4:5 portrait) takes up the most feed space and is the preset most creators use. LinkedIn banners are 1584×396 and profile photos 400×400 — all available as one-click presets above."}}, {"@type": "Question", "name": "Does resizing here upload my image anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. Resizing happens entirely in your browser on your own device. Nothing is sent to a server, which also makes it faster than upload-based resizers."}}, {"@type": "Question", "name": "How does the tool handle a different aspect ratio?", "acceptedAnswer": {"@type": "Answer", "text": "When you pick a preset, the image is scaled to fill the exact dimensions and centered, cropping the overflow — the same way social platforms crop. Uncheck presets and use lock aspect ratio to scale without cropping."}}]}</script>
+<style>
+:root{
+  --bg:#0D0B14; --surface:#161221; --line:#292139;
+  --violet:#6B2EF5; --violet-hot:#8B5CF6; --violet-deep:#4316B8; --brand:#5B21F5;
+  --ink:#F2EFFA; --dim:#A79BD9; --faint:#6C6285; --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+nav{display:flex;align-items:center;gap:18px;padding:22px 0;flex-wrap:wrap}
+.logo{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:20px;color:var(--ink);text-decoration:none}
+.logo span{color:var(--violet-hot)}
+nav a.t{color:var(--dim);text-decoration:none;font-size:14px}
+nav a.t:hover,nav a.t.on{color:var(--ink)}
+h1{font-family:'Baloo 2',sans-serif;font-size:clamp(30px,5vw,42px);line-height:1.15;margin:26px 0 10px}
+.sub{color:var(--dim);max-width:600px;margin-bottom:28px}
+.drop{border:2px dashed var(--line);border-radius:var(--radius);padding:56px 20px;text-align:center;
+  color:var(--dim);cursor:pointer;transition:border-color .15s,background .15s;background:var(--surface)}
+.drop.over,.drop:hover{border-color:var(--violet-hot)}
+.drop b{color:var(--ink)}
+.panel{display:none;margin-top:22px;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:24px}
+.panel.on{display:block}
+.row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:14px 0}
+label{font-size:14px;color:var(--dim)}
+input[type=number]{width:110px;background:var(--bg);border:1px solid var(--line);border-radius:8px;
+  color:var(--ink);padding:9px 12px;font:500 14px 'JetBrains Mono',monospace}
+input[type=range]{accent-color:var(--violet-hot);width:200px}
+select{background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--ink);
+  padding:9px 12px;font:500 14px 'Inter',sans-serif}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--dim);border-radius:999px;
+  padding:7px 13px;font-size:13px;cursor:pointer;transition:border-color .15s,color .15s}
+.chip:hover,.chip.on{border-color:var(--violet-hot);color:var(--ink)}
+.btn{display:inline-block;border:none;border-radius:999px;padding:13px 26px;font:600 15px 'Inter',sans-serif;
+  cursor:pointer;text-decoration:none;text-align:center}
+.btn.primary{background:linear-gradient(135deg,var(--violet),var(--violet-hot));color:#fff}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+.stats{font:500 13px 'JetBrains Mono',monospace;color:var(--dim);margin:12px 0}
+.stats b{color:var(--ink)}
+.stats .save{color:#5AE0A8}
+.preview{max-width:100%;border-radius:10px;border:1px solid var(--line);margin-top:10px;display:block}
+.glow-card{margin:44px 0;background:linear-gradient(135deg,var(--violet-deep),var(--violet));
+  border-radius:var(--radius);padding:28px;display:flex;justify-content:space-between;
+  align-items:center;gap:18px;flex-wrap:wrap}
+.glow-card h2{font-family:'Baloo 2',sans-serif;font-size:22px;color:#fff}
+.glow-card p{color:#E4DBFF;font-size:14px;max-width:440px}
+.glow-card .btn{background:#fff;color:var(--violet-deep)}
+.faq{margin:44px 0}
+.faq h2{font-family:'Baloo 2',sans-serif;font-size:24px;margin-bottom:16px}
+.faq h3{font-size:16px;margin:18px 0 6px}
+.faq p{color:var(--dim);font-size:14.5px}
+footer{padding:40px 0 60px;color:var(--faint);font-size:13px;border-top:1px solid var(--line);
+  margin-top:40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer a{color:var(--dim);text-decoration:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:30px 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;text-decoration:none;transition:border-color .15s}
+.card:hover{border-color:var(--violet-hot)}
+.card h2{font-family:'Baloo 2',sans-serif;font-size:19px;color:var(--ink);margin-bottom:6px}
+.card p{color:var(--dim);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="/">super<span>white</span> <span style="color:var(--faint);font-weight:400;font-size:14px">tools</span></a>
+    <a class="t" href="/tools/compress-image.html">Compress</a><a class="t on" href="/tools/resize-image.html">Resize</a><a class="t" href="/tools/convert-image.html">Convert</a>
+  </nav>
+  <h1>Resize an image for any platform</h1>
+  <p class="sub">Exact dimensions or one-click social presets — LinkedIn post, banner, profile, story. Processed on your device, never uploaded.</p>
+  <div class="drop" id="drop" tabindex="0" role="button" aria-label="Choose an image">
+    <b>Drop an image here</b> or click to browse<br>
+    <span style="font-size:13px">JPG · PNG · WebP — processed on your device, never uploaded</span>
+  </div>
+  <input type="file" id="file" accept="image/*" hidden>
+
+  <div class="panel" id="panel">
+    <div class="row" id="presets">
+      <button class="chip" data-w="1200" data-h="1350">LinkedIn post 1200×1350</button>
+      <button class="chip" data-w="1584" data-h="396">LinkedIn banner 1584×396</button>
+      <button class="chip" data-w="400" data-h="400">LinkedIn profile 400×400</button>
+      <button class="chip" data-w="1080" data-h="1080">Square 1080</button>
+      <button class="chip" data-w="1080" data-h="1920">Story 1080×1920</button>
+      <button class="chip" data-w="1600" data-h="900">X post 1600×900</button>
+    </div>
+    <div class="row">
+      <label>Width</label><input type="number" id="w" min="1">
+      <label>Height</label><input type="number" id="h" min="1">
+      <label><input type="checkbox" id="lock" checked> Lock aspect ratio</label>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="row">
+      <a class="btn primary" id="dl" download>Download resized image</a>
+      <button class="btn ghost" id="reset">Start over</button>
+    </div>
+    <img class="preview" id="preview" alt="Resized preview">
+  </div>
+
+  <div class="glow-card">
+    <div>
+      <h2>Now make it glow ✨</h2>
+      <p>Superwhite pushes your image's whites brighter than the screen itself — the HDR trick that stops the LinkedIn scroll. Free, in-browser, same privacy.</p>
+    </div>
+    <a class="btn" href="/">Try Superwhite →</a>
+  </div>
+  <section class="faq"><h2>FAQ</h2><h3>What is the best image size for a LinkedIn post?</h3><p>1200×1350 pixels (4:5 portrait) takes up the most feed space and is the preset most creators use. LinkedIn banners are 1584×396 and profile photos 400×400 — all available as one-click presets above.</p><h3>Does resizing here upload my image anywhere?</h3><p>No. Resizing happens entirely in your browser on your own device. Nothing is sent to a server, which also makes it faster than upload-based resizers.</p><h3>How does the tool handle a different aspect ratio?</h3><p>When you pick a preset, the image is scaled to fill the exact dimensions and centered, cropping the overflow — the same way social platforms crop. Uncheck presets and use lock aspect ratio to scale without cropping.</p></section>
+  <footer>
+    <span>Runs 100% client-side. Your images never leave your device.</span>
+    <span><a href="/">superwhite.app</a> · <a href="/tools/">All tools</a></span>
+  </footer>
+</div>
+<script>
+
+const $ = id => document.getElementById(id);
+let origFile = null, bmp = null;
+const fmtKB = b => b < 1024*1024 ? (b/1024).toFixed(0)+' KB' : (b/1024/1024).toFixed(2)+' MB';
+async function loadBitmap(file){
+  try { return await createImageBitmap(file, { imageOrientation:'from-image' }); }
+  catch(e){
+    return new Promise((res, rej) => {
+      const img = new Image();
+      img.onload = () => { URL.revokeObjectURL(img.src); res(img); };
+      img.onerror = rej; img.src = URL.createObjectURL(file);
+    });
+  }
+}
+function toBlob(canvas, type, q){ return new Promise(r => canvas.toBlob(r, type, q)); }
+function wireDrop(onFile){
+  const drop = $('drop'), fi = $('file');
+  drop.addEventListener('click', () => fi.click());
+  drop.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') fi.click(); });
+  drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('over'); });
+  drop.addEventListener('dragleave', () => drop.classList.remove('over'));
+  drop.addEventListener('drop', e => { e.preventDefault(); drop.classList.remove('over');
+    if (e.dataTransfer.files[0]) onFile(e.dataTransfer.files[0]); });
+  fi.addEventListener('change', () => { if (fi.files[0]) onFile(fi.files[0]); });
+}
+function baseName(f){ return f.name.replace(/\.[^.]+$/, '') || 'image'; }
+
+
+let ratio = 1, isPNG = false, busy = false;
+wireDrop(async f => {
+  origFile = f; isPNG = /png$/i.test(f.type);
+  bmp = await loadBitmap(f);
+  ratio = bmp.width / bmp.height;
+  $('w').value = bmp.width; $('h').value = bmp.height;
+  $('panel').classList.add('on'); run();
+});
+$('w').addEventListener('input', () => { if ($('lock').checked) $('h').value = Math.max(1, Math.round($('w').value / ratio)); run(); });
+$('h').addEventListener('input', () => { if ($('lock').checked) $('w').value = Math.max(1, Math.round($('h').value * ratio)); run(); });
+document.querySelectorAll('#presets .chip').forEach(ch => ch.addEventListener('click', () => {
+  document.querySelectorAll('#presets .chip').forEach(x => x.classList.remove('on'));
+  ch.classList.add('on');
+  $('lock').checked = false;
+  $('w').value = ch.dataset.w; $('h').value = ch.dataset.h;
+  run();
+}));
+$('reset').addEventListener('click', () => { $('panel').classList.remove('on'); $('file').value=''; });
+$('dl').addEventListener('click', () => gtag('event','tool_used',{tool:'resize',action:'download'}));
+
+async function run(){
+  if (!bmp || busy) return; busy = true;
+  const W = Math.max(1, Math.min(8192, +$('w').value || 1));
+  const H = Math.max(1, Math.min(8192, +$('h').value || 1));
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const ctx = c.getContext('2d');
+  ctx.imageSmoothingQuality = 'high';
+  // cover-fit: fill the target box, crop overflow (what social crops do)
+  const s = Math.max(W / bmp.width, H / bmp.height);
+  const dw = bmp.width * s, dh = bmp.height * s;
+  if (!isPNG){ ctx.fillStyle = '#fff'; ctx.fillRect(0,0,W,H); }
+  ctx.drawImage(bmp, (W-dw)/2, (H-dh)/2, dw, dh);
+  const blob = await toBlob(c, isPNG ? 'image/png' : 'image/jpeg', 0.92);
+  const url = URL.createObjectURL(blob);
+  $('stats').innerHTML = bmp.width+'×'+bmp.height+' → <b>'+W+'×'+H+'</b> · '+fmtKB(blob.size);
+  $('preview').src = url;
+  $('dl').href = url;
+  $('dl').download = baseName(origFile)+'-'+W+'x'+H+(isPNG?'.png':'.jpg');
+  busy = false;
+}
+
+</script>
+</body>
+</html>
