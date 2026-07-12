@@ -241,7 +241,7 @@ input[type=file]{display:none}
       <a class="btn primary" id="download" download>Download HDR JPEG</a>
       <button class="btn ghost" id="reset">Start over</button>
     </div>
-    <p class="limit-note">Free exports up to 2048&nbsp;px · <a href="#pricing">Pro unlocks 4K &amp; Instagram export</a></p>
+    <p class="limit-note">Free exports up to 2048&nbsp;px · 4K from €0.30/image · <a href="#pricing">Pro unlocks unlimited 4K</a></p>
     <p class="busy" id="busy"></p>
   </section>
 
@@ -463,6 +463,7 @@ fileInput.addEventListener('change', () => { if (fileInput.files[0]) load(fileIn
 
 function load(file) {
   fileBase = file.name.replace(/\.[^.]+$/, '') || 'image';
+  window.swOrigFile = file;
   const img = new Image();
   img.onload = () => {
     const cap = IS_PRO ? 4096 : FREE_MAX;
@@ -534,6 +535,184 @@ $('buyPro').addEventListener('click', () => {
 $('buyAgency').addEventListener('click', () => {
   gtag('event', 'waitlist_click', { plan: 'agency' });
 });
+</script>
+
+<!-- ===== SUPERWHITE CREDITS ===== -->
+<style>
+.sw-credit-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px;justify-content:center}
+.sw-pill{font:500 13px/1 'JetBrains Mono',monospace;color:var(--dim);border:1px solid var(--line);
+  border-radius:999px;padding:7px 12px;background:var(--surface)}
+.sw-pill b{color:var(--ink)}
+#sw-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;
+  background:rgba(13,11,20,.78);backdrop-filter:blur(6px);z-index:60;padding:20px}
+#sw-modal.on{display:flex}
+.sw-sheet{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  max-width:520px;width:100%;padding:28px;position:relative}
+.sw-sheet h3{font-family:'Baloo 2',sans-serif;font-size:24px;color:var(--ink);margin-bottom:6px}
+.sw-sheet p{color:var(--dim);font-size:14px;margin-bottom:18px}
+.sw-packs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.sw-packs{grid-template-columns:1fr}}
+.sw-pack{border:1px solid var(--line);border-radius:var(--radius);padding:18px;text-align:left;
+  background:var(--bg);cursor:pointer;transition:border-color .15s;color:var(--ink)}
+.sw-pack:hover{border-color:var(--violet-hot)}
+.sw-pack .price{font-family:'Baloo 2',sans-serif;font-size:26px;color:var(--ink)}
+.sw-pack .qty{color:var(--violet-hot);font-weight:600;font-size:14px;margin:2px 0 6px}
+.sw-pack .per{color:var(--faint);font-size:12px}
+.sw-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--faint);
+  font-size:22px;cursor:pointer;line-height:1}
+.sw-note{margin-top:14px;font-size:12px;color:var(--faint)}
+.sw-note a{color:var(--violet-hot);text-decoration:none}
+#sw-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(8px);
+  background:var(--violet-deep);color:#fff;padding:12px 20px;border-radius:999px;font-size:14px;
+  opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:70}
+#sw-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+
+<div id="sw-modal" role="dialog" aria-modal="true" aria-labelledby="sw-modal-title">
+  <div class="sw-sheet">
+    <button class="sw-close" id="sw-close" aria-label="Close">×</button>
+    <h3 id="sw-modal-title">4K credits</h3>
+    <p>One credit = one full-resolution 4K export. Credits never expire, no subscription, no account — your key lives in this browser.</p>
+    <div class="sw-packs">
+      <button class="sw-pack" data-pack="starter">
+        <div class="price">€4</div>
+        <div class="qty">10 credits</div>
+        <div class="per">€0.40 per 4K export</div>
+      </button>
+      <button class="sw-pack" data-pack="creator">
+        <div class="price">€12</div>
+        <div class="qty">40 credits</div>
+        <div class="per">€0.30 per 4K export</div>
+      </button>
+    </div>
+    <p class="sw-note">Payment handled by Stripe. Exporting a lot every month? <a href="#pricing" id="sw-to-pro">Pro is cheaper</a>.</p>
+  </div>
+</div>
+<div id="sw-toast" role="status"></div>
+
+<script>
+/* ================= Superwhite Credits ================= */
+const SW_API = 'https://superwhite-credits.nimrodyar.workers.dev';
+const SW_KEY_LS = 'sw_credit_key';
+let swCredits = 0;
+
+const swKey = () => localStorage.getItem(SW_KEY_LS) || '';
+const swToast = msg => { const t = $('sw-toast'); t.textContent = msg; t.classList.add('on');
+  setTimeout(() => t.classList.remove('on'), 3200); };
+
+/* --- inject UI next to the existing download button --- */
+(function swInjectUI(){
+  const dl = $('download');
+  const row = document.createElement('div');
+  row.className = 'sw-credit-row';
+  row.innerHTML = '<a class="btn ghost" id="sw-dl4k" href="#">Download 4K · 1 credit</a>' +
+                  '<span class="sw-pill" id="sw-balance" hidden><b>0</b> credits</span>';
+  dl.parentNode.insertBefore(row, dl.nextSibling);
+})();
+
+function swPaintBalance(){
+  const pill = $('sw-balance');
+  if (swKey()) { pill.hidden = false; pill.innerHTML = '<b>' + swCredits + '</b> credit' + (swCredits === 1 ? '' : 's'); }
+  else pill.hidden = true;
+}
+
+async function swFetchBalance(){
+  if (!swKey()) return;
+  try {
+    const r = await fetch(SW_API + '/balance?key=' + encodeURIComponent(swKey()));
+    if (r.ok) { swCredits = (await r.json()).credits; swPaintBalance(); }
+  } catch(e){}
+}
+
+/* --- claim credits after returning from Stripe --- */
+(async function swClaim(){
+  const p = new URLSearchParams(location.search);
+  const sid = p.get('session_id');
+  if (p.get('checkout') === 'cancelled') history.replaceState({}, '', '/');
+  if (!sid) { swFetchBalance(); return; }
+  history.replaceState({}, '', '/');
+  try {
+    const r = await fetch(SW_API + '/claim', { method:'POST',
+      headers:{'Content-Type':'application/json'}, body: JSON.stringify({ session_id: sid }) });
+    const d = await r.json();
+    if (r.ok && d.key) {
+      localStorage.setItem(SW_KEY_LS, d.key);
+      swCredits = d.credits; swPaintBalance();
+      swToast('Payment received — ' + d.credits + ' credits ready ✨');
+      gtag('event', 'credits_claimed', { balance: d.credits });
+    } else swToast('Could not verify payment — contact hello@superwhite.app');
+  } catch(e){ swToast('Network hiccup verifying payment — refresh to retry'); }
+})();
+
+/* --- purchase modal --- */
+const swModal = $('sw-modal');
+$('sw-close').addEventListener('click', () => swModal.classList.remove('on'));
+swModal.addEventListener('click', e => { if (e.target === swModal) swModal.classList.remove('on'); });
+$('sw-to-pro').addEventListener('click', () => swModal.classList.remove('on'));
+document.querySelectorAll('.sw-pack').forEach(btn => btn.addEventListener('click', async () => {
+  btn.disabled = true;
+  gtag('event', 'pack_checkout_click', { pack: btn.dataset.pack });
+  try {
+    const r = await fetch(SW_API + '/checkout', { method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ pack: btn.dataset.pack, key: swKey() || undefined }) });
+    const d = await r.json();
+    if (d.url) location.href = d.url; else { swToast('Checkout unavailable right now'); btn.disabled = false; }
+  } catch(e){ swToast('Checkout unavailable right now'); btn.disabled = false; }
+}));
+
+/* --- 4K export: spend a credit, re-render from the original at 4096px --- */
+$('sw-dl4k').addEventListener('click', async e => {
+  e.preventDefault();
+  if (!window.swOrigFile) { swToast('Load an image first'); return; }
+  if (!swKey() || swCredits < 1) { swModal.classList.add('on'); return; }
+
+  const btn = $('sw-dl4k');
+  btn.textContent = 'Rendering 4K…';
+  try {
+    const r = await fetch(SW_API + '/spend', { method:'POST',
+      headers:{'Content-Type':'application/json'}, body: JSON.stringify({ key: swKey() }) });
+    const d = await r.json();
+    if (!r.ok) {
+      if (r.status === 402) { swCredits = 0; swPaintBalance(); swModal.classList.add('on'); }
+      else swToast('Could not verify credits — try again');
+      return;
+    }
+    swCredits = d.credits; swPaintBalance();
+
+    const url = await swRender4K();
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = (window.swOrigFile.name.replace(/\.[^.]+$/, '') || 'image') +
+                 '-superwhite-4k-' + $('nits').value + 'nit.jpg';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+    gtag('event', 'credit_spent_4k', { balance: d.credits });
+    swToast(d.credits + ' credit' + (d.credits === 1 ? '' : 's') + ' left');
+  } catch(err){ swToast('4K export failed — your credit was not lost, try again'); swFetchBalance(); }
+  finally { btn.textContent = 'Download 4K · 1 credit'; }
+});
+
+function swRender4K(){
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = async () => {
+      const cap = 4096;
+      let w = img.naturalWidth, h = img.naturalHeight;
+      if (Math.max(w, h) > cap) { const s = cap / Math.max(w, h); w = Math.round(w*s); h = Math.round(h*s); }
+      const c = document.createElement('canvas'); c.width = w; c.height = h;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(img, 0, 0, w, h);
+      URL.revokeObjectURL(img.src);
+      try {
+        resolve(await toHDR(c, { peak:+$('nits').value, threshold:+$('thresh').value/100, mode, watermark:false }));
+      } catch(e){ reject(e); }
+    };
+    img.onerror = reject;
+    img.src = URL.createObjectURL(window.swOrigFile);
+  });
+}
 </script>
 </body>
 </html>
