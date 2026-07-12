@@ -90,7 +90,7 @@ async function handleCheckout(request, env, cors) {
   }
 
   const session = await stripe(env, "POST", "/v1/checkout/sessions", params);
-  if (!session.url) return json({ error: "Stripe error" }, 502, cors);
+  if (!session.url) return json({ error: "Stripe error", detail: session.error && session.error.message }, 502, cors);
 
   return json({ url: session.url }, 200, cors);
 }
