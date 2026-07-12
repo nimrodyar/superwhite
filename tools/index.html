@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free In-Browser Image Tools — Compress, Resize, Convert | Superwhite</title>
+<meta name="description" content="Free private image tools that run 100% in your browser: compress images to a target size, resize for LinkedIn and social, convert JPG, PNG and WebP. Nothing is uploaded.">
+<link rel="canonical" href="https://superwhite.app/tools/">
+<meta property="og:title" content="Superwhite Tools — free in-browser image utilities">
+<meta property="og:description" content="Compress, resize, and convert images privately in your browser. Nothing uploaded, no signup.">
+<meta property="og:url" content="https://superwhite.app/tools/">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="/favicon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date()); gtag('config', 'G-HE8J29XL52');
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0D0B14; --surface:#161221; --line:#292139;
+  --violet:#6B2EF5; --violet-hot:#8B5CF6; --violet-deep:#4316B8; --brand:#5B21F5;
+  --ink:#F2EFFA; --dim:#A79BD9; --faint:#6C6285; --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+nav{display:flex;align-items:center;gap:18px;padding:22px 0;flex-wrap:wrap}
+.logo{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:20px;color:var(--ink);text-decoration:none}
+.logo span{color:var(--violet-hot)}
+nav a.t{color:var(--dim);text-decoration:none;font-size:14px}
+nav a.t:hover,nav a.t.on{color:var(--ink)}
+h1{font-family:'Baloo 2',sans-serif;font-size:clamp(30px,5vw,42px);line-height:1.15;margin:26px 0 10px}
+.sub{color:var(--dim);max-width:600px;margin-bottom:28px}
+.drop{border:2px dashed var(--line);border-radius:var(--radius);padding:56px 20px;text-align:center;
+  color:var(--dim);cursor:pointer;transition:border-color .15s,background .15s;background:var(--surface)}
+.drop.over,.drop:hover{border-color:var(--violet-hot)}
+.drop b{color:var(--ink)}
+.panel{display:none;margin-top:22px;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:24px}
+.panel.on{display:block}
+.row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:14px 0}
+label{font-size:14px;color:var(--dim)}
+input[type=number]{width:110px;background:var(--bg);border:1px solid var(--line);border-radius:8px;
+  color:var(--ink);padding:9px 12px;font:500 14px 'JetBrains Mono',monospace}
+input[type=range]{accent-color:var(--violet-hot);width:200px}
+select{background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--ink);
+  padding:9px 12px;font:500 14px 'Inter',sans-serif}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--dim);border-radius:999px;
+  padding:7px 13px;font-size:13px;cursor:pointer;transition:border-color .15s,color .15s}
+.chip:hover,.chip.on{border-color:var(--violet-hot);color:var(--ink)}
+.btn{display:inline-block;border:none;border-radius:999px;padding:13px 26px;font:600 15px 'Inter',sans-serif;
+  cursor:pointer;text-decoration:none;text-align:center}
+.btn.primary{background:linear-gradient(135deg,var(--violet),var(--violet-hot));color:#fff}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+.stats{font:500 13px 'JetBrains Mono',monospace;color:var(--dim);margin:12px 0}
+.stats b{color:var(--ink)}
+.stats .save{color:#5AE0A8}
+.preview{max-width:100%;border-radius:10px;border:1px solid var(--line);margin-top:10px;display:block}
+.glow-card{margin:44px 0;background:linear-gradient(135deg,var(--violet-deep),var(--violet));
+  border-radius:var(--radius);padding:28px;display:flex;justify-content:space-between;
+  align-items:center;gap:18px;flex-wrap:wrap}
+.glow-card h2{font-family:'Baloo 2',sans-serif;font-size:22px;color:#fff}
+.glow-card p{color:#E4DBFF;font-size:14px;max-width:440px}
+.glow-card .btn{background:#fff;color:var(--violet-deep)}
+.faq{margin:44px 0}
+.faq h2{font-family:'Baloo 2',sans-serif;font-size:24px;margin-bottom:16px}
+.faq h3{font-size:16px;margin:18px 0 6px}
+.faq p{color:var(--dim);font-size:14.5px}
+footer{padding:40px 0 60px;color:var(--faint);font-size:13px;border-top:1px solid var(--line);
+  margin-top:40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer a{color:var(--dim);text-decoration:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:30px 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;text-decoration:none;transition:border-color .15s}
+.card:hover{border-color:var(--violet-hot)}
+.card h2{font-family:'Baloo 2',sans-serif;font-size:19px;color:var(--ink);margin-bottom:6px}
+.card p{color:var(--dim);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><a class="logo" href="/">super<span>white</span> <span style="color:var(--faint);font-weight:400;font-size:14px">tools</span></a></nav>
+  <h1>Free image tools, zero uploads</h1>
+  <p class="sub">Every tool runs entirely in your browser — the same privacy-first engine behind Superwhite's HDR glow. No accounts, no limits, no watermarks.</p>
+  <div class="cards">
+    <a class="card" href="/tools/compress-image.html"><h2>Compress image</h2><p>Shrink JPGs to any quality or an exact target size in KB. Live preview.</p></a>
+    <a class="card" href="/tools/resize-image.html"><h2>Resize image</h2><p>One-click presets for LinkedIn posts, banners, stories and more.</p></a>
+    <a class="card" href="/tools/convert-image.html"><h2>Convert image</h2><p>JPG ↔ PNG ↔ WebP with quality control. Instant, private.</p></a>
+    <a class="card" href="/"><h2>Make it glow ✨</h2><p>The main event: whites brighter than your screen's white. Built for LinkedIn.</p></a>
+  </div>
+  <footer>
+    <span>Runs 100% client-side. Your images never leave your device.</span>
+    <span><a href="/">superwhite.app</a></span>
+  </footer>
+</div>
+</body>
+</html>
