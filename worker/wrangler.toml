@@ -1,0 +1,11 @@
+name = "superwhite-credits"
+main = "worker.js"
+compatibility_date = "2026-07-01"
+
+kv_namespaces = [
+  { binding = "CREDITS", id = "43f366c494614acda10941b79d3a9733" }
+]
+
+[vars]
+PRICE_STARTER = "price_1TsQXlL707ZeoL0C03V9qQys"
+PRICE_CREATOR = "price_1TsQYDL707ZeoL0Csn26HrFQ"
