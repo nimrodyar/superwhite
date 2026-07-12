@@ -523,6 +523,17 @@ async function render() {
   dl.download = fileBase + '-superwhite-' + $('nits').value + 'nit.jpg';
   $('busy').textContent = '';
 }
+
+// --- GA4 conversion tracking ---
+$('download').addEventListener('click', () => {
+  gtag('event', 'image_download', { peak_nits: +$('nits').value });
+});
+$('buyPro').addEventListener('click', () => {
+  gtag('event', 'waitlist_click', { plan: 'pro' });
+});
+$('buyAgency').addEventListener('click', () => {
+  gtag('event', 'waitlist_click', { plan: 'agency' });
+});
 </script>
 </body>
 </html>
