@@ -464,6 +464,22 @@ fileInput.addEventListener('change', () => { if (fileInput.files[0]) load(fileIn
 function load(file) {
   fileBase = file.name.replace(/\.[^.]+$/, '') || 'image';
   window.swOrigFile = file;
+  // guard: warn when re-processing a superwhite output (double PQ = mushy result)
+  (async () => {
+    try {
+      const head = new Uint8Array(await file.slice(0, 131072).arrayBuffer());
+      const needle = iccBytes.subarray(64, 96);
+      let hit = /-superwhite(-4k)?-\d+nit\.jpe?g$/i.test(file.name);
+      if (!hit) {
+        outer: for (let i = 0; i <= head.length - needle.length; i++) {
+          if (head[i] !== needle[0]) continue;
+          for (let j = 1; j < needle.length; j++) if (head[i+j] !== needle[j]) continue outer;
+          hit = true; break;
+        }
+      }
+      if (hit && typeof swToast === 'function') swToast('Heads up: this image is already superwhited — load the original for the best glow');
+    } catch(e){}
+  })();
   const img = new Image();
   img.onload = () => {
     const cap = IS_PRO ? 4096 : FREE_MAX;
@@ -640,6 +656,7 @@ async function swFetchBalance(){
       swCredits = d.credits; swPaintBalance();
       swToast('Payment received — ' + d.credits + ' credits ready ✨');
       gtag('event', 'credits_claimed', { balance: d.credits });
+      if (!window.swOrigFile) setTimeout(() => swToast('Now load your image (the original — not a previous export) and hit Download 4K'), 3600);
     } else swToast('Could not verify payment — contact hello@superwhite.app');
   } catch(e){ swToast('Network hiccup verifying payment — refresh to retry'); }
 })();
