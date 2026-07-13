@@ -23,148 +23,121 @@
   gtag('config', 'G-HE8J29XL52');
 </script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0D0B14; --surface:#161221; --line:#292139;
-  --violet:#6B2EF5; --violet-hot:#8B5CF6; --violet-deep:#4316B8; --brand:#5B21F5;
-  --ink:#F2EFFA; --dim:#A79BD9; --faint:#6C6285;
-  --feed:#F4F2EE; --card:#FFFFFF; --card-ink:#1c1a17; --card-dim:#6e6a63;
-  --radius:14px;
+  --paper:#FFFFFF;
+  --ink:#141317;
+  --dim:#5F5C66;
+  --faint:#8B8894;
+  --line:#E7E5EC;
+  --accent:#4316B8;
+  --radius:10px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-body{background:var(--bg);color:var(--ink);font:400 16px/1.6 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1020px;margin:0 auto;padding:0 24px}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.65 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px}
+a{color:var(--accent)}
+::selection{background:var(--accent);color:#fff}
 
-header{padding:24px 0;display:flex;align-items:center;justify-content:space-between}
-.logo{font:800 30px/1 'Baloo 2',sans-serif;color:var(--brand);
-  -webkit-text-stroke:7px #fff;paint-order:stroke fill;
-  text-shadow:0 4px 0 rgba(0,0,0,.35);transform:rotate(-2deg)}
-.hdr-badge{font:500 12px/1 'JetBrains Mono',monospace;padding:8px 12px;border:1px solid var(--line);border-radius:99px;color:var(--dim)}
-.hdr-badge.ok{border-color:#2f7a4d;color:#7ce0a3}
-.hdr-badge.no{border-color:#7a3b2f;color:#e0997c}
+header{padding:28px 0 8px;display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.logo{font:800 20px/1 'Inter Tight',sans-serif;letter-spacing:-.02em}
+.hdr-badge{font:500 12px/1 'JetBrains Mono',monospace;color:var(--faint)}
+.hdr-badge.ok{color:#1a7f4e}
+.hdr-badge.no{color:var(--faint)}
 
-/* ================= HERO: mock feed ================= */
-.hero-top{text-align:center;padding:26px 0 30px}
-h1{font:700 clamp(36px,6vw,62px)/1.05 'Inter',sans-serif;letter-spacing:-.035em;max-width:820px;margin:0 auto}
-h1 .pop{font:800 1.02em 'Baloo 2',sans-serif;letter-spacing:0;color:var(--brand);
-  -webkit-text-stroke:.11em #fff;paint-order:stroke fill;text-shadow:0 .06em 0 rgba(0,0,0,.3);
-  display:inline-block;transform:rotate(-1.5deg);padding:0 .06em}
-.sub{color:var(--dim);max-width:600px;margin:20px auto 0;font-size:17px}
+/* ================= hero ================= */
+.hero{padding:56px 0 36px}
+h1{font:800 clamp(34px,6vw,58px)/1.04 'Inter Tight',sans-serif;letter-spacing:-.035em;max-width:760px}
+.sub{margin-top:16px;max-width:600px;color:var(--dim);font-size:17px}
 
-.feedstage{background:var(--feed);border-radius:20px;padding:34px 28px 26px;position:relative}
-body.sdr .feedstage{background:#E7E3DC}
-.feedgrid{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:880px;margin:0 auto}
-@media(max-width:760px){.feedgrid{grid-template-columns:1fr;max-width:430px}}
-.feedcol{display:flex;flex-direction:column;gap:12px}
-.coltag{font:600 13px 'Inter',sans-serif;text-align:center;padding:7px 14px;border-radius:99px;justify-self:center;margin:0 auto}
-.coltag.plain{background:#e4e0d9;color:#6e6a63}
-.coltag.super{background:var(--brand);color:#fff;box-shadow:0 2px 14px rgba(91,33,245,.45)}
+/* ================= samples ================= */
+.samples{padding:8px 0 12px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.pair{grid-template-columns:1fr}}
+.sample{min-width:0}
+.sample img{width:100%;display:block;border:1px solid var(--line);border-radius:var(--radius)}
+.slabel{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;
+  font:500 12px/1 'JetBrains Mono',monospace;color:var(--faint)}
+.slabel b{font-weight:500;color:var(--ink)}
+.sample.glow .slabel b{color:var(--accent)}
+.pair-cap{margin-top:14px;font-size:14px;color:var(--dim);max-width:620px}
+body.sdr .pair-cap .hdr-only{display:none}
+body:not(.sdr) .pair-cap .sdr-only{display:none}
+/* simulated glow on SDR displays only */
+body.sdr .sample.glow img{filter:brightness(1.14) saturate(1.05)}
 
-.post{background:var(--card);border-radius:12px;border:1px solid #e2ded7;overflow:hidden;color:var(--card-ink)}
-body.sdr .post.regular{filter:brightness(.95)}
-.phead{display:flex;gap:10px;align-items:center;padding:13px 15px 0}
-.avatar{width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font:700 17px 'Inter',sans-serif;color:#fff}
-.avatar.a{background:#8f8a81}.avatar.b{background:var(--brand)}
-.pmeta b{font-size:14px;display:block;line-height:1.25}
-.pmeta span{font-size:12px;color:var(--card-dim)}
-.ptext{font-size:13.5px;padding:9px 15px 11px;color:var(--card-ink)}
-.pimg{display:block;width:100%;height:auto}
-body.sdr .post.superpost .pimg{filter:brightness(1.07) saturate(1.04)}
-body.sdr .post.superpost{box-shadow:0 0 0 1px #fff,0 0 30px 2px rgba(255,255,255,.95),0 0 70px 10px rgba(255,255,255,.55)}
-.pactions{display:flex;justify-content:space-around;padding:9px 8px;border-top:1px solid #eeebe5;font-size:12.5px;color:var(--card-dim)}
-.pactions s{text-decoration:none}
-.superpost .pactions b{color:var(--brand)}
+/* ================= drop zone ================= */
+.cta-row{padding:36px 0 8px}
+.drop{border:1.5px dashed var(--line);border-radius:var(--radius);padding:44px 24px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+.drop:hover,.drop:focus-visible,.drop.over{border-color:var(--accent);background:#FAF9FE;outline:none}
+.drop .big{font:700 19px/1.3 'Inter Tight',sans-serif;letter-spacing:-.01em}
+.drop .small{margin-top:6px;font-size:13px;color:var(--faint)}
+#file{display:none}
 
-.stage-cap{text-align:center;font-size:13px;color:#8b867d;margin-top:22px}
-.sim-pill{display:none;margin:14px auto 0;width:fit-content;font:500 11.5px 'JetBrains Mono',monospace;color:#7a3b2f;background:#fff;border:1px solid #e0b8a8;padding:6px 13px;border-radius:99px}
-body.sdr .sim-pill{display:block}
-
-.cta-row{text-align:center;margin-top:34px}
-.drop{margin:14px auto 0;max-width:640px;border:1.5px dashed var(--line);border-radius:var(--radius);
-  padding:48px 24px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;background:var(--surface)}
-.drop:hover,.drop.over{border-color:var(--violet);background:#1B1530}
-.drop:focus-visible{outline:2px solid var(--violet-hot);outline-offset:3px}
-.drop p{color:var(--dim);pointer-events:none}
-.drop .big{font:600 19px 'Inter',sans-serif;color:var(--ink);margin-bottom:6px}
-.drop .small{font-size:13px;color:var(--faint)}
-
-.studio{display:none;margin-top:44px}
+/* ================= studio ================= */
+.studio{display:none;padding:32px 0 8px}
 .studio.on{display:block}
-.stage{background:#FFFFFF;border-radius:var(--radius);padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
-@media(max-width:720px){.stage{grid-template-columns:1fr}}
-.pane{text-align:center}
-.pane img{max-width:100%;height:auto;border-radius:8px;display:block;margin:0 auto}
-.pane .tag{font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#8b8598;margin-bottom:10px;display:block}
-.stage-note{grid-column:1/-1;font-size:12.5px;color:#8b8598;text-align:center;margin-top:2px}
+.stage{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.stage{grid-template-columns:1fr}}
+.pane{min-width:0}
+.pane img{width:100%;display:block;border:1px solid var(--line);border-radius:var(--radius)}
+.tag{display:block;font:500 12px/1 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:8px}
+.stage-note{grid-column:1/-1;font-size:13px;color:var(--faint)}
+.controls{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:end}
+@media(max-width:640px){.controls{grid-template-columns:1fr}}
+.ctl label{display:flex;justify-content:space-between;font-size:13px;font-weight:500;margin-bottom:8px}
+.ctl output{font:500 13px/1 'JetBrains Mono',monospace;color:var(--accent)}
+input[type=range]{width:100%;appearance:none;height:3px;border-radius:2px;
+  background:linear-gradient(to right,var(--accent) var(--fill,50%),var(--line) var(--fill,50%));outline:none}
+input[type=range]::-webkit-slider-thumb{appearance:none;width:16px;height:16px;border-radius:50%;background:var(--ink);cursor:pointer;border:none}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--ink);cursor:pointer;border:none}
+input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--accent);outline-offset:2px}
+.mode{grid-column:1/-1;display:flex;gap:8px}
+.mode button{font:500 13px/1 'Inter',sans-serif;padding:9px 14px;border:1px solid var(--line);border-radius:99px;background:none;color:var(--dim);cursor:pointer}
+.mode button.on{border-color:var(--ink);color:var(--ink)}
+.actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-block;font:600 15px/1 'Inter',sans-serif;padding:13px 20px;border-radius:99px;text-decoration:none;cursor:pointer;border:1px solid transparent}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.primary:hover{background:#000}
+.btn.ghost{background:none;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+.limit-note{margin-top:12px;font-size:13px;color:var(--faint)}
+.busy{margin-top:8px;font:500 12px/1 'JetBrains Mono',monospace;color:var(--faint);min-height:14px}
 
-.controls{margin-top:26px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
-@media(max-width:720px){.controls{grid-template-columns:1fr}}
-.ctl label{display:flex;justify-content:space-between;font-size:14px;color:var(--dim);margin-bottom:10px}
-.ctl label output{font:500 13px 'JetBrains Mono',monospace;color:var(--ink)}
-input[type=range]{width:100%;appearance:none;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--violet) var(--fill,50%),var(--line) var(--fill,50%));outline:none}
-input[type=range]::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:50%;background:var(--ink);border:3px solid var(--violet);cursor:pointer}
-input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--violet-hot);outline-offset:2px}
-.mode{grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap}
-.mode button{font:500 13.5px 'Inter',sans-serif;padding:9px 16px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--dim);cursor:pointer}
-.mode button.on{background:var(--violet);border-color:var(--violet);color:#fff}
-.mode button:focus-visible{outline:2px solid var(--violet-hot);outline-offset:2px}
+/* ================= facts ================= */
+.how{padding:56px 0 8px}
+h2{font:700 24px/1.2 'Inter Tight',sans-serif;letter-spacing:-.02em;margin-bottom:12px}
+.how>p{max-width:640px;color:var(--dim)}
+.rules{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:20px 32px}
+@media(max-width:640px){.rules{grid-template-columns:1fr}}
+.rules b{display:block;font-size:14px;font-weight:600;margin-bottom:3px}
+.rules span{font-size:14px;color:var(--dim)}
 
-.actions{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.btn{font:600 15px 'Inter',sans-serif;padding:14px 26px;border-radius:99px;border:none;cursor:pointer;text-decoration:none;display:inline-block;text-align:center}
-.btn.primary{background:var(--violet);color:#fff}
-.btn.primary:hover{background:var(--violet-hot)}
-.btn.ghost{background:transparent;color:var(--dim);border:1px solid var(--line)}
-.btn:focus-visible{outline:2px solid var(--violet-hot);outline-offset:3px}
-.busy{font:500 13px 'JetBrains Mono',monospace;color:var(--dim);text-align:center;margin-top:14px;min-height:20px}
-.limit-note{font-size:12.5px;color:var(--faint);text-align:center;margin-top:10px}
-.limit-note a{color:var(--violet-hot);text-decoration:none}
+/* ================= feedback ================= */
+.feedback{padding:56px 0 8px}
+.feedback>p{max-width:600px;color:var(--dim);margin-bottom:22px}
+.q{margin-bottom:20px}
+.q p{font-size:14px;font-weight:600;margin-bottom:10px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opts button{font:500 13px/1 'Inter',sans-serif;padding:9px 14px;border:1px solid var(--line);border-radius:99px;background:none;color:var(--dim);cursor:pointer;transition:border-color .1s,color .1s}
+.opts button:hover{border-color:var(--ink);color:var(--ink)}
+.opts button.picked{border-color:var(--accent);color:var(--accent)}
+.opts.done button:not(.picked){opacity:.4;pointer-events:none}
+.fb-more{font-size:14px;color:var(--dim)}
+.fb-thanks{font:500 13px/1 'JetBrains Mono',monospace;color:#1a7f4e;margin-top:16px;min-height:15px}
 
-.pricing{margin:100px 0 20px}
-.pricing h2{font:700 32px 'Inter',sans-serif;letter-spacing:-.02em;text-align:center}
-.pricing .plead{color:var(--dim);text-align:center;max-width:520px;margin:12px auto 40px}
-.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:820px){.tiers{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
-.tier{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;display:flex;flex-direction:column}
-.tier.hot{border-color:var(--violet);position:relative}
-.tier.hot::before{content:"Most popular";position:absolute;top:-11px;left:50%;transform:translateX(-50%);
-  font:500 11px 'JetBrains Mono',monospace;background:var(--violet);color:#fff;padding:4px 12px;border-radius:99px;letter-spacing:.05em}
-.tier h3{font:600 20px 'Inter',sans-serif}
-.tier .price{font:700 34px 'Inter',sans-serif;letter-spacing:-.02em;margin:14px 0 2px}
-.tier .price small{font:500 13px 'JetBrains Mono',monospace;color:var(--faint)}
-.tier .for{font-size:13px;color:var(--faint);margin-bottom:18px}
-.tier ul{list-style:none;flex:1;margin-bottom:22px}
-.tier li{padding:7px 0 7px 24px;position:relative;font-size:14.5px;color:var(--dim)}
-.tier li::before{content:"";position:absolute;left:2px;top:14px;width:12px;height:7px;border-left:2px solid var(--violet-hot);border-bottom:2px solid var(--violet-hot);transform:rotate(-45deg)}
-.tier li.soon::after{content:"soon";font:500 10px 'JetBrains Mono',monospace;color:var(--faint);border:1px solid var(--line);border-radius:99px;padding:2px 7px;margin-left:8px}
-.tier .btn{width:100%}
-
-.how{margin:90px 0 40px}
-.how h2{font:700 28px 'Inter',sans-serif;letter-spacing:-.02em;margin-bottom:22px}
-.how p{color:var(--dim);max-width:700px;margin-bottom:14px}
-.how strong{color:var(--ink);font-weight:600}
-.rules{margin-top:26px;border-top:1px solid var(--line)}
-.rules div{padding:16px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:150px 1fr;gap:16px;font-size:14.5px}
-@media(max-width:600px){.rules div{grid-template-columns:1fr}}
-.rules b{font:500 12px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--violet-hot);padding-top:2px}
-.rules span{color:var(--dim)}
-
-footer{padding:40px 0 60px;color:var(--faint);font-size:13px;border-top:1px solid var(--line);margin-top:40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer{margin-top:56px;padding:24px 0 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--faint)}
 footer a{color:var(--dim);text-decoration:none}
-input[type=file]{display:none}
+footer a:hover{color:var(--ink)}
+
+#sw-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(8px);
+  background:var(--ink);color:#fff;padding:12px 20px;border-radius:99px;font-size:14px;
+  opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:70;max-width:90vw}
+#sw-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
-{"@type":"WebApplication","name":"Superwhite","url":"https://superwhite.app/","applicationCategory":"DesignApplication","operatingSystem":"Any","browserRequirements":"Requires HTML5 canvas support","description":"Free in-browser tool that makes the whites in your image render brighter than your screen's white using HDR PQ color profiles. Built for LinkedIn posts.","offers":[{"@type":"Offer","name":"Free","price":"0","priceCurrency":"EUR"},{"@type":"Offer","name":"Pro","price":"9","priceCurrency":"EUR"},{"@type":"Offer","name":"Agency","price":"29","priceCurrency":"EUR"}]},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"How can an image be brighter than white?","acceptedAnswer":{"@type":"Answer","text":"HDR-capable displays reserve extra brightness headroom above normal SDR white for HDR content. By re-encoding an image with a Rec.2100 PQ color profile, browsers render its bright areas into that headroom - physically brighter than the surrounding page."}},
-{"@type":"Question","name":"Where do glowing HDR images work?","acceptedAnswer":{"@type":"Answer","text":"LinkedIn feed posts uploaded directly as JPEG preserve the HDR color profile. Screenshots, re-saving in editors, and messenger compression strip the effect. The glow is visible only on HDR displays such as recent MacBooks, iPhones, and Pixels."}},
-{"@type":"Question","name":"Is Superwhite free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Converting images for LinkedIn is free with no signup and no watermark. Everything runs in your browser - images never leave your device. Paid tiers add 4K exports, Instagram Ultra HDR, and batch processing."}},
-{"@type":"Question","name":"Why does the image look normal on my screen?","acceptedAnswer":{"@type":"Answer","text":"The glow requires an HDR display with battery saver off. On standard (SDR) screens the image simply looks normal, with slightly dimmer whites."}}
-]}]}
-</script>
 </head>
 <body>
 <div class="wrap">
@@ -173,38 +146,23 @@ input[type=file]{display:none}
     <div class="hdr-badge" id="hdrBadge">checking display…</div>
   </header>
 
-  <section class="hero-top">
-    <h1>Your post. But <span class="pop">glowing.</span></h1>
-    <p class="sub">Superwhite pushes the whites in your image into your screen's HDR headroom. They come out brighter than the feed around them. Same logo, posted twice:</p>
+  <section class="hero">
+    <h1>Whites brighter than your screen's white.</h1>
+    <p class="sub">Superwhite embeds an HDR profile into your JPEG. On HDR screens the whites glow above everything around them, including this page. Free. Runs in your browser. Nothing gets uploaded.</p>
   </section>
 
-  <!-- mock LinkedIn feed -->
-  <section class="feedstage" aria-label="Feed comparison demo">
-    <div class="feedgrid">
-
-      <div class="feedcol">
-        <span class="coltag plain">Without Superwhite</span>
-        <article class="post regular">
-          <div class="phead"><div class="avatar a">R</div><div class="pmeta"><b>Regular Rob</b><span>B2B Marketer · 2h · 🌐</span></div></div>
-          <p class="ptext">Excited to announce our new brand! 🚀</p>
-          <img class="pimg" id="feedSdr" alt="Post image without Superwhite">
-          <div class="pactions"><s>👍 Like</s><s>💬 Comment</s><s>🔁 Repost</s><s>📤 Send</s></div>
-        </article>
+  <section class="samples" aria-label="Before and after sample">
+    <div class="pair">
+      <div class="sample">
+        <img id="feedSdr" alt="Sample image, original">
+        <div class="slabel"><b>Original</b><span>SDR</span></div>
       </div>
-
-      <div class="feedcol">
-        <span class="coltag super">With Superwhite ⚡</span>
-        <article class="post superpost">
-          <div class="phead"><div class="avatar b">Y</div><div class="pmeta"><b>You</b><span>Thumb-stopper · 2h · 🌐</span></div></div>
-          <p class="ptext">Excited to announce our new brand! 🚀</p>
-          <img class="pimg" id="feedHdr" alt="Post image with Superwhite, glowing brighter than white">
-          <div class="pactions"><b>👍 Like</b><s>💬 Comment</s><s>🔁 Repost</s><s>📤 Send</s></div>
-        </article>
+      <div class="sample glow">
+        <img id="feedHdr" alt="Sample image processed with Superwhite, brighter than white">
+        <div class="slabel"><b>Superwhite</b><span>HDR · 3000 nits</span></div>
       </div>
-
     </div>
-    <p class="sim-pill">Your display is SDR, so this is a simulation. On an HDR screen the glow is real.</p>
-    <p class="stage-cap" id="stageCap">Same pixels, same feed. The one on the right is a real HDR file, glowing above the page's white right now.</p>
+    <p class="pair-cap" id="stageCap">Same pixels. This page is pure white on purpose.<span class="hdr-only"> Your display is HDR, so the right one is genuinely glowing above it right now.</span><span class="sdr-only"> Your display is SDR, so the glow here is simulated. On a recent MacBook, iPhone or Pixel it's real.</span></p>
   </section>
 
   <section class="cta-row" id="try">
@@ -219,7 +177,7 @@ input[type=file]{display:none}
     <div class="stage">
       <div class="pane"><span class="tag">Original · SDR</span><img id="before" alt="Original image"></div>
       <div class="pane"><span class="tag">Superwhite · HDR</span><img id="after" alt="HDR result"></div>
-      <p class="stage-note">This panel is pure white on purpose. On an HDR screen the right image should clearly out-glow it.</p>
+      <p class="stage-note">On an HDR screen the right image should clearly out-glow this white page.</p>
     </div>
 
     <div class="controls">
@@ -241,93 +199,79 @@ input[type=file]{display:none}
       <a class="btn primary" id="download" download>Download HDR JPEG</a>
       <button class="btn ghost" id="reset">Start over</button>
     </div>
-    <p class="limit-note">Free exports up to 2048&nbsp;px · 4K from €0.30/image · <a href="#pricing">Pro unlocks unlimited 4K</a></p>
+    <p class="limit-note">Free. Exports up to 2048&nbsp;px.</p>
     <p class="busy" id="busy"></p>
-  </section>
-
-  <section class="pricing" id="pricing">
-    <h2>Pricing</h2>
-    <p class="plead">The glow is free and stays free. You only pay for 4K, batch and API.</p>
-    <div class="tiers">
-
-      <div class="tier">
-        <h3>Free</h3>
-        <p class="price">€0</p>
-        <p class="for">For your own posts</p>
-        <ul>
-          <li>Unlimited conversions</li>
-          <li>LinkedIn-ready HDR JPEG</li>
-          <li>Brightness &amp; threshold controls</li>
-          <li>Exports up to 2048 px</li>
-          <li>No watermark, ever</li>
-        </ul>
-        <a class="btn ghost" href="#try" >Start converting</a>
-      </div>
-
-      <div class="tier hot">
-        <h3>Pro</h3>
-        <p class="price">€9 <small>/ month</small></p>
-        <p class="for">For creators posting daily</p>
-        <ul>
-          <li>Everything in Free</li>
-          <li>Unlimited 4K exports</li>
-          <li>Cheaper than credits past ~25 exports a month</li>
-          <li class="soon">Instagram Ultra HDR export</li>
-        </ul>
-        <a class="btn primary" href="https://tally.so/r/rjWN1M" id="buyPro">Join the waitlist</a>
-      </div>
-
-      <div class="tier">
-        <h3>Agency</h3>
-        <p class="price">€29 <small>/ month</small></p>
-        <p class="for">For teams &amp; ghostwriters</p>
-        <ul>
-          <li>Everything in Pro</li>
-          <li>Batch processing</li>
-          <li class="soon">API access</li>
-          <li>White-label exports</li>
-          <li>3 team seats</li>
-        </ul>
-        <a class="btn ghost" href="https://tally.so/r/rjWN1M" id="buyAgency">Join the waitlist</a>
-      </div>
-
-    </div>
   </section>
 
   <section class="how">
     <h2>How it works</h2>
-    <p>Your image gets re-encoded with a <strong>Rec.2100 PQ color profile</strong>, the same signal HDR video uses. On HDR screens (recent MacBooks, iPhones, Pixels) the bright parts render with the display's spare brightness, above normal white. Everything happens locally in your browser.</p>
+    <p>Your image gets re-encoded with a Rec.2100 PQ color profile, the same signal HDR video uses. On HDR screens the bright parts render with the display's spare brightness, above normal white. Everything happens locally in your browser.</p>
     <div class="rules">
       <div><b>Where it survives</b><span>LinkedIn feed posts, as a JPEG, uploaded directly. Don't crop or edit in LinkedIn's composer, that strips the profile.</span></div>
-      <div><b>Where it dies</b><span>Screenshots, re-saving in editors, WhatsApp/iMessage compression, and copy-paste. Move the file itself.</span></div>
-      <div><b>Who sees it</b><span>Only people on HDR displays with battery saver off. Everyone else just sees a normal image with slightly dimmer whites.</span></div>
+      <div><b>Where it dies</b><span>Screenshots, re-saving in editors, WhatsApp and iMessage compression, copy-paste. Move the file itself.</span></div>
+      <div><b>Who sees it</b><span>Only people on HDR displays with battery saver off. Everyone else sees a normal image with slightly dimmer whites.</span></div>
       <div><b>Best input</b><span>High-contrast graphics: logos, wordmarks, simple illustrations. Photo gradients can band at 8-bit.</span></div>
     </div>
   </section>
 
+  <section class="feedback" id="feedback">
+    <h2>Help shape this</h2>
+    <p>Superwhite is free and stays free. If you have ten seconds, these answers decide what gets built next.</p>
+
+    <div class="q" data-q="use_case">
+      <p>Where would you post superwhited images?</p>
+      <div class="opts">
+        <button data-a="linkedin">LinkedIn</button>
+        <button data-a="instagram">Instagram</button>
+        <button data-a="slides">Slides or decks</button>
+        <button data-a="other">Somewhere else</button>
+      </div>
+    </div>
+
+    <div class="q" data-q="missing">
+      <p>What's missing?</p>
+      <div class="opts">
+        <button data-a="higher_res">Higher resolution</button>
+        <button data-a="batch">Batch processing</button>
+        <button data-a="video">Video support</button>
+        <button data-a="nothing">Nothing, it does the job</button>
+      </div>
+    </div>
+
+    <div class="q" data-q="would_pay">
+      <p>Is there anything here you'd pay for?</p>
+      <div class="opts">
+        <button data-a="yes">Yes</button>
+        <button data-a="no">No</button>
+        <button data-a="depends">Depends what it costs</button>
+      </div>
+    </div>
+
+    <p class="fb-more">More to say? <a href="https://tally.so/r/rjWN1M" id="fbForm" target="_blank" rel="noopener">There's a short form</a>. It takes two minutes.</p>
+    <p class="fb-thanks" id="fbThanks"></p>
+  </section>
+
   <footer>
     <span>Superwhite runs 100% client-side. Your images never leave your device.</span>
-    <span><a href="/tools/">Free tools</a> · <a href="/blog/how-it-works.html">How it works, technically</a> · <a href="https://superwhite.app">superwhite.app</a></span>
+    <span><a href="/tools/">Free tools</a> · <a href="/blog/how-it-works.html">How it works, technically</a></span>
   </footer>
 </div>
+
+<div id="sw-toast" role="status"></div>
 
 <script>
 const ICC_B64 = "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czMFUwukczMFUxM5czMFUxxwczMFUye+czMFUzWyczMFU0bZczMFU1t9czMFU3MzZz4EcIAAczMLpAAAczMLpAVTczMLpAukczMLpBM5czMLpBxwczMLpCe+czMLpDWyczMLpEbZczMLpFt9czMLpHMzZz4JwIAAczMTOQAAczMTOQVTczMTOQukczMTORM5czMTORxwczMTOSe+czMTOTWyczMTOUbZczMTOVt9czMTOXMzZz4QL4AAczMccAAAczMccAVTczMccAukczMccBM5czMccBxwczMccCe+czMccDWyczMccEbZczMccFt9czMccHMzZz4YF4AAczMnvgAAczMnvgVTczMnvgukczMnvhM5czMnvhxwczMnvie+czMnvjWyczMnvkbZczMnvlt9czMnvnMzZz4h7YAAczM1sgAAczM1sgVTczM1sgukczM1shM5czM1shxwczM1sie+czM1sjWyczM1skbZczM1slt9czM1snMzZz4uRIAAczNG2QAAczNG2QVTczNG2QukczNG2RM5czNG2RxwczNG2Se+czNG2TWyczNG2UbZczNG2Vt9czNG2XMzZz49vYAAczNbfQAAczNbfQVTczNbfQukczNbfRM5czNbfRxwczNbfSe+czNbfTWyczNbfUbZczNbfVt9czNbfXMzZz5QyoAAczNzMwAAczNzMwVTczNzMwukczNzMxM5czNzMxxwczNzMye+czNzMzWyczNzM0bZczNzM1t9czNzM3MzZz5nPoAAZz6AAAAAZz6AAARwZz6AAAnAZz6AABAvZz6AABgXZz6AACHtZz6AAC5EZz6AAD29Zz6AAFDKZz6AAGc+Zz6AAIAAgAAAAAAAgAAAAARwgAAAAAnAgAAAABAvgAAAABgXgAAAACHtgAAAAC5EgAAAAD29gAAAAFDKgAAAAGc+gAAAAIAAgAAEcAAAgAAEcARwgAAEcAnAgAAEcBAvgAAEcBgXgAAEcCHtgAAEcC5EgAAEcD29gAAEcFDKgAAEcGc+gAAEcIAAgAAJwAAAgAAJwARwgAAJwAnAgAAJwBAvgAAJwBgXgAAJwCHtgAAJwC5EgAAJwD29gAAJwFDKgAAJwGc+gAAJwIAAgAAQLwAAgAAQLwRwgAAQLwnAgAAQLxAvgAAQLxgXgAAQLyHtgAAQLy5EgAAQLz29gAAQL1DKgAAQL2c+gAAQL4AAgAAYFwAAgAAYFwRwgAAYFwnAgAAYFxAvgAAYFxgXgAAYFyHtgAAYFy5EgAAYFz29gAAYF1DKgAAYF2c+gAAYF4AAgAAh7QAAgAAh7QRwgAAh7QnAgAAh7RAvgAAh7RgXgAAh7SHtgAAh7S5EgAAh7T29gAAh7VDKgAAh7Wc+gAAh7YAAgAAuRAAAgAAuRARwgAAuRAnAgAAuRBAvgAAuRBgXgAAuRCHtgAAuRC5EgAAuRD29gAAuRFDKgAAuRGc+gAAuRIAAgAA9vQAAgAA9vQRwgAA9vQnAgAA9vRAvgAA9vRgXgAA9vSHtgAA9vS5EgAA9vT29gAA9vVDKgAA9vWc+gAA9vYAAgABQygAAgABQygRwgABQygnAgABQyhAvgABQyhgXgABQyiHtgABQyi5EgABQyj29gABQylDKgABQymc+gABQyoAAgABnPgAAgABnPgRwgABnPgnAgABnPhAvgABnPhgXgABnPiHtgABnPi5EgABnPj29gABnPlDKgABnPmc+gABnPoAAgACAAAAAgACAAARwgACAAAnAgACAABAvgACAABgXgACAACHtgACAAC5EgACAAD29gACAAFDKgACAAGc+gACAAIAAAABjdXJ2AAAAAAAAAEEAAAACAAcAEQAgADgAWACEAL8BCgFpAeECdgMtBAoFFQZUB88JjwucDgMQxBP6F58bxSBlJZ4rdzHkONBAhEi2UX5at2R8bnp424OKjlSZQ6RIrzK6Q8VU0Gfbsecc8r3+3v//////////////////////////////////////////AABjdXJ2AAAAAAAAAEEAAAACAAcAEQAgADgAWACEAL8BCgFpAeECdgMtBAoFFQZUB88JjwucDgMQxBP6F58bxSBlJZ4rdzHkONBAhEi2UX5at2R8bnp424OKjlSZQ6RIrzK6Q8VU0Gfbsecc8r3+3v//////////////////////////////////////////AABjdXJ2AAAAAAAAAEEAAAACAAcAEQAgADgAWACEAL8BCgFpAeECdgMtBAoFFQZUB88JjwucDgMQxBP6F58bxSBlJZ4rdzHkONBAhEi2UX5at2R8bnp424OKjlSZQ6RIrzK6Q8VU0Gfbsecc8r3+3v//////////////////////////////////////////AAAAAKxoAAAqaQAAIAcAAEdvAACs4wAAC67///+BAAAHrQAAzBMAAAAAAAAAAAAAAABwYXJhAAAAAAAAAAAAAQAAcGFyYQAAAAAAAAAAAAEAAHBhcmEAAAAAAAAAAAABAABtQkEgAAAAAAMDAAAAAAAgAAAAAAAAAAAAAAAAAAAAAHBhcmEAAAAAAAAAAAABAABwYXJhAAAAAAAAAAAAAQAAcGFyYQAAAAAAAAAAAAEAAGNpY3AAAAAACRAAAQ==";
 const iccBytes = Uint8Array.from(atob(ICC_B64), c => c.charCodeAt(0));
-const FREE_MAX = 2048;
-const IS_PRO = false; // wire to your license check later
+const MAX_PX = 2048;
 
 const isHDR = matchMedia('(dynamic-range: high)').matches;
 const badge = document.getElementById('hdrBadge');
 if (isHDR) { badge.textContent = 'HDR display ✓'; badge.classList.add('ok'); }
-else {
-  badge.textContent = 'SDR display · glow simulated'; badge.classList.add('no');
-  document.body.classList.add('sdr');
-  document.getElementById('stageCap').textContent =
-    'Same pixels, same feed. On an HDR screen (recent MacBook, iPhone, Pixel) the right one genuinely glows above the page\u2019s white.';
-}
+else { badge.textContent = 'SDR display · glow simulated'; badge.classList.add('no'); document.body.classList.add('sdr'); }
 
 const $ = id => document.getElementById(id);
+const swToast = msg => { const t = $('sw-toast'); t.textContent = msg; t.classList.add('on');
+  setTimeout(() => t.classList.remove('on'), 3600); };
 
 /* ================= shared PQ pipeline ================= */
 const PQ = { m1:0.1593017578125, m2:78.84375, c1:0.8359375, c2:18.8515625, c3:18.6875 };
@@ -338,20 +282,12 @@ function s2l(v){ return v <= 0.04045 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4);
 function pqE(Y){ if (Y<=0) return 0; if (Y>1) Y=1; const Ym=Math.pow(Y,PQ.m1);
   return Math.round(Math.pow((PQ.c1+PQ.c2*Ym)/(1+PQ.c3*Ym),PQ.m2)*255); }
 
-function toHDR(canvas, { peak=1000, threshold=0.7, mode='hi', watermark=false } = {}) {
+function toHDR(canvas, { peak=1000, threshold=0.7, mode='hi' } = {}) {
   const w = canvas.width, h = canvas.height;
   const work = document.createElement('canvas');
   work.width = w; work.height = h;
   const wctx = work.getContext('2d');
   wctx.drawImage(canvas, 0, 0);
-
-  if (watermark) {
-    const fs = Math.max(13, Math.round(w * 0.018));
-    wctx.font = `600 ${fs}px Inter, sans-serif`;
-    wctx.textAlign = 'right'; wctx.textBaseline = 'bottom';
-    wctx.fillStyle = 'rgba(255,255,255,0.95)';
-    wctx.fillText('superwhite.app', w - fs, h - fs * 0.8);
-  }
 
   const src = wctx.getImageData(0, 0, w, h).data;
   const out = new Uint8ClampedArray(src.length);
@@ -398,54 +334,31 @@ function embedICC(d, icc) {
   return outB;
 }
 
-/* ================= feed demo: cartoonish logo ================= */
+/* ================= sample pair ================= */
 function drawDemoLogo() {
   const c = document.createElement('canvas');
   c.width = 860; c.height = 500;
   const x = c.getContext('2d');
 
-  x.fillStyle = '#5B21F5'; x.fillRect(0,0,860,500);
-  x.fillStyle = 'rgba(255,255,255,0.07)';
-  x.beginPath(); x.arc(110,70,150,0,7); x.fill();
-  x.beginPath(); x.arc(790,450,190,0,7); x.fill();
+  x.fillStyle = '#4316B8'; x.fillRect(0,0,860,500);
 
-  function spark(cx, cy, r, rot) {
-    x.save(); x.translate(cx,cy); x.rotate(rot);
-    x.fillStyle = '#FFFFFF';
-    x.beginPath();
-    for (let i = 0; i < 4; i++) {
-      x.lineTo(0,-r); x.quadraticCurveTo(r*0.18,-r*0.18,r,0);
-      x.rotate(Math.PI/2);
-    }
-    x.closePath(); x.fill(); x.restore();
-  }
-  spark(140, 385, 40, 0.3);
-  spark(730, 105, 54, -0.2);
-  spark(660, 390, 25, 0.6);
-  spark(205, 125, 29, -0.5);
-
-  const text = 'superwhite';
-  x.font = '800 112px "Baloo 2", sans-serif';
+  x.font = '800 96px "Inter Tight", sans-serif';
   x.textAlign = 'center'; x.textBaseline = 'middle';
-  x.lineJoin = 'round'; x.miterLimit = 2;
-  x.save();
-  x.translate(430, 252); x.rotate(-0.035);
-  x.strokeStyle = 'rgba(20,5,60,0.55)'; x.lineWidth = 32;
-  x.strokeText(text, 6, 11);
-  x.strokeStyle = '#FFFFFF'; x.lineWidth = 28;
-  x.strokeText(text, 0, 0);
-  x.fillStyle = '#4316B8';
-  x.fillText(text, 0, 0);
-  x.restore();
+  x.fillStyle = '#FFFFFF';
+  x.fillText('superwhite', 430, 238);
+
+  x.font = '500 22px "JetBrains Mono", monospace';
+  x.fillStyle = 'rgba(255,255,255,0.6)';
+  x.fillText('brighter than white', 430, 318);
 
   return c;
 }
 
 async function buildDemo() {
-  try { await document.fonts.load('800 112px "Baloo 2"'); } catch(e) {}
+  try { await document.fonts.load('800 96px "Inter Tight"'); } catch(e) {}
   const c = drawDemoLogo();
   $('feedSdr').src = c.toDataURL('image/png');
-  $('feedHdr').src = await toHDR(c, { peak: 3000, threshold: 0.7, mode: 'hi', watermark: false });
+  $('feedHdr').src = await toHDR(c, { peak: 3000, threshold: 0.7, mode: 'hi' });
 }
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(buildDemo); else buildDemo();
 
@@ -462,7 +375,6 @@ fileInput.addEventListener('change', () => { if (fileInput.files[0]) load(fileIn
 
 function load(file) {
   fileBase = file.name.replace(/\.[^.]+$/, '') || 'image';
-  window.swOrigFile = file;
   // guard: warn when re-processing a superwhite output (double PQ = mushy result)
   (async () => {
     try {
@@ -476,14 +388,13 @@ function load(file) {
           hit = true; break;
         }
       }
-      if (hit && typeof swToast === 'function') swToast('Heads up: this image is already superwhited, load the original for the best glow');
+      if (hit) swToast('Heads up: this image is already superwhited, load the original for the best glow');
     } catch(e){}
   })();
   const img = new Image();
   img.onload = () => {
-    const cap = IS_PRO ? 4096 : FREE_MAX;
     let w = img.naturalWidth, h = img.naturalHeight;
-    if (Math.max(w, h) > cap) { const s = cap / Math.max(w, h); w = Math.round(w*s); h = Math.round(h*s); }
+    if (Math.max(w, h) > MAX_PX) { const s = MAX_PX / Math.max(w, h); w = Math.round(w*s); h = Math.round(h*s); }
     srcCanvas = document.createElement('canvas');
     srcCanvas.width = w; srcCanvas.height = h;
     const ctx = srcCanvas.getContext('2d');
@@ -528,8 +439,7 @@ async function render() {
   const url = await toHDR(srcCanvas, {
     peak: +$('nits').value,
     threshold: +$('thresh').value / 100,
-    mode,
-    watermark: false
+    mode
   });
   if (currentURL) URL.revokeObjectURL(currentURL);
   currentURL = url;
@@ -540,195 +450,27 @@ async function render() {
   $('busy').textContent = '';
 }
 
-// --- GA4 conversion tracking ---
+/* ================= GA4 events ================= */
 $('download').addEventListener('click', () => {
   gtag('event', 'image_download', { peak_nits: +$('nits').value });
 });
-$('buyPro').addEventListener('click', () => {
-  gtag('event', 'waitlist_click', { plan: 'pro' });
-});
-$('buyAgency').addEventListener('click', () => {
-  gtag('event', 'waitlist_click', { plan: 'agency' });
-});
-</script>
-
-<!-- ===== SUPERWHITE CREDITS ===== -->
-<style>
-.sw-credit-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px;justify-content:center}
-.sw-pill{font:500 13px/1 'JetBrains Mono',monospace;color:var(--dim);border:1px solid var(--line);
-  border-radius:999px;padding:7px 12px;background:var(--surface)}
-.sw-pill b{color:var(--ink)}
-#sw-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;
-  background:rgba(13,11,20,.78);backdrop-filter:blur(6px);z-index:60;padding:20px}
-#sw-modal.on{display:flex}
-.sw-sheet{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-  max-width:520px;width:100%;padding:28px;position:relative}
-.sw-sheet h3{font-family:'Baloo 2',sans-serif;font-size:24px;color:var(--ink);margin-bottom:6px}
-.sw-sheet p{color:var(--dim);font-size:14px;margin-bottom:18px}
-.sw-packs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:480px){.sw-packs{grid-template-columns:1fr}}
-.sw-pack{border:1px solid var(--line);border-radius:var(--radius);padding:18px;text-align:left;
-  background:var(--bg);cursor:pointer;transition:border-color .15s;color:var(--ink)}
-.sw-pack:hover{border-color:var(--violet-hot)}
-.sw-pack .price{font-family:'Baloo 2',sans-serif;font-size:26px;color:var(--ink)}
-.sw-pack .qty{color:var(--violet-hot);font-weight:600;font-size:14px;margin:2px 0 6px}
-.sw-pack .per{color:var(--faint);font-size:12px}
-.sw-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--faint);
-  font-size:22px;cursor:pointer;line-height:1}
-.sw-note{margin-top:14px;font-size:12px;color:var(--faint)}
-.sw-note a{color:var(--violet-hot);text-decoration:none}
-#sw-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(8px);
-  background:var(--violet-deep);color:#fff;padding:12px 20px;border-radius:999px;font-size:14px;
-  opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:70}
-#sw-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-</style>
-
-<div id="sw-modal" role="dialog" aria-modal="true" aria-labelledby="sw-modal-title">
-  <div class="sw-sheet">
-    <button class="sw-close" id="sw-close" aria-label="Close">×</button>
-    <h3 id="sw-modal-title">4K credits</h3>
-    <p>One credit is one 4K export. Credits never expire. No subscription, no account, the key just lives in this browser.</p>
-    <div class="sw-packs">
-      <button class="sw-pack" data-pack="starter">
-        <div class="price">€4</div>
-        <div class="qty">10 credits</div>
-        <div class="per">€0.40 per 4K export</div>
-      </button>
-      <button class="sw-pack" data-pack="creator">
-        <div class="price">€12</div>
-        <div class="qty">40 credits</div>
-        <div class="per">€0.30 per 4K export</div>
-      </button>
-    </div>
-    <p class="sw-note">Payment handled by Stripe. Exporting a lot every month? <a href="#pricing" id="sw-to-pro">Pro is cheaper</a>.</p>
-  </div>
-</div>
-<div id="sw-toast" role="status"></div>
-
-<script>
-/* ================= Superwhite Credits ================= */
-const SW_API = 'https://superwhite-credits.nimrodyar.workers.dev';
-const SW_KEY_LS = 'sw_credit_key';
-let swCredits = 0;
-
-const swKey = () => localStorage.getItem(SW_KEY_LS) || '';
-const swToast = msg => { const t = $('sw-toast'); t.textContent = msg; t.classList.add('on');
-  setTimeout(() => t.classList.remove('on'), 3200); };
-
-/* --- inject UI next to the existing download button --- */
-(function swInjectUI(){
-  const dl = $('download');
-  const row = document.createElement('div');
-  row.className = 'sw-credit-row';
-  row.innerHTML = '<a class="btn ghost" id="sw-dl4k" href="#">Download 4K · 1 credit</a>' +
-                  '<span class="sw-pill" id="sw-balance" hidden><b>0</b> credits</span>';
-  dl.parentNode.insertBefore(row, dl.nextSibling);
-})();
-
-function swPaintBalance(){
-  const pill = $('sw-balance');
-  if (swKey()) { pill.hidden = false; pill.innerHTML = '<b>' + swCredits + '</b> credit' + (swCredits === 1 ? '' : 's'); }
-  else pill.hidden = true;
-}
-
-async function swFetchBalance(){
-  if (!swKey()) return;
-  try {
-    const r = await fetch(SW_API + '/balance?key=' + encodeURIComponent(swKey()));
-    if (r.ok) { swCredits = (await r.json()).credits; swPaintBalance(); }
-  } catch(e){}
-}
-
-/* --- claim credits after returning from Stripe --- */
-(async function swClaim(){
-  const p = new URLSearchParams(location.search);
-  const sid = p.get('session_id');
-  if (p.get('checkout') === 'cancelled') history.replaceState({}, '', '/');
-  if (!sid) { swFetchBalance(); return; }
-  history.replaceState({}, '', '/');
-  try {
-    const r = await fetch(SW_API + '/claim', { method:'POST',
-      headers:{'Content-Type':'application/json'}, body: JSON.stringify({ session_id: sid }) });
-    const d = await r.json();
-    if (r.ok && d.key) {
-      localStorage.setItem(SW_KEY_LS, d.key);
-      swCredits = d.credits; swPaintBalance();
-      swToast('Payment received. ' + d.credits + ' credits ready ✨');
-      gtag('event', 'credits_claimed', { balance: d.credits });
-      if (!window.swOrigFile) setTimeout(() => swToast('Now load your image (the original, not a previous export) and hit Download 4K'), 3600);
-    } else swToast('Could not verify payment. Contact hello@superwhite.app');
-  } catch(e){ swToast('Network hiccup verifying payment. Refresh to retry'); }
-})();
-
-/* --- purchase modal --- */
-const swModal = $('sw-modal');
-$('sw-close').addEventListener('click', () => swModal.classList.remove('on'));
-swModal.addEventListener('click', e => { if (e.target === swModal) swModal.classList.remove('on'); });
-$('sw-to-pro').addEventListener('click', () => swModal.classList.remove('on'));
-document.querySelectorAll('.sw-pack').forEach(btn => btn.addEventListener('click', async () => {
-  btn.disabled = true;
-  gtag('event', 'pack_checkout_click', { pack: btn.dataset.pack });
-  try {
-    const r = await fetch(SW_API + '/checkout', { method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ pack: btn.dataset.pack, key: swKey() || undefined }) });
-    const d = await r.json();
-    if (d.url) location.href = d.url; else { swToast('Checkout unavailable right now'); btn.disabled = false; }
-  } catch(e){ swToast('Checkout unavailable right now'); btn.disabled = false; }
-}));
-
-/* --- 4K export: spend a credit, re-render from the original at 4096px --- */
-$('sw-dl4k').addEventListener('click', async e => {
-  e.preventDefault();
-  if (!window.swOrigFile) { swToast('Load an image first'); return; }
-  if (!swKey() || swCredits < 1) { swModal.classList.add('on'); return; }
-
-  const btn = $('sw-dl4k');
-  btn.textContent = 'Rendering 4K…';
-  try {
-    const r = await fetch(SW_API + '/spend', { method:'POST',
-      headers:{'Content-Type':'application/json'}, body: JSON.stringify({ key: swKey() }) });
-    const d = await r.json();
-    if (!r.ok) {
-      if (r.status === 402) { swCredits = 0; swPaintBalance(); swModal.classList.add('on'); }
-      else swToast('Could not verify credits. Try again');
-      return;
-    }
-    swCredits = d.credits; swPaintBalance();
-
-    const url = await swRender4K();
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = (window.swOrigFile.name.replace(/\.[^.]+$/, '') || 'image') +
-                 '-superwhite-4k-' + $('nits').value + 'nit.jpg';
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 5000);
-    gtag('event', 'credit_spent_4k', { balance: d.credits });
-    swToast(d.credits + ' credit' + (d.credits === 1 ? '' : 's') + ' left');
-  } catch(err){ swToast('4K export failed. Your credit was not lost, try again'); swFetchBalance(); }
-  finally { btn.textContent = 'Download 4K · 1 credit'; }
+$('fbForm').addEventListener('click', () => {
+  gtag('event', 'waitlist_click', { plan: 'feedback_form' });
 });
 
-function swRender4K(){
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload = async () => {
-      const cap = 4096;
-      let w = img.naturalWidth, h = img.naturalHeight;
-      if (Math.max(w, h) > cap) { const s = cap / Math.max(w, h); w = Math.round(w*s); h = Math.round(h*s); }
-      const c = document.createElement('canvas'); c.width = w; c.height = h;
-      const ctx = c.getContext('2d');
-      ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, w, h);
-      ctx.drawImage(img, 0, 0, w, h);
-      URL.revokeObjectURL(img.src);
-      try {
-        resolve(await toHDR(c, { peak:+$('nits').value, threshold:+$('thresh').value/100, mode, watermark:false }));
-      } catch(e){ reject(e); }
-    };
-    img.onerror = reject;
-    img.src = URL.createObjectURL(window.swOrigFile);
+/* ================= feedback ================= */
+document.querySelectorAll('.q').forEach(q => {
+  const opts = q.querySelector('.opts');
+  opts.addEventListener('click', e => {
+    const btn = e.target.closest('button');
+    if (!btn || opts.classList.contains('done')) return;
+    btn.classList.add('picked');
+    opts.classList.add('done');
+    gtag('event', 'feedback_answer', { question: q.dataset.q, answer: btn.dataset.a });
+    const allDone = [...document.querySelectorAll('.opts')].every(o => o.classList.contains('done'));
+    $('fbThanks').textContent = allDone ? 'Thanks. That genuinely helps.' : 'Noted.';
   });
-}
+});
 </script>
 </body>
 </html>
