@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Superwhite — make your images glow brighter than white</title>
-<meta name="description" content="Free in-browser tool that makes the whites in your image physically brighter than your screen's white. Built for LinkedIn posts. Nothing is uploaded — everything runs locally.">
+<title>Superwhite: make your images glow brighter than white</title>
+<meta name="description" content="Free in-browser tool that makes the whites in your image physically brighter than your screen's white. Built for LinkedIn posts. Nothing gets uploaded, everything runs in your browser.">
 <link rel="canonical" href="https://superwhite.app/">
-<meta property="og:title" content="Superwhite — images brighter than white">
+<meta property="og:title" content="Superwhite: images brighter than white">
 <meta property="og:description" content="Push your image's whites into your screen's HDR headroom. Free, in-browser, built for LinkedIn.">
 <meta property="og:url" content="https://superwhite.app/">
 <meta property="og:type" content="website">
@@ -175,7 +175,7 @@ input[type=file]{display:none}
 
   <section class="hero-top">
     <h1>Your post. But <span class="pop">glowing.</span></h1>
-    <p class="sub">Superwhite pushes your image's whites into the screen's HDR headroom — physically brighter than the feed around it. Here's the same logo, posted twice:</p>
+    <p class="sub">Superwhite pushes the whites in your image into your screen's HDR headroom. They come out brighter than the feed around them. Same logo, posted twice:</p>
   </section>
 
   <!-- mock LinkedIn feed -->
@@ -203,13 +203,13 @@ input[type=file]{display:none}
       </div>
 
     </div>
-    <p class="sim-pill">Your display is SDR — this is a simulation of the effect. On HDR screens the glow is real.</p>
-    <p class="stage-cap" id="stageCap">Same pixels, same feed. The right one is a real HDR file — on this display it's glowing above the page's white right now.</p>
+    <p class="sim-pill">Your display is SDR, so this is a simulation. On an HDR screen the glow is real.</p>
+    <p class="stage-cap" id="stageCap">Same pixels, same feed. The one on the right is a real HDR file, glowing above the page's white right now.</p>
   </section>
 
   <section class="cta-row" id="try">
     <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload an image">
-      <p class="big">Drop your image here — make it glow</p>
+      <p class="big">Drop your image here</p>
       <p class="small">or click to choose · PNG or JPEG · logos and graphics work best · nothing is uploaded</p>
     </div>
     <input type="file" id="file" accept="image/png,image/jpeg,image/webp">
@@ -219,7 +219,7 @@ input[type=file]{display:none}
     <div class="stage">
       <div class="pane"><span class="tag">Original · SDR</span><img id="before" alt="Original image"></div>
       <div class="pane"><span class="tag">Superwhite · HDR</span><img id="after" alt="HDR result"></div>
-      <p class="stage-note">This panel is pure white on purpose — on an HDR display the right image should visibly out-glow it.</p>
+      <p class="stage-note">This panel is pure white on purpose. On an HDR screen the right image should clearly out-glow it.</p>
     </div>
 
     <div class="controls">
@@ -247,7 +247,7 @@ input[type=file]{display:none}
 
   <section class="pricing" id="pricing">
     <h2>Pricing</h2>
-    <p class="plead">The glow is free, forever. Pay only for the workflow around it.</p>
+    <p class="plead">The glow is free and stays free. You only pay for 4K, batch and API.</p>
     <div class="tiers">
 
       <div class="tier">
@@ -270,12 +270,11 @@ input[type=file]{display:none}
         <p class="for">For creators posting daily</p>
         <ul>
           <li>Everything in Free</li>
-          <li>Early feature access</li>
-          <li>Full-resolution 4K exports</li>
+          <li>Unlimited 4K exports</li>
+          <li>Cheaper than credits past ~25 exports a month</li>
           <li class="soon">Instagram Ultra HDR export</li>
-          <li>Glow presets per platform</li>
         </ul>
-        <a class="btn primary" href="https://tally.so/r/rjWN1M" id="buyPro">Get early access</a>
+        <a class="btn primary" href="https://tally.so/r/rjWN1M" id="buyPro">Join the waitlist</a>
       </div>
 
       <div class="tier">
@@ -289,7 +288,7 @@ input[type=file]{display:none}
           <li>White-label exports</li>
           <li>3 team seats</li>
         </ul>
-        <a class="btn ghost" href="https://tally.so/r/rjWN1M" id="buyAgency">Get early access</a>
+        <a class="btn ghost" href="https://tally.so/r/rjWN1M" id="buyAgency">Join the waitlist</a>
       </div>
 
     </div>
@@ -297,11 +296,11 @@ input[type=file]{display:none}
 
   <section class="how">
     <h2>How it works</h2>
-    <p>Your image gets re-encoded with a <strong>Rec.2100 PQ color profile</strong> — the signal HDR video uses. Browsers and apps on HDR-capable screens (recent MacBooks, iPhones, Pixels) render the bright parts using the display's extra brightness reserve, above normal white. Everything happens locally in your browser.</p>
+    <p>Your image gets re-encoded with a <strong>Rec.2100 PQ color profile</strong>, the same signal HDR video uses. On HDR screens (recent MacBooks, iPhones, Pixels) the bright parts render with the display's spare brightness, above normal white. Everything happens locally in your browser.</p>
     <div class="rules">
-      <div><b>Where it survives</b><span>LinkedIn feed posts, as a JPEG, uploaded directly. Don't crop or edit in the composer — that strips the profile.</span></div>
+      <div><b>Where it survives</b><span>LinkedIn feed posts, as a JPEG, uploaded directly. Don't crop or edit in LinkedIn's composer, that strips the profile.</span></div>
       <div><b>Where it dies</b><span>Screenshots, re-saving in editors, WhatsApp/iMessage compression, and copy-paste. Move the file itself.</span></div>
-      <div><b>Who sees it</b><span>Only people on HDR displays with battery saver off. Everyone else sees a normal image — slightly dimmer whites, no harm done.</span></div>
+      <div><b>Who sees it</b><span>Only people on HDR displays with battery saver off. Everyone else just sees a normal image with slightly dimmer whites.</span></div>
       <div><b>Best input</b><span>High-contrast graphics: logos, wordmarks, simple illustrations. Photo gradients can band at 8-bit.</span></div>
     </div>
   </section>
@@ -322,7 +321,7 @@ const isHDR = matchMedia('(dynamic-range: high)').matches;
 const badge = document.getElementById('hdrBadge');
 if (isHDR) { badge.textContent = 'HDR display ✓'; badge.classList.add('ok'); }
 else {
-  badge.textContent = 'SDR display — glow simulated'; badge.classList.add('no');
+  badge.textContent = 'SDR display · glow simulated'; badge.classList.add('no');
   document.body.classList.add('sdr');
   document.getElementById('stageCap').textContent =
     'Same pixels, same feed. On an HDR screen (recent MacBook, iPhone, Pixel) the right one genuinely glows above the page\u2019s white.';
@@ -477,7 +476,7 @@ function load(file) {
           hit = true; break;
         }
       }
-      if (hit && typeof swToast === 'function') swToast('Heads up: this image is already superwhited — load the original for the best glow');
+      if (hit && typeof swToast === 'function') swToast('Heads up: this image is already superwhited, load the original for the best glow');
     } catch(e){}
   })();
   const img = new Image();
@@ -588,7 +587,7 @@ $('buyAgency').addEventListener('click', () => {
   <div class="sw-sheet">
     <button class="sw-close" id="sw-close" aria-label="Close">×</button>
     <h3 id="sw-modal-title">4K credits</h3>
-    <p>One credit = one full-resolution 4K export. Credits never expire, no subscription, no account — your key lives in this browser.</p>
+    <p>One credit is one 4K export. Credits never expire. No subscription, no account, the key just lives in this browser.</p>
     <div class="sw-packs">
       <button class="sw-pack" data-pack="starter">
         <div class="price">€4</div>
@@ -654,11 +653,11 @@ async function swFetchBalance(){
     if (r.ok && d.key) {
       localStorage.setItem(SW_KEY_LS, d.key);
       swCredits = d.credits; swPaintBalance();
-      swToast('Payment received — ' + d.credits + ' credits ready ✨');
+      swToast('Payment received. ' + d.credits + ' credits ready ✨');
       gtag('event', 'credits_claimed', { balance: d.credits });
-      if (!window.swOrigFile) setTimeout(() => swToast('Now load your image (the original — not a previous export) and hit Download 4K'), 3600);
-    } else swToast('Could not verify payment — contact hello@superwhite.app');
-  } catch(e){ swToast('Network hiccup verifying payment — refresh to retry'); }
+      if (!window.swOrigFile) setTimeout(() => swToast('Now load your image (the original, not a previous export) and hit Download 4K'), 3600);
+    } else swToast('Could not verify payment. Contact hello@superwhite.app');
+  } catch(e){ swToast('Network hiccup verifying payment. Refresh to retry'); }
 })();
 
 /* --- purchase modal --- */
@@ -692,7 +691,7 @@ $('sw-dl4k').addEventListener('click', async e => {
     const d = await r.json();
     if (!r.ok) {
       if (r.status === 402) { swCredits = 0; swPaintBalance(); swModal.classList.add('on'); }
-      else swToast('Could not verify credits — try again');
+      else swToast('Could not verify credits. Try again');
       return;
     }
     swCredits = d.credits; swPaintBalance();
@@ -706,7 +705,7 @@ $('sw-dl4k').addEventListener('click', async e => {
     setTimeout(() => URL.revokeObjectURL(url), 5000);
     gtag('event', 'credit_spent_4k', { balance: d.credits });
     swToast(d.credits + ' credit' + (d.credits === 1 ? '' : 's') + ' left');
-  } catch(err){ swToast('4K export failed — your credit was not lost, try again'); swFetchBalance(); }
+  } catch(err){ swToast('4K export failed. Your credit was not lost, try again'); swFetchBalance(); }
   finally { btn.textContent = 'Download 4K · 1 credit'; }
 });
 
