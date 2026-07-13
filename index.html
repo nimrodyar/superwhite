@@ -159,7 +159,7 @@ footer a:hover{color:var(--ink)}
       </div>
       <div class="sample glow">
         <img id="feedHdr" alt="Sample image processed with Superwhite, brighter than white">
-        <div class="slabel"><b>Superwhite</b><span>HDR · 3000 nits</span></div>
+        <div class="slabel"><b>Superwhite</b><span>HDR · 4000 nits</span></div>
       </div>
     </div>
     <p class="pair-cap" id="stageCap">Same pixels. This page is pure white on purpose.<span class="hdr-only"> Your display is HDR, so the right one is genuinely glowing above it right now.</span><span class="sdr-only"> Your display is SDR, so the glow here is simulated. On a recent MacBook, iPhone or Pixel it's real.</span></p>
@@ -358,7 +358,7 @@ async function buildDemo() {
   try { await document.fonts.load('800 96px "Inter Tight"'); } catch(e) {}
   const c = drawDemoLogo();
   $('feedSdr').src = c.toDataURL('image/png');
-  $('feedHdr').src = await toHDR(c, { peak: 3000, threshold: 0.7, mode: 'hi' });
+  $('feedHdr').src = await toHDR(c, { peak: 4000, threshold: 0.7, mode: 'hi' });
 }
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(buildDemo); else buildDemo();
 
