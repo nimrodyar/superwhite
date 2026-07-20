@@ -98,6 +98,14 @@ input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--ac
 .mode{grid-column:1/-1;display:flex;gap:8px}
 .mode button{font:500 13px/1 'Inter',sans-serif;padding:9px 14px;border:1px solid var(--line);border-radius:99px;background:none;color:var(--dim);cursor:pointer}
 .mode button.on{border-color:var(--ink);color:var(--ink)}
+.advanced{grid-column:1/-1;margin-top:4px;border-top:1px solid var(--line);padding-top:16px}
+.advanced summary{cursor:pointer;font-size:13px;font-weight:500;color:var(--dim);list-style:none}
+.advanced summary::-webkit-details-marker{display:none}
+.advanced summary::before{content:'▸ ';color:var(--faint)}
+.advanced[open] summary::before{content:'▾ '}
+.advanced p.hint{font-size:12px;color:var(--faint);margin:10px 0 4px}
+.hue-grid{margin-top:8px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px 20px}
+@media(max-width:640px){.hue-grid{grid-template-columns:1fr 1fr}}
 .actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .btn{display:inline-block;font:600 15px/1 'Inter',sans-serif;padding:13px 20px;border-radius:99px;text-decoration:none;cursor:pointer;border:1px solid transparent}
 .btn.primary{background:var(--ink);color:#fff}
@@ -297,6 +305,37 @@ footer a:hover{color:var(--ink)}
         <button id="modeHi" class="on">Glow highlights only</button>
         <button id="modeAll">Glow everything</button>
       </div>
+
+      <details class="advanced" id="advancedPanel">
+        <summary>Advanced: boost by color</summary>
+        <p class="hint">Push the glow harder on specific colors, or hold others back. 100% matches the normal glow above.</p>
+        <div class="hue-grid">
+        <div class="ctl">
+          <label>White / highlights <output id="hueWhiteOut">100%</output></label>
+          <input type="range" id="hueWhite" min="0" max="200" step="10" value="100">
+        </div>
+        <div class="ctl">
+          <label>Yellows <output id="hueYellowOut">100%</output></label>
+          <input type="range" id="hueYellow" min="0" max="200" step="10" value="100">
+        </div>
+        <div class="ctl">
+          <label>Cyans <output id="hueCyanOut">100%</output></label>
+          <input type="range" id="hueCyan" min="0" max="200" step="10" value="100">
+        </div>
+        <div class="ctl">
+          <label>Reds <output id="hueRedOut">100%</output></label>
+          <input type="range" id="hueRed" min="0" max="200" step="10" value="100">
+        </div>
+        <div class="ctl">
+          <label>Greens <output id="hueGreenOut">100%</output></label>
+          <input type="range" id="hueGreen" min="0" max="200" step="10" value="100">
+        </div>
+        <div class="ctl">
+          <label>Blues <output id="hueBlueOut">100%</output></label>
+          <input type="range" id="hueBlue" min="0" max="200" step="10" value="100">
+        </div>
+        </div>
+      </details>
     </div>
 
     <div class="actions">
@@ -315,6 +354,7 @@ footer a:hover{color:var(--ink)}
       <div><b>Where it dies</b><span>Screenshots, re-saving in editors, WhatsApp and iMessage compression, copy-paste. Move the file itself.</span></div>
       <div><b>Who sees it</b><span>Only people on HDR displays with battery saver off. Everyone else sees a normal image with slightly dimmer whites.</span></div>
       <div><b>Best input</b><span>High-contrast graphics: logos, wordmarks, simple illustrations. Photo gradients can band at 8-bit.</span></div>
+      <div><b>Which colors glow</b><span>Whites, pastels, yellow and cyan glow brightest. Blue and dark colors barely change, they lack the brightness headroom to push into.</span></div>
     </div>
   </section>
 
@@ -453,7 +493,35 @@ function s2l(v){ return v <= 0.04045 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4);
 function pqE(Y){ if (Y<=0) return 0; if (Y>1) Y=1; const Ym=Math.pow(Y,PQ.m1);
   return Math.round(Math.pow((PQ.c1+PQ.c2*Ym)/(1+PQ.c3*Ym),PQ.m2)*255); }
 
-function toHDR(canvas, { peak=1000, threshold=0.7, mode='hi' } = {}) {
+function rgbHueSat(r,g,b){
+  const max=Math.max(r,g,b), min=Math.min(r,g,b), d=max-min;
+  if (d===0) return { h:0, s:0 };
+  let h;
+  if (max===r) h = 60*(((g-b)/d)%6);
+  else if (max===g) h = 60*((b-r)/d+2);
+  else h = 60*((r-b)/d+4);
+  if (h<0) h += 360;
+  const l = (max+min)/2;
+  const s = d/(255-Math.abs(2*l-255));
+  return { h, s };
+}
+function hueBoostFactor(r,g,b,hb){
+  const hs = rgbHueSat(r,g,b);
+  const h = hs.h, s = hs.s;
+  const centers = { red:0, yellow:60, green:120, cyan:180, blue:240 };
+  let sumW = 0, sumWB = 0;
+  for (const k in centers) {
+    let diff = Math.abs(h - centers[k]);
+    if (diff > 180) diff = 360 - diff;
+    const w = Math.max(0, 1 - diff/60) * s;
+    sumW += w; sumWB += w * hb[k];
+  }
+  const whiteW = 1 - s;
+  sumW += whiteW; sumWB += whiteW * hb.white;
+  return sumW > 0.05 ? sumWB / sumW : 1;
+}
+
+function toHDR(canvas, { peak=1000, threshold=0.7, mode='hi', hueBoost=null } = {}) {
   const w = canvas.width, h = canvas.height;
   const work = document.createElement('canvas');
   work.width = w; work.height = h;
@@ -470,7 +538,8 @@ function toHDR(canvas, { peak=1000, threshold=0.7, mode='hi' } = {}) {
     let mask;
     if (mode === 'all') mask = 1;
     else { const mn = Math.min(r,g,b); mask = Math.min(1, Math.max(0, (mn - tLin)/soft)); }
-    const s = (203 + (peak - 203) * mask) / 10000;
+    const boostF = hueBoost ? hueBoostFactor(src[i], src[i+1], src[i+2], hueBoost) : 1;
+    const s = (203 + (peak - 203) * mask * boostF) / 10000;
     out[i]   = pqE((M2020[0]*r + M2020[1]*g + M2020[2]*b) * s);
     out[i+1] = pqE((M2020[3]*r + M2020[4]*g + M2020[5]*b) * s);
     out[i+2] = pqE((M2020[6]*r + M2020[7]*g + M2020[8]*b) * s);
@@ -591,6 +660,17 @@ function paintFill(el){ el.style.setProperty('--fill', ((el.value-el.min)/(el.ma
     schedule();
   });
 });
+const hueBoost = { white:1, yellow:1, cyan:1, red:1, green:1, blue:1 };
+['hueWhite','hueYellow','hueCyan','hueRed','hueGreen','hueBlue'].forEach(id => {
+  const el = $(id); paintFill(el);
+  const key = id.slice(3).toLowerCase();
+  el.addEventListener('input', () => {
+    paintFill(el);
+    $(id + 'Out').textContent = el.value + '%';
+    hueBoost[key] = +el.value / 100;
+    schedule();
+  });
+});
 $('modeHi').addEventListener('click', () => setMode('hi'));
 $('modeAll').addEventListener('click', () => setMode('all'));
 function setMode(m) {
@@ -611,7 +691,8 @@ async function render() {
   const url = await toHDR(srcCanvas, {
     peak: +$('nits').value,
     threshold: +$('thresh').value / 100,
-    mode
+    mode,
+    hueBoost
   });
   if (currentURL) URL.revokeObjectURL(currentURL);
   currentURL = url;
