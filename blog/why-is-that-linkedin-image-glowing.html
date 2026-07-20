@@ -68,7 +68,7 @@ footer a{color:var(--dim)}
 
 <h2>It's an HDR trick, not a filter</h2>
 <p>Modern screens - recent MacBooks, iPhones, Pixels, most OLED displays - are far brighter than the "white" you normally see. Your operating system keeps regular content at a comfortable level (roughly 200 nits) and reserves the rest, often 1,000+ nits, for HDR video highlights.</p>
-<p>The glowing image is exploiting that reserve. It carries an <strong>HDR color profile</strong> (Rec.2100 PQ - the same signal HDR movies use) that tells your browser: render my bright areas using the display's full power. The whites in the image land at 1,000+ nits while the page around them sits at ~200. Result: the image physically out-glows the interface.</p>
+<p>The glowing image is exploiting that reserve. It carries an <strong>embedded HDR color signal</strong> - the same kind HDR movies use - that tells your browser: render my bright areas using the display's full power. The whites in the image land at 1,000+ nits while the page around them sits at ~200. Result: the image physically out-glows the interface.</p>
 
 <div class="callout"><p><strong>Why your screenshot looks normal:</strong> screenshots capture what the system renders in standard range, not the HDR signal. The profile is in the original file only - copying pixels doesn't copy the glow.</p></div>
 
@@ -83,7 +83,7 @@ footer a{color:var(--dim)}
 <p>It's harmless to your screen - displays are built to run at these brightness levels for HDR films. As for platforms: LinkedIn's image pipeline currently preserves the color profile, so the effect works in feed posts today. Platforms clamped the same trick for HDR <em>video</em> after it flooded Reels and Shorts, so expect still images to be tone-mapped eventually too. It's a window, not a permanent feature.</p>
 
 <h2>How to make your own</h2>
-<p>You need to re-encode your image with the PQ profile while keeping colors accurate and boosting only the whites - done manually, it involves color-space math and byte-level JPEG editing. Or you can use the free tool this site exists for: drop an image, set the brightness, download. It runs entirely in your browser; nothing is uploaded.</p>
+<p>You need to re-encode your image with the right HDR color signal while keeping colors accurate and boosting only the whites - done manually, it involves careful color-space math and file-level editing. Or you can use the free tool this site exists for: drop an image, set the brightness, download. It runs entirely in your browser; nothing is uploaded.</p>
 <p>For the full technical breakdown - transfer functions, ICC profile splicing, where the trick survives and dies - read <a href="/blog/how-it-works.html">How Superwhite works, technically</a>.</p>
 
 <div class="cta">
