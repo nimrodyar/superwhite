@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How Superwhite works: abusing Rec.2100 PQ profiles to render brighter than white</title>
-<meta name="description" content="The technical mechanism behind images that glow brighter than white on LinkedIn: PQ transfer functions, ICC profile splicing into JPEGs, EDR headroom, and where the trick survives.">
+<title>How Superwhite works: rendering images brighter than white</title>
+<meta name="description" content="The idea behind images that glow brighter than white on LinkedIn: HDR headroom, embedded color signals, and where the trick survives.">
 <link rel="canonical" href="https://superwhite.app/blog/how-it-works.html">
 <meta property="og:title" content="How images can render brighter than your screen's white">
-<meta property="og:description" content="PQ transfer functions, ICC splicing, and EDR headroom — the mechanism behind the glowing-post trick.">
+<meta property="og:description" content="HDR headroom and embedded color signals: the idea behind the glowing-post trick.">
 <meta property="og:url" content="https://superwhite.app/blog/how-it-works.html">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://superwhite.app/og.jpg">
@@ -70,27 +70,17 @@ footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px soli
 <p>A normal image tops out at signal value 255 — "white." Your operating system maps that to a comfortable reference level, roughly 200&nbsp;nits. But an HDR-capable panel (recent MacBook Pro, iPhone, Pixel, most OLED TVs) can physically output 1,000–1,600&nbsp;nits. The gap between reference white and panel peak is <strong>headroom</strong> — Apple calls its implementation EDR. It's reserved for HDR content: video highlights, HDR photos. Regular UI never touches it.</p>
 <p>The trick is convincing the renderer that your still image <em>is</em> HDR content.</p>
 
-<h2>The signal: a Rec.2100 PQ color profile</h2>
-<p>HDR video signals its brightness using the <strong>PQ (Perceptual Quantizer) transfer function</strong>, standardized in ITU-R BT.2100. Unlike sRGB's relative curve, PQ is absolute: each code value maps to a specific luminance, up to a theoretical 10,000&nbsp;nits.</p>
-<p>ICC color profiles can describe a PQ encoding. And it turns out that if you embed a Rec.2100 PQ profile into an ordinary 8-bit JPEG, color-managed renderers — Chrome, Safari, macOS, iOS — will honor it and render the image's bright values into the display's headroom. White in the image lands at 1,000+ nits while the page's white sits at ~200. The image out-glows the interface.</p>
+<h2>The signal</h2>
+<p>HDR video signals its brightness using an absolute curve rather than a relative one: each value maps to a specific real-world brightness, capable of describing whites far beyond what a normal image ever calls for.</p>
+<p>It turns out certain embedded color profiles can carry that same signal — and color-managed renderers across Chrome, Safari, macOS and iOS will honor it, rendering an image's bright values into the display's spare headroom. White in the image lands well above the page's white. The image out-glows the interface.</p>
 
 <div class="callout"><p><strong>Why this survives LinkedIn:</strong> platforms re-encode uploaded images, which strips most HDR metadata — Ultra HDR gain maps don't make it through. But ICC profiles are preserved through LinkedIn's JPEG pipeline. The profile <em>is</em> the payload.</p></div>
 
 <div class="callout"><p><strong>Credit where due:</strong> the PQ-profile technique and the finding that it survives LinkedIn's image pipeline were first documented by <a href="https://tn1ck.com/blog/abuse-hdr-images-for-marketing" rel="noopener">Tom Nick in his excellent write-up</a>. Superwhite builds on that research and turns it into a self-serve tool - adding luminance masking so only the whites glow while colors stay accurate.</p></div>
 
-<h2>The pipeline</h2>
-<p>Naively tagging an sRGB image as PQ remaps everything — colors shift and the entire image blows out. Superwhite does it properly, per pixel:</p>
-<ul>
-<li><strong>Decode</strong> sRGB to linear light</li>
-<li><strong>Convert primaries</strong> from sRGB to Rec.2020 with a 3×3 matrix, so hues stay accurate under the new profile</li>
-<li><strong>Mask</strong>: compute a "whiteness" mask (min channel above a threshold). Non-white content is pinned at 203&nbsp;nits — SDR reference — so it looks completely normal</li>
-<li><strong>Boost</strong>: masked (white) regions are scaled to the chosen peak, e.g. 1,000&nbsp;nits</li>
-<li><strong>Encode</strong> with the PQ curve, write an 8-bit JPEG, and splice in the Rec.2100 PQ ICC profile</li>
-</ul>
-
-<p>The ICC embed itself is a small APP2 segment inserted after the JPEG's SOI marker:</p>
-<pre><code>FF E2 [len] "ICC_PROFILE\0" 01 01 [profile bytes]</code></pre>
-<p>That's it. No 10-bit encoding, no gain maps, no video container. An 8-bit JPEG is enough — which is also why simple, flat graphics work best: smooth gradients can band at 8 bits under the aggressive PQ curve, but logos and wordmarks are ideal.</p>
+<h2>Why it's not just "tag it and go"</h2>
+<p>Naively marking a normal image as HDR remaps everything at once — colors shift and the whole image blows out. Superwhite does the color math per pixel instead: it works out which parts of the image are actually near-white, leaves everything else rendering exactly as it would in a normal photo, and only pushes the white regions up into the display's spare brightness.</p>
+<p>The whole thing runs on an ordinary JPEG — no special export mode, no video container, no exotic file format. That's also why simple, flat graphics work best: smooth photographic gradients can band under the brightness curve involved, but logos and wordmarks hold up cleanly.</p>
 
 <h2>Where it works — and dies</h2>
 <ul>
