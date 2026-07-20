@@ -116,6 +116,17 @@ h2{font:700 24px/1.2 'Inter Tight',sans-serif;letter-spacing:-.02em;margin-botto
 .rules b{display:block;font-size:14px;font-weight:600;margin-bottom:3px}
 .rules span{font-size:14px;color:var(--dim)}
 
+/* ================= faq ================= */
+.faq{padding:56px 0 8px}
+.faq>p{max-width:640px;color:var(--dim);margin-bottom:8px}
+.faq details{border-top:1px solid var(--line);padding:16px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{font:600 15px/1.4 'Inter',sans-serif;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font-size:20px;color:var(--faint);flex-shrink:0}
+.faq details[open] summary::after{content:'−'}
+.faq details p{margin-top:10px;font-size:14px;line-height:1.5;color:var(--dim);max-width:640px}
+
 /* ================= feedback ================= */
 .feedback{padding:56px 0 8px}
 .feedback>p{max-width:600px;color:var(--dim);margin-bottom:22px}
@@ -175,6 +186,44 @@ footer a:hover{color:var(--ink)}
     "Makes image whites appear brighter than screen white on HDR displays",
     "Works entirely client-side, no upload required",
     "Effect survives LinkedIn's image compression pipeline"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How can I make my image glow brighter than white?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Superwhite embeds a Rec.2100 PQ HDR color profile into your JPEG. On a screen with HDR turned on, the bright parts of the image use the display's extra brightness headroom, so they render brighter than normal white. It runs free in your browser and nothing gets uploaded." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the HDR trick people are using on LinkedIn?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Some LinkedIn posts show images with whites that look like they're glowing on phones and HDR monitors. That comes from an HDR color profile embedded in the JPEG, a trick that survives LinkedIn's compression because LinkedIn strips other HDR metadata but keeps the color profile. Superwhite does that embedding for you in one click." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the image look brighter on my phone than on my laptop?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The glow only shows up on HDR-capable displays with HDR turned on and battery saver off. Most recent phones qualify by default; plenty of laptops and older monitors don't, so the same file just looks like a normal photo there, slightly dimmer whites, nothing broken." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this work on Instagram or other platforms?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not reliably yet. LinkedIn keeps the ICC color profile through its compression pipeline, which is what makes this trick work there. Instagram and most other platforms strip it or need a different HDR format (gain maps), which Superwhite doesn't support today." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an account, and is it free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No account needed. You get 3 free exports, after that it's €7 once for unlimited exports, no subscription." }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the effect survive if I screenshot or repost the image?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Screenshots, re-saving in an editor, and apps like WhatsApp or iMessage strip the color profile, which kills the effect. Post the original file Superwhite gives you, and don't crop or edit it in LinkedIn's composer." }
+    }
   ]
 }
 </script>
@@ -254,7 +303,35 @@ footer a:hover{color:var(--ink)}
     </div>
   </section>
 
-  <section class="feedback" id="feedback">
+    <section class="faq" id="faq">
+    <h2>Frequently asked questions</h2>
+    <details>
+      <summary>How can I make my image glow brighter than white?</summary>
+      <p>Superwhite embeds a Rec.2100 PQ HDR color profile into your JPEG. On a screen with HDR turned on, the bright parts of the image use the display's extra brightness headroom, so they render brighter than normal white. It runs free in your browser and nothing gets uploaded.</p>
+    </details>
+    <details>
+      <summary>What is the HDR trick people are using on LinkedIn?</summary>
+      <p>Some LinkedIn posts show images with whites that look like they're glowing on phones and HDR monitors. That comes from an HDR color profile embedded in the JPEG, a trick that survives LinkedIn's compression because LinkedIn strips other HDR metadata but keeps the color profile. Superwhite does that embedding for you in one click.</p>
+    </details>
+    <details>
+      <summary>Why does the image look brighter on my phone than on my laptop?</summary>
+      <p>The glow only shows up on HDR-capable displays with HDR turned on and battery saver off. Most recent phones qualify by default; plenty of laptops and older monitors don't, so the same file just looks like a normal photo there, slightly dimmer whites, nothing broken.</p>
+    </details>
+    <details>
+      <summary>Does this work on Instagram or other platforms?</summary>
+      <p>Not reliably yet. LinkedIn keeps the ICC color profile through its compression pipeline, which is what makes this trick work there. Instagram and most other platforms strip it or need a different HDR format (gain maps), which Superwhite doesn't support today.</p>
+    </details>
+    <details>
+      <summary>Do I need an account, and is it free?</summary>
+      <p>No account needed. You get 3 free exports, after that it's €7 once for unlimited exports, no subscription.</p>
+    </details>
+    <details>
+      <summary>Will the effect survive if I screenshot or repost the image?</summary>
+      <p>No. Screenshots, re-saving in an editor, and apps like WhatsApp or iMessage strip the color profile, which kills the effect. Post the original file Superwhite gives you, and don't crop or edit it in LinkedIn's composer.</p>
+    </details>
+  </section>
+
+<section class="feedback" id="feedback">
     <h2>Help shape this</h2>
     <p>Superwhite is free and stays free. If you have ten seconds, these answers decide what gets built next.</p>
 
