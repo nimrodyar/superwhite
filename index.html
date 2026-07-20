@@ -139,6 +139,11 @@ h2{font:700 24px/1.2 'Inter Tight',sans-serif;letter-spacing:-.02em;margin-botto
 .opts.done button:not(.picked){opacity:.4;pointer-events:none}
 .fb-more{font-size:14px;color:var(--dim)}
 .fb-thanks{font:500 13px/1 'JetBrains Mono',monospace;color:#1a7f4e;margin-top:16px;min-height:15px}
+.wl-form{display:flex;gap:8px;margin-top:4px;max-width:360px}
+.wl-form input{flex:1;font:500 14px/1.4 'Inter',sans-serif;padding:11px 14px;border:1px solid var(--line);border-radius:99px;background:none;color:var(--ink)}
+.wl-form input:focus{outline:none;border-color:var(--ink)}
+.wl-form .btn{white-space:nowrap}
+.wl-status{font-size:13px;color:var(--dim);margin-top:8px;min-height:16px}
 
 /* ================= api request ================= */
 .api{padding:56px 0 8px}
@@ -374,7 +379,15 @@ footer a:hover{color:var(--ink)}
       </div>
     </div>
 
-    <p class="fb-more">Want 4K, batch or new features first? <a href="https://tally.so/r/rjWN1M" id="fbForm" target="_blank" rel="noopener">Join the waitlist</a>.</p>
+    <p class="fb-more">Want 4K, batch or new features first?</p>
+    <form id="waitlistForm" class="wl-form">
+      <input type="hidden" name="access_key" value="ad592af2-f9f7-44cb-b418-91dcb94a52fe">
+      <input type="hidden" name="subject" value="New Superwhite waitlist signup">
+      <input type="hidden" name="from_name" value="Superwhite waitlist">
+      <input type="email" name="email" placeholder="you@email.com" required>
+      <button type="submit" class="btn ghost">Join the waitlist</button>
+    </form>
+    <p class="wl-status" id="wlStatus"></p>
     <p class="fb-thanks" id="fbThanks"></p>
   </section>
 
@@ -662,9 +675,35 @@ $('download').addEventListener('click', (e) => {
   bumpDlCount();
   gtag('event', 'image_download', { peak_nits: +$('nits').value });
 });
-$('fbForm').addEventListener('click', () => {
-  gtag('event', 'waitlist_click', { plan: 'waitlist' });
-});
+const waitlistForm = $('waitlistForm');
+if (waitlistForm) {
+  waitlistForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = waitlistForm.querySelector('button[type="submit"]');
+    const status = $('wlStatus');
+    btn.disabled = true; btn.textContent = 'Joining...';
+    status.textContent = '';
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(waitlistForm)))
+      });
+      const data = await res.json();
+      if (data.success) {
+        gtag('event', 'waitlist_click', { plan: 'waitlist' });
+        status.textContent = "You're on the list.";
+        waitlistForm.reset();
+      } else {
+        status.textContent = 'Something went wrong, try again.';
+      }
+    } catch (err) {
+      status.textContent = 'Something went wrong, try again.';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Join the waitlist';
+    }
+  });
+}
 
 /* ================= feedback ================= */
 document.querySelectorAll('.q').forEach(q => {
