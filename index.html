@@ -375,6 +375,7 @@ fileInput.addEventListener('change', () => { if (fileInput.files[0]) load(fileIn
 
 function load(file) {
   fileBase = file.name.replace(/\.[^.]+$/, '') || 'image';
+  gtag('event', 'image_upload', { file_type: file.type || 'unknown' });
   // guard: warn when re-processing a superwhite output (double PQ = mushy result)
   (async () => {
     try {
