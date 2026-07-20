@@ -140,6 +140,16 @@ h2{font:700 24px/1.2 'Inter Tight',sans-serif;letter-spacing:-.02em;margin-botto
 .fb-more{font-size:14px;color:var(--dim)}
 .fb-thanks{font:500 13px/1 'JetBrains Mono',monospace;color:#1a7f4e;margin-top:16px;min-height:15px}
 
+/* ================= api request ================= */
+.api{padding:56px 0 8px}
+.api>p{max-width:600px;color:var(--dim);margin-bottom:22px}
+.api form{display:flex;flex-direction:column;gap:12px;max-width:480px}
+.api input,.api textarea{font:500 14px/1.4 'Inter',sans-serif;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:none;color:var(--ink)}
+.api input:focus,.api textarea:focus{outline:none;border-color:var(--ink)}
+.api textarea{min-height:90px;resize:vertical;font-family:'Inter',sans-serif}
+.api .btn{align-self:flex-start}
+.api-status{font-size:13px;color:var(--dim);min-height:16px}
+
 footer{margin-top:56px;padding:24px 0 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--faint)}
 footer a{color:var(--dim);text-decoration:none}
 footer a:hover{color:var(--ink)}
@@ -366,6 +376,22 @@ footer a:hover{color:var(--ink)}
 
     <p class="fb-more">Want 4K, batch or new features first? <a href="https://tally.so/r/rjWN1M" id="fbForm" target="_blank" rel="noopener">Join the waitlist</a>.</p>
     <p class="fb-thanks" id="fbThanks"></p>
+  </section>
+
+  <section class="api" id="api">
+    <h2>Building something with this?</h2>
+    <p>If you run a LinkedIn scheduling tool, content platform, or agency workflow and want to license the HDR pipeline directly, tell me what you're building.</p>
+    <form id="apiForm">
+      <input type="hidden" name="access_key" value="3c20ecc9-7125-487b-94a1-32a222f5088c">
+      <input type="hidden" name="subject" value="New API/integration request from Superwhite">
+      <input type="hidden" name="from_name" value="Superwhite API request form">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Work email" required>
+      <input type="text" name="company" placeholder="Company or product">
+      <textarea name="message" placeholder="What are you building, and how would you use it?" required></textarea>
+      <button type="submit" class="btn primary">Send request</button>
+      <p class="api-status" id="apiStatus"></p>
+    </form>
   </section>
 
   <footer>
@@ -653,6 +679,37 @@ document.querySelectorAll('.q').forEach(q => {
     $('fbThanks').textContent = allDone ? 'Thanks. That genuinely helps.' : 'Noted.';
   });
 });
+
+/* ================= api request form ================= */
+const apiForm = $('apiForm');
+if (apiForm) {
+  apiForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = apiForm.querySelector('button[type="submit"]');
+    const status = $('apiStatus');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    status.textContent = '';
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(apiForm)))
+      });
+      const data = await res.json();
+      if (data.success) {
+        gtag('event', 'api_request_submit', {});
+        status.textContent = 'Sent. I read every one of these myself.';
+        apiForm.reset();
+      } else {
+        status.textContent = 'Something went wrong, try again or email directly.';
+      }
+    } catch (err) {
+      status.textContent = 'Something went wrong, try again or email directly.';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Send request';
+    }
+  });
+}
 </script>
 </body>
 </html>
