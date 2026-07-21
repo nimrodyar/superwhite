@@ -66,8 +66,9 @@ h1{font:800 clamp(34px,6vw,58px)/1.04 'Inter Tight',sans-serif;letter-spacing:-.
 .pair-cap{margin-top:14px;font-size:14px;color:var(--dim);max-width:620px}
 body.sdr .pair-cap .hdr-only{display:none}
 body:not(.sdr) .pair-cap .sdr-only{display:none}
-/* simulated glow on SDR displays only */
-body.sdr .sample.glow img{filter:brightness(1.14) saturate(1.05)}
+/* simulated glow on SDR displays only: whites are already at max on SDR,
+   so dim the original instead so the superwhite one reads as glowing */
+body.sdr .sample:not(.glow) img{filter:brightness(.82) saturate(.97)}
 
 /* ================= drop zone ================= */
 .cta-row{padding:36px 0 8px}
