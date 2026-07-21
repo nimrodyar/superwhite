@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How the Wiz Logo Glows on LinkedIn (HDR Trick Explained) | Superwhite</title>
+<meta name="description" content="The Wiz logo renders brighter than white in the LinkedIn feed. Watch the video, see how the HDR trick works, and apply it to your own logo free in about a minute.">
+<link rel="canonical" href="https://superwhite.app/blog/wiz-logo-glow-linkedin.html">
+<meta property="og:title" content="How the Wiz logo glows on LinkedIn">
+<meta property="og:description" content="A regular JPEG with an HDR color profile embedded. Here is how it works and how to do it with your own logo.">
+<meta property="og:url" content="https://superwhite.app/blog/wiz-logo-glow-linkedin.html">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://superwhite.app/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/favicon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HE8J29XL52');
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FFFFFF;--ink:#141317;--dim:#5F5C66;--faint:#8B8894;--line:#E7E5EC;--accent:#4316B8;--radius:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.7 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{padding:28px 0;display:flex;align-items:baseline;justify-content:space-between}
+.logo{font:800 20px/1 'Inter Tight',sans-serif;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.back{font:500 13px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+.back:hover{color:var(--ink)}
+article{padding:24px 0 56px}
+h1{font:800 clamp(30px,5vw,44px)/1.1 'Inter Tight',sans-serif;letter-spacing:-.03em;margin-bottom:12px}
+.byline{font:500 12px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:32px}
+h2{font:700 22px/1.3 'Inter Tight',sans-serif;letter-spacing:-.02em;margin:36px 0 12px}
+p{margin-bottom:16px}
+a{color:var(--accent)}
+video{width:100%;border:1px solid var(--line);border-radius:var(--radius);display:block;margin:8px 0 10px;background:#000}
+.vidcap{font:500 12px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:8px}
+ol{margin:0 0 16px 22px}
+ol li{margin-bottom:8px}
+.cta{display:inline-block;font:600 15px/1 'Inter',sans-serif;padding:13px 20px;border-radius:99px;background:var(--ink);color:#fff;text-decoration:none;margin-top:8px}
+.cta:hover{background:#000}
+footer{padding:24px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
+footer a{color:var(--dim)}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How the Wiz logo glows on LinkedIn",
+  "description": "The Wiz logo renders brighter than white in the LinkedIn feed. It is a regular JPEG with an HDR color profile embedded. Here is how the trick works and how to apply it to any logo.",
+  "datePublished": "2026-07-21",
+  "author": {"@type": "Person", "name": "Nimrod Yar"},
+  "publisher": {"@type": "Organization", "name": "Superwhite", "url": "https://superwhite.app/"},
+  "mainEntityOfPage": "https://superwhite.app/blog/wiz-logo-glow-linkedin.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Wiz logo glowing in the LinkedIn feed",
+  "description": "Screen capture of the Wiz logo rendering brighter than the white page around it in the LinkedIn feed on an HDR display.",
+  "thumbnailUrl": "https://superwhite.app/og.jpg",
+  "uploadDate": "2026-07-21",
+  "contentUrl": "https://superwhite.app/blog/new.mov"
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="/">superwhite</a>
+    <a class="back" href="/">back to the tool</a>
+  </header>
+  <article>
+    <h1>How the Wiz logo glows on LinkedIn</h1>
+    <p class="byline">JULY 2026</p>
+
+    <p>If you scrolled past Wiz on LinkedIn recently on a phone or a recent MacBook, the logo looked lit up. Not a brighter shade of white, actually brighter than the white page around it. Here is a screen capture of it in the feed:</p>
+
+    <video controls playsinline preload="metadata">
+      <source src="/blog/new.mov">
+      Your browser cannot play this video. <a href="/blog/new.mov">Download it instead</a>.
+    </video>
+    <p class="vidcap">Captured on an HDR display. On an SDR screen the effect simply does not show, that is the point.</p>
+
+    <h2>What you are looking at</h2>
+    <p>The glowing logo is a regular JPEG with a Rec.2100 PQ HDR color profile embedded, made with <a href="/">Superwhite</a>. LinkedIn strips most HDR metadata during upload but keeps ICC color profiles, so the file survives the compression pipeline intact. On HDR screens the white mark renders in the display's spare brightness headroom, above normal white. On SDR screens it looks like a normal logo, nothing broken.</p>
+    <p>The underlying technique was first documented by <a href="https://tn1ck.com/blog/abuse-hdr-images-for-marketing" rel="noopener">Tom Nick in his write-up on HDR images</a>. Superwhite turns it into a one-minute, in-browser tool.</p>
+
+    <h2>Why it works so well on a logo</h2>
+    <p>High-contrast graphics are the ideal input. The Wiz mark is pure white on a solid blue background, so the glow lands exactly on the logo and nowhere else. Photos work too, but a white mark on a colored background is the cleanest possible case.</p>
+
+    <h2>Do it with your logo</h2>
+    <ol>
+      <li>Open <a href="/">superwhite.app</a> and drop in your logo. A white or near-white mark on a colored background works best.</li>
+      <li>Adjust peak brightness and the glow threshold until the mark glows and the background stays put.</li>
+      <li>Download the HDR JPEG and post it straight to LinkedIn. Do not crop or edit it in LinkedIn's composer, that strips the profile.</li>
+    </ol>
+    <p>Everything runs in your browser, nothing gets uploaded, and your first 3 exports are free.</p>
+    <a class="cta" href="/">Make your logo glow</a>
+  </article>
+  <footer>
+    <a href="/">Superwhite</a> · <a href="/tools/">Free tools</a> · <a href="/blog/how-it-works.html">How it works, technically</a>
+  </footer>
+</div>
+</body>
+</html>
