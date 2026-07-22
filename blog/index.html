@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Superwhite</title>
+<meta name="description" content="Notes on the HDR glow trick: why LinkedIn images glow brighter than white, how it works, and how to do it to your own posts.">
+<link rel="canonical" href="https://superwhite.app/blog/">
+<meta property="og:title" content="Superwhite Blog">
+<meta property="og:description" content="Notes on the HDR glow trick: why LinkedIn images glow brighter than white, how it works, and how to do it to your own posts.">
+<meta property="og:url" content="https://superwhite.app/blog/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://superwhite.app/og.jpg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HE8J29XL52');
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0D0B14;--surface:#161221;--line:#292139;--violet:#6B2EF5;--violet-hot:#8B5CF6;
+--brand:#5B21F5;--ink:#F2EFFA;--dim:#A79BD9;--faint:#6C6285;--radius:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px}
+header{padding:24px 0;display:flex;align-items:center;justify-content:space-between}
+.logo{font:800 26px/1 'Baloo 2',sans-serif;color:var(--brand);-webkit-text-stroke:6px #fff;paint-order:stroke fill;
+text-shadow:0 3px 0 rgba(0,0,0,.35);transform:rotate(-2deg);text-decoration:none}
+.back{font:500 14px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+h1{font:800 clamp(30px,5vw,42px)/1.15 'Baloo 2',sans-serif;margin:26px 0 10px}
+.sub{color:var(--dim);max-width:600px;margin-bottom:32px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:44px}
+.card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+padding:24px;text-decoration:none;transition:border-color .15s}
+.card:hover{border-color:var(--violet-hot)}
+.card h2{font:700 19px/1.3 'Inter',sans-serif;color:var(--ink);margin-bottom:8px;letter-spacing:-.01em}
+.card p{color:var(--dim);font-size:14px}
+footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
+footer a{color:var(--dim);text-decoration:none}
+footer a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="logo" href="/">superwhite</a>
+  <a class="back" href="/">← back to the tool</a>
+</header>
+
+<h1>Blog</h1>
+<p class="sub">Notes on the HDR glow trick — why some LinkedIn images look brighter than white, how it works, and how to make your own.</p>
+
+<div class="cards">
+  <a class="card" href="/blog/why-is-that-linkedin-image-glowing.html">
+    <h2>Why is that LinkedIn image glowing brighter than white?</h2>
+    <p>It's not a filter, it's an HDR trick. What's actually going on, and how to try it yourself.</p>
+  </a>
+  <a class="card" href="/blog/make-linkedin-post-glow-hdr.html">
+    <h2>Make your LinkedIn post glow in HDR</h2>
+    <p>A 30-second, free, in-browser walkthrough. No signup, nothing gets uploaded.</p>
+  </a>
+  <a class="card" href="/blog/how-it-works.html">
+    <h2>How Superwhite works</h2>
+    <p>The technical explanation: HDR headroom, embedded color signals, and where the trick survives.</p>
+  </a>
+  <a class="card" href="/blog/wiz-logo-glow-linkedin.html">
+    <h2>How the Wiz logo glows on LinkedIn</h2>
+    <p>A real example broken down, with video, plus how to do it to your own logo.</p>
+  </a>
+</div>
+
+<footer>superwhite.app · runs 100% client-side</footer>
+</div>
+</body>
+</html>
