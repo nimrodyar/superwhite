@@ -242,7 +242,7 @@ footer a:hover{color:var(--ink)}
     {
       "@type": "Question",
       "name": "Do I need an account, and is it free?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No account needed. You get 3 free exports, after that it's €7 once for unlimited exports, no subscription." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Sign in free with Google or email. You get 3 free exports, then share Superwhite on LinkedIn once to unlock unlimited exports, free." }
     },
     {
       "@type": "Question",
@@ -262,7 +262,7 @@ footer a:hover{color:var(--ink)}
 
   <section class="hero">
     <h1>Whites brighter than your screen's white.</h1>
-    <p class="sub">Superwhite embeds an HDR profile into your JPEG. On HDR screens the whites glow above everything around them, including this page. First 3 exports free, then &euro;7 once for unlimited. Runs in your browser. Nothing gets uploaded.</p>
+    <p class="sub">Superwhite embeds an HDR profile into your JPEG. On HDR screens the whites glow above everything around them, including this page. First 3 exports free. Share it on LinkedIn once to unlock unlimited. Runs in your browser. Nothing gets uploaded.</p>
   </section>
 
   <section class="samples" aria-label="Before and after sample">
@@ -282,7 +282,7 @@ footer a:hover{color:var(--ink)}
   <section class="cta-row" id="try">
     <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload an image">
       <p class="big">Drop your image here</p>
-      <p class="small">or click to choose · PNG or JPEG · 3 free exports, then €7 · nothing is uploaded</p>
+      <p class="small">or click to choose · PNG or JPEG · 3 free exports · share once for unlimited · nothing is uploaded</p>
     </div>
     <input type="file" id="file" accept="image/png,image/jpeg,image/webp">
   </section>
@@ -313,7 +313,7 @@ footer a:hover{color:var(--ink)}
       <a class="btn primary" id="download" download>Download HDR JPEG</a>
       <button class="btn ghost" id="reset">Start over</button>
     </div>
-    <p class="limit-note">Free. Exports up to 4K. First 3 downloads free, then &euro;7 once for unlimited.</p>
+    <p class="limit-note">Free. Exports up to 4K. First 3 downloads free. Share on LinkedIn once for unlimited.</p>
     <p class="busy" id="busy"></p>
   </section>
 
@@ -352,7 +352,7 @@ footer a:hover{color:var(--ink)}
     </details>
     <details>
       <summary>Do I need an account, and is it free?</summary>
-      <p>No account needed. You get 3 free exports, after that it's €7 once for unlimited exports, no subscription.</p>
+      <p>Sign in free with Google or email. You get 3 free exports, then share Superwhite on LinkedIn once to unlock unlimited exports, free.</p>
     </details>
     <details>
       <summary>Will the effect survive if I screenshot or repost the image?</summary>
@@ -433,14 +433,9 @@ footer a:hover{color:var(--ink)}
   <div class="paywall-card">
     <button class="paywall-close" id="paywallClose" aria-label="Close">&times;</button>
     <h3>You've used your 3 free exports</h3>
-    <p>&euro;7 once, unlimited HDR exports from now on. No subscription, no account.</p>
-    <a class="btn primary" href="https://nimrodian06.gumroad.com/l/gugkse" target="_blank" rel="noopener" id="paywallBuy">Get unlimited &mdash; &euro;7</a>
-    <div class="paywall-redeem">
-      <label for="licenseInput">Already bought it? Paste your license key</label>
-      <input type="text" id="licenseInput" placeholder="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" autocomplete="off" spellcheck="false">
-      <button class="btn ghost" id="licenseSubmit">Unlock</button>
-      <p class="paywall-msg" id="paywallMsg"></p>
-    </div>
+    <p>Share Superwhite on LinkedIn once and get unlimited exports, free. The post is pre-written, edit it however you like before posting.</p>
+    <a class="btn primary" href="#" target="_blank" rel="noopener" id="shareUnlock">Share on LinkedIn &mdash; unlock unlimited</a>
+    <p class="paywall-msg" id="paywallMsg"></p>
   </div>
 </div>
 
@@ -642,9 +637,8 @@ async function render() {
 
 /* ================= paywall ================= */
 const FREE_LIMIT = 3;
-const GUMROAD_PRODUCT_ID = '1knfkR3vvFojEO3M7D1NWA==';
 
-function isPro(){ return localStorage.getItem('sw_pro') === '1'; }
+function isPro(){ return localStorage.getItem('sw_unlimited') === '1' || !!(window.Clerk && Clerk.user && Clerk.user.unsafeMetadata && Clerk.user.unsafeMetadata.unlimited); }
 function dlCount(){ return +(sessionStorage.getItem('sw_dl_count') || 0); }
 function bumpDlCount(){ sessionStorage.setItem('sw_dl_count', dlCount() + 1); }
 
@@ -652,34 +646,18 @@ function openPaywall(){ $('paywall').classList.add('on'); }
 function closePaywall(){ $('paywall').classList.remove('on'); }
 
 $('paywallClose').addEventListener('click', closePaywall);
-$('paywallBuy').addEventListener('click', () => gtag('event', 'waitlist_click', { plan: 'gumroad_pro' }));
-
-$('licenseSubmit').addEventListener('click', async () => {
-  const key = $('licenseInput').value.trim();
-  const msg = $('paywallMsg');
-  if (!key) { msg.textContent = 'Paste your license key first.'; msg.className = 'paywall-msg err'; return; }
-  msg.textContent = 'Checking\u2026'; msg.className = 'paywall-msg';
+const SHARE_TEXT = "Found a free tool that makes the whites in your images glow brighter than your screen's white on LinkedIn. Works on HDR displays, runs in the browser, nothing gets uploaded. superwhite.app";
+const shareBtn = $('shareUnlock');
+shareBtn.href = 'https://www.linkedin.com/feed/?shareActive=true&text=' + encodeURIComponent(SHARE_TEXT);
+shareBtn.addEventListener('click', async () => {
+  localStorage.setItem('sw_unlimited', '1');
+  gtag('event', 'linkedin_share_click', {});
   try {
-    const res = await fetch('https://api.gumroad.com/v2/licenses/verify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({ product_id: GUMROAD_PRODUCT_ID, license_key: key, increment_uses_count: 'true' })
-    });
-    const data = await res.json();
-    if (data.success) {
-      localStorage.setItem('sw_pro', '1');
-      msg.textContent = 'Unlocked. Unlimited exports from now on.';
-      msg.className = 'paywall-msg ok';
-      gtag('event', 'license_unlocked', {});
-      setTimeout(closePaywall, 1400);
-    } else {
-      msg.textContent = data.message || "That key didn't match. Check for typos.";
-      msg.className = 'paywall-msg err';
-    }
-  } catch (e) {
-    msg.textContent = "Couldn't verify right now, try again in a moment.";
-    msg.className = 'paywall-msg err';
-  }
+    if (window.Clerk && Clerk.user) await Clerk.user.update({ unsafeMetadata: Object.assign({}, Clerk.user.unsafeMetadata, { unlimited: true, unlockedVia: 'linkedin_share', unlockedAt: new Date().toISOString() }) });
+  } catch (err) {}
+  $('paywallMsg').textContent = 'Unlimited exports unlocked.';
+  $('paywallMsg').className = 'paywall-msg ok';
+  setTimeout(closePaywall, 1600);
 });
 
 /* ================= GA4 events ================= */
@@ -705,6 +683,7 @@ window.addEventListener('load', async () => {
     await Clerk.load();
     swAuthReady = true;
     swMountAccount();
+    if (Clerk.user && Clerk.user.unsafeMetadata && Clerk.user.unsafeMetadata.unlimited) localStorage.setItem('sw_unlimited', '1');
     swResume(Clerk.user);
     Clerk.addListener(({ user }) => { swMountAccount(); swResume(user); });
   } catch (err) { swAuthReady = false; }
@@ -720,7 +699,7 @@ $('download').addEventListener('click', (e) => {
   }
   if (!isPro() && dlCount() >= FREE_LIMIT) {
     e.preventDefault();
-    gtag('event', 'paywall_shown', { trigger: 'download_limit' });
+    gtag('event', 'share_prompt_shown', { trigger: 'download_limit' });
     openPaywall();
     return;
   }
