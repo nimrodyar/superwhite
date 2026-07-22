@@ -49,6 +49,7 @@ header{padding:28px 0 8px;display:flex;align-items:baseline;justify-content:spac
 .hdr-badge{font:500 12px/1 'JetBrains Mono',monospace;color:var(--faint)}
 .hdr-badge.ok{color:#1a7f4e}
 .hdr-badge.no{color:var(--faint)}
+.hdr-right{display:flex;align-items:center;gap:14px}
 
 /* ================= hero ================= */
 .hero{padding:56px 0 36px}
@@ -256,7 +257,7 @@ footer a:hover{color:var(--ink)}
 <div class="wrap">
   <header>
     <div class="logo">superwhite</div>
-    <div class="hdr-badge" id="hdrBadge">checking display…</div>
+    <div class="hdr-right"><div class="hdr-badge" id="hdrBadge">checking display…</div><div id="swAccount" style="display:none"></div></div>
   </header>
 
   <section class="hero">
@@ -683,27 +684,36 @@ $('licenseSubmit').addEventListener('click', async () => {
 
 /* ================= GA4 events ================= */
 /* ================= Clerk signup gate ================= */
-let swAuthReady = false, swPendingDl = false;
+let swAuthReady = false;
 function swSignedIn(){ return !!(window.Clerk && Clerk.user); }
+function swResume(user) {
+  if (!user || sessionStorage.getItem('sw_pending_dl') !== '1') return;
+  sessionStorage.removeItem('sw_pending_dl');
+  if (Date.now() - new Date(user.createdAt).getTime() < 120000) gtag('event', 'sign_up', { method: 'clerk' });
+  if (srcCanvas) { setTimeout(() => $('download').click(), 400); }
+  else { drop.scrollIntoView({ behavior: 'smooth', block: 'center' }); swToast('Signed in. Drop your image again to download.'); }
+}
+function swMountAccount() {
+  const el = $('swAccount');
+  if (!el) return;
+  if (Clerk.user) { el.style.display = ''; Clerk.mountUserButton(el); }
+  else { el.style.display = 'none'; }
+}
 window.addEventListener('load', async () => {
   if (!window.Clerk) return;
   try {
     await Clerk.load();
     swAuthReady = true;
-    Clerk.addListener(({ user }) => {
-      if (user && swPendingDl) {
-        swPendingDl = false;
-        if (Date.now() - new Date(user.createdAt).getTime() < 120000) gtag('event', 'sign_up', { method: 'clerk' });
-        setTimeout(() => $('download').click(), 400);
-      }
-    });
+    swMountAccount();
+    swResume(Clerk.user);
+    Clerk.addListener(({ user }) => { swMountAccount(); swResume(user); });
   } catch (err) { swAuthReady = false; }
 });
 
 $('download').addEventListener('click', (e) => {
   if (swAuthReady && !swSignedIn()) {
     e.preventDefault();
-    swPendingDl = true;
+    sessionStorage.setItem('sw_pending_dl', '1');
     gtag('event', 'signup_gate_shown', {});
     Clerk.openSignIn();
     return;
