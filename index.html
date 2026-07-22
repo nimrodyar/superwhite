@@ -22,6 +22,8 @@
   gtag('js', new Date());
   gtag('config', 'G-HE8J29XL52');
 </script>
+<!-- Clerk auth -->
+<script async crossorigin="anonymous" data-clerk-publishable-key="pk_test_cmVsZXZhbnQtcm9kZW50LTIuY2xlcmsuYWNjb3VudHMuZGV2JA" src="https://relevant-rodent-2.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -680,7 +682,32 @@ $('licenseSubmit').addEventListener('click', async () => {
 });
 
 /* ================= GA4 events ================= */
+/* ================= Clerk signup gate ================= */
+let swAuthReady = false, swPendingDl = false;
+function swSignedIn(){ return !!(window.Clerk && Clerk.user); }
+window.addEventListener('load', async () => {
+  if (!window.Clerk) return;
+  try {
+    await Clerk.load();
+    swAuthReady = true;
+    Clerk.addListener(({ user }) => {
+      if (user && swPendingDl) {
+        swPendingDl = false;
+        if (Date.now() - new Date(user.createdAt).getTime() < 120000) gtag('event', 'sign_up', { method: 'clerk' });
+        setTimeout(() => $('download').click(), 400);
+      }
+    });
+  } catch (err) { swAuthReady = false; }
+});
+
 $('download').addEventListener('click', (e) => {
+  if (swAuthReady && !swSignedIn()) {
+    e.preventDefault();
+    swPendingDl = true;
+    gtag('event', 'signup_gate_shown', {});
+    Clerk.openSignIn();
+    return;
+  }
   if (!isPro() && dlCount() >= FREE_LIMIT) {
     e.preventDefault();
     gtag('event', 'paywall_shown', { trigger: 'download_limit' });
