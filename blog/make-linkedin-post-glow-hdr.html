@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Make your LinkedIn post glow in HDR (free, takes 30 seconds)</title>
+<meta name="description" content="Step-by-step: make the image in your LinkedIn post glow brighter than the screen's white. Free in-browser tool, no signup, nothing gets uploaded. Works in the LinkedIn feed today.">
+<link rel="canonical" href="https://superwhite.app/blog/make-linkedin-post-glow-hdr.html">
+<meta property="og:title" content="Make your LinkedIn post glow in HDR">
+<meta property="og:description" content="Free, in-browser, 30 seconds. Your image's whites render brighter than the LinkedIn feed around them.">
+<meta property="og:url" content="https://superwhite.app/blog/make-linkedin-post-glow-hdr.html">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://superwhite.app/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"Make your LinkedIn post glow in HDR","description":"Make the image in a LinkedIn post render brighter than the screen's normal white using a free in-browser HDR tool.","totalTime":"PT1M","tool":[{"@type":"HowToTool","name":"Superwhite (free browser tool)"}],"step":[{"@type":"HowToStep","name":"Open Superwhite","text":"Go to superwhite.app in Chrome or Safari. Everything runs locally in the browser, nothing is uploaded.","url":"https://superwhite.app/"},{"@type":"HowToStep","name":"Drop your image in","text":"Use a high-contrast graphic: a logo, wordmark, or simple illustration with bright whites. Load your original file, not a previous Superwhite export."},{"@type":"HowToStep","name":"Set the brightness","text":"Move the slider until the preview clearly out-glows the white page around it. Around 1000 nits is a good start."},{"@type":"HowToStep","name":"Download the JPEG","text":"Export the file. The HDR color profile is embedded in the JPEG itself."},{"@type":"HowToStep","name":"Upload it to LinkedIn as-is","text":"Attach the file directly to a feed post. Do not crop, rotate, or edit it in LinkedIn's composer, that strips the profile and kills the glow."}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why doesn't my LinkedIn image glow for me?","acceptedAnswer":{"@type":"Answer","text":"You need an HDR display with battery saver off: recent MacBooks, iPhones, Pixels, and most OLED screens. On other screens the image looks normal, with slightly dimmer whites."}},{"@type":"Question","name":"Does the glow survive LinkedIn's image compression?","acceptedAnswer":{"@type":"Answer","text":"Yes. LinkedIn re-compresses images but keeps the embedded ICC color profile, which carries the HDR signal. Just upload the file directly and don't edit it in the composer."}},{"@type":"Question","name":"Does this work on Instagram, WhatsApp, or in screenshots?","acceptedAnswer":{"@type":"Answer","text":"No. Instagram uses a different HDR format (Ultra HDR gain maps). WhatsApp, iMessage, and screenshots strip the profile. LinkedIn feed posts are where this technique works reliably."}},{"@type":"Question","name":"Is it against LinkedIn's rules?","acceptedAnswer":{"@type":"Answer","text":"It uses the same HDR rendering path that HDR photos and videos use. It's harmless to screens, which are built for these brightness levels. LinkedIn could clamp it in the future, but today it works in feed posts."}},{"@type":"Question","name":"Is Superwhite free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Free, no signup, exports up to 2048 px, and your image never leaves your browser."}}]}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HE8J29XL52');
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF;
+  --ink:#141317;
+  --dim:#5F5C66;
+  --faint:#8B8894;
+  --line:#E7E5EC;
+  --accent:#4316B8;
+  --radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.7 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+a{color:var(--accent)}
+::selection{background:var(--accent);color:#fff}
+header{padding:28px 0 8px;display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.logo{font:800 20px/1 'Inter Tight',sans-serif;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.back{font:500 13px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+.back:hover{color:var(--ink)}
+article{padding:40px 0 24px}
+h1{font:800 clamp(30px,5.5vw,46px)/1.08 'Inter Tight',sans-serif;letter-spacing:-.03em;margin-bottom:12px}
+.byline{font:500 12px/1 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:32px}
+h2{font:700 22px/1.25 'Inter Tight',sans-serif;letter-spacing:-.02em;margin:42px 0 12px}
+h3{font:600 16px 'Inter',sans-serif;margin:26px 0 8px}
+p{color:var(--dim);margin-bottom:16px}
+p strong,li strong,ol strong{color:var(--ink);font-weight:600}
+ul,ol{margin:0 0 16px 22px;color:var(--dim)}
+li{margin-bottom:10px}
+.callout{border-left:3px solid var(--accent);background:#FAF9FE;border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;margin:0 0 16px}
+.callout p{margin:0}
+.cta{margin:44px 0 8px;border:1px solid var(--line);border-radius:var(--radius);padding:26px;text-align:center}
+.cta p{margin-bottom:0}
+.cta a.btn{display:inline-block;margin-top:14px;background:var(--accent);color:#fff;text-decoration:none;font:600 15px 'Inter',sans-serif;padding:12px 26px;border-radius:99px}
+footer{margin-top:48px;padding:24px 0 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--faint)}
+footer a{color:var(--dim);text-decoration:none}
+footer a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="logo" href="/">Superwhite</a>
+  <a class="back" href="/">&larr; open the tool</a>
+</header>
+
+<article>
+<h1>Make your LinkedIn post glow in HDR</h1>
+<p class="byline">superwhite.app &middot; guide &middot; takes about 30 seconds</p>
+
+<p>You can make the image in your LinkedIn post physically brighter than the white feed around it. Not a filter, not higher contrast: the whites in your image render above your screen's normal white point, using the HDR headroom your display reserves for HDR video. In the feed it looks lit from behind, and it stops the scroll.</p>
+
+<p>Here's how to do it for free, in your browser, without touching color profiles or ffmpeg.</p>
+
+<h2>Step by step</h2>
+<ol>
+<li><strong>Open <a href="/">superwhite.app</a>.</strong> It's a free in-browser tool. Your image never leaves your device, everything runs locally.</li>
+<li><strong>Drop your image in.</strong> High-contrast graphics work best: logos, wordmarks, simple illustrations with bright whites. Photos with smooth gradients can show banding at 8-bit, so start with graphics. Always load your <em>original</em> file, not an image that already went through Superwhite.</li>
+<li><strong>Set the brightness.</strong> Move the slider until the preview clearly out-glows the page. Around 1000 nits is a sensible start; the slider goes up to 4000.</li>
+<li><strong>Download the JPEG.</strong> The HDR signal is embedded in the file itself as a Rec.2100 PQ color profile.</li>
+<li><strong>Upload it to LinkedIn exactly as-is.</strong> Attach the file directly to a feed post. Don't crop, rotate, or add text in LinkedIn's composer: any edit there strips the profile and the glow dies.</li>
+</ol>
+
+<div class="callout"><p><strong>The one rule that matters:</strong> move the file itself, untouched. Screenshots, re-saving in an editor, and sending through WhatsApp or iMessage all strip the HDR profile. Direct upload to a LinkedIn feed post keeps it.</p></div>
+
+<h2>Why this works on LinkedIn</h2>
+<p>LinkedIn re-compresses every image you upload, but its pipeline keeps the embedded ICC color profile. That profile is what carries the HDR signal, so the glow survives compression. Most other platforms either strip profiles entirely (Reddit converts everything to sRGB) or use a different HDR format (Instagram wants Ultra HDR gain maps, which LinkedIn strips). That's why LinkedIn feed posts are the place this technique reliably works.</p>
+
+<h2>Who actually sees the glow</h2>
+<ul>
+<li><strong>People on HDR displays:</strong> recent MacBook Pro and Air, iPhones, Pixels, most OLED monitors, with battery saver off.</li>
+<li><strong>Everyone else</strong> sees a normal image with slightly dimmer whites. Nothing looks broken, they just don't get the effect.</li>
+</ul>
+<p>That's a large and growing share of LinkedIn's audience, especially people browsing on phones and MacBooks. Your post looks fine to everyone and remarkable to a lot of them.</p>
+
+<h2>What to glow, and what not to</h2>
+<p>The effect is strongest when a small bright area sits against normal content: a white logo on a dark background, a wordmark, a single highlighted word in a graphic. If the whole image is superwhite, there's nothing for the eye to compare it to and the effect reads as "bright photo" instead of "impossible glow." Aim the brightness at the one thing you want people to look at.</p>
+
+<h2>Common questions</h2>
+
+<h3>Why doesn't the image glow on my screen?</h3>
+<p>You're likely on a non-HDR display, or battery saver is on. Try a recent iPhone, Pixel, or MacBook in Chrome or Safari with power saving off.</p>
+
+<h3>Does it survive LinkedIn's compression?</h3>
+<p>Yes. LinkedIn keeps ICC profiles through its image pipeline. Just don't edit the image inside LinkedIn's composer after attaching it.</p>
+
+<h3>Does it work on Instagram or WhatsApp?</h3>
+<p>No. Instagram uses a different HDR format (Ultra HDR), and messaging apps strip the profile in their compression. This technique is built for the LinkedIn feed.</p>
+
+<h3>Is it allowed?</h3>
+<p>It uses the same HDR rendering path your screen uses for HDR photos and films, and it's harmless to displays. LinkedIn could clamp it someday, the same way platforms clamped superbright HDR video. Today it works.</p>
+
+<h3>What does it cost?</h3>
+<p>Nothing. Superwhite is free, needs no signup, and exports up to 2048 px. Your image is processed entirely in your browser.</p>
+
+<div class="cta">
+<p><strong>Ready to try it?</strong> Drop an image in and watch it out-glow the page.</p>
+<a class="btn" href="/">Make my image glow</a>
+</div>
+
+<p style="margin-top:36px">Want the deeper technical story? Read <a href="/blog/how-it-works.html">how the Rec.2100 PQ trick works</a>, or the explainer on <a href="/blog/why-is-that-linkedin-image-glowing.html">why that LinkedIn image is glowing</a>. Credit to <a href="https://tn1ck.com/blog/abuse-hdr-images-for-marketing" rel="noopener">Tom Nick</a>, who first documented the technique.</p>
+</article>
+
+<footer>
+  <span>&copy; 2026 Superwhite</span>
+  <span><a href="/tools/">Free tools</a> &middot; <a href="/blog/how-it-works.html">How it works</a></span>
+</footer>
+</div>
+</body>
+</html>
