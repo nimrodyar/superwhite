@@ -85,6 +85,7 @@ body.sdr .sample:not(.glow) img{filter:brightness(.82) saturate(.97)}
 @media(max-width:640px){.stage{grid-template-columns:1fr}}
 .pane{min-width:0}
 .pane img{width:100%;display:block;border:1px solid var(--line);border-radius:var(--radius)}
+.sample img,.pane img{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none;pointer-events:none}
 .tag{display:block;font:500 12px/1 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:8px}
 .stage-note{grid-column:1/-1;font-size:13px;color:var(--faint)}
 .controls{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:end}
@@ -264,11 +265,11 @@ footer a:hover{color:var(--ink)}
   <section class="samples" aria-label="Before and after sample">
     <div class="pair">
       <div class="sample">
-        <img id="feedSdr" alt="Sample image, original">
+        <img id="feedSdr" draggable="false" alt="Sample image, original">
         <div class="slabel"><b>Original</b><span>SDR</span></div>
       </div>
       <div class="sample glow">
-        <img id="feedHdr" alt="Sample image processed with Superwhite, brighter than white">
+        <img id="feedHdr" draggable="false" alt="Sample image processed with Superwhite, brighter than white">
         <div class="slabel"><b>Superwhite</b><span>HDR · 4000 nits</span></div>
       </div>
     </div>
@@ -285,8 +286,8 @@ footer a:hover{color:var(--ink)}
 
   <section class="studio" id="studio">
     <div class="stage">
-      <div class="pane"><span class="tag">Original · SDR</span><img id="before" alt="Original image"></div>
-      <div class="pane"><span class="tag">Superwhite · HDR</span><img id="after" alt="HDR result"></div>
+      <div class="pane"><span class="tag">Original · SDR</span><img id="before" draggable="false" alt="Original image"></div>
+      <div class="pane"><span class="tag">Superwhite · HDR</span><img id="after" draggable="false" alt="HDR result"></div>
       <p class="stage-note">On an HDR screen the right image should clearly out-glow this white page.</p>
     </div>
 
@@ -611,6 +612,10 @@ function setMode(m) {
   schedule();
 }
 $('reset').addEventListener('click', () => { studio.classList.remove('on'); srcCanvas = null; fileInput.value=''; window.scrollTo({top:0,behavior:'smooth'}); });
+
+/* block right-click / drag save on previews */
+document.addEventListener('contextmenu', e => { if (e.target.closest('.sample,.pane')) e.preventDefault(); });
+document.addEventListener('dragstart', e => { if (e.target.closest('.sample,.pane')) e.preventDefault(); });
 
 function schedule(){ clearTimeout(renderTimer); renderTimer = setTimeout(render, 120); }
 
