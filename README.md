@@ -1,36 +1,30 @@
-# Superwhite — deploy checklist
+# Superwhite
 
-Everything in this folder is ready to ship. What's left needs your accounts (~30 min total):
+**Make the whites in your image glow brighter than your screen's white.**
 
-## 1. Repo + deploy (15 min)
-- Create GitHub repo `superwhite`, push the contents of this folder (index.html at root)
-- Cloudflare Pages -> Create project -> connect repo -> Framework: None -> Build output: `/`
-- Live at superwhite.pages.dev immediately
+Live at **[superwhite.app](https://superwhite.app)**. Free, runs entirely in your browser, nothing gets uploaded.
 
-## 2. Domain (5 min)
-- Buy superwhite.io, add as custom domain in the Pages project
-- If DNS is on Cloudflare it's automatic; otherwise add the CNAME they give you
+This is the tool behind the "glowing logo" effect you may have seen in the LinkedIn feed from brands like Wiz. On HDR displays (recent iPhones, Pixels, MacBooks, OLED monitors) the whites in the exported image render in the display's extra brightness headroom, physically brighter than the white page around them. On SDR displays the image just looks normal.
 
-## 3. Waitlist (5 min)
-- Create a Tally form: "Get Superwhite Pro — early access"
-  - Fields: email + radio (Pro EUR 9 / Agency EUR 29)
-- Find & replace `https://tally.so/r/REPLACE_ME` in index.html (2 occurrences)
+## How it works
 
-## 4. Analytics (5 min)
-- Create the site in Plausible (domain: superwhite.io)
-- Uncomment the analytics <script> block in index.html <head>
+Superwhite re-encodes your JPEG with a Rec.2100 PQ ICC color profile, with per-pixel luminance masking so only the whites are boosted while colors stay accurate. LinkedIn's image pipeline strips most HDR metadata but keeps ICC profiles, so the effect survives feed post uploads. A nits slider controls how hard the glow hits, because tasteful beats searing.
 
-## 5. THE PROOF LOOP — do before announcing anything
-- Open the live site on your MacBook (Chrome/Safari, battery saver off)
-- Convert an image, download, post it to your personal LinkedIn
-- Verify the glow on MacBook + iPhone; download the image back from
-  LinkedIn and run: exiftool -ProfileDescription file.jpg
-  -> must show the PQ/Rec.2100 profile
-- Only then: launch per playbook (LinkedIn post -> HN Show HN with
-  /blog/how-it-works.html -> Product Hunt -> Reddit -> influencer DMs)
+Read more:
 
-## Later (not blocking launch)
-- Payments: Lemon Squeezy product + license key validation, flip IS_PRO
-  in index.html based on a stored valid key
-- Batch processing (client-side w/ JSZip) for Agency
-- Ultra HDR export for Instagram (libultrahdr WASM) = v2 launch
+- [Why the Wiz logo glows on LinkedIn: the HDR glow trick explained](https://superwhite.app/blog/wiz-logo-glow-linkedin.html)
+- [How it works, technically](https://superwhite.app/blog/how-it-works.html)
+- [Why is that LinkedIn image glowing?](https://superwhite.app/blog/why-is-that-linkedin-image-glowing.html)
+
+## Where the effect survives
+
+- LinkedIn feed posts, uploaded directly as JPEG without cropping or editing in the composer
+- It dies in: screenshots, re-saves in editors, WhatsApp and iMessage compression, copy-paste
+
+## Architecture
+
+Single HTML file, no build step, no server. Image processing happens in a canvas in the visitor's browser. A small Cloudflare Worker handles export credits.
+
+## Credits
+
+The underlying profile-splicing technique was first documented by [Tom Nick](https://tn1ck.com/blog/abuse-hdr-images-for-marketing). The company-page logo variant (PNG cICP) was documented by [Gal Tidhar](https://gal.tidhar.org.il/blog/hdr-glow-logo/). Superwhite packages the feed post variant as a self-serve, in-browser tool.
