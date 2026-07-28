@@ -7,38 +7,56 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://superwhite.app/blog/how-it-works.html</loc>
+    <loc>https://superwhite.app/blog/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://superwhite.app/blog/how-it-works</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://superwhite.app/blog/why-is-that-linkedin-image-glowing.html</loc>
+    <loc>https://superwhite.app/blog/why-is-that-linkedin-image-glowing</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://superwhite.app/blog/wiz-logo-glow-linkedin.html</loc>
+    <loc>https://superwhite.app/blog/make-linkedin-post-glow-hdr</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://superwhite.app/blog/wiz-logo-glow-linkedin</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://superwhite.app/tools/</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://superwhite.app/tools/compress-image.html</loc>
+    <loc>https://superwhite.app/tools/compress-image</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://superwhite.app/tools/resize-image.html</loc>
+    <loc>https://superwhite.app/tools/resize-image</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://superwhite.app/tools/convert-image.html</loc>
+    <loc>https://superwhite.app/tools/convert-image</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
