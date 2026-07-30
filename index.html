@@ -80,6 +80,8 @@ body.sdr .sample:not(.glow) img{filter:brightness(.82) saturate(.97)}
 .drop:hover,.drop:focus-visible,.drop.over{border-color:var(--accent);background:#FAF9FE;outline:none}
 .drop .big{font:700 19px/1.3 'Inter Tight',sans-serif;letter-spacing:-.01em}
 .drop .small{margin-top:6px;font-size:13px;color:var(--faint)}
+.demo-btn{margin-top:14px;font:600 13px/1 'Inter',sans-serif;color:var(--accent);background:none;border:1px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer;transition:border-color .15s,background .15s}
+.demo-btn:hover,.demo-btn:focus-visible{border-color:var(--accent);background:#FAF9FE;outline:none}
 #file{display:none}
 
 /* ================= studio ================= */
@@ -264,7 +266,7 @@ footer a:hover{color:var(--ink)}
   <section class="hero">
     <p class="kicker">The trick behind the glowing Wiz logo on LinkedIn</p>
     <h1>Whites brighter than your screen's white.</h1>
-    <p class="sub">Superwhite embeds an HDR profile into your JPEG. On HDR screens the whites glow above everything around them, including this page. First 3 exports free. Share it on LinkedIn once to unlock unlimited. Runs in your browser. Nothing gets uploaded.</p>
+    <p class="sub">Superwhite embeds an HDR profile into your JPEG. On HDR screens the whites glow above everything around them, including this page. Sign in free for 3 exports. Share it on LinkedIn once to unlock unlimited. Runs in your browser. Nothing gets uploaded.</p>
   </section>
 
   <section class="samples" aria-label="Before and after sample">
@@ -284,7 +286,8 @@ footer a:hover{color:var(--ink)}
   <section class="cta-row" id="try">
     <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload an image">
       <p class="big">Drop your image here</p>
-      <p class="small">or click to choose · PNG or JPEG · 3 free exports · share once for unlimited · nothing is uploaded</p>
+      <p class="small">or click to choose · PNG or JPEG · sign in free for 3 exports · share once for unlimited · nothing is uploaded</p>
+      <button type="button" class="demo-btn" id="demoTry">No image handy? Try the demo</button>
     </div>
     <input type="file" id="file" accept="image/png,image/jpeg,image/webp">
   </section>
@@ -610,6 +613,24 @@ drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add(
 drop.addEventListener('dragleave', () => drop.classList.remove('over'));
 drop.addEventListener('drop', e => { e.preventDefault(); drop.classList.remove('over'); if (e.dataTransfer.files[0]) load(e.dataTransfer.files[0]); });
 fileInput.addEventListener('change', () => { if (fileInput.files[0]) load(fileInput.files[0]); });
+const demoBtn = $('demoTry');
+if (demoBtn) {
+  demoBtn.addEventListener('keydown', e => e.stopPropagation());
+  demoBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    gtag('event', 'image_upload', { file_type: 'demo' });
+    fileBase = 'superwhite-demo';
+    hqCache.key = '';
+    const c = drawDemoLogo();
+    srcCanvas = document.createElement('canvas');
+    srcCanvas.width = c.width; srcCanvas.height = c.height;
+    srcCanvas.getContext('2d').drawImage(c, 0, 0);
+    $('before').src = srcCanvas.toDataURL('image/png');
+    studio.classList.add('on');
+    studio.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    render();
+  });
+}
 
 function load(file) {
   fileBase = file.name.replace(/\.[^.]+$/, '') || 'image';
@@ -731,8 +752,17 @@ async function render() {
 const FREE_LIMIT = 3;
 
 function isPro(){ return localStorage.getItem('sw_unlimited') === '1' || !!(window.Clerk && Clerk.user && Clerk.user.unsafeMetadata && Clerk.user.unsafeMetadata.unlimited); }
-function dlCount(){ return +(sessionStorage.getItem('sw_dl_count') || 0); }
-function bumpDlCount(){ sessionStorage.setItem('sw_dl_count', dlCount() + 1); }
+function dlCount(){
+  if (window.Clerk && Clerk.user) return +((Clerk.user.unsafeMetadata && Clerk.user.unsafeMetadata.dlCount) || 0);
+  return +(sessionStorage.getItem('sw_dl_count') || 0);
+}
+function bumpDlCount(){
+  const n = dlCount() + 1;
+  sessionStorage.setItem('sw_dl_count', n);
+  if (window.Clerk && Clerk.user) {
+    Clerk.user.update({ unsafeMetadata: Object.assign({}, Clerk.user.unsafeMetadata, { dlCount: n }) }).catch(() => {});
+  }
+}
 
 function openPaywall(){ $('paywall').classList.add('on'); }
 function closePaywall(){ $('paywall').classList.remove('on'); }
