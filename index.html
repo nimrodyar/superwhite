@@ -131,6 +131,7 @@ input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--ac
 .postdl li{margin-bottom:4px}
 .postdl .btn{padding:10px 16px;font-size:14px}
 .postdl-msg{margin-left:10px;font:500 12px/1 'JetBrains Mono',monospace;color:#1a7f4e}
+.postdl-follow{display:block;margin-top:12px;font-size:13px;color:var(--accent)}
 .busy{margin-top:8px;font:500 12px/1 'JetBrains Mono',monospace;color:var(--faint);min-height:14px}
 
 /* ================= facts ================= */
@@ -214,7 +215,8 @@ footer a:hover{color:var(--ink)}
   "name": "Superwhite",
   "alternateName": "Superwhite HDR",
   "url": "https://superwhite.app/",
-  "sameAs": ["https://github.com/nimrodyar/superwhite"],
+  "sameAs": ["https://github.com/nimrodyar/superwhite", "https://www.linkedin.com/company/superwhiteapp"],
+  "author": {"@type": "Person", "name": "Nimrod Yar", "url": "https://github.com/nimrodyar"},
   "description": "Free in-browser tool that makes the whites in your image physically brighter than your screen's white point, using an embedded HDR ICC profile. Built for LinkedIn posts. Nothing is uploaded; everything runs locally in the browser.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Any (runs in browser)",
@@ -276,6 +278,11 @@ footer a:hover{color:var(--ink)}
       "@type": "Question",
       "name": "Will the effect survive if I screenshot or repost the image?",
       "acceptedAnswer": { "@type": "Answer", "text": "No. Screenshots, re-saving in an editor, and apps like WhatsApp or iMessage strip the color profile, which kills the effect. Post the original file Superwhite gives you, and don't crop or edit it in LinkedIn's composer." }
+    },
+    {
+      "@type": "Question",
+      "name": "Who made Superwhite?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Superwhite is built and run by Nimrod Yar, a solo founder in Amsterdam. It builds on the HDR profile technique first documented by Tom Nick. You can follow Superwhite on LinkedIn for updates and new examples." }
     }
   ]
 }
@@ -363,6 +370,7 @@ footer a:hover{color:var(--ink)}
       </ul>
       <button type="button" class="btn ghost" id="copyCaption">Copy a ready-made caption</button>
       <span class="postdl-msg" id="postdlMsg"></span>
+      <a class="postdl-follow" href="https://www.linkedin.com/company/superwhiteapp" target="_blank" rel="noopener" data-loc="post_download">Follow Superwhite on LinkedIn for updates</a>
     </div>
   </section>
 
@@ -410,6 +418,10 @@ footer a:hover{color:var(--ink)}
     <details>
       <summary>Will the effect survive if I screenshot or repost the image?</summary>
       <p>No. Screenshots, re-saving in an editor, and apps like WhatsApp or iMessage strip the color profile, which kills the effect. Post the original file Superwhite gives you, and don't crop or edit it in LinkedIn's composer.</p>
+    </details>
+    <details>
+      <summary>Who made Superwhite?</summary>
+      <p>Superwhite is built and run by Nimrod Yar, a solo founder in Amsterdam. It builds on the HDR profile technique first documented by Tom Nick. For updates and new examples, follow <a href="https://www.linkedin.com/company/superwhiteapp" target="_blank" rel="noopener" data-loc="faq">Superwhite on LinkedIn</a>.</p>
     </details>
   </section>
 
@@ -470,7 +482,7 @@ footer a:hover{color:var(--ink)}
 
   <section class="api" id="api">
     <h2>Building something with this?</h2>
-    <p>If you run a LinkedIn scheduling tool, content platform, or agency workflow, you can license the HDR pipeline directly: a hosted API endpoint or a licensed JS module, kept working when platforms change their image pipelines. Pilot licenses start at €149 per month. Tell me what you're building and I will reply within a day.</p>
+    <p>If you run a LinkedIn scheduling tool, content platform, or agency workflow, you can license the HDR pipeline directly: a hosted API endpoint or a licensed JS module, kept working when platforms change their image pipelines. Pilot licenses start at €149 per month. Tell me what you're building and I will reply within a day. Nimrod Yar, founder.</p>
     <form id="apiForm">
       <input type="hidden" name="access_key" value="3c20ecc9-7125-487b-94a1-32a222f5088c">
       <input type="hidden" name="subject" value="New API/integration request from Superwhite">
@@ -486,7 +498,8 @@ footer a:hover{color:var(--ink)}
 
   <footer>
     <span>Superwhite runs 100% client-side. Your images never leave your device.</span>
-    <span><a href="/tools/">Free tools</a> · <a href="/blog/">Blog</a></span>
+    <span>Made by <a href="https://github.com/nimrodyar" target="_blank" rel="noopener">Nimrod Yar</a> in Amsterdam</span>
+    <span><a href="/tools/">Free tools</a> · <a href="/blog/">Blog</a> · <a href="https://www.linkedin.com/company/superwhiteapp" target="_blank" rel="noopener" data-loc="footer">Follow on LinkedIn</a></span>
   </footer>
 </div>
 
@@ -1002,6 +1015,9 @@ document.querySelectorAll('.q').forEach(q => {
 
 const heroCta = $('heroCta');
 if (heroCta) heroCta.addEventListener('click', () => gtag('event', 'hero_cta_click', {}));
+document.querySelectorAll('a[href*="linkedin.com/company/superwhiteapp"]').forEach(a => {
+  a.addEventListener('click', () => gtag('event', 'company_follow_click', { location: a.dataset.loc || 'page' }));
+});
 updateLimitNote();
 
 /* ================= api request form ================= */
