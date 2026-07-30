@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build the HDR Glow Yourself vs Using the Superwhite API | Superwhite</title>
+<meta name="description" content="You can prompt an AI to write code that makes a JPEG glow brighter than white. Here is where those implementations break: banding, noise blotching, color smearing, and outputs that die in LinkedIn recompression. And when a licensed pipeline makes more sense.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://superwhite.app/blog/build-hdr-glow-yourself-vs-api">
+<meta property="og:title" content="Build the HDR glow yourself vs using the Superwhite API">
+<meta property="og:description" content="The concept is public and an AI will happily write you the code. An honest map of where DIY implementations break, and when licensing the pipeline makes more sense.">
+<meta property="og:url" content="https://superwhite.app/blog/build-hdr-glow-yourself-vs-api">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://superwhite.app/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A white logo rendering brighter than the white page around it on an HDR display">
+<meta property="og:site_name" content="Superwhite">
+<meta property="article:published_time" content="2026-07-30">
+<meta property="article:modified_time" content="2026-07-30">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Build the HDR glow yourself vs using the Superwhite API">
+<meta name="twitter:description" content="Where DIY brighter-than-white implementations break, and when a licensed pipeline makes more sense.">
+<meta name="twitter:image" content="https://superwhite.app/og.jpg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HE8J29XL52');
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FFFFFF;--ink:#141317;--dim:#5F5C66;--faint:#8B8894;--line:#E7E5EC;--accent:#4316B8;--radius:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.7 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{padding:28px 0;display:flex;align-items:baseline;justify-content:space-between}
+.logo{font:800 20px/1 'Inter Tight',sans-serif;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.back{font:500 13px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+.back:hover{color:var(--ink)}
+article{padding:24px 0 56px}
+h1{font:800 clamp(30px,5vw,44px)/1.1 'Inter Tight',sans-serif;letter-spacing:-.03em;margin-bottom:12px}
+.byline{font:500 12px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:32px}
+h2{font:700 22px/1.3 'Inter Tight',sans-serif;letter-spacing:-.02em;margin:36px 0 12px}
+h3{font:600 17px/1.4 'Inter Tight',sans-serif;letter-spacing:-.01em;margin:26px 0 8px}
+p{margin-bottom:16px}
+a{color:var(--accent)}
+ol,ul{margin:0 0 16px 22px}
+ol li,ul li{margin-bottom:8px}
+code{font:500 13px 'JetBrains Mono',monospace;background:#F4F2F9;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+.callout{border-left:3px solid var(--accent);background:#F8F7FC;border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;margin-bottom:16px}
+.callout p{margin:0}
+.cta{display:inline-block;font:600 15px/1 'Inter',sans-serif;padding:13px 20px;border-radius:99px;background:var(--ink);color:#fff;text-decoration:none;margin-top:8px}
+.cta:hover{background:#000}
+.cta.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+.cta.ghost:hover{border-color:var(--ink);background:none}
+footer{padding:24px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
+footer a{color:var(--dim)}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Build the HDR glow yourself vs using the Superwhite API",
+  "description": "You can prompt an AI to write code that makes a JPEG render brighter than white. An honest map of where those implementations break, and when licensing a maintained pipeline makes more sense.",
+  "datePublished": "2026-07-30",
+  "dateModified": "2026-07-30",
+  "author": {"@type": "Person", "name": "Nimrod Yar", "url": "https://superwhite.app/"},
+  "publisher": {"@type": "Organization", "name": "Superwhite", "url": "https://superwhite.app/"},
+  "image": "https://superwhite.app/og.jpg",
+  "mainEntityOfPage": "https://superwhite.app/blog/build-hdr-glow-yourself-vs-api"
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="logo" href="/">superwhite</a>
+  <a class="back" href="/blog/">&larr; all posts</a>
+</header>
+
+<article>
+<h1>Build the HDR glow yourself, or use the API?</h1>
+<p class="byline">30 JUL 2026 &middot; NIMROD YAR</p>
+
+<p>If you're reading this, you probably already know the trick: a JPEG with an HDR color profile embedded renders its brightest areas above the screen's normal white point on HDR displays. It's the effect behind the glowing logos in the LinkedIn feed. The concept is public, it was first documented by <a href="https://tn1ck.com/blog/abuse-hdr-images-for-marketing" rel="noopener">Tom Nick</a>, and yes, you can prompt an AI to write you a working-looking implementation in an hour.</p>
+
+<p>I built <a href="/">Superwhite</a>, so I'm biased, but this page is not going to pretend you can't build it. Instead it's the page I wish existed when I started: an honest map of where do-it-yourself implementations break, because the gap between "renders brighter" and "looks professional in a feed at 4000 nits" is where I've spent most of my time.</p>
+
+<h2>The concept, in one paragraph</h2>
+<p>You re-encode the image with a wide-gamut HDR color profile that uses the PQ transfer function, splice that profile into the JPEG, and rely on the fact that some platforms keep the color profile through their image pipeline while stripping other HDR metadata. On an HDR display, the bright areas of the image then render in the display's extra brightness headroom. The full conceptual walkthrough is in <a href="/blog/how-it-works">how Superwhite works</a>.</p>
+
+<h2>Where naive implementations break</h2>
+<p>Every one of these is invisible in a quick test and obvious in a real feed. If you're evaluating AI-generated code for this, test against this list.</p>
+
+<h3>1. Banding in anything that isn't flat color</h3>
+<p>The PQ transfer function redistributes an 8-bit image's code values aggressively. Flat logos survive, but any gradient, glow, drop shadow, or photograph develops visible stair-step banding once the peak brightness goes up. Most generated implementations do a straight per-pixel conversion and ship the banding.</p>
+
+<h3>2. Noise you couldn't see becomes blotching you can't unsee</h3>
+<p>Almost every "white" background in a real-world source image is full of low-level JPEG noise from an earlier compression pass. At normal brightness it's invisible. Boosted into HDR headroom, it becomes visible blotching across the background. Clean-looking inputs are not clean, and a pipeline that doesn't account for this produces output that looks dirty on exactly the displays where the effect works.</p>
+
+<h3>3. Color smearing at the glow boundary</h3>
+<p>Standard browser and library JPEG encoding subsamples color information. In normal photos nobody notices. At a hard boundary between a glowing white element and a colored background, the subsampling smears, and the crisp edge that makes a logo look premium turns soft and fringed.</p>
+
+<h3>4. The output has to survive recompression</h3>
+<p>LinkedIn re-encodes what you upload. An implementation that looks right locally can come out the other side with the effect weakened, artifacts amplified, or the profile handled differently depending on the upload path. Cropping or editing in the composer kills it entirely. Getting output that reliably survives the pipeline, and knowing which paths preserve it this month, is ongoing work, not a line of code.</p>
+
+<h3>5. Double processing produces grey mush</h3>
+<p>Run an already-converted image back through the conversion and you get flat, washed-out output. In any real workflow, someone will eventually feed the tool its own output. If your pipeline can't detect that, your users will blame the technique, not their input.</p>
+
+<h3>6. Boosting everything looks radioactive</h3>
+<p>Without per-pixel masking of what should glow and what shouldn't, the whole image lifts, and the result reads as broken rather than premium. This is also where eye-strain complaints come from. Deciding what glows, how much, and how the transition behaves is a design problem sitting on top of the encoding problem.</p>
+
+<h3>7. It's a moving target</h3>
+<p>The whole trick lives on platform behavior that isn't documented or guaranteed. Platforms change their image pipelines without notice. Code an AI generates for you today is frozen; the behavior it depends on is not. Whoever owns the implementation owns the monitoring.</p>
+
+<h2>When you should absolutely build it yourself</h2>
+<p>A one-off internal experiment, a hobby project, learning how HDR and color profiles work: build it, it's a genuinely fun rabbit hole. Start from Tom Nick's writeup, test on a real HDR phone, and check your results against the list above. Nothing here is secret, it's just work.</p>
+
+<h2>When the API makes more sense</h2>
+<p>If the output ships to customers, the calculus changes. A scheduling tool, content platform, or agency putting this in front of paying users needs the artifact handling, the masking behavior, and someone watching when a platform changes its pipeline. That's what Superwhite's licensed pipeline is: the same engine behind the free tool, as a hosted API endpoint or a licensed JS module, maintained as platforms move.</p>
+
+<div class="callout"><p>Pilot licenses start at &euro;149 per month. Tell me what you're building on the <a href="/#api">API request form</a> and I will reply within a day.</p></div>
+
+<p><a class="cta" href="/#api">Request API access</a> &nbsp; <a class="cta ghost" href="/">Try the free tool</a></p>
+
+</article>
+
+<footer>superwhite.app &middot; runs 100% client-side &middot; <a href="/blog/">blog</a></footer>
+</div>
+</body>
+</html>
