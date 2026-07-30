@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Superwhite: Make Your Logo Glow on LinkedIn (Wiz Trick)</title>
-<meta name="description" content="Make any logo glow brighter than white on LinkedIn, the same HDR trick behind the viral Wiz logo. Free, in-browser, nothing uploaded. First 3 exports free.">
+<title>Superwhite HDR: Make Your Image Glow Brighter Than White on LinkedIn</title>
+<meta name="description" content="Superwhite is the free HDR image tool behind the glowing Wiz logo on LinkedIn. Embed an HDR profile into any JPEG so whites glow brighter than white. In-browser, nothing uploaded.">
 <link rel="canonical" href="https://superwhite.app/">
-<meta property="og:title" content="Superwhite: Make Your Logo Glow Like Wiz's on LinkedIn">
+<meta property="og:title" content="Superwhite HDR: Make Your Logo Glow Brighter Than White on LinkedIn">
 <meta property="og:description" content="Push your image's whites into your screen's HDR headroom, the same trick behind the glowing Wiz logo. Free, in-browser, built for LinkedIn.">
 <meta property="og:url" content="https://superwhite.app/">
 <meta property="og:type" content="website">
@@ -56,11 +56,14 @@ header{padding:28px 0 8px;display:flex;align-items:baseline;justify-content:spac
 .kicker{font:600 12px/1 'JetBrains Mono',monospace;letter-spacing:.03em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
 h1{font:800 clamp(34px,6vw,58px)/1.04 'Inter Tight',sans-serif;letter-spacing:-.035em;max-width:760px}
 .sub{margin-top:16px;max-width:600px;color:var(--dim);font-size:17px}
+.hero-cta{margin-top:26px}
+.hdr-signin{font:600 13px/1 'Inter',sans-serif;color:var(--accent);background:none;border:none;cursor:pointer;padding:0}
+.hdr-signin:hover{text-decoration:underline}
 
 /* ================= samples ================= */
 .samples{padding:8px 0 12px}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:640px){.pair{grid-template-columns:1fr}}
+@media(max-width:640px){.pair{gap:10px}}
 .sample{min-width:0}
 .sample img{width:100%;display:block;border:1px solid var(--line);border-radius:var(--radius)}
 .slabel{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;
@@ -103,6 +106,15 @@ input[type=range]{width:100%;appearance:none;height:3px;border-radius:2px;
 input[type=range]::-webkit-slider-thumb{appearance:none;width:16px;height:16px;border-radius:50%;background:var(--ink);cursor:pointer;border:none}
 input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--ink);cursor:pointer;border:none}
 input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--accent);outline-offset:2px}
+.presets{margin-top:24px;display:flex;gap:8px;flex-wrap:wrap}
+.presets button{font:500 13px/1 'Inter',sans-serif;padding:9px 14px;border:1px solid var(--line);border-radius:99px;background:none;color:var(--dim);cursor:pointer}
+.presets button.on{border-color:var(--ink);color:var(--ink)}
+.adv{margin-top:14px}
+.adv summary{font:500 13px/1 'Inter',sans-serif;color:var(--faint);cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:6px}
+.adv summary::-webkit-details-marker{display:none}
+.adv summary::after{content:'+';font-size:15px;color:var(--faint)}
+.adv[open] summary::after{content:'−'}
+.adv .controls{margin-top:16px}
 .mode{grid-column:1/-1;display:flex;gap:8px}
 .mode button{font:500 13px/1 'Inter',sans-serif;padding:9px 14px;border:1px solid var(--line);border-radius:99px;background:none;color:var(--dim);cursor:pointer}
 .mode button.on{border-color:var(--ink);color:var(--ink)}
@@ -113,6 +125,12 @@ input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--ac
 .btn.ghost{background:none;color:var(--ink);border-color:var(--line)}
 .btn.ghost:hover{border-color:var(--ink)}
 .limit-note{margin-top:12px;font-size:13px;color:var(--faint)}
+.postdl{margin-top:20px;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;background:#FAF9FE}
+.postdl b{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
+.postdl ul{margin:0 0 14px 18px;font-size:14px;color:var(--dim)}
+.postdl li{margin-bottom:4px}
+.postdl .btn{padding:10px 16px;font-size:14px}
+.postdl-msg{margin-left:10px;font:500 12px/1 'JetBrains Mono',monospace;color:#1a7f4e}
 .busy{margin-top:8px;font:500 12px/1 'JetBrains Mono',monospace;color:var(--faint);min-height:14px}
 
 /* ================= facts ================= */
@@ -194,7 +212,9 @@ footer a:hover{color:var(--ink)}
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Superwhite",
+  "alternateName": "Superwhite HDR",
   "url": "https://superwhite.app/",
+  "sameAs": ["https://github.com/nimrodyar/superwhite"],
   "description": "Free in-browser tool that makes the whites in your image physically brighter than your screen's white point, using an embedded HDR ICC profile. Built for LinkedIn posts. Nothing is uploaded; everything runs locally in the browser.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Any (runs in browser)",
@@ -217,6 +237,11 @@ footer a:hover{color:var(--ink)}
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Superwhite HDR?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Superwhite is a free HDR image tool at superwhite.app. It embeds a Rec.2100 PQ HDR profile into a JPEG so the whites render brighter than your screen's normal white on HDR displays. It is built for LinkedIn, where the effect survives image compression, and everything runs locally in your browser. It is not related to the older open source superwhite video demo on GitHub, which shows a bright white color using a small HDR video file." }
+    },
     {
       "@type": "Question",
       "name": "How can I make my image glow brighter than white?",
@@ -260,13 +285,14 @@ footer a:hover{color:var(--ink)}
 <div class="wrap">
   <header>
     <div class="logo">superwhite</div>
-    <div class="hdr-right"><div class="hdr-badge" id="hdrBadge">checking display…</div><div id="swAccount" style="display:none"></div></div>
+    <div class="hdr-right"><div class="hdr-badge" id="hdrBadge">checking display…</div><button type="button" class="hdr-signin" id="hdrSignIn" hidden>Sign in</button><div id="swAccount" style="display:none"></div></div>
   </header>
 
   <section class="hero">
     <p class="kicker">The trick behind the glowing Wiz logo on LinkedIn</p>
     <h1>Whites brighter than your screen's white.</h1>
-    <p class="sub">Superwhite embeds an HDR profile into your JPEG. On HDR screens the whites glow above everything around them, including this page. Sign in free for 3 exports. Share it on LinkedIn once to unlock unlimited. Runs in your browser. Nothing gets uploaded.</p>
+    <p class="sub">Superwhite embeds an HDR profile into your JPEG. On HDR screens the whites glow above everything around them, including this page. Free, in your browser, nothing gets uploaded.</p>
+    <div class="hero-cta"><a class="btn primary" href="#try" id="heroCta">Try it free</a></div>
   </section>
 
   <section class="samples" aria-label="Before and after sample">
@@ -286,7 +312,7 @@ footer a:hover{color:var(--ink)}
   <section class="cta-row" id="try">
     <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload an image">
       <p class="big">Drop your image here</p>
-      <p class="small">or click to choose · PNG or JPEG · sign in free for 3 exports · share once for unlimited · nothing is uploaded</p>
+      <p class="small">or click to choose · PNG or JPEG · nothing leaves your device</p>
       <button type="button" class="demo-btn" id="demoTry">No image handy? Try the demo</button>
     </div>
     <input type="file" id="file" accept="image/png,image/jpeg,image/webp">
@@ -299,27 +325,45 @@ footer a:hover{color:var(--ink)}
       <p class="stage-note">On an HDR screen the right image should clearly out-glow this white page.</p>
     </div>
 
-    <div class="controls">
-      <div class="ctl">
-        <label>Peak brightness <output id="nitsOut">1000 nits</output></label>
-        <input type="range" id="nits" min="400" max="4000" step="100" value="1000">
-      </div>
-      <div class="ctl" id="threshCtl">
-        <label>Glow threshold <output id="threshOut">70% white</output></label>
-        <input type="range" id="thresh" min="30" max="95" step="5" value="70">
-      </div>
-      <div class="mode" role="group" aria-label="Glow mode">
-        <button id="modeHi" class="on">Glow highlights only</button>
-        <button id="modeAll">Glow everything</button>
-      </div>
+    <div class="presets" role="group" aria-label="Glow presets">
+      <button type="button" data-peak="700" data-thresh="80" aria-pressed="false">Subtle</button>
+      <button type="button" class="on" data-peak="1000" data-thresh="70" aria-pressed="true">Standard</button>
+      <button type="button" data-peak="4000" data-thresh="60" aria-pressed="false">Max</button>
     </div>
+    <details class="adv" id="advCtl">
+      <summary>Advanced controls</summary>
+      <div class="controls">
+        <div class="ctl">
+          <label for="nits">Glow intensity <output id="nitsOut">1000 nits</output></label>
+          <input type="range" id="nits" min="400" max="4000" step="100" value="1000">
+        </div>
+        <div class="ctl" id="threshCtl">
+          <label for="thresh">Glow starts at <output id="threshOut">70% white</output></label>
+          <input type="range" id="thresh" min="30" max="95" step="5" value="70">
+        </div>
+        <div class="mode" role="group" aria-label="Glow mode">
+          <button type="button" id="modeHi" class="on" aria-pressed="true">Glow highlights only</button>
+          <button type="button" id="modeAll" aria-pressed="false">Glow everything</button>
+        </div>
+      </div>
+    </details>
 
     <div class="actions">
       <a class="btn primary" id="download" download>Download HDR JPEG</a>
       <button class="btn ghost" id="reset">Start over</button>
     </div>
-    <p class="limit-note">Free. Exports up to 4K. First 3 downloads free. Share on LinkedIn once for unlimited.</p>
+    <p class="limit-note" id="limitNote">Free. Exports up to 4K. First 3 downloads free. Share on LinkedIn once for unlimited.</p>
     <p class="busy" id="busy"></p>
+    <div class="postdl" id="postdl" hidden>
+      <b>Saved. Three rules so the glow survives:</b>
+      <ul>
+        <li>Upload the file straight to LinkedIn as an image post</li>
+        <li>Do not crop, edit or filter it in LinkedIn's composer, that strips the effect</li>
+        <li>The glow shows on HDR screens with battery saver off, most recent phones qualify</li>
+      </ul>
+      <button type="button" class="btn ghost" id="copyCaption">Copy a ready-made caption</button>
+      <span class="postdl-msg" id="postdlMsg"></span>
+    </div>
   </section>
 
   <section class="how">
@@ -335,6 +379,10 @@ footer a:hover{color:var(--ink)}
 
     <section class="faq" id="faq">
     <h2>Frequently asked questions</h2>
+    <details>
+      <summary>What is Superwhite HDR?</summary>
+      <p>Superwhite is a free HDR image tool at superwhite.app. It embeds a Rec.2100 PQ HDR profile into a JPEG so the whites render brighter than your screen's normal white on HDR displays. It is built for LinkedIn, where the effect survives image compression, and everything runs locally in your browser. It is not related to the older open source superwhite video demo on GitHub, which shows a bright white color using a small HDR video file.</p>
+    </details>
     <details>
       <summary>How can I make my image glow brighter than white?</summary>
       <p>Superwhite embeds a Rec.2100 PQ HDR color profile into your JPEG. On a screen with HDR turned on, the bright parts of the image use the display's extra brightness headroom, so they render brighter than normal white. It runs free in your browser and nothing gets uploaded.</p>
@@ -398,7 +446,7 @@ footer a:hover{color:var(--ink)}
       </div>
     </div>
 
-    <div class="q" data-q="pro_price">
+    <div class="q" data-q="pro_price" hidden>
       <p>If a Pro plan added batch, 4K and Instagram export, what would be fair?</p>
       <div class="opts">
         <button data-a="5">€5 a month</button>
@@ -707,24 +755,44 @@ async function exportHQ() {
   document.body.appendChild(a); a.click(); a.remove();
 }
 function paintFill(el){ el.style.setProperty('--fill', ((el.value-el.min)/(el.max-el.min)*100)+'%'); }
+let applyingPreset = false;
+const presetBtns = [...document.querySelectorAll('.presets button')];
+function clearPresetOn(){ presetBtns.forEach(b => { b.classList.remove('on'); b.setAttribute('aria-pressed','false'); }); }
 ['nits','thresh'].forEach(id => { const el = $(id); paintFill(el);
   el.addEventListener('input', () => {
     paintFill(el);
     $('nitsOut').textContent = $('nits').value + ' nits';
     $('threshOut').textContent = $('thresh').value + '% white';
+    if (!applyingPreset) clearPresetOn();
     schedule();
   });
 });
+presetBtns.forEach(b => b.addEventListener('click', () => {
+  applyingPreset = true;
+  clearPresetOn();
+  b.classList.add('on'); b.setAttribute('aria-pressed','true');
+  $('nits').value = b.dataset.peak;
+  $('thresh').value = b.dataset.thresh;
+  paintFill($('nits')); paintFill($('thresh'));
+  $('nitsOut').textContent = $('nits').value + ' nits';
+  $('threshOut').textContent = $('thresh').value + '% white';
+  setMode('hi');
+  applyingPreset = false;
+  gtag('event', 'preset_click', { preset: b.textContent.trim().toLowerCase() });
+}));
 $('modeHi').addEventListener('click', () => setMode('hi'));
 $('modeAll').addEventListener('click', () => setMode('all'));
 function setMode(m) {
   mode = m;
   $('modeHi').classList.toggle('on', m === 'hi');
   $('modeAll').classList.toggle('on', m === 'all');
+  $('modeHi').setAttribute('aria-pressed', String(m === 'hi'));
+  $('modeAll').setAttribute('aria-pressed', String(m === 'all'));
   $('threshCtl').style.opacity = m === 'hi' ? 1 : .35;
+  if (!applyingPreset) clearPresetOn();
   schedule();
 }
-$('reset').addEventListener('click', () => { studio.classList.remove('on'); srcCanvas = null; fileInput.value=''; window.scrollTo({top:0,behavior:'smooth'}); });
+$('reset').addEventListener('click', () => { studio.classList.remove('on'); srcCanvas = null; fileInput.value=''; $('postdl').hidden = true; $('postdlMsg').textContent = ''; window.scrollTo({top:0,behavior:'smooth'}); });
 
 /* block right-click / drag save on previews */
 document.addEventListener('contextmenu', e => { if (e.target.closest('.sample,.pane')) e.preventDefault(); });
@@ -774,6 +842,31 @@ function bumpDlCount(){
   }
 }
 
+function updateLimitNote(){
+  const el = $('limitNote');
+  if (!el) return;
+  if (isPro()) { el.textContent = 'Unlimited exports unlocked. Free, up to 4K.'; return; }
+  const left = Math.max(0, FREE_LIMIT - dlCount());
+  el.textContent = 'Free. Exports up to 4K. ' + left + ' of ' + FREE_LIMIT + ' free exports left. Share on LinkedIn once for unlimited.';
+}
+const CAPTION_TEXT = "Made this with superwhite.app. Free tool that makes the whites in an image glow brighter than white on HDR screens. Runs in the browser, nothing gets uploaded.";
+function showPostDl(){
+  const el = $('postdl');
+  if (!el) return;
+  const first = el.hidden;
+  el.hidden = false;
+  if (first) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+const capBtn = $('copyCaption');
+if (capBtn) capBtn.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(CAPTION_TEXT);
+    $('postdlMsg').textContent = 'Copied.';
+    gtag('event', 'caption_copy', {});
+  } catch (err) {
+    $('postdlMsg').textContent = 'Copy failed. Caption: ' + CAPTION_TEXT;
+  }
+});
 function openPaywall(){ $('paywall').classList.add('on'); }
 function closePaywall(){ $('paywall').classList.remove('on'); }
 
@@ -789,6 +882,7 @@ shareBtn.addEventListener('click', async () => {
   } catch (err) {}
   $('paywallMsg').textContent = 'Unlimited exports unlocked.';
   $('paywallMsg').className = 'paywall-msg ok';
+  updateLimitNote();
   setTimeout(closePaywall, 1600);
 });
 
@@ -809,6 +903,19 @@ function swMountAccount() {
   if (Clerk.user) { el.style.display = ''; Clerk.mountUserButton(el); }
   else { el.style.display = 'none'; }
 }
+function swSyncUI() {
+  const dl = $('download');
+  if (dl) dl.textContent = (swAuthReady && !swSignedIn()) ? 'Sign in free and download' : 'Download HDR JPEG';
+  const si = $('hdrSignIn');
+  if (si) si.hidden = !swAuthReady || swSignedIn();
+  updateLimitNote();
+}
+const swSignInBtn = $('hdrSignIn');
+if (swSignInBtn) swSignInBtn.addEventListener('click', () => {
+  if (!swAuthReady) return;
+  gtag('event', 'header_signin_click', {});
+  Clerk.openSignIn();
+});
 window.addEventListener('load', async () => {
   if (!window.Clerk) return;
   try {
@@ -816,8 +923,9 @@ window.addEventListener('load', async () => {
     swAuthReady = true;
     swMountAccount();
     if (Clerk.user && Clerk.user.unsafeMetadata && Clerk.user.unsafeMetadata.unlimited) localStorage.setItem('sw_unlimited', '1');
+    swSyncUI();
     swResume(Clerk.user);
-    Clerk.addListener(({ user }) => { swMountAccount(); swResume(user); });
+    Clerk.addListener(({ user }) => { swMountAccount(); swSyncUI(); swResume(user); });
   } catch (err) { swAuthReady = false; }
 });
 
@@ -836,6 +944,8 @@ $('download').addEventListener('click', (e) => {
     return;
   }
   bumpDlCount();
+  updateLimitNote();
+  showPostDl();
   gtag('event', 'image_download', { peak_nits: +$('nits').value });
   if (window.SWJPEG && srcCanvas) {
     e.preventDefault();
@@ -881,10 +991,18 @@ document.querySelectorAll('.q').forEach(q => {
     btn.classList.add('picked');
     opts.classList.add('done');
     gtag('event', 'feedback_answer', { question: q.dataset.q, answer: btn.dataset.a });
-    const allDone = [...document.querySelectorAll('.opts')].every(o => o.classList.contains('done'));
+    if (q.dataset.q === 'would_pay' && (btn.dataset.a === 'yes' || btn.dataset.a === 'depends')) {
+      const pp = document.querySelector('.q[data-q="pro_price"]');
+      if (pp) pp.hidden = false;
+    }
+    const allDone = [...document.querySelectorAll('.q:not([hidden]) .opts')].every(o => o.classList.contains('done'));
     $('fbThanks').textContent = allDone ? 'Thanks. That genuinely helps.' : 'Noted.';
   });
 });
+
+const heroCta = $('heroCta');
+if (heroCta) heroCta.addEventListener('click', () => gtag('event', 'hero_cta_click', {}));
+updateLimitNote();
 
 /* ================= api request form ================= */
 const apiForm = $('apiForm');
