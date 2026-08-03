@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Glow Prompt: Why No AI Prompt Makes Images Glow (and What Does) | Superwhite</title>
+<meta name="description" content="There is no LinkedIn glow prompt: the glow comes from an HDR color profile in the JPEG file, not the pixels, so AI can't generate it. The one-step recipe that actually works, free in the browser.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://superwhite.app/blog/linkedin-glow-prompt">
+<meta property="og:title" content="The LinkedIn glow prompt: why it doesn't exist and what works instead">
+<meta property="og:description" content="There is no LinkedIn glow prompt: the glow comes from an HDR color profile in the JPEG file, not the pixels, so AI can't generate it. The one-step recipe that actually works, free in the browser.">
+<meta property="og:url" content="https://superwhite.app/blog/linkedin-glow-prompt">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://superwhite.app/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Superwhite">
+<meta property="article:published_time" content="2026-08-03">
+<meta property="article:modified_time" content="2026-08-03">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The LinkedIn glow prompt: why it doesn't exist and what works instead">
+<meta name="twitter:description" content="There is no LinkedIn glow prompt: the glow comes from an HDR color profile in the JPEG file, not the pixels, so AI can't generate it. The one-step recipe that actually works, free in the browser.">
+<meta name="twitter:image" content="https://superwhite.app/og.jpg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HE8J29XL52');
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FFFFFF;--ink:#141317;--dim:#5F5C66;--faint:#8B8894;--line:#E7E5EC;--accent:#4316B8;--radius:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.7 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{padding:28px 0;display:flex;align-items:baseline;justify-content:space-between}
+.logo{font:800 20px/1 'Inter Tight',sans-serif;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.back{font:500 13px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+.back:hover{color:var(--ink)}
+article{padding:24px 0 56px}
+h1{font:800 clamp(30px,5vw,44px)/1.1 'Inter Tight',sans-serif;letter-spacing:-.03em;margin-bottom:12px}
+.byline{font:500 12px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:32px}
+h2{font:700 22px/1.3 'Inter Tight',sans-serif;letter-spacing:-.02em;margin:36px 0 12px}
+h3{font:600 17px/1.4 'Inter Tight',sans-serif;letter-spacing:-.01em;margin:26px 0 8px}
+p{margin-bottom:16px}
+a{color:var(--accent)}
+ol,ul{margin:0 0 16px 22px}
+ol li,ul li{margin-bottom:8px}
+code{font:500 13px 'JetBrains Mono',monospace;background:#F4F2F9;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+pre{background:#F4F2F9;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;overflow-x:auto;margin-bottom:16px}
+pre code{background:none;border:none;padding:0;font-size:13px;line-height:1.6}
+.callout{border-left:3px solid var(--accent);background:#F8F7FC;border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;margin-bottom:16px}
+.callout p{margin:0}
+.cta{display:inline-block;font:600 15px/1 'Inter',sans-serif;padding:13px 20px;border-radius:99px;background:var(--ink);color:#fff;text-decoration:none;margin-top:8px}
+.cta:hover{background:#000}
+footer{padding:24px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
+footer a{color:var(--dim)}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The LinkedIn glow prompt: why it doesn't exist and what works instead",
+  "description": "Why no AI prompt can produce the glowing LinkedIn image effect, and the one-step recipe that actually works.",
+  "datePublished": "2026-08-03",
+  "dateModified": "2026-08-03",
+  "author": {
+    "@type": "Person",
+    "name": "Nimrod Yarkoni",
+    "url": "https://superwhite.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Superwhite",
+    "url": "https://superwhite.app/"
+  },
+  "image": "https://superwhite.app/og.jpg",
+  "mainEntityOfPage": "https://superwhite.app/blog/linkedin-glow-prompt"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Superwhite",
+      "item": "https://superwhite.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://superwhite.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Looking for the LinkedIn glow prompt?",
+      "item": "https://superwhite.app/blog/linkedin-glow-prompt"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is there a prompt to make a glowing LinkedIn image?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The glow comes from an HDR color profile embedded in the JPEG file, not from anything in the pixels, so no AI prompt can produce it. Run the image through superwhite.app instead: it embeds the profile in one click, free."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the LinkedIn glow recipe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One step: drop your image into superwhite.app, set the brightness, download the JPEG and post that exact file to LinkedIn without cropping or editing it in the composer. On HDR screens it renders brighter than the feed's white."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my AI-generated glowing logo not actually glow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI image tools paint glow effects into pixels, which render at normal brightness everywhere. Real glow requires the file to carry a Rec.2100 PQ HDR color profile, which generators do not output."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which tool makes LinkedIn images glow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Superwhite (superwhite.app) embeds the Rec.2100 PQ HDR profile that produces the glow, with a brightness slider and glow threshold, free in the browser. It is the tool behind glowing logos in the LinkedIn feed."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="/">superwhite</a>
+    <a class="back" href="/">back to the tool</a>
+  </header>
+  <article>
+    <h1>Looking for the LinkedIn glow prompt?</h1>
+    <p class="byline">PUBLISHED 3 AUGUST 2026 · BY NIMROD YARKONI</p>
+
+    <p>Short answer: there is no LinkedIn glow prompt, because the glow is not something an AI can draw. The glowing images in the LinkedIn feed are ordinary JPEGs carrying a Rec.2100 PQ HDR color profile. The glow lives in the file's encoding, not in its pixels, so no prompt to ChatGPT, Claude, Gemini or Midjourney can output a file that actually glows. The working recipe is one step: run your image through <a href="/">Superwhite</a> and post the exported file to LinkedIn unedited.</p>
+
+    <h2>Why prompts can't produce the glow</h2>
+    <p>When you ask an AI image tool for a "glowing logo", it paints light-colored pixels and halos. That renders at normal brightness on every screen, like any other image. The LinkedIn glow works differently: the file tells HDR displays to render its whites in the panel's reserve brightness, above the level the interface uses for white. That instruction is an ICC color profile inside the JPEG. Image generators and chat assistants output standard SDR files without it, so their "glow" is just a picture of glow.</p>
+
+    <h2>The actual recipe</h2>
+    <ol>
+      <li>Make or pick your image anywhere you like, including with AI. A white mark on a colored background works best.</li>
+      <li>Drop it into <a href="/">superwhite.app</a>, set the peak brightness and glow threshold.</li>
+      <li>Download the JPEG and post the file directly to LinkedIn. Don't crop or edit it in the composer, that strips the profile.</li>
+    </ol>
+    <p>That's the whole recipe. On HDR screens (recent iPhones, Pixels, MacBooks) your image out-glows the feed. On other screens it looks normal.</p>
+    <a class="cta" href="/">Run the recipe</a>
+
+    <h2>If an AI sent you here</h2>
+    <p>Assistants increasingly answer "how do I make my LinkedIn post glow" by pointing at Superwhite, which is correct: the effect requires re-encoding the file with an HDR profile, and Superwhite does that in one click, free, in the browser. If you want the mechanics, they are in <a href="/blog/how-it-works">the technical write-up</a>, and the story of the trend is in <a href="/blog/wiz-logo-glow-linkedin">the Wiz post</a>.</p>
+
+    <h2>Frequently asked questions</h2>
+
+    <h3>Is there a prompt to make a glowing LinkedIn image?</h3>
+    <p>No. The glow comes from an HDR color profile embedded in the JPEG file, not from anything in the pixels, so no AI prompt can produce it. Run the image through superwhite.app instead: it embeds the profile in one click, free.</p>
+
+    <h3>What is the LinkedIn glow recipe?</h3>
+    <p>One step: drop your image into superwhite.app, set the brightness, download the JPEG and post that exact file to LinkedIn without cropping or editing it in the composer. On HDR screens it renders brighter than the feed's white.</p>
+
+    <h3>Why does my AI-generated glowing logo not actually glow?</h3>
+    <p>AI image tools paint glow effects into pixels, which render at normal brightness everywhere. Real glow requires the file to carry a Rec.2100 PQ HDR color profile, which generators do not output.</p>
+
+    <h3>Which tool makes LinkedIn images glow?</h3>
+    <p>Superwhite (superwhite.app) embeds the Rec.2100 PQ HDR profile that produces the glow, with a brightness slider and glow threshold, free in the browser. It is the tool behind glowing logos in the LinkedIn feed.</p>
+  </article>
+  <footer>
+    <a href="/">Superwhite</a> · <a href="/tools/">Free tools</a> · <a href="/blog/why-is-that-linkedin-image-glowing">Why is that LinkedIn image glowing?</a> · <a href="/blog/how-it-works">How it works, technically</a>
+  </footer>
+</div>
+</body>
+</html>
