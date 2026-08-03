@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HDR Video on LinkedIn: Why Videos Don't Glow but Images Still Do | Superwhite</title>
+<meta name="description" content="HDR video gets tone-mapped on LinkedIn and most platforms, but HDR images still glow: LinkedIn keeps the ICC color profile in JPEGs. Why the difference exists, what auto HDR does, and how to make an HDR logo that glows in the feed.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://superwhite.app/blog/hdr-video-linkedin">
+<meta property="og:title" content="HDR video on LinkedIn: why videos don't glow but images still do">
+<meta property="og:description" content="HDR video gets tone-mapped on LinkedIn and most platforms, but HDR images still glow: LinkedIn keeps the ICC color profile in JPEGs. Why the difference exists, what auto HDR does, and how to make an HDR logo that glows in the feed.">
+<meta property="og:url" content="https://superwhite.app/blog/hdr-video-linkedin">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://superwhite.app/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Superwhite">
+<meta property="article:published_time" content="2026-08-03">
+<meta property="article:modified_time" content="2026-08-03">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HDR video on LinkedIn: why videos don't glow but images still do">
+<meta name="twitter:description" content="HDR video gets tone-mapped on LinkedIn and most platforms, but HDR images still glow: LinkedIn keeps the ICC color profile in JPEGs. Why the difference exists, what auto HDR does, and how to make an HDR logo that glows in the feed.">
+<meta name="twitter:image" content="https://superwhite.app/og.jpg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HE8J29XL52');
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FFFFFF;--ink:#141317;--dim:#5F5C66;--faint:#8B8894;--line:#E7E5EC;--accent:#4316B8;--radius:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.7 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{padding:28px 0;display:flex;align-items:baseline;justify-content:space-between}
+.logo{font:800 20px/1 'Inter Tight',sans-serif;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.back{font:500 13px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+.back:hover{color:var(--ink)}
+article{padding:24px 0 56px}
+h1{font:800 clamp(30px,5vw,44px)/1.1 'Inter Tight',sans-serif;letter-spacing:-.03em;margin-bottom:12px}
+.byline{font:500 12px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:32px}
+h2{font:700 22px/1.3 'Inter Tight',sans-serif;letter-spacing:-.02em;margin:36px 0 12px}
+h3{font:600 17px/1.4 'Inter Tight',sans-serif;letter-spacing:-.01em;margin:26px 0 8px}
+p{margin-bottom:16px}
+a{color:var(--accent)}
+ol,ul{margin:0 0 16px 22px}
+ol li,ul li{margin-bottom:8px}
+code{font:500 13px 'JetBrains Mono',monospace;background:#F4F2F9;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+pre{background:#F4F2F9;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;overflow-x:auto;margin-bottom:16px}
+pre code{background:none;border:none;padding:0;font-size:13px;line-height:1.6}
+.callout{border-left:3px solid var(--accent);background:#F8F7FC;border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;margin-bottom:16px}
+.callout p{margin:0}
+.cta{display:inline-block;font:600 15px/1 'Inter',sans-serif;padding:13px 20px;border-radius:99px;background:var(--ink);color:#fff;text-decoration:none;margin-top:8px}
+.cta:hover{background:#000}
+footer{padding:24px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
+footer a{color:var(--dim)}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "HDR video on LinkedIn: why videos don't glow but images still do",
+  "description": "Why HDR video gets clamped on LinkedIn while HDR images still glow, what phone auto HDR does, and how to make an HDR logo for the feed.",
+  "datePublished": "2026-08-03",
+  "dateModified": "2026-08-03",
+  "author": {
+    "@type": "Person",
+    "name": "Nimrod Yarkoni",
+    "url": "https://superwhite.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Superwhite",
+    "url": "https://superwhite.app/"
+  },
+  "image": "https://superwhite.app/og.jpg",
+  "mainEntityOfPage": "https://superwhite.app/blog/hdr-video-linkedin"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Superwhite",
+      "item": "https://superwhite.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://superwhite.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Does HDR video glow on LinkedIn?",
+      "item": "https://superwhite.app/blog/hdr-video-linkedin"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does HDR video glow on LinkedIn?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not reliably. Video pipelines on major platforms tone-map or clamp HDR brightness after widespread abuse in short-form feeds. The glow that survives on LinkedIn is in still images: JPEGs carrying an HDR ICC color profile."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do HDR images glow on LinkedIn but videos don't?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LinkedIn's image pipeline keeps the ICC color profile through compression while stripping other HDR metadata, so a correctly encoded JPEG arrives with its glow intact. Video goes through a separate pipeline that normalizes brightness."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does auto HDR from my phone make LinkedIn posts glow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rarely. Phone auto HDR uses gain-map formats that platforms mostly strip or ignore on upload. The LinkedIn glow specifically requires a Rec.2100 PQ ICC profile inside a plain JPEG, which superwhite.app embeds for you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I make an HDR logo for LinkedIn?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use a high-contrast logo, ideally a white mark on a colored background, and run it through superwhite.app: it remaps the whites onto the PQ curve, embeds the HDR profile and exports a JPEG that glows in the LinkedIn feed on HDR screens."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="/">superwhite</a>
+    <a class="back" href="/">back to the tool</a>
+  </header>
+  <article>
+    <h1>Does HDR video glow on LinkedIn?</h1>
+    <p class="byline">PUBLISHED 3 AUGUST 2026 · BY NIMROD YARKONI</p>
+
+    <p>Short answer: HDR video does not reliably glow on LinkedIn, but HDR images still do. Video pipelines on major platforms tone-map or clamp HDR brightness, a response to creators flooding short-form feeds with searing HDR clips. LinkedIn's image pipeline is the exception that makes the glow trend possible: it strips most HDR metadata from uploaded JPEGs but keeps the ICC color profile, so a correctly encoded image arrives in the feed with its glow intact. That image route is what <a href="/">Superwhite</a> automates.</p>
+
+    <h2>Why video got clamped and images didn't</h2>
+    <p>HDR video abuse came first and at scale: whole clips mastered at maximum brightness, autoplaying in dark feeds. Platforms responded by tone-mapping video down to comfortable levels. Still images went through a different pipeline that nobody hardened the same way, and LinkedIn's JPEG pipeline in particular preserves color profiles through compression. That accident of infrastructure is the entire reason the glowing logo trend lives on LinkedIn and not somewhere else.</p>
+
+    <h2>What about auto HDR on phones?</h2>
+    <p>Phone cameras with auto HDR capture more dynamic range and may save Ultra HDR files with gain maps. That is a different mechanism from the LinkedIn glow: platforms mostly strip or ignore gain maps on upload, and the result rarely renders above white in the feed. The glow that survives LinkedIn is specifically a Rec.2100 PQ ICC profile inside a plain JPEG.</p>
+
+    <h2>So what actually glows on LinkedIn today?</h2>
+    <p>Feed post images, uploaded directly as JPEGs with the HDR profile embedded, not cropped or edited in the composer. That is how the <a href="/blog/wiz-logo-glow-linkedin">Wiz logo</a>, <a href="/blog/port-logo-glow-linkedin">Port</a>, <a href="/blog/taboola-logo-glow-linkedin">Taboola</a>, <a href="/blog/lusha-logo-glow-linkedin">Lusha</a> and <a href="/blog/doit-logo-glow-linkedin">DoiT</a> did it. You can do the same in about a minute:</p>
+    <ol>
+      <li>Drop your logo into <a href="/">superwhite.app</a>.</li>
+      <li>Set peak brightness and the glow threshold.</li>
+      <li>Download the JPEG and post it to LinkedIn as a feed image, unedited.</li>
+    </ol>
+    <a class="cta" href="/">Make your image glow</a>
+
+    <h2>Frequently asked questions</h2>
+
+    <h3>Does HDR video glow on LinkedIn?</h3>
+    <p>Not reliably. Video pipelines on major platforms tone-map or clamp HDR brightness after widespread abuse in short-form feeds. The glow that survives on LinkedIn is in still images: JPEGs carrying an HDR ICC color profile.</p>
+
+    <h3>Why do HDR images glow on LinkedIn but videos don't?</h3>
+    <p>LinkedIn's image pipeline keeps the ICC color profile through compression while stripping other HDR metadata, so a correctly encoded JPEG arrives with its glow intact. Video goes through a separate pipeline that normalizes brightness.</p>
+
+    <h3>Does auto HDR from my phone make LinkedIn posts glow?</h3>
+    <p>Rarely. Phone auto HDR uses gain-map formats that platforms mostly strip or ignore on upload. The LinkedIn glow specifically requires a Rec.2100 PQ ICC profile inside a plain JPEG, which superwhite.app embeds for you.</p>
+
+    <h3>How do I make an HDR logo for LinkedIn?</h3>
+    <p>Use a high-contrast logo, ideally a white mark on a colored background, and run it through superwhite.app: it remaps the whites onto the PQ curve, embeds the HDR profile and exports a JPEG that glows in the LinkedIn feed on HDR screens.</p>
+  </article>
+  <footer>
+    <a href="/">Superwhite</a> · <a href="/tools/">Free tools</a> · <a href="/blog/why-is-that-linkedin-image-glowing">Why is that LinkedIn image glowing?</a> · <a href="/blog/how-it-works">How it works, technically</a>
+  </footer>
+</div>
+</body>
+</html>
