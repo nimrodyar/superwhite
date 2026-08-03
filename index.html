@@ -281,6 +281,26 @@ footer a:hover{color:var(--ink)}
     },
     {
       "@type": "Question",
+      "name": "How do I make an image glow online?",
+      "acceptedAnswer": { "@type": "Answer", "text": "There are two very different things called a glow. Most online glow tools paint a halo effect into the pixels, which shows on every screen and survives screenshots but just looks like editing. Superwhite does the other kind: it re-encodes your image with an HDR color profile so the bright parts emit real extra light on HDR screens. No painted halo, no filter, and it works in your browser for free." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there an AI prompt or recipe for the glowing LinkedIn image effect?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No prompt can produce it, because the glow is not in the pixels. It comes from a Rec.2100 PQ color profile embedded in the JPEG file itself, which image generators and editors don't output. The recipe is one step: drop your image into Superwhite, set the brightness, and post the exported file to LinkedIn unedited." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does HDR video work on LinkedIn like the glowing images?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not the same way. Video pipelines on major platforms tone-map or clamp HDR brightness after creators abused it in short-form feeds. The image route is different: LinkedIn keeps the ICC color profile in JPEGs through compression, which is exactly what Superwhite uses, so the glow survives in feed images today." }
+    },
+    {
+      "@type": "Question",
+      "name": "How is Superwhite different from tools that just tag an image as HDR?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Tagging an image with an HDR profile without touching the pixels boosts everything at once, including JPEG compression noise, which shows up as blotchy artifacts at HDR brightness. Superwhite remaps the pixels onto the PQ curve with a glow threshold you control, flattens near-white noise, and encodes with dithering and full-quality chroma, so the mark glows cleanly while the rest of the image stays put." }
+    },
+    {
+      "@type": "Question",
       "name": "Who made Superwhite?",
       "acceptedAnswer": { "@type": "Answer", "text": "Superwhite is built and run by Nimrod Yarkoni, a solo founder in Amsterdam. It builds on the HDR profile technique first documented by Tom Nick. You can follow Superwhite on LinkedIn for updates and new examples." }
     }
@@ -418,6 +438,22 @@ footer a:hover{color:var(--ink)}
     <details>
       <summary>Will the effect survive if I screenshot or repost the image?</summary>
       <p>No. Screenshots, re-saving in an editor, and apps like WhatsApp or iMessage strip the color profile, which kills the effect. Post the original file Superwhite gives you, and don't crop or edit it in LinkedIn's composer.</p>
+    </details>
+    <details>
+      <summary>How do I make an image glow online?</summary>
+      <p>There are two very different things called a glow. Most online glow tools paint a halo effect into the pixels, which shows on every screen and survives screenshots but just looks like editing. Superwhite does the other kind: it re-encodes your image with an HDR color profile so the bright parts emit real extra light on HDR screens. No painted halo, no filter, and it runs free in your browser.</p>
+    </details>
+    <details>
+      <summary>Is there an AI prompt or recipe for the glowing LinkedIn image effect?</summary>
+      <p>No prompt can produce it, because the glow is not in the pixels. It comes from a Rec.2100 PQ color profile embedded in the JPEG file itself, which image generators and editors don't output. The recipe is one step: drop your image in above, set the brightness, and post the exported file to LinkedIn unedited.</p>
+    </details>
+    <details>
+      <summary>Does HDR video work on LinkedIn like the glowing images?</summary>
+      <p>Not the same way. Video pipelines on major platforms tone-map or clamp HDR brightness after creators abused it in short-form feeds. The image route is different: LinkedIn keeps the ICC color profile in JPEGs through compression, which is exactly what Superwhite uses, so the glow survives in feed images today.</p>
+    </details>
+    <details>
+      <summary>How is Superwhite different from tools that just tag an image as HDR?</summary>
+      <p>Tagging an image with an HDR profile without touching the pixels boosts everything at once, including JPEG compression noise, which shows up as blotchy artifacts at HDR brightness. Superwhite remaps the pixels onto the PQ curve with a glow threshold you control, flattens near-white noise, and encodes with dithering and full-quality chroma, so the mark glows cleanly while the rest of the image stays put.</p>
     </details>
     <details>
       <summary>Who made Superwhite?</summary>
