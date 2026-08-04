@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HDR Video on LinkedIn: Why Videos Don't Glow but Images Still Do | Superwhite</title>
-<meta name="description" content="HDR video gets tone-mapped on LinkedIn and most platforms, but HDR images still glow: LinkedIn keeps the ICC color profile in JPEGs. Why the difference exists, what auto HDR does, and how to make an HDR logo that glows in the feed.">
+<title>We Tested HDR Video on LinkedIn: 5 Encodings, Organic and Ads | Superwhite</title>
+<meta name="description" content="We uploaded five HDR video encodings to LinkedIn, organic and Sponsored Content, and probed the transcoder output. Every rendition comes back retagged BT.709: LinkedIn rewrites video color metadata, so video cannot glow. Images still can, and here is the evidence for both.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://superwhite.app/blog/hdr-video-linkedin">
-<meta property="og:title" content="HDR video on LinkedIn: why videos don't glow but images still do">
-<meta property="og:description" content="HDR video gets tone-mapped on LinkedIn and most platforms, but HDR images still glow: LinkedIn keeps the ICC color profile in JPEGs. Why the difference exists, what auto HDR does, and how to make an HDR logo that glows in the feed.">
+<meta property="og:title" content="We tested HDR video on LinkedIn: 5 encodings, organic and ads">
+<meta property="og:description" content="We uploaded five HDR video encodings to LinkedIn and probed the transcoder output. Every rendition comes back retagged BT.709. Video cannot glow on LinkedIn; images still can.">
 <meta property="og:url" content="https://superwhite.app/blog/hdr-video-linkedin">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://superwhite.app/og.jpg">
@@ -16,10 +16,10 @@
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Superwhite">
 <meta property="article:published_time" content="2026-08-03">
-<meta property="article:modified_time" content="2026-08-03">
+<meta property="article:modified_time" content="2026-08-04">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="HDR video on LinkedIn: why videos don't glow but images still do">
-<meta name="twitter:description" content="HDR video gets tone-mapped on LinkedIn and most platforms, but HDR images still glow: LinkedIn keeps the ICC color profile in JPEGs. Why the difference exists, what auto HDR does, and how to make an HDR logo that glows in the feed.">
+<meta name="twitter:title" content="We tested HDR video on LinkedIn: 5 encodings, organic and ads">
+<meta name="twitter:description" content="We uploaded five HDR video encodings to LinkedIn and probed the transcoder output. Every rendition comes back retagged BT.709. Video cannot glow on LinkedIn; images still can.">
 <meta name="twitter:image" content="https://superwhite.app/og.jpg">
 <link rel="icon" type="image/png" href="/favicon.png">
 <!-- Google tag (gtag.js) -->
@@ -55,6 +55,9 @@ pre{background:#F4F2F9;border:1px solid var(--line);border-radius:var(--radius);
 pre code{background:none;border:none;padding:0;font-size:13px;line-height:1.6}
 .callout{border-left:3px solid var(--accent);background:#F8F7FC;border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;margin-bottom:16px}
 .callout p{margin:0}
+table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font:600 12px 'JetBrains Mono',monospace;color:var(--dim);text-transform:uppercase;letter-spacing:.04em}
 .cta{display:inline-block;font:600 15px/1 'Inter',sans-serif;padding:13px 20px;border-radius:99px;background:var(--ink);color:#fff;text-decoration:none;margin-top:8px}
 .cta:hover{background:#000}
 footer{padding:24px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
@@ -64,10 +67,10 @@ footer a{color:var(--dim)}
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "HDR video on LinkedIn: why videos don't glow but images still do",
-  "description": "Why HDR video gets clamped on LinkedIn while HDR images still glow, what phone auto HDR does, and how to make an HDR logo for the feed.",
+  "headline": "We tested HDR video on LinkedIn: 5 encodings, organic and ads",
+  "description": "Five HDR video encodings uploaded to LinkedIn, organic and Sponsored Content, with the transcoder output probed directly. Every rendition comes back retagged BT.709. Video cannot glow on LinkedIn; images still can.",
   "datePublished": "2026-08-03",
-  "dateModified": "2026-08-03",
+  "dateModified": "2026-08-04",
   "author": {
     "@type": "Person",
     "name": "Nimrod Yarkoni",
@@ -118,7 +121,23 @@ footer a{color:var(--dim)}
       "name": "Does HDR video glow on LinkedIn?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Not reliably. Video pipelines on major platforms tone-map or clamp HDR brightness after widespread abuse in short-form feeds. The glow that survives on LinkedIn is in still images: JPEGs carrying an HDR ICC color profile."
+        "text": "No. We tested five encodings, from tagged H.264 to true 10-bit HEVC in HLG and HDR10, on organic posts and Sponsored Content. LinkedIn's video transcoder rewrites the color metadata of every output rendition to BT.709, which removes the HDR signal that makes displays render above reference white. The glow that survives on LinkedIn is in still images: JPEGs carrying an HDR ICC color profile."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did my HDR video glow in the LinkedIn preview but not after posting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The upload preview plays your original file before LinkedIn processes it, so the HDR tags are still intact and the preview glows. Once the video is transcoded for the feed, the color metadata is rewritten to BT.709 and the glow is gone. A glowing preview says nothing about how the posted video will render."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does HDR video work in LinkedIn ads?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. We ran the same test through Sponsored Content in Campaign Manager in August 2026 and the served renditions come back retagged BT.709, identical to organic posts. The ads pipeline preserves ICC profiles in images, so image creatives can glow in paid placements, but video cannot."
       }
     },
     {
@@ -126,15 +145,15 @@ footer a{color:var(--dim)}
       "name": "Why do HDR images glow on LinkedIn but videos don't?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "LinkedIn's image pipeline keeps the ICC color profile through compression while stripping other HDR metadata, so a correctly encoded JPEG arrives with its glow intact. Video goes through a separate pipeline that normalizes brightness."
+        "text": "Two pipelines, two decisions. LinkedIn's image pipeline keeps the ICC color profile through compression, so a correctly encoded JPEG arrives with its glow intact. The video transcoder explicitly writes BT.709 color tags onto every output rendition, regardless of what the input declared, which strips the HDR interpretation while leaving the pixels roughly unchanged."
       }
     },
     {
       "@type": "Question",
-      "name": "Does auto HDR from my phone make LinkedIn posts glow?",
+      "name": "Which platforms does HDR video glow on?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Rarely. Phone auto HDR uses gain-map formats that platforms mostly strip or ignore on upload. The LinkedIn glow specifically requires a Rec.2100 PQ ICC profile inside a plain JPEG, which superwhite.app embeds for you."
+        "text": "Instagram Reels and TikTok support HDR video ingestion by design: 10-bit HEVC in HLG or Dolby Vision 8.4 renders with extra brightness in those feeds. YouTube supports HDR properly but feed thumbnails stay SDR. LinkedIn and Reddit normalize video to SDR."
       }
     },
     {
@@ -156,16 +175,47 @@ footer a{color:var(--dim)}
     <a class="back" href="/">back to the tool</a>
   </header>
   <article>
-    <h1>Does HDR video glow on LinkedIn?</h1>
-    <p class="byline">PUBLISHED 3 AUGUST 2026 · BY NIMROD YARKONI</p>
+    <h1>We tested HDR video on LinkedIn so you don't have to</h1>
+    <p class="byline">PUBLISHED 3 AUGUST 2026 · UPDATED 4 AUGUST 2026 WITH TEST RESULTS · BY NIMROD YARKONI</p>
 
-    <p>Short answer: HDR video does not reliably glow on LinkedIn, but HDR images still do. Video pipelines on major platforms tone-map or clamp HDR brightness, a response to creators flooding short-form feeds with searing HDR clips. LinkedIn's image pipeline is the exception that makes the glow trend possible: it strips most HDR metadata from uploaded JPEGs but keeps the ICC color profile, so a correctly encoded image arrives in the feed with its glow intact. That image route is what <a href="/">Superwhite</a> automates.</p>
+    <p>Short answer: HDR video does not glow on LinkedIn, and now we can show you exactly why. We uploaded five different HDR encodings, on organic posts and through Sponsored Content in Campaign Manager, then pulled the transcoded files LinkedIn actually serves and read their color metadata directly. Every single output rendition comes back retagged BT.709, which is standard dynamic range. The glow that survives LinkedIn is in still images: JPEGs carrying an HDR ICC color profile, which is the route <a href="/">Superwhite</a> automates.</p>
 
-    <h2>Why video got clamped and images didn't</h2>
-    <p>HDR video abuse came first and at scale: whole clips mastered at maximum brightness, autoplaying in dark feeds. Platforms responded by tone-mapping video down to comfortable levels. Still images went through a different pipeline that nobody hardened the same way, and LinkedIn's JPEG pipeline in particular preserves color profiles through compression. That accident of infrastructure is the entire reason the glowing logo trend lives on LinkedIn and not somewhere else.</p>
+    <div class="callout"><p>An earlier version of this article said video gets tone-mapped. The test shows something more precise: LinkedIn does not tone-map your pixels at all. It rewrites the color metadata and leaves the pixels roughly as they were. The distinction matters, and it closes the door harder than tone-mapping would.</p></div>
 
-    <h2>What about auto HDR on phones?</h2>
-    <p>Phone cameras with auto HDR capture more dynamic range and may save Ultra HDR files with gain maps. That is a different mechanism from the LinkedIn glow: platforms mostly strip or ignore gain maps on upload, and the result rarely renders above white in the feed. The glow that survives LinkedIn is specifically a Rec.2100 PQ ICC profile inside a plain JPEG.</p>
+    <h2>The test</h2>
+    <p>The glow effect in video works through two small tags, a transfer function and color primaries, written into the codec bitstream and the MP4 container. If a player sees <code>transfer=PQ</code> or <code>transfer=HLG</code>, it renders the bright parts of the video into the display's HDR headroom. So the whole question is whether LinkedIn's transcoder carries those tags from input to output. We uploaded five variants to isolate the answer:</p>
+    <ol>
+      <li>A standard SDR H.264 file as the control.</li>
+      <li>H.264 with ordinary SDR pixels relabeled as PQ and BT.2020, the exact video analog of the ICC trick that works for images.</li>
+      <li>The same relabel with an HLG transfer tag.</li>
+      <li>True 10-bit HEVC in HLG, the format iPhones record in.</li>
+      <li>True 10-bit HEVC in HDR10, with PQ transfer and mastering display metadata.</li>
+    </ol>
+
+    <h2>What came back</h2>
+    <p>LinkedIn transcodes every upload into an adaptive streaming ladder, and interestingly that ladder includes 10-bit AV1 renditions alongside H.264. We fetched the initialization segments of the served streams and read the <code>colr</code> atom, which is where MP4 files declare their color interpretation. Every rendition of every variant, AV1 and H.264 alike, organic and paid, carries the same declaration:</p>
+    <pre><code>colr nclx: primaries=1, transfer=1, matrix=1  (BT.709 / SDR)</code></pre>
+    <p>Here is the HLG variant before and after, from the file LinkedIn serves back:</p>
+    <table>
+      <tr><th>Property</th><th>Uploaded file</th><th>LinkedIn output</th></tr>
+      <tr><td>Color primaries</td><td>BT.2020</td><td>BT.709</td></tr>
+      <tr><td>Transfer function</td><td>HLG</td><td>BT.709</td></tr>
+      <tr><td>Matrix</td><td>BT.2020nc</td><td>BT.709</td></tr>
+      <tr><td>Peak luma, decoded</td><td>255</td><td>246</td></tr>
+    </table>
+    <p>The last row is the telling one. The white in the video is still essentially at maximum signal after transcoding, so the pixels pass through nearly untouched. Only the interpretation is rewritten. That means there is no pixel-level trick that gets around it: the glow lives or dies on the transfer tag, and LinkedIn's video encoder stamps BT.709 onto everything it outputs. This is a deliberate configuration, not an accident. Transcoder pipelines pass color signaling through by default, so someone at LinkedIn opted into normalizing video color. Nobody made the same decision for the image pipeline, which is the entire reason the glowing logo trend exists.</p>
+
+    <h2>The preview trap</h2>
+    <p>If you have tried this yourself, you probably saw the video glow beautifully right after uploading and concluded it works. It does not. The upload preview plays your original file before processing, with all HDR tags intact. The feed serves the transcoded version. Both the organic composer and the Campaign Manager ad preview behave this way, so a glowing preview tells you nothing. Judge only the posted result, viewed fresh on an HDR screen.</p>
+
+    <h2>What about LinkedIn ads?</h2>
+    <p>Same result. We ran a Sponsored Content video campaign in August 2026 specifically to test whether the paid ingest path behaves differently, since the ads pipeline does preserve ICC profiles in image creatives. It does not extend that behavior to video: the served ad renditions carry the same BT.709 tags as organic uploads. On LinkedIn, paid or organic, the glow is images only.</p>
+
+    <h2>One footnote worth watching</h2>
+    <p>LinkedIn's streaming ladder already delivers 10-bit AV1, and 10-bit delivery is the technical prerequisite for HDR video. The player infrastructure is HDR-ready; the encoder configuration says no. If LinkedIn ever enables HDR video the way Instagram and TikTok have, the situation described in this article changes overnight. We re-run this test periodically and will update this page if that happens.</p>
+
+    <h2>Where HDR video does glow</h2>
+    <p>Instagram Reels and TikTok ingest HDR video by design: 10-bit HEVC in HLG, or Dolby Vision 8.4, renders with real extra brightness in those feeds, which is why some Reels visibly light up the screen. YouTube supports HDR properly but its feed thumbnails stay SDR, so there is no glow in the scroll. Reddit normalizes video to SDR like LinkedIn does.</p>
 
     <h2>So what actually glows on LinkedIn today?</h2>
     <p>Feed post images, uploaded directly as JPEGs with the HDR profile embedded, not cropped or edited in the composer. That is how the <a href="/blog/wiz-logo-glow-linkedin">Wiz logo</a>, <a href="/blog/port-logo-glow-linkedin">Port</a>, <a href="/blog/taboola-logo-glow-linkedin">Taboola</a>, <a href="/blog/lusha-logo-glow-linkedin">Lusha</a> and <a href="/blog/doit-logo-glow-linkedin">DoiT</a> did it. You can do the same in about a minute:</p>
@@ -179,13 +229,19 @@ footer a{color:var(--dim)}
     <h2>Frequently asked questions</h2>
 
     <h3>Does HDR video glow on LinkedIn?</h3>
-    <p>Not reliably. Video pipelines on major platforms tone-map or clamp HDR brightness after widespread abuse in short-form feeds. The glow that survives on LinkedIn is in still images: JPEGs carrying an HDR ICC color profile.</p>
+    <p>No. We tested five encodings, from tagged H.264 to true 10-bit HEVC in HLG and HDR10, on organic posts and Sponsored Content. LinkedIn's transcoder rewrites the color metadata of every output rendition to BT.709, which removes the HDR signal that makes displays render above reference white.</p>
+
+    <h3>Why did my HDR video glow in the preview but not after posting?</h3>
+    <p>The upload preview plays your original file before processing, with the HDR tags intact. The posted video is the transcoded version, retagged BT.709. A glowing preview says nothing about the feed result.</p>
+
+    <h3>Does HDR video work in LinkedIn ads?</h3>
+    <p>No. We tested Sponsored Content directly and the served renditions come back BT.709, identical to organic. Image creatives keep their ICC profiles in paid placements, so images can glow in ads; video cannot.</p>
 
     <h3>Why do HDR images glow on LinkedIn but videos don't?</h3>
-    <p>LinkedIn's image pipeline keeps the ICC color profile through compression while stripping other HDR metadata, so a correctly encoded JPEG arrives with its glow intact. Video goes through a separate pipeline that normalizes brightness.</p>
+    <p>Two pipelines, two decisions. The image pipeline keeps the ICC color profile through compression. The video transcoder explicitly writes BT.709 onto every output regardless of what the input declared, stripping the HDR interpretation while leaving the pixels roughly unchanged.</p>
 
-    <h3>Does auto HDR from my phone make LinkedIn posts glow?</h3>
-    <p>Rarely. Phone auto HDR uses gain-map formats that platforms mostly strip or ignore on upload. The LinkedIn glow specifically requires a Rec.2100 PQ ICC profile inside a plain JPEG, which superwhite.app embeds for you.</p>
+    <h3>Which platforms does HDR video glow on?</h3>
+    <p>Instagram Reels and TikTok, by design. YouTube supports HDR but feed thumbnails stay SDR. LinkedIn and Reddit normalize video to SDR.</p>
 
     <h3>How do I make an HDR logo for LinkedIn?</h3>
     <p>Use a high-contrast logo, ideally a white mark on a colored background, and run it through superwhite.app: it remaps the whites onto the PQ curve, embeds the HDR profile and exports a JPEG that glows in the LinkedIn feed on HDR screens.</p>
