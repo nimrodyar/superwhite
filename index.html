@@ -272,7 +272,7 @@ footer a:hover{color:var(--ink)}
     {
       "@type": "Question",
       "name": "Do I need an account, and is it free?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sign in free with Google or email. You get 3 free exports, then share Superwhite on LinkedIn once to unlock unlimited exports, free." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Sign in free with Google or email. You get 3 free exports, then follow Superwhite on LinkedIn to unlock unlimited exports, free." }
     },
     {
       "@type": "Question",
@@ -379,7 +379,7 @@ footer a:hover{color:var(--ink)}
       <a class="btn primary" id="download" download>Download HDR JPEG</a>
       <button class="btn ghost" id="reset">Start over</button>
     </div>
-    <p class="limit-note" id="limitNote">Free. Exports up to 4K. First 3 downloads free. Share on LinkedIn once for unlimited.</p>
+    <p class="limit-note" id="limitNote">Free. Exports up to 4K. First 3 downloads free. Follow Superwhite on LinkedIn for unlimited.</p>
     <p class="busy" id="busy"></p>
     <div class="postdl" id="postdl" hidden>
       <b>Saved. Three rules so the glow survives:</b>
@@ -433,7 +433,7 @@ footer a:hover{color:var(--ink)}
     </details>
     <details>
       <summary>Do I need an account, and is it free?</summary>
-      <p>Sign in free with Google or email. You get 3 free exports, then share Superwhite on LinkedIn once to unlock unlimited exports, free.</p>
+      <p>Sign in free with Google or email. You get 3 free exports, then follow Superwhite on LinkedIn to unlock unlimited exports, free.</p>
     </details>
     <details>
       <summary>Will the effect survive if I screenshot or repost the image?</summary>
@@ -546,8 +546,8 @@ footer a:hover{color:var(--ink)}
   <div class="paywall-card">
     <button class="paywall-close" id="paywallClose" aria-label="Close">&times;</button>
     <h3>You've used your 3 free exports</h3>
-    <p>Share Superwhite on LinkedIn once and get unlimited exports, free. The post is pre-written, edit it however you like before posting.</p>
-    <a class="btn primary" href="#" target="_blank" rel="noopener" id="shareUnlock">Share on LinkedIn to unlock unlimited</a>
+    <p>Follow Superwhite on LinkedIn and get unlimited exports, free. One tap, no posting required.</p>
+    <a class="btn primary" href="https://www.linkedin.com/company/superwhiteapp" target="_blank" rel="noopener" id="shareUnlock">Follow on LinkedIn to unlock unlimited</a>
     <p class="paywall-msg" id="paywallMsg"></p>
   </div>
 </div>
@@ -897,7 +897,7 @@ function updateLimitNote(){
   if (!el) return;
   if (isPro()) { el.textContent = 'Unlimited exports unlocked. Free, up to 4K.'; return; }
   const left = Math.max(0, FREE_LIMIT - dlCount());
-  el.textContent = 'Free. Exports up to 4K. ' + left + ' of ' + FREE_LIMIT + ' free exports left. Share on LinkedIn once for unlimited.';
+  el.textContent = 'Free. Exports up to 4K. ' + left + ' of ' + FREE_LIMIT + ' free exports left. Follow Superwhite on LinkedIn for unlimited.';
 }
 const CAPTION_TEXT = "Made this with superwhite.app. Free tool that makes the whites in an image glow brighter than white on HDR screens. Runs in the browser, nothing gets uploaded.";
 function showPostDl(){
@@ -921,14 +921,22 @@ function openPaywall(){ $('paywall').classList.add('on'); }
 function closePaywall(){ $('paywall').classList.remove('on'); }
 
 $('paywallClose').addEventListener('click', closePaywall);
-const SHARE_TEXT = "Found a free tool that makes the whites in your images glow brighter than your screen's white on LinkedIn. Works on HDR displays, runs in the browser, nothing gets uploaded. superwhite.app";
-const shareBtn = $('shareUnlock');
-shareBtn.href = 'https://www.linkedin.com/feed/?shareActive=true&text=' + encodeURIComponent(SHARE_TEXT);
-shareBtn.addEventListener('click', async () => {
+const followBtn = $('shareUnlock');
+let swFollowed = false;
+followBtn.addEventListener('click', async (e) => {
+  if (!swFollowed) {
+    swFollowed = true;
+    gtag('event', 'follow_gate_click', {});
+    followBtn.textContent = 'I followed, unlock unlimited';
+    $('paywallMsg').textContent = 'Tap Follow on LinkedIn, then come back here.';
+    $('paywallMsg').className = 'paywall-msg';
+    return; /* anchor opens the company page in a new tab */
+  }
+  e.preventDefault();
   localStorage.setItem('sw_unlimited', '1');
-  gtag('event', 'linkedin_share_click', {});
+  gtag('event', 'follow_unlock_confirmed', {});
   try {
-    if (window.Clerk && Clerk.user) await Clerk.user.update({ unsafeMetadata: Object.assign({}, Clerk.user.unsafeMetadata, { unlimited: true, unlockedVia: 'linkedin_share', unlockedAt: new Date().toISOString() }) });
+    if (window.Clerk && Clerk.user) await Clerk.user.update({ unsafeMetadata: Object.assign({}, Clerk.user.unsafeMetadata, { unlimited: true, unlockedVia: 'linkedin_follow', unlockedAt: new Date().toISOString() }) });
   } catch (err) {}
   $('paywallMsg').textContent = 'Unlimited exports unlocked.';
   $('paywallMsg').className = 'paywall-msg ok';
