@@ -191,6 +191,29 @@ footer a:hover{color:var(--ink)}
   opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:70;max-width:90vw}
 #sw-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
+/* ================= pro features: brand presets + batch ================= */
+.bp-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.bp-row .bp{font:500 13px/1 'Inter',sans-serif;background:none;border:1px solid var(--line);
+  border-radius:99px;padding:9px 14px;cursor:pointer;color:var(--ink)}
+.bp-row .bp:hover{border-color:var(--ink)}
+.bp-row .bp.on{border-color:var(--accent);color:var(--accent)}
+.bp-row .bp .x{margin-left:7px;color:var(--faint)}
+.bp-row .bp .x:hover{color:var(--ink)}
+.bp-save{font:500 13px/1 'Inter',sans-serif;background:none;border:1px dashed var(--line);
+  border-radius:99px;padding:9px 14px;cursor:pointer;color:var(--faint)}
+.bp-save:hover{border-color:var(--accent);color:var(--accent)}
+.bp-tag{font:700 8.5px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--accent);color:#fff;border-radius:99px;padding:4px 6px 3px;vertical-align:2px}
+@media(dynamic-range:high){@supports(color:color(rec2100-pq 1 1 1)){
+  .bp-tag{color:color(rec2100-pq .75 .75 .75)}}}
+.batch-note{font-size:12.5px;color:var(--faint);margin-top:8px}
+.postdl-pro{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px;padding:12px 14px;
+  border:1px solid var(--accent);border-radius:10px}
+.postdl-pro b{font:600 13.5px/1.4 'Inter',sans-serif}
+.postdl-pro .btn{padding:9px 14px;font-size:13px}
+@keyframes bpulse{0%,100%{box-shadow:0 0 0 0 rgba(67,22,184,0)}50%{box-shadow:0 0 0 5px rgba(67,22,184,.18)}}
+.pulse{animation:bpulse 1.1s ease 2}
+
 /* ================= pro demand test ================= */
 .pro{padding:56px 0 8px}
 .pro>p{max-width:600px;color:var(--dim);margin-bottom:22px}
@@ -388,6 +411,10 @@ footer a:hover{color:var(--ink)}
       <button type="button" class="on" data-peak="1000" data-thresh="70" aria-pressed="true">Standard</button>
       <button type="button" data-peak="4000" data-thresh="60" aria-pressed="false">Max</button>
     </div>
+    <div class="bp-row" id="bpRow" hidden>
+      <span class="bp-tag">Pro</span>
+      <button type="button" class="bp-save" id="bpSave">Save current as preset</button>
+    </div>
     <details class="adv" id="advCtl">
       <summary>Advanced controls</summary>
       <div class="controls">
@@ -408,8 +435,11 @@ footer a:hover{color:var(--ink)}
 
     <div class="actions">
       <a class="btn primary" id="download" download>Download HDR JPEG</a>
+      <button class="btn ghost" id="batchBtn">Batch export <span class="bp-tag">Pro</span></button>
       <button class="btn ghost" id="reset">Start over</button>
     </div>
+    <input type="file" id="batchFiles" accept="image/png,image/jpeg,image/webp" multiple hidden>
+    <p class="batch-note" id="batchNote" hidden></p>
     <p class="limit-note" id="limitNote">Free. Exports up to 4K. First 3 downloads free. Follow Superwhite on LinkedIn for unlimited.</p>
     <p class="busy" id="busy"></p>
     <div class="postdl" id="postdl" hidden>
@@ -435,6 +465,33 @@ footer a:hover{color:var(--ink)}
       <div><b>Best input</b><span>High-contrast graphics: logos, wordmarks, simple illustrations. Photo gradients can band at 8-bit.</span></div>
     </div>
   </section>
+
+  <section class="pro" id="pro">
+    <h2>Superwhite Pro</h2>
+    <p>Superwhite stays free, unlimited, and in your browser. Pro adds the workflow features below.
+      Tell me which one you need first, and you get it first.</p>
+
+    <div class="pro-grid">
+      <button class="pro-card" type="button" data-feature="batch">
+        <span class="pro-card-top"><h3>Batch processing</h3><span class="pro-tag">Pro</span></span>
+        <p>Select many images, get every one back at the same nits setting. One pass, one zip.</p>
+        <span class="pro-cta">Live now, try it &rarr;</span>
+      </button>
+      <button class="pro-card" type="button" data-feature="multi_platform">
+        <span class="pro-card-top"><h3>Multi-platform export</h3><span class="pro-tag">Pro</span></span>
+        <p>One image, an export tuned per destination, as platforms keep or break the profile.</p>
+        <span class="pro-cta">I want this &rarr;</span>
+      </button>
+      <button class="pro-card" type="button" data-feature="brand_presets">
+        <span class="pro-card-top"><h3>Brand presets</h3><span class="pro-tag">Pro</span></span>
+        <p>Save nits and threshold per brand or client instead of re-dialling it every post.</p>
+        <span class="pro-cta">Live now, try it &rarr;</span>
+      </button>
+    </div>
+    <p class="pro-note">Everything you use today stays free and unlimited. Pro sits on top.</p>
+  </section>
+
+
 
     <section class="faq" id="faq">
     <h2>Frequently asked questions</h2>
@@ -545,31 +602,6 @@ footer a:hover{color:var(--ink)}
     </form>
     <p class="wl-status" id="wlStatus"></p>
     <p class="fb-thanks" id="fbThanks"></p>
-  </section>
-
-  <section class="pro" id="pro">
-    <h2>Superwhite Pro</h2>
-    <p>Superwhite stays free, unlimited, and in your browser. Pro adds the workflow features below.
-      Tell me which one you need first, and you get it first.</p>
-
-    <div class="pro-grid">
-      <button class="pro-card" type="button" data-feature="batch">
-        <span class="pro-card-top"><h3>Batch processing</h3><span class="pro-tag">Pro</span></span>
-        <p>Drop in a folder, get every image back at the same nits setting. One pass, one download.</p>
-        <span class="pro-cta">I want this &rarr;</span>
-      </button>
-      <button class="pro-card" type="button" data-feature="multi_platform">
-        <span class="pro-card-top"><h3>Multi-platform export</h3><span class="pro-tag">Pro</span></span>
-        <p>One image, an export tuned per destination, as platforms keep or break the profile.</p>
-        <span class="pro-cta">I want this &rarr;</span>
-      </button>
-      <button class="pro-card" type="button" data-feature="brand_presets">
-        <span class="pro-card-top"><h3>Brand presets</h3><span class="pro-tag">Pro</span></span>
-        <p>Save nits and threshold per brand or client instead of re-dialling it every post.</p>
-        <span class="pro-cta">I want this &rarr;</span>
-      </button>
-    </div>
-    <p class="pro-note">Everything you use today stays free and unlimited. Pro sits on top.</p>
   </section>
 
   <section class="api" id="api">
@@ -801,6 +833,13 @@ if (demoBtn) {
 }
 
 function load(file) {
+  const n = (+sessionStorage.getItem('sw_session_imgs') || 0) + 1;
+  sessionStorage.setItem('sw_session_imgs', n);
+  if (n === 2) { // second image this session: this person needs batch
+    const bb = $('batchBtn');
+    if (bb && studio.classList.contains('on')) { bb.classList.add('pulse'); setTimeout(() => bb.classList.remove('pulse'), 2600); }
+    gtag('event', 'pro_upsell_shown', { trigger: 'second_image', surface: 'batch_button_pulse' });
+  }
   fileBase = file.name.replace(/\.[^.]+$/, '') || 'image';
   hqCache.key = '';
   gtag('event', 'image_upload', { file_type: file.type || 'unknown' });
@@ -960,6 +999,22 @@ function updateLimitNote(){
   el.textContent = 'Free. Exports up to 4K. ' + left + ' of ' + FREE_LIMIT + ' free exports left. Follow Superwhite on LinkedIn for unlimited.';
 }
 const CAPTION_TEXT = "Made this with superwhite.app. Free tool that makes the whites in an image glow brighter than white on HDR screens. Runs in the browser, nothing gets uploaded.";
+function proUpsellPostDl(){
+  const box = $('postdl');
+  if (!box || box.querySelector('.postdl-pro')) return;
+  if ((+sessionStorage.getItem('sw_session_imgs') || 0) < 2) return;
+  const d = document.createElement('div');
+  d.className = 'postdl-pro';
+  d.innerHTML = '<b><span class="bp-tag">Pro</span> Doing several? Batch export runs them all at these exact settings, one zip.</b>'
+    + '<button type="button" class="btn primary" id="postdlBatch">Batch export now</button>';
+  box.appendChild(d);
+  gtag('event', 'pro_upsell_shown', { trigger: 'multi_image_session', surface: 'post_download' });
+  d.querySelector('#postdlBatch').addEventListener('click', () => {
+    gtag('event', 'pro_upsell_click', { trigger: 'multi_image_session' });
+    if (!requirePro('batch')) return;
+    $('batchFiles').click();
+  });
+}
 function showPostDl(){
   const el = $('postdl');
   if (!el) return;
@@ -1041,6 +1096,7 @@ window.addEventListener('load', async () => {
     swAuthReady = true;
     swMountAccount();
     if (Clerk.user && Clerk.user.unsafeMetadata && Clerk.user.unsafeMetadata.unlimited) localStorage.setItem('sw_unlimited', '1');
+    if (Clerk.user) { bpSyncFromClerk(); bpRender(); }
     swSyncUI();
     swResume(Clerk.user);
     Clerk.addListener(({ user }) => { swMountAccount(); swSyncUI(); swResume(user); });
@@ -1065,6 +1121,7 @@ $('download').addEventListener('click', (e) => {
   updateLimitNote();
   showPostDl();
   gtag('event', 'image_download', { peak_nits: +$('nits').value });
+  proUpsellPostDl();
   if (window.SWJPEG && srcCanvas) {
     e.preventDefault();
     exportHQ();
@@ -1125,6 +1182,169 @@ document.querySelectorAll('a[href*="linkedin.com/company/superwhiteapp"]').forEa
   a.addEventListener('click', () => gtag('event', 'company_follow_click', { location: a.dataset.loc || 'page' }));
 });
 updateLimitNote();
+
+/* ================= pro features: brand presets + batch export ================= */
+/* Both fully client-side. Signed-in required, same gate as export. */
+
+function proSettings(){ return { peak: +$('nits').value, thresh: +$('thresh').value, mode: mode }; }
+function proApplySettings(o){
+  applyingPreset = true; clearPresetOn();
+  $('nits').value = o.peak; $('thresh').value = o.thresh;
+  paintFill($('nits')); paintFill($('thresh'));
+  $('nitsOut').textContent = o.peak + ' nits';
+  $('threshOut').textContent = o.thresh + '% white';
+  setMode(o.mode === 'all' ? 'all' : 'hi');
+  applyingPreset = false; schedule();
+}
+function bpLoad(){ try { return JSON.parse(localStorage.getItem('sw_brand_presets')) || {}; } catch(e){ return {}; } }
+function bpStore(o){
+  try { localStorage.setItem('sw_brand_presets', JSON.stringify(o)); } catch(e){}
+  if (window.Clerk && Clerk.user) Clerk.user.update({ unsafeMetadata: Object.assign({}, Clerk.user.unsafeMetadata, { brandPresets: o }) }).catch(()=>{});
+}
+function bpSyncFromClerk(){
+  try {
+    const remote = Clerk.user && Clerk.user.unsafeMetadata && Clerk.user.unsafeMetadata.brandPresets;
+    if (remote && Object.keys(remote).length) {
+      const merged = Object.assign({}, bpLoad(), remote);
+      localStorage.setItem('sw_brand_presets', JSON.stringify(merged));
+    }
+  } catch(e){}
+}
+function bpRender(){
+  const row = $('bpRow'); if (!row) return;
+  row.hidden = false;
+  row.querySelectorAll('.bp').forEach(b => b.remove());
+  const save = $('bpSave');
+  const all = bpLoad();
+  Object.keys(all).forEach(name => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'bp';
+    b.innerHTML = name.replace(/[<>&]/g,'') + '<span class="x" title="Delete">&times;</span>';
+    b.addEventListener('click', e => {
+      if (e.target.classList.contains('x')) {
+        const o = bpLoad(); delete o[name]; bpStore(o); bpRender();
+        gtag('event', 'brand_preset_delete', {}); return;
+      }
+      if (!requirePro('brand_presets')) return;
+      proApplySettings(all[name]);
+      row.querySelectorAll('.bp').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      gtag('event', 'brand_preset_apply', {});
+    });
+    row.insertBefore(b, save);
+  });
+}
+function requirePro(feature){
+  if (swAuthReady && !swSignedIn()) {
+    gtag('event', 'pro_signin_gate', { feature: feature });
+    Clerk.openSignIn(); return false;
+  }
+  return true;
+}
+$('bpSave').addEventListener('click', () => {
+  if (!requirePro('brand_presets')) return;
+  const name = prompt('Preset name (brand or client):');
+  if (!name || !name.trim()) return;
+  const o = bpLoad(); o[name.trim().slice(0,24)] = proSettings(); bpStore(o); bpRender();
+  gtag('event', 'brand_preset_save', {});
+});
+
+/* ---- zip (STORE mode, no compression: JPEGs are already compressed) ---- */
+function swCRC(buf){
+  let t = swCRC.t;
+  if (!t) { t = swCRC.t = new Uint32Array(256);
+    for (let n=0;n<256;n++){ let c=n; for(let k=0;k<8;k++) c = c&1 ? 0xEDB88320 ^ (c>>>1) : c>>>1; t[n]=c; } }
+  let c = 0xFFFFFFFF;
+  for (let i=0;i<buf.length;i++) c = t[(c ^ buf[i]) & 0xFF] ^ (c >>> 8);
+  return (c ^ 0xFFFFFFFF) >>> 0;
+}
+function swZip(files){ // [{name, data:Uint8Array}]
+  const enc = new TextEncoder(); const parts = []; const central = []; let offset = 0;
+  const u16 = v => new Uint8Array([v&255, (v>>8)&255]);
+  const u32 = v => new Uint8Array([v&255,(v>>8)&255,(v>>16)&255,(v>>24)&255]);
+  files.forEach(f => {
+    const name = enc.encode(f.name); const crc = swCRC(f.data);
+    const head = [u32(0x04034b50), u16(20), u16(0), u16(0), u16(0), u16(0),
+      u32(crc), u32(f.data.length), u32(f.data.length), u16(name.length), u16(0)];
+    const hl = head.reduce((a,b)=>a+b.length,0) + name.length;
+    parts.push(...head, name, f.data);
+    central.push({name, crc, size: f.data.length, offset});
+    offset += hl + f.data.length;
+  });
+  const cdStart = offset; let cdLen = 0;
+  central.forEach(c => {
+    const rec = [u32(0x02014b50), u16(20), u16(20), u16(0), u16(0), u16(0), u16(0),
+      u32(c.crc), u32(c.size), u32(c.size), u16(c.name.length), u16(0), u16(0), u16(0), u16(0),
+      u32(0), u32(c.offset)];
+    parts.push(...rec, c.name);
+    cdLen += rec.reduce((a,b)=>a+b.length,0) + c.name.length;
+  });
+  parts.push(u32(0x06054b50), u16(0), u16(0), u16(central.length), u16(central.length), u32(cdLen), u32(cdStart), u16(0));
+  return new Blob(parts, { type: 'application/zip' });
+}
+
+/* ---- batch export: every image through the current settings, one zip ---- */
+async function batchDecode(file){
+  return new Promise((res, rej) => {
+    const img = new Image();
+    img.onload = () => {
+      let w = img.naturalWidth, h = img.naturalHeight;
+      if (Math.max(w,h) > MAX_PX) { const sc = MAX_PX/Math.max(w,h); w = Math.round(w*sc); h = Math.round(h*sc); }
+      const c = document.createElement('canvas'); c.width = w; c.height = h;
+      const ctx = c.getContext('2d');
+      ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+      ctx.fillStyle = '#fff'; ctx.fillRect(0,0,w,h); ctx.drawImage(img,0,0,w,h);
+      URL.revokeObjectURL(img.src); res(c);
+    };
+    img.onerror = () => { URL.revokeObjectURL(img.src); rej(new Error('decode')); };
+    img.src = URL.createObjectURL(file);
+  });
+}
+let batchBusy = false;
+$('batchBtn').addEventListener('click', () => {
+  gtag('event', 'batch_click', {});
+  if (!requirePro('batch')) return;
+  if (batchBusy) return;
+  $('batchFiles').click();
+});
+$('batchFiles').addEventListener('change', async e => {
+  const files = [...e.target.files].filter(f => /^image\//.test(f.type)).slice(0, 60);
+  e.target.value = '';
+  if (!files.length) return;
+  if (files.length === 1) { load(files[0]); return; }
+  batchBusy = true;
+  const note = $('batchNote'); note.hidden = false;
+  const st = proSettings(); const out = [];
+  gtag('event', 'batch_start', { count: files.length, peak_nits: st.peak });
+  let fail = 0;
+  for (let i = 0; i < files.length; i++) {
+    note.textContent = 'Batch: processing ' + (i+1) + ' of ' + files.length + '\u2026 (' + files[i].name + ')';
+    await new Promise(r => setTimeout(r, 20));
+    try {
+      const c = await batchDecode(files[i]);
+      const { imgData } = toHDRData(c, { peak: st.peak, threshold: st.thresh/100, mode: st.mode }, true);
+      const jpeg = SWJPEG({ data: imgData.data, width: imgData.width, height: imgData.height }, 97);
+      const withICC = embedICC(jpeg, iccBytes);
+      const base = files[i].name.replace(/\.[^.]+$/, '') || ('image-' + (i+1));
+      out.push({ name: base + '-superwhite-' + st.peak + 'nit.jpg', data: new Uint8Array(withICC) });
+    } catch(err) { fail++; }
+  }
+  if (out.length) {
+    note.textContent = 'Batch: packing ' + out.length + ' files\u2026';
+    await new Promise(r => setTimeout(r, 20));
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(swZip(out));
+    a.download = 'superwhite-batch-' + st.peak + 'nit-' + out.length + 'files.zip';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 30000);
+  }
+  note.textContent = out.length
+    ? 'Batch done: ' + out.length + ' images at ' + st.peak + ' nits' + (fail ? ', ' + fail + ' skipped' : '') + '. Post them straight to LinkedIn, no editing.'
+    : 'Batch failed: no images could be processed.';
+  gtag('event', 'batch_done', { ok: out.length, failed: fail });
+  batchBusy = false;
+});
+bpRender();
 
 /* ================= pro demand test ================= */
 /* Demand test only: nothing here is built, nothing here gates the free tool.
@@ -1231,6 +1451,17 @@ document.querySelectorAll('.pro-card').forEach(card => {
   card.addEventListener('click', () => {
     const f = card.dataset.feature;
     gtag('event', 'pro_feature_click', { feature: f });
+    if (f === 'batch') {
+      if (!requirePro('batch')) return;
+      drop.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      $('batchFiles').click(); return;
+    }
+    if (f === 'brand_presets') {
+      if (!requirePro('brand_presets')) return;
+      if (studio.classList.contains('on')) { $('bpRow').scrollIntoView({ behavior: 'smooth', block: 'center' }); $('bpSave').focus(); }
+      else { drop.scrollIntoView({ behavior: 'smooth', block: 'center' }); swToast('Load an image first, then save your settings as a preset'); }
+      return;
+    }
     proOpen(f);
   });
 });
