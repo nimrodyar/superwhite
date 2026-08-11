@@ -548,9 +548,9 @@ footer a:hover{color:var(--ink)}
   </section>
 
   <section class="pro" id="pro">
-    <h2>Superwhite Pro, maybe</h2>
-    <p>Superwhite stays free, unlimited, and in your browser. Nothing below is built yet. If one of
-      these would save you real time, say so and it goes to the front of the queue.</p>
+    <h2>Superwhite Pro</h2>
+    <p>Superwhite stays free, unlimited, and in your browser. Pro adds the workflow features below.
+      Tell me which one you need first, and you get it first.</p>
 
     <div class="pro-grid">
       <button class="pro-card" type="button" data-feature="batch">
@@ -569,7 +569,7 @@ footer a:hover{color:var(--ink)}
         <span class="pro-cta">I want this &rarr;</span>
       </button>
     </div>
-    <p class="pro-note">Everything you use today stays free and unlimited. This changes nothing about it.</p>
+    <p class="pro-note">Everything you use today stays free and unlimited. Pro sits on top.</p>
   </section>
 
   <section class="api" id="api">
@@ -1198,9 +1198,8 @@ function proRender(feature){
 
   proPanel.innerHTML =
     '<button class="paywall-close" id="proClose" aria-label="Close">&times;</button>'
-    + '<h3>Pro is not built yet</h3>'
-    + '<p>The free tool stays exactly as it is. Two answers decide whether Pro happens at all, '
-    + 'and what goes in it first.</p>'
+    + '<h3>Superwhite Pro is coming</h3>'
+    + '<p>The free tool stays exactly as it is. Your answers decide what ships first.</p>'
     + (mail ? '<p class="pro-who">signed in as ' + mail.replace(/[<>&]/g, '') + '</p>' : '')
     + '<div class="q" data-q="pro_panel_feature"><p>Which one would you actually pay for?</p>'
     + '<div class="opts">' + featureOpts + '</div></div>'
@@ -1309,7 +1308,7 @@ proPanel.addEventListener('click', async e => {
   proPanel.innerHTML =
     '<button class="paywall-close" id="proClose" aria-label="Close">&times;</button>'
     + '<h3>Noted, thank you</h3>'
-    + '<p>That decides what gets built next. If Pro happens you will hear about it first. '
+    + '<p>That decides what ships first. You will hear the moment it is live. '
     + 'The free tool carries on unchanged.</p>'
     + '<button class="btn ghost" id="proDone">Back to Superwhite</button>';
   $('proClose').focus();
