@@ -191,6 +191,37 @@ footer a:hover{color:var(--ink)}
   opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:70;max-width:90vw}
 #sw-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
+/* ================= pro demand test ================= */
+.pro{padding:56px 0 8px}
+.pro>p{max-width:600px;color:var(--dim);margin-bottom:22px}
+.pro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:640px){.pro-grid{grid-template-columns:1fr}}
+.pro-card{text-align:left;background:none;border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 16px 14px;cursor:pointer;display:flex;flex-direction:column;gap:8px;
+  font-family:'Inter',sans-serif;transition:border-color .1s}
+.pro-card:hover{border-color:var(--ink)}
+.pro-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pro-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pro-card h3{font:600 15px/1.2 'Inter',sans-serif;color:var(--ink)}
+.pro-card p{font-size:13px;line-height:1.5;color:var(--dim)}
+.pro-cta{margin-top:auto;font:500 13px/1 'Inter',sans-serif;color:var(--accent)}
+.pro-card[data-done="1"] .pro-cta{color:var(--faint)}
+.pro-tag{flex:none;font:700 9px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--accent);color:#fff;border-radius:99px;padding:5px 7px 4px}
+/* on an HDR display the Pro mark glows above the page, same trick as the tool */
+@media(dynamic-range:high){@supports(color:color(rec2100-pq 1 1 1)){
+  .pro-tag{color:color(rec2100-pq .75 .75 .75)}}}
+.pro-note{font-size:13px;color:var(--faint);margin-top:16px}
+.pro-panel{max-width:440px}
+.pro-panel textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--line);
+  border-radius:8px;font:14px/1.5 'Inter',sans-serif;color:var(--ink);min-height:74px;resize:vertical}
+.pro-panel textarea:focus,.pro-panel input:focus{outline:none;border-color:var(--accent)}
+.pro-panel input[type=email]{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--line);
+  border-radius:8px;font:14px/1.4 'Inter',sans-serif;color:var(--ink)}
+.pro-panel label{display:block;font-size:14px;font-weight:600;margin-bottom:10px}
+.pro-panel label span{font-weight:400;color:var(--faint)}
+.pro-who{font:500 12px/1.4 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:18px}
+
 /* ================= paywall ================= */
 .paywall-overlay{position:fixed;inset:0;background:rgba(20,19,23,.5);display:none;align-items:center;justify-content:center;z-index:80;padding:24px}
 .paywall-overlay.on{display:flex}
@@ -516,6 +547,31 @@ footer a:hover{color:var(--ink)}
     <p class="fb-thanks" id="fbThanks"></p>
   </section>
 
+  <section class="pro" id="pro">
+    <h2>Superwhite Pro, maybe</h2>
+    <p>Superwhite stays free, unlimited, and in your browser. Nothing below is built yet. If one of
+      these would save you real time, say so and it goes to the front of the queue.</p>
+
+    <div class="pro-grid">
+      <button class="pro-card" type="button" data-feature="batch">
+        <span class="pro-card-top"><h3>Batch processing</h3><span class="pro-tag">Pro</span></span>
+        <p>Drop in a folder, get every image back at the same nits setting. One pass, one download.</p>
+        <span class="pro-cta">I want this &rarr;</span>
+      </button>
+      <button class="pro-card" type="button" data-feature="multi_platform">
+        <span class="pro-card-top"><h3>Multi-platform export</h3><span class="pro-tag">Pro</span></span>
+        <p>One image, an export tuned per destination, as platforms keep or break the profile.</p>
+        <span class="pro-cta">I want this &rarr;</span>
+      </button>
+      <button class="pro-card" type="button" data-feature="brand_presets">
+        <span class="pro-card-top"><h3>Brand presets</h3><span class="pro-tag">Pro</span></span>
+        <p>Save nits and threshold per brand or client instead of re-dialling it every post.</p>
+        <span class="pro-cta">I want this &rarr;</span>
+      </button>
+    </div>
+    <p class="pro-note">Everything you use today stays free and unlimited. This changes nothing about it.</p>
+  </section>
+
   <section class="api" id="api">
     <h2>Building something with this?</h2>
     <p>If you run a LinkedIn scheduling tool, content platform, or agency workflow, you can license the HDR pipeline directly: a hosted API endpoint or a licensed JS module, kept working when platforms change their image pipelines. Pilot licenses start at €149 per month. Tell me what you're building and I will reply within a day. Nimrod Yarkoni, founder.</p>
@@ -541,6 +597,10 @@ footer a:hover{color:var(--ink)}
 </div>
 
 <div id="sw-toast" role="status"></div>
+
+<div id="proModal" class="paywall-overlay" role="dialog" aria-modal="true" aria-label="Superwhite Pro">
+  <div class="paywall-card pro-panel" id="proPanel"></div>
+</div>
 
 <div id="paywall" class="paywall-overlay" role="dialog" aria-modal="true" aria-label="Unlock unlimited exports">
   <div class="paywall-card">
@@ -1049,6 +1109,7 @@ document.querySelectorAll('.q').forEach(q => {
     btn.classList.add('picked');
     opts.classList.add('done');
     gtag('event', 'feedback_answer', { question: q.dataset.q, answer: btn.dataset.a });
+    if (q.dataset.q === 'pro_price') sessionStorage.setItem('sw_pro_price_answered', '1');
     if (q.dataset.q === 'would_pay' && (btn.dataset.a === 'yes' || btn.dataset.a === 'depends')) {
       const pp = document.querySelector('.q[data-q="pro_price"]');
       if (pp) pp.hidden = false;
@@ -1064,6 +1125,215 @@ document.querySelectorAll('a[href*="linkedin.com/company/superwhiteapp"]').forEa
   a.addEventListener('click', () => gtag('event', 'company_follow_click', { location: a.dataset.loc || 'page' }));
 });
 updateLimitNote();
+
+/* ================= pro demand test ================= */
+/* Demand test only: nothing here is built, nothing here gates the free tool.
+   Counts live in GA4; free text and emails go to web3forms like the waitlist. */
+const PRO_LABELS = {
+  batch: 'Batch processing',
+  multi_platform: 'Multi-platform export',
+  brand_presets: 'Brand presets'
+};
+/* Round local numbers on the 5 / 9 / 19 ladder. data-a values stay 5|9|19|zero
+   so this is comparable with the pro_price answers in Help shape this. */
+const PRO_LADDERS = {
+  EUR:['\u20AC5','\u20AC9','\u20AC19'], USD:['$5','$9','$19'], GBP:['\u00A35','\u00A39','\u00A319'],
+  CHF:['CHF 5','CHF 9','CHF 19'], CAD:['CA$7','CA$13','CA$25'], AUD:['A$8','A$15','A$29'],
+  SEK:['59 kr','99 kr','199 kr'], NOK:['59 kr','109 kr','219 kr'], DKK:['39 kr','69 kr','149 kr'],
+  PLN:['19 z\u0142','39 z\u0142','79 z\u0142'], CZK:['119 K\u010D','229 K\u010D','449 K\u010D'],
+  JPY:['\u00A5700','\u00A51400','\u00A52900'], INR:['\u20B9399','\u20B9799','\u20B91599'],
+  BRL:['R$29','R$49','R$99'], ILS:['\u20AA19','\u20AA39','\u20AA79']
+};
+const PRO_REGION_CCY = { US:'USD', GB:'GBP', CH:'CHF', CA:'CAD', AU:'AUD', NZ:'AUD', SE:'SEK',
+  NO:'NOK', DK:'DKK', PL:'PLN', CZ:'CZK', JP:'JPY', IN:'INR', BR:'BRL', IL:'ILS' };
+
+function proCurrency(){
+  const langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'en'];
+  for (const l of langs) {
+    const m = /[-_]([A-Za-z]{2})\b/.exec(l);
+    if (m) { const c = PRO_REGION_CCY[m[1].toUpperCase()]; if (c) return c; }
+  }
+  return 'EUR';
+}
+function proPrices(){
+  const ccy = proCurrency();
+  return { ccy: ccy, labels: PRO_LADDERS[ccy] || PRO_LADDERS.EUR };
+}
+function proAnswered(){ try { return JSON.parse(localStorage.getItem('sw_pro_answered')) || []; } catch (e) { return []; } }
+function proMarkAnswered(f){
+  const a = proAnswered();
+  if (a.indexOf(f) === -1) a.push(f);
+  try { localStorage.setItem('sw_pro_answered', JSON.stringify(a)); } catch (e) {}
+  const card = document.querySelector('.pro-card[data-feature="' + f + '"]');
+  if (card) { card.dataset.done = '1'; card.querySelector('.pro-cta').textContent = 'Noted, thanks'; }
+}
+function proEmail(){
+  try {
+    if (window.Clerk && Clerk.user && Clerk.user.primaryEmailAddress) return Clerk.user.primaryEmailAddress.emailAddress;
+  } catch (e) {}
+  return null;
+}
+
+const proModal = $('proModal');
+const proPanel = $('proPanel');
+let proOpenFeature = null;
+let proSent = { feature: false, price: false };
+
+function proRender(feature){
+  const money = proPrices();
+  const signed = typeof swSignedIn === 'function' && swSignedIn();
+  const mail = proEmail();
+  /* skip the price question if they already answered it in Help shape this */
+  const skipPrice = sessionStorage.getItem('sw_pro_price_answered') === '1';
+  const featureOpts = Object.keys(PRO_LABELS).concat(['other']).map(k => {
+    const label = PRO_LABELS[k] || 'Something else';
+    return '<button data-a="' + k + '"' + (k === feature ? ' class="picked"' : '') + '>' + label + '</button>';
+  }).join('');
+  const priceOpts = skipPrice ? '' :
+    '<div class="q" data-q="pro_panel_price"><p>What would feel reasonable for Pro?</p><div class="opts">'
+    + '<button data-a="5">' + money.labels[0] + ' a month</button>'
+    + '<button data-a="9">' + money.labels[1] + ' a month</button>'
+    + '<button data-a="19">' + money.labels[2] + ' a month</button>'
+    + '<button data-a="zero">I would not pay for it yet</button></div></div>';
+
+  proPanel.innerHTML =
+    '<button class="paywall-close" id="proClose" aria-label="Close">&times;</button>'
+    + '<h3>Pro is not built yet</h3>'
+    + '<p>The free tool stays exactly as it is. Two answers decide whether Pro happens at all, '
+    + 'and what goes in it first.</p>'
+    + (mail ? '<p class="pro-who">signed in as ' + mail.replace(/[<>&]/g, '') + '</p>' : '')
+    + '<div class="q" data-q="pro_panel_feature"><p>Which one would you actually pay for?</p>'
+    + '<div class="opts">' + featureOpts + '</div></div>'
+    + priceOpts
+    + '<div class="q"><label for="proNote">What would make Pro worth paying for? <span>optional</span></label>'
+    + '<textarea id="proNote" placeholder="How you use Superwhite today, and where it costs you time."></textarea></div>'
+    + (signed ? '' : '<div class="q"><label for="proMail">Email <span>optional, only for the early access note</span></label>'
+        + '<input type="email" id="proMail" placeholder="you@email.com" autocomplete="email"></div>')
+    + '<button class="btn primary" id="proSend">Send</button>'
+    + '<p class="paywall-msg" id="proMsg"></p>';
+}
+
+function proOpen(feature){
+  proOpenFeature = feature;
+  proSent = { feature: false, price: false };
+  proRender(feature);
+  proModal.classList.add('on');
+  const c = $('proClose');
+  if (c) c.focus();
+  gtag('event', 'pro_survey_open', { feature: feature, signed_in: swSignedIn() ? 1 : 0 });
+}
+function proClose(reason){
+  if (!proModal.classList.contains('on')) return;
+  proModal.classList.remove('on');
+  if (reason) gtag('event', 'pro_survey_dismiss', { feature: proOpenFeature, reason: reason });
+}
+
+document.querySelectorAll('.pro-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const f = card.dataset.feature;
+    gtag('event', 'pro_feature_click', { feature: f });
+    proOpen(f);
+  });
+});
+proAnswered().forEach(proMarkAnswered);
+
+/* single select inside the panel, and one event per question */
+proPanel.addEventListener('click', e => {
+  const btn = e.target.closest('.opts button');
+  if (!btn) return;
+  const q = btn.closest('.q');
+  q.querySelectorAll('.opts button').forEach(b => b.classList.remove('picked'));
+  btn.classList.add('picked');
+  if (q.dataset.q === 'pro_panel_feature' && !proSent.feature) {
+    proSent.feature = true;
+    gtag('event', 'pro_feature_select', { feature: btn.dataset.a, opened_from: proOpenFeature });
+  }
+  if (q.dataset.q === 'pro_panel_price' && !proSent.price) {
+    proSent.price = true;
+    gtag('event', 'pro_price_select', { answer: btn.dataset.a, currency: proPrices().ccy });
+  }
+});
+
+proPanel.addEventListener('click', async e => {
+  if (!e.target.closest('#proSend')) return;
+  const btn = $('proSend');
+  const msg = $('proMsg');
+  const picked = q => { const b = proPanel.querySelector('.q[data-q="' + q + '"] .opts button.picked'); return b ? b.dataset.a : null; };
+  const feature = picked('pro_panel_feature');
+  if (!feature) { msg.textContent = 'Pick one first.'; msg.className = 'paywall-msg'; return; }
+  const price = picked('pro_panel_price');
+  const noteEl = $('proNote');
+  const mailEl = $('proMail');
+  const note = noteEl && noteEl.value.trim() ? noteEl.value.trim().slice(0, 1500) : '';
+  const email = proEmail() || (mailEl && mailEl.value.trim() ? mailEl.value.trim() : '');
+  const money = proPrices();
+
+  gtag('event', 'pro_survey_submit', {
+    feature: proOpenFeature, feature_selected: feature, price: price || 'skipped',
+    currency: money.ccy, has_note: note ? 1 : 0, signed_in: swSignedIn() ? 1 : 0
+  });
+  if (!proSent.feature) gtag('event', 'pro_feature_select', { feature: feature, opened_from: proOpenFeature, source: 'default' });
+
+  /* GA4 holds the counts. Only send an email when there is something to read
+     or reply to, so the inbox stays useful. */
+  if (note || email) {
+    btn.disabled = true; btn.textContent = 'Sending...';
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: 'ad592af2-f9f7-44cb-b418-91dcb94a52fe',
+          subject: 'Superwhite Pro interest: ' + (PRO_LABELS[feature] || 'other'),
+          from_name: 'Superwhite Pro test',
+          email: email || 'anonymous@superwhite.app',
+          clicked: proOpenFeature,
+          would_pay_for: feature,
+          price: price ? (price === 'zero' ? 'would not pay' : money.labels[['5','9','19'].indexOf(price)] + '/mo') : 'not asked',
+          currency: money.ccy,
+          signed_in: swSignedIn() ? 'yes' : 'no',
+          note: note || '(none)'
+        })
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error('web3forms');
+    } catch (err) {
+      msg.textContent = 'Answer counted. The message did not send, try again if you want a reply.';
+      msg.className = 'paywall-msg';
+      btn.disabled = false; btn.textContent = 'Send';
+      proMarkAnswered(proOpenFeature);
+      return;
+    }
+  }
+  proMarkAnswered(proOpenFeature);
+  proPanel.innerHTML =
+    '<button class="paywall-close" id="proClose" aria-label="Close">&times;</button>'
+    + '<h3>Noted, thank you</h3>'
+    + '<p>That decides what gets built next. If Pro happens you will hear about it first. '
+    + 'The free tool carries on unchanged.</p>'
+    + '<button class="btn ghost" id="proDone">Back to Superwhite</button>';
+  $('proClose').focus();
+});
+
+proPanel.addEventListener('click', e => {
+  if (e.target.closest('#proClose') || e.target.closest('#proDone')) proClose(null);
+});
+proModal.addEventListener('click', e => { if (e.target === proModal) proClose('backdrop'); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && proModal.classList.contains('on')) proClose('escape');
+});
+
+if ('IntersectionObserver' in window) {
+  const proSection = $('pro');
+  if (proSection) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) { gtag('event', 'pro_section_view', {}); io.disconnect(); }
+      });
+    }, { threshold: 0.4 });
+    io.observe(proSection);
+  }
+}
 
 /* ================= api request form ================= */
 const apiForm = $('apiForm');
