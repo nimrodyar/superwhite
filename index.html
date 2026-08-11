@@ -213,6 +213,14 @@ footer a:hover{color:var(--ink)}
 .postdl-pro .btn{padding:9px 14px;font-size:13px}
 @keyframes bpulse{0%,100%{box-shadow:0 0 0 0 rgba(67,22,184,0)}50%{box-shadow:0 0 0 5px rgba(67,22,184,.18)}}
 .pulse{animation:bpulse 1.1s ease 2}
+.packs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 4px}
+@media(max-width:420px){.packs{grid-template-columns:1fr}}
+.pack{border:1px solid var(--line);border-radius:10px;padding:14px;cursor:pointer;background:none;
+  text-align:left;font-family:'Inter',sans-serif}
+.pack:hover{border-color:var(--accent)}
+.pack b{display:block;font:600 15px/1.2 'Inter',sans-serif;color:var(--ink)}
+.pack span{display:block;font-size:12.5px;color:var(--faint);margin-top:4px}
+.credit-note{font:500 12px/1.4 'JetBrains Mono',monospace;color:var(--faint)}
 
 /* ================= pro demand test ================= */
 .pro{padding:56px 0 8px}
@@ -474,8 +482,8 @@ footer a:hover{color:var(--ink)}
     <div class="pro-grid">
       <button class="pro-card" type="button" data-feature="batch">
         <span class="pro-card-top"><h3>Batch processing</h3><span class="pro-tag">Pro</span></span>
-        <p>Select many images, get every one back at the same nits setting. One pass, one zip.</p>
-        <span class="pro-cta">Live now, try it &rarr;</span>
+        <p>Select many images, get every one back at the same nits setting. One credit per image, one zip.</p>
+        <span class="pro-cta">Live now &rarr;</span>
       </button>
       <button class="pro-card" type="button" data-feature="multi_platform">
         <span class="pro-card-top"><h3>Multi-platform export</h3><span class="pro-tag">Pro</span></span>
@@ -484,8 +492,8 @@ footer a:hover{color:var(--ink)}
       </button>
       <button class="pro-card" type="button" data-feature="brand_presets">
         <span class="pro-card-top"><h3>Brand presets</h3><span class="pro-tag">Pro</span></span>
-        <p>Save nits and threshold per brand or client instead of re-dialling it every post.</p>
-        <span class="pro-cta">Live now, try it &rarr;</span>
+        <p>Save nits and threshold per brand or client instead of re-dialling it every post. Included with any pack.</p>
+        <span class="pro-cta">Live now &rarr;</span>
       </button>
     </div>
     <p class="pro-note">Everything you use today stays free and unlimited. Pro sits on top.</p>
@@ -1011,8 +1019,7 @@ function proUpsellPostDl(){
   gtag('event', 'pro_upsell_shown', { trigger: 'multi_image_session', surface: 'post_download' });
   d.querySelector('#postdlBatch').addEventListener('click', () => {
     gtag('event', 'pro_upsell_click', { trigger: 'multi_image_session' });
-    if (!requirePro('batch')) return;
-    $('batchFiles').click();
+    requireProPaid('batch').then(ok => { if (ok) $('batchFiles').click(); });
   });
 }
 function showPostDl(){
@@ -1225,11 +1232,11 @@ function bpRender(){
         const o = bpLoad(); delete o[name]; bpStore(o); bpRender();
         gtag('event', 'brand_preset_delete', {}); return;
       }
-      if (!requirePro('brand_presets')) return;
+      requireProPaid('brand_presets').then(ok => { if (!ok) return;
       proApplySettings(all[name]);
       row.querySelectorAll('.bp').forEach(x => x.classList.remove('on'));
       b.classList.add('on');
-      gtag('event', 'brand_preset_apply', {});
+      gtag('event', 'brand_preset_apply', {}); });
     });
     row.insertBefore(b, save);
   });
@@ -1241,13 +1248,99 @@ function requirePro(feature){
   }
   return true;
 }
-$('bpSave').addEventListener('click', () => {
-  if (!requirePro('brand_presets')) return;
+$('bpSave').addEventListener('click', async () => {
+  if (!(await requireProPaid('brand_presets'))) return;
   const name = prompt('Preset name (brand or client):');
   if (!name || !name.trim()) return;
   const o = bpLoad(); o[name.trim().slice(0,24)] = proSettings(); bpStore(o); bpRender();
   gtag('event', 'brand_preset_save', {});
 });
+
+/* ---- Pro credits: Stripe-verified via the credits worker ---- */
+const SW_API = 'https://superwhite-credits.nimrodyar.workers.dev';
+function proKey(){
+  let k = localStorage.getItem('sw_credit_key') || '';
+  if (!k && window.Clerk && Clerk.user && Clerk.user.unsafeMetadata && Clerk.user.unsafeMetadata.creditKey) {
+    k = Clerk.user.unsafeMetadata.creditKey;
+    try { localStorage.setItem('sw_credit_key', k); } catch(e){}
+  }
+  return k;
+}
+function proKeyStore(k){
+  try { localStorage.setItem('sw_credit_key', k); } catch(e){}
+  if (window.Clerk && Clerk.user) Clerk.user.update({ unsafeMetadata: Object.assign({}, Clerk.user.unsafeMetadata, { creditKey: k }) }).catch(()=>{});
+}
+async function proBalance(){
+  const k = proKey(); if (!k) return null;
+  try {
+    const r = await fetch(SW_API + '/balance?key=' + encodeURIComponent(k));
+    if (!r.ok) return null;
+    return (await r.json()).credits;
+  } catch(e){ return null; }
+}
+async function proSpend(){
+  const k = proKey(); if (!k) return { ok:false, credits:0 };
+  try {
+    const r = await fetch(SW_API + '/spend', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ key: k }) });
+    const d = await r.json().catch(()=>({}));
+    return { ok: r.ok && d.ok, credits: d.credits ?? 0 };
+  } catch(e){ return { ok:false, credits:0 }; }
+}
+async function proCheckout(pack){
+  gtag('event', 'pro_checkout_start', { pack: pack });
+  try {
+    const body = { pack: pack }; const k = proKey(); if (k) body.key = k;
+    const r = await fetch(SW_API + '/checkout', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body) });
+    const d = await r.json();
+    if (d.url) { location.href = d.url; return; }
+    swToast('Checkout unavailable right now, try again in a minute');
+  } catch(e){ swToast('Checkout unavailable right now, try again in a minute'); }
+}
+function proBuyPanel(ctx){
+  proOpenFeature = ctx.feature || 'batch';
+  proPanel.innerHTML =
+    '<button class="paywall-close" id="proClose" aria-label="Close">&times;</button>'
+    + '<h3>' + (ctx.title || 'Superwhite Pro') + '</h3>'
+    + '<p>' + (ctx.msg || 'Batch export costs one credit per image. Brand presets are included with any credit pack.') + '</p>'
+    + '<div class="packs">'
+    + '<button type="button" class="pack" data-pack="starter"><b>Starter</b><span>10 export credits</span></button>'
+    + '<button type="button" class="pack" data-pack="creator"><b>Creator</b><span>40 export credits, best value</span></button>'
+    + '</div>'
+    + '<p class="credit-note">' + (ctx.note || 'One-time payment via Stripe. Credits never expire. Single-image exports stay free.') + '</p>';
+  proModal.classList.add('on');
+  $('proClose').focus();
+  gtag('event', 'pro_paywall_shown', { feature: proOpenFeature, reason: ctx.reason || 'no_key' });
+  proPanel.querySelectorAll('.pack').forEach(b => b.addEventListener('click', () => proCheckout(b.dataset.pack)));
+}
+async function requireProPaid(feature){
+  if (!requirePro(feature)) return false;
+  const bal = await proBalance();
+  if (bal === null) {
+    proBuyPanel({ feature: feature, reason: 'no_key' });
+    return false;
+  }
+  if (bal < 1) {
+    proBuyPanel({ feature: feature, reason: 'empty', title: 'Out of credits', msg: 'Your credits are used up. Top up to keep batch exporting; your presets stay saved.' });
+    return false;
+  }
+  return true;
+}
+async function proClaimFromURL(){
+  const sid = new URLSearchParams(location.search).get('session_id');
+  if (!sid || !/^cs_/.test(sid)) return;
+  history.replaceState({}, '', location.pathname);
+  try {
+    const r = await fetch(SW_API + '/claim', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ session_id: sid }) });
+    const d = await r.json();
+    if (d.key) {
+      proKeyStore(d.key);
+      swToast('Pro unlocked: ' + d.credits + ' export credits on this browser');
+      gtag('event', 'purchase', { pack_credits: d.credits });
+      gtag('event', 'pro_claim_ok', { credits: d.credits });
+    }
+  } catch(e){ swToast('Payment received but activation failed, reload to retry'); }
+}
+proClaimFromURL();
 
 /* ---- zip (STORE mode, no compression: JPEGs are already compressed) ---- */
 function swCRC(buf){
@@ -1301,10 +1394,10 @@ async function batchDecode(file){
   });
 }
 let batchBusy = false;
-$('batchBtn').addEventListener('click', () => {
+$('batchBtn').addEventListener('click', async () => {
   gtag('event', 'batch_click', {});
-  if (!requirePro('batch')) return;
   if (batchBusy) return;
+  if (!(await requireProPaid('batch'))) return;
   $('batchFiles').click();
 });
 $('batchFiles').addEventListener('change', async e => {
@@ -1312,6 +1405,13 @@ $('batchFiles').addEventListener('change', async e => {
   e.target.value = '';
   if (!files.length) return;
   if (files.length === 1) { load(files[0]); return; }
+  const bal = await proBalance();
+  if (bal === null || bal < files.length) {
+    proBuyPanel({ feature: 'batch', reason: 'insufficient',
+      title: 'Not enough credits',
+      msg: files.length + ' images needs ' + files.length + ' credits, you have ' + (bal || 0) + '. Top up to run the batch.' });
+    return;
+  }
   batchBusy = true;
   const note = $('batchNote'); note.hidden = false;
   const st = proSettings(); const out = [];
@@ -1321,6 +1421,8 @@ $('batchFiles').addEventListener('change', async e => {
     note.textContent = 'Batch: processing ' + (i+1) + ' of ' + files.length + '\u2026 (' + files[i].name + ')';
     await new Promise(r => setTimeout(r, 20));
     try {
+      const sp = await proSpend();
+      if (!sp.ok) { fail++; note.textContent = 'Credits ran out at image ' + (i+1) + ', zipping what is paid for'; break; }
       const c = await batchDecode(files[i]);
       const { imgData } = toHDRData(c, { peak: st.peak, threshold: st.thresh/100, mode: st.mode }, true);
       const jpeg = SWJPEG({ data: imgData.data, width: imgData.width, height: imgData.height }, 97);
@@ -1452,9 +1554,10 @@ document.querySelectorAll('.pro-card').forEach(card => {
     const f = card.dataset.feature;
     gtag('event', 'pro_feature_click', { feature: f });
     if (f === 'batch') {
-      if (!requirePro('batch')) return;
-      drop.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      $('batchFiles').click(); return;
+      requireProPaid('batch').then(ok => { if (!ok) return;
+        drop.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        $('batchFiles').click(); });
+      return;
     }
     if (f === 'brand_presets') {
       if (!requirePro('brand_presets')) return;
