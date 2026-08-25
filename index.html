@@ -341,7 +341,7 @@ footer a:hover{color:var(--ink)}
     {
       "@type": "Question",
       "name": "Do I need an account, and is it free?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sign in free with Google or email. Free is unlimited exports at 2048px. A 5 euro pack gives 10 exports at full 3840px, and Pro at 9 euro a month is unlimited full resolution." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Sign in free with Google or email. Free is unlimited logo exports up to 400px. Creator at 5 euro one time unlocks 1400px for LinkedIn posts and ads, and Pro at 9 euro a month goes any size up to 3840px." }
     },
     {
       "@type": "Question",
@@ -455,7 +455,7 @@ footer a:hover{color:var(--ink)}
     </div>
     <input type="file" id="batchFiles" accept="image/png,image/jpeg,image/webp" multiple hidden>
     <p class="batch-note" id="batchNote" hidden></p>
-    <p class="limit-note" id="limitNote">Free: unlimited exports at 2048px. A pack or Pro unlocks full 3840px.</p>
+    <p class="limit-note" id="limitNote">Free: logos up to 400px, unlimited. Creator unlocks 1400px, Pro goes full size.</p>
     <p class="busy" id="busy"></p>
     <div class="postdl" id="postdl" hidden>
       <b>Saved. Three rules so the glow survives:</b>
@@ -483,13 +483,13 @@ footer a:hover{color:var(--ink)}
 
   <section class="pro" id="pro">
     <h2>Superwhite Pro</h2>
-    <p>Free covers unlimited exports at 2048px, everything in your browser. Pro adds full-resolution exports and the workflow features below.
+    <p>Free covers unlimited logo exports at 400px, everything in your browser. Creator unlocks post sizes, and Pro adds full resolution plus the workflow features below.
       Tell me which one you need first, and you get it first.</p>
 
     <div class="pro-grid">
       <button class="pro-card" type="button" data-feature="batch">
         <span class="pro-card-top"><h3>Batch processing</h3><span class="pro-tag">Pro</span></span>
-        <p>Select many images, get every one back at the same nits setting. One credit per image, one zip.</p>
+        <p>Select many images, get every one back at the same nits setting, one zip. Included with Pro.</p>
         <span class="pro-cta">Live now &rarr;</span>
       </button>
       <button class="pro-card" type="button" data-feature="multi_platform">
@@ -499,11 +499,11 @@ footer a:hover{color:var(--ink)}
       </button>
       <button class="pro-card" type="button" data-feature="brand_presets">
         <span class="pro-card-top"><h3>Brand presets</h3><span class="pro-tag">Pro</span></span>
-        <p>Save nits and threshold per brand or client instead of re-dialling it every post. Included with any pack.</p>
+        <p>Save nits and threshold per brand or client instead of re-dialling it every post. Included with Pro.</p>
         <span class="pro-cta">Live now &rarr;</span>
       </button>
     </div>
-    <p class="pro-note">A &euro;5 pack covers 10 full-resolution exports. Pro at &euro;9 a month is unlimited. Cancel anytime.</p>
+    <p class="pro-note">Creator at &euro;5 one time unlocks 1400px forever. Pro at &euro;9 a month goes full size with batch and presets. Cancel anytime.</p>
   </section>
 
 
@@ -536,7 +536,7 @@ footer a:hover{color:var(--ink)}
     </details>
     <details>
       <summary>Do I need an account, and is it free?</summary>
-      <p>Sign in free with Google or email. Free is unlimited exports at 2048px. A &euro;5 pack gives 10 exports at full 3840px, and Pro at &euro;9 a month is unlimited full resolution.</p>
+      <p>Sign in free with Google or email. Free is unlimited logo exports up to 400px. Creator at &euro;5 one time unlocks 1400px for LinkedIn posts and ads, and Pro at &euro;9 a month goes any size up to 3840px.</p>
     </details>
     <details>
       <summary>Will the effect survive if I screenshot or repost the image?</summary>
@@ -652,12 +652,12 @@ footer a:hover{color:var(--ink)}
 <div id="paywall" class="paywall-overlay" role="dialog" aria-modal="true" aria-label="Unlock unlimited exports">
   <div class="paywall-card">
     <button class="paywall-close" id="paywallClose" aria-label="Close">&times;</button>
-    <h3>Unlock full resolution</h3>
-    <p>Free is unlimited at 2048px. Full 3840px comes with a pack or Pro.</p>
+    <h3>Unlock bigger exports</h3>
+    <p>Free covers logos at 400px, unlimited. Posts and ads need Creator or Pro.</p>
     <div class="tiers">
-      <div class="tier"><b>Free</b><span>Unlimited exports at 2048px. You already have this one.</span><a class="btn ghost" href="https://www.linkedin.com/company/superwhiteapp" target="_blank" rel="noopener" id="shareUnlock" data-loc="tier_modal">Follow Superwhite on LinkedIn</a></div>
-      <div class="tier"><b>Pack, &euro;5 one time</b><span>10 exports at full 3840px. License key by email, paste it below.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/awrzbf" target="_blank" rel="noopener" data-tier="pack">Get 10 exports</a></div>
-      <div class="tier"><b>Pro, &euro;9 a month</b><span>Unlimited exports at full 3840px, max settings, batch and brand presets. Cancel anytime.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/xvdzcy" target="_blank" rel="noopener" data-tier="pro">Go Pro</a></div>
+      <div class="tier"><b>Free</b><span>Logos and avatars up to 400px, unlimited exports.</span><a class="btn ghost" href="https://www.linkedin.com/company/superwhiteapp" target="_blank" rel="noopener" id="shareUnlock" data-loc="tier_modal">Follow Superwhite on LinkedIn</a></div>
+      <div class="tier"><b>Creator, &euro;5 one time</b><span>Unlimited exports at 1400px, sized for LinkedIn posts and ads. License key by email, paste it below.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/awrzbf" target="_blank" rel="noopener" data-tier="creator">Get Creator</a></div>
+      <div class="tier"><b>Pro, &euro;9 a month</b><span>Any size up to 3840px, max settings, batch and brand presets. Cancel anytime.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/xvdzcy" target="_blank" rel="noopener" data-tier="pro">Go Pro</a></div>
     </div>
     <label for="licenseInput" class="license-label">Already bought? Paste your license key</label>
     <input id="licenseInput" type="text" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" autocomplete="off" spellcheck="false">
@@ -886,7 +886,7 @@ function load(file) {
   const img = new Image();
   img.onload = () => {
     let w = img.naturalWidth, h = img.naturalHeight;
-    const cap = swCapPx(); if (Math.max(w, h) > cap) { const s = cap / Math.max(w, h); w = Math.round(w*s); h = Math.round(h*s); if (!swPaid()) { swToast('Free tier: downscaled to 2048px. A pack or Pro keeps full resolution.'); gtag('event', 'res_cap_hit', {}); } }
+    const cap = swCapPx(); if (Math.max(w, h) > cap) { const s = cap / Math.max(w, h); w = Math.round(w*s); h = Math.round(h*s); if (!isPro()) { swToast(isCreator() ? 'Creator tier: downscaled to 1400px. Pro goes full size.' : 'Free tier: downscaled to 400px. Creator unlocks 1400px, Pro goes full size.'); gtag('event', 'res_cap_hit', { tier: swEnt.type || 'free' }); } }
     srcCanvas = document.createElement('canvas');
     srcCanvas.width = w; srcCanvas.height = h;
     const ctx = srcCanvas.getContext('2d');
@@ -1004,9 +1004,9 @@ async function render() {
 let swEnt = { type: null, credits: 0 };
 
 function isPro(){ return swEnt.type === 'pro'; }
-function hasPack(){ return swEnt.type === 'pack' && swEnt.credits > 0; }
-function swPaid(){ return isPro() || hasPack(); }
-function swCapPx(){ return swPaid() ? MAX_PX : 2048; }
+function isCreator(){ return swEnt.type === 'creator'; }
+function swPaid(){ return isPro() || isCreator(); }
+function swCapPx(){ return isPro() ? MAX_PX : (isCreator() ? 1400 : 400); }
 function dlCount(){
   if (window.Clerk && Clerk.user) return +((Clerk.user.unsafeMetadata && Clerk.user.unsafeMetadata.dlCount) || 0);
   return +(sessionStorage.getItem('sw_dl_count') || 0);
@@ -1023,8 +1023,8 @@ function updateLimitNote(){
   const el = $('limitNote');
   if (!el) return;
   if (isPro()) { el.textContent = 'Pro: unlimited exports at full 3840px.'; return; }
-  if (swEnt.type === 'pack') { el.textContent = 'Pack: ' + swEnt.credits + ' export' + (swEnt.credits === 1 ? '' : 's') + ' left at full 3840px.'; return; }
-  el.textContent = 'Free: unlimited exports at 2048px. A pack or Pro unlocks full 3840px.';
+  if (isCreator()) { el.textContent = 'Creator: unlimited exports at 1400px. Pro unlocks full 3840px.'; return; }
+  el.textContent = 'Free: logos up to 400px, unlimited. Creator unlocks 1400px, Pro goes full size.';
 }
 const swLimitEl = $('limitNote');
 if (swLimitEl) swLimitEl.addEventListener('click', () => { if (!swPaid()) { gtag('event', 'tier_modal_shown', { trigger: 'limit_note' }); openPaywall(); } });
@@ -1120,12 +1120,7 @@ $('download').addEventListener('click', (e) => {
     Clerk.openSignIn();
     return;
   }
-  if (hasPack() && srcCanvas && Math.max(srcCanvas.width, srcCanvas.height) > 2048) {
-    swEnt.credits -= 1;
-    proSpend().then(sp => { if (sp && typeof sp.credits === 'number') { swEnt.credits = sp.credits; updateLimitNote(); } }).catch(()=>{});
-  } else if (!isPro() && !hasPack()) {
-    bumpDlCount();
-  }
+  if (!swPaid()) bumpDlCount();
   updateLimitNote();
   showPostDl();
   gtag('event', 'image_download', { peak_nits: +$('nits').value });
@@ -1277,7 +1272,7 @@ async function proBalance(){
     const r = await fetch(SW_API + '/balance?key=' + encodeURIComponent(k));
     if (!r.ok) return null;
     const d = await r.json();
-    swEnt = { type: d.type || 'pack', credits: d.credits || 0 };
+    swEnt = { type: d.type || null, credits: d.credits || 0 };
     return d.credits;
   } catch(e){ return null; }
 }
@@ -1302,17 +1297,10 @@ function proBuyPanel(ctx){
 }
 async function requireProPaid(feature){
   if (!requirePro(feature)) return false;
-  const bal = await proBalance();
+  await proBalance();
   if (isPro()) return true;
-  if (bal === null) {
-    proBuyPanel({ feature: feature, reason: 'no_key' });
-    return false;
-  }
-  if (bal < 1) {
-    proBuyPanel({ feature: feature, reason: 'empty', msg: 'Your pack is used up. Top up or go Pro to continue.' });
-    return false;
-  }
-  return true;
+  proBuyPanel({ feature: feature, reason: swEnt.type ? 'not_pro' : 'no_key', msg: isCreator() ? 'Batch and brand presets are Pro features.' : '' });
+  return false;
 }
 async function swRedeem(){
   const inp = $('licenseInput'); if (!inp) return;
@@ -1327,7 +1315,7 @@ async function swRedeem(){
     proKeyStore(key.toUpperCase());
     swEnt = { type: d.type, credits: d.credits || 0 };
     gtag('event', 'license_redeemed', { type: d.type });
-    msg.textContent = d.type === 'pro' ? 'Pro unlocked: unlimited exports at full resolution.' : 'Pack unlocked: ' + d.credits + ' exports at full resolution.';
+    msg.textContent = d.type === 'pro' ? 'Pro unlocked: unlimited exports at full resolution.' : 'Creator unlocked: unlimited exports at 1400px.';
     msg.className = 'paywall-msg ok';
     updateLimitNote();
     if (swLastFile) load(swLastFile);
