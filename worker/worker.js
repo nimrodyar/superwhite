@@ -5,29 +5,28 @@
  *
  * Endpoints:
  *   POST /redeem   { key: string }
- *                  → { ok, type: "pack"|"pro", credits }
- *                  Verifies the key against Gumroad (pack first, then pro).
- *                  Pack keys mint 10 credits once (idempotent). Pro keys are
- *                  accepted while the subscription is active.
+ *                  → { ok, type: "creator"|"pro" }
+ *                  Verifies the key against Gumroad (creator first, then pro).
+ *                  Creator keys unlock 1400px forever. Pro keys are accepted
+ *                  while the subscription is active.
  *   GET  /balance?key=...
- *                  → { ok, type, credits }  (pro reports 100000, never decremented)
+ *                  → { ok, type, credits }  (pro reports 100000 for batch compatibility)
  *   POST /spend    { key: string }
- *                  → { ok, credits }  or 402 when a pack is empty
+ *                  → { ok, credits }  pro only; anything else is 402
  *
  * Bindings required:
  *   KV namespace: CREDITS
  *
  * KV layout:
- *   gr:<license-key> → { type: "pack"|"pro", credits?: number, checked: ISO }
+ *   gr:<license-key> → { type: "creator"|"pro", checked: ISO }
  *
  * Pro keys are re-verified against Gumroad at most once per PRO_RECHECK_MS so
  * cancellations take effect within a day without a Gumroad call per request.
  */
 
 const GUMROAD_VERIFY = "https://api.gumroad.com/v2/licenses/verify";
-const PRODUCT_PACK = "BgO08xsE7P0XhbGRpUm3Gg==";
+const PRODUCT_CREATOR = "BgO08xsE7P0XhbGRpUm3Gg==";
 const PRODUCT_PRO = "5ve1Khe8KhNCUd6nQ2wZnA==";
-const PACK_CREDITS = 10;
 const PRO_BALANCE = 100000;
 const PRO_RECHECK_MS = 24 * 60 * 60 * 1000;
 
@@ -79,19 +78,19 @@ async function handleRedeem(request, env, cors) {
       if (!rec) return json({ error: "Subscription inactive" }, 402, cors);
       return json({ ok: true, type: "pro", credits: PRO_BALANCE }, 200, cors);
     }
-    return json({ ok: true, type: "pack", credits: existing.credits }, 200, cors);
+    return json({ ok: true, type: "creator" }, 200, cors);
   }
 
-  // Try pack, then pro
-  const pack = await gumroadVerify(PRODUCT_PACK, key, false);
-  if (pack && pack.success) {
-    const p = pack.purchase || {};
+  // Try creator, then pro
+  const creator = await gumroadVerify(PRODUCT_CREATOR, key, false);
+  if (creator && creator.success) {
+    const p = creator.purchase || {};
     if (p.refunded || p.chargebacked || p.disputed) {
       return json({ error: "Purchase refunded" }, 402, cors);
     }
-    const rec = { type: "pack", credits: PACK_CREDITS, checked: new Date().toISOString() };
+    const rec = { type: "creator", checked: new Date().toISOString() };
     await putRec(env, key, rec);
-    return json({ ok: true, type: "pack", credits: rec.credits }, 200, cors);
+    return json({ ok: true, type: "creator" }, 200, cors);
   }
 
   const pro = await gumroadVerify(PRODUCT_PRO, key, false);
@@ -119,7 +118,7 @@ async function handleBalance(url, env, cors) {
     if (!fresh) return json({ error: "Subscription inactive" }, 402, cors);
     return json({ ok: true, type: "pro", credits: PRO_BALANCE }, 200, cors);
   }
-  return json({ ok: true, type: "pack", credits: rec.credits || 0 }, 200, cors);
+  return json({ ok: true, type: "creator" }, 200, cors);
 }
 
 async function handleSpend(request, env, cors) {
@@ -136,10 +135,7 @@ async function handleSpend(request, env, cors) {
     return json({ ok: true, credits: PRO_BALANCE }, 200, cors);
   }
 
-  if ((rec.credits || 0) < 1) return json({ ok: false, credits: 0 }, 402, cors);
-  rec.credits -= 1;
-  await putRec(env, key, rec);
-  return json({ ok: true, credits: rec.credits }, 200, cors);
+  return json({ ok: false, credits: 0 }, 402, cors);
 }
 
 /* ---------------- helpers ---------------- */
