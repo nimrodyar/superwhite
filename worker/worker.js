@@ -1,32 +1,35 @@
 /**
- * Superwhite Credits — Cloudflare Worker
- * =======================================
- * Pay-as-you-go credit backend for superwhite.app.
+ * Superwhite Credits — Cloudflare Worker (Gumroad edition)
+ * ========================================================
+ * Entitlement backend for superwhite.app, backed by Gumroad license keys.
  *
  * Endpoints:
- *   POST /checkout  { pack: "starter"|"creator", key?: string }
- *                   → { url }  (Stripe Checkout URL; key passed through for top-ups)
- *   POST /claim     { session_id: string }
- *                   → { key, credits }  (verifies payment with Stripe, issues/tops up key; idempotent)
- *   GET  /balance?key=SW-xxxx
- *                   → { credits }
- *   POST /spend     { key: string }
- *                   → { ok: true, credits }  or 402 if empty
+ *   POST /redeem   { key: string }
+ *                  → { ok, type: "pack"|"pro", credits }
+ *                  Verifies the key against Gumroad (pack first, then pro).
+ *                  Pack keys mint 10 credits once (idempotent). Pro keys are
+ *                  accepted while the subscription is active.
+ *   GET  /balance?key=...
+ *                  → { ok, type, credits }  (pro reports 100000, never decremented)
+ *   POST /spend    { key: string }
+ *                  → { ok, credits }  or 402 when a pack is empty
  *
  * Bindings required:
- *   KV namespace:  CREDITS
- *   Secret:        STRIPE_SECRET_KEY
- *   Vars:          PRICE_STARTER, PRICE_CREATOR
+ *   KV namespace: CREDITS
  *
  * KV layout:
- *   key:<SW-key>        → { credits: number, created: ISO, email?: string }
- *   session:<sess_id>   → SW-key that already claimed this session (idempotency guard)
+ *   gr:<license-key> → { type: "pack"|"pro", credits?: number, checked: ISO }
+ *
+ * Pro keys are re-verified against Gumroad at most once per PRO_RECHECK_MS so
+ * cancellations take effect within a day without a Gumroad call per request.
  */
 
-const PACKS = {
-  starter: { credits: 10, priceVar: "PRICE_STARTER" },
-  creator: { credits: 40, priceVar: "PRICE_CREATOR" },
-};
+const GUMROAD_VERIFY = "https://api.gumroad.com/v2/licenses/verify";
+const PRODUCT_PACK = "BgO08xsE7P0XhbGRpUm3Gg==";
+const PRODUCT_PRO = "5ve1Khe8KhNCUd6nQ2wZnA==";
+const PACK_CREDITS = 10;
+const PRO_BALANCE = 100000;
+const PRO_RECHECK_MS = 24 * 60 * 60 * 1000;
 
 const ALLOWED_ORIGINS = [
   "https://superwhite.app",
@@ -44,11 +47,8 @@ export default {
     }
 
     try {
-      if (url.pathname === "/checkout" && request.method === "POST") {
-        return await handleCheckout(request, env, cors);
-      }
-      if (url.pathname === "/claim" && request.method === "POST") {
-        return await handleClaim(request, env, cors);
+      if (url.pathname === "/redeem" && request.method === "POST") {
+        return await handleRedeem(request, env, cors);
       }
       if (url.pathname === "/balance" && request.method === "GET") {
         return await handleBalance(url, env, cors);
@@ -66,110 +66,139 @@ export default {
 
 /* ---------------- handlers ---------------- */
 
-async function handleCheckout(request, env, cors) {
+async function handleRedeem(request, env, cors) {
   const body = await request.json().catch(() => ({}));
-  const pack = PACKS[body.pack];
-  if (!pack) return json({ error: "Unknown pack" }, 400, cors);
+  const key = cleanKey(body.key);
+  if (!key) return json({ error: "Missing key" }, 400, cors);
 
-  const priceId = env[pack.priceVar];
-  if (!priceId) return json({ error: "Pack not configured" }, 500, cors);
-
-  const params = new URLSearchParams({
-    mode: "payment",
-    "line_items[0][price]": priceId,
-    "line_items[0][quantity]": "1",
-    success_url: "https://superwhite.app/?session_id={CHECKOUT_SESSION_ID}",
-    cancel_url: "https://superwhite.app/?checkout=cancelled",
-    "metadata[pack]": body.pack,
-    allow_promotion_codes: "true",
-  });
-
-  // Existing key → top-up instead of a new key
-  if (typeof body.key === "string" && /^SW-[a-f0-9-]{8,}$/i.test(body.key)) {
-    params.set("client_reference_id", body.key);
+  // Already redeemed → return current state (idempotent)
+  const existing = await getRec(env, key);
+  if (existing) {
+    if (existing.type === "pro") {
+      const rec = await freshenPro(env, key, existing);
+      if (!rec) return json({ error: "Subscription inactive" }, 402, cors);
+      return json({ ok: true, type: "pro", credits: PRO_BALANCE }, 200, cors);
+    }
+    return json({ ok: true, type: "pack", credits: existing.credits }, 200, cors);
   }
 
-  const session = await stripe(env, "POST", "/v1/checkout/sessions", params);
-  if (!session.url) return json({ error: "Stripe error", detail: session.error && session.error.message }, 502, cors);
-
-  return json({ url: session.url }, 200, cors);
-}
-
-async function handleClaim(request, env, cors) {
-  const body = await request.json().catch(() => ({}));
-  const sessionId = body.session_id;
-  if (!sessionId || !/^cs_/.test(sessionId)) {
-    return json({ error: "Missing session_id" }, 400, cors);
+  // Try pack, then pro
+  const pack = await gumroadVerify(PRODUCT_PACK, key, false);
+  if (pack && pack.success) {
+    const p = pack.purchase || {};
+    if (p.refunded || p.chargebacked || p.disputed) {
+      return json({ error: "Purchase refunded" }, 402, cors);
+    }
+    const rec = { type: "pack", credits: PACK_CREDITS, checked: new Date().toISOString() };
+    await putRec(env, key, rec);
+    return json({ ok: true, type: "pack", credits: rec.credits }, 200, cors);
   }
 
-  // Idempotency: a session can only ever be claimed once
-  const already = await env.CREDITS.get(`session:${sessionId}`);
-  if (already) {
-    const rec = await getRecord(env, already);
-    return json({ key: already, credits: rec?.credits ?? 0 }, 200, cors);
+  const pro = await gumroadVerify(PRODUCT_PRO, key, false);
+  if (pro && pro.success) {
+    if (!subActive(pro.purchase || {})) {
+      return json({ error: "Subscription inactive" }, 402, cors);
+    }
+    const rec = { type: "pro", checked: new Date().toISOString() };
+    await putRec(env, key, rec);
+    return json({ ok: true, type: "pro", credits: PRO_BALANCE }, 200, cors);
   }
 
-  const session = await stripe(env, "GET", `/v1/checkout/sessions/${sessionId}`);
-  if (session.payment_status !== "paid") {
-    return json({ error: "Payment not completed" }, 402, cors);
-  }
-
-  const pack = PACKS[session.metadata?.pack];
-  if (!pack) return json({ error: "Unknown pack on session" }, 400, cors);
-
-  // Top-up existing key if provided at checkout, otherwise mint a new one
-  let key = session.client_reference_id;
-  let record = key ? await getRecord(env, key) : null;
-  if (!key || !record) {
-    key = "SW-" + crypto.randomUUID();
-    record = { credits: 0, created: new Date().toISOString() };
-  }
-
-  record.credits += pack.credits;
-  if (session.customer_details?.email) record.email = session.customer_details.email;
-
-  await env.CREDITS.put(`key:${key}`, JSON.stringify(record));
-  await env.CREDITS.put(`session:${sessionId}`, key);
-
-  return json({ key, credits: record.credits }, 200, cors);
+  return json({ error: "Key not recognized" }, 404, cors);
 }
 
 async function handleBalance(url, env, cors) {
-  const key = url.searchParams.get("key") || "";
-  const record = await getRecord(env, key);
-  if (!record) return json({ error: "Unknown key" }, 404, cors);
-  return json({ credits: record.credits }, 200, cors);
+  const key = cleanKey(url.searchParams.get("key"));
+  if (!key) return json({ error: "Missing key" }, 400, cors);
+
+  const rec = await getRec(env, key);
+  if (!rec) return json({ error: "Unknown key" }, 404, cors);
+
+  if (rec.type === "pro") {
+    const fresh = await freshenPro(env, key, rec);
+    if (!fresh) return json({ error: "Subscription inactive" }, 402, cors);
+    return json({ ok: true, type: "pro", credits: PRO_BALANCE }, 200, cors);
+  }
+  return json({ ok: true, type: "pack", credits: rec.credits || 0 }, 200, cors);
 }
 
 async function handleSpend(request, env, cors) {
   const body = await request.json().catch(() => ({}));
-  const record = await getRecord(env, body.key || "");
-  if (!record) return json({ error: "Unknown key" }, 404, cors);
-  if (record.credits < 1) return json({ error: "No credits left", credits: 0 }, 402, cors);
+  const key = cleanKey(body.key);
+  if (!key) return json({ error: "Missing key" }, 400, cors);
 
-  record.credits -= 1;
-  await env.CREDITS.put(`key:${body.key}`, JSON.stringify(record));
-  return json({ ok: true, credits: record.credits }, 200, cors);
+  const rec = await getRec(env, key);
+  if (!rec) return json({ error: "Unknown key" }, 404, cors);
+
+  if (rec.type === "pro") {
+    const fresh = await freshenPro(env, key, rec);
+    if (!fresh) return json({ error: "Subscription inactive" }, 402, cors);
+    return json({ ok: true, credits: PRO_BALANCE }, 200, cors);
+  }
+
+  if ((rec.credits || 0) < 1) return json({ ok: false, credits: 0 }, 402, cors);
+  rec.credits -= 1;
+  await putRec(env, key, rec);
+  return json({ ok: true, credits: rec.credits }, 200, cors);
 }
 
 /* ---------------- helpers ---------------- */
 
-async function getRecord(env, key) {
-  if (!/^SW-[a-f0-9-]{8,}$/i.test(key)) return null;
-  const raw = await env.CREDITS.get(`key:${key}`);
+function subActive(p) {
+  return !p.subscription_ended_at && !p.subscription_cancelled_at && !p.subscription_failed_at
+    && !p.refunded && !p.chargebacked && !p.disputed;
+}
+
+async function freshenPro(env, key, rec) {
+  const age = Date.now() - Date.parse(rec.checked || 0);
+  if (age < PRO_RECHECK_MS) return rec;
+  const res = await gumroadVerify(PRODUCT_PRO, key, false);
+  if (!res || !res.success || !subActive(res.purchase || {})) {
+    await env.CREDITS.delete(`gr:${key}`);
+    return null;
+  }
+  rec.checked = new Date().toISOString();
+  await putRec(env, key, rec);
+  return rec;
+}
+
+async function gumroadVerify(productId, key, increment) {
+  try {
+    const r = await fetch(GUMROAD_VERIFY, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        product_id: productId,
+        license_key: key,
+        increment_uses_count: increment ? "true" : "false",
+      }),
+    });
+    return await r.json();
+  } catch (e) {
+    return null;
+  }
+}
+
+function cleanKey(k) {
+  if (typeof k !== "string") return "";
+  k = k.trim().toUpperCase();
+  return /^[A-F0-9]{8}-[A-F0-9]{8}-[A-F0-9]{8}-[A-F0-9]{8}$/.test(k) ? k : "";
+}
+
+async function getRec(env, key) {
+  const raw = await env.CREDITS.get(`gr:${key}`);
   return raw ? JSON.parse(raw) : null;
 }
 
-async function stripe(env, method, path, params) {
-  const res = await fetch(`https://api.stripe.com${path}`, {
-    method,
-    headers: {
-      Authorization: `Bearer ${env.STRIPE_SECRET_KEY}`,
-      ...(method === "POST" ? { "Content-Type": "application/x-www-form-urlencoded" } : {}),
-    },
-    body: method === "POST" ? params : undefined,
+async function putRec(env, key, rec) {
+  await env.CREDITS.put(`gr:${key}`, JSON.stringify(rec));
+}
+
+function json(obj, status, cors) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: { "Content-Type": "application/json", ...cors },
   });
-  return res.json();
 }
 
 function corsHeaders(origin) {
@@ -180,11 +209,4 @@ function corsHeaders(origin) {
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Max-Age": "86400",
   };
-}
-
-function json(obj, status, cors) {
-  return new Response(JSON.stringify(obj), {
-    status,
-    headers: { "Content-Type": "application/json", ...cors },
-  });
 }
