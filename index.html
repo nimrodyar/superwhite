@@ -266,11 +266,13 @@ footer a:hover{color:var(--ink)}
 .paywall-redeem label{display:block;font-size:12px;color:var(--faint);margin-bottom:8px}
 #licenseInput{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:14px 'JetBrains Mono',monospace;margin-bottom:10px;box-sizing:border-box}
 #licenseInput:focus{outline:none;border-color:var(--accent)}
-.tiers{display:grid;gap:10px;margin:14px 0}
-.tier{border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-align:left}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.tier{border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-align:left;display:flex;flex-direction:column}
 .tier b{display:block;margin-bottom:2px}
 .tier span{display:block;font-size:13px;color:var(--dim);margin-bottom:8px}
-.tier .btn{width:100%;text-align:center}
+.tier .btn{width:100%;text-align:center;margin-top:auto;box-sizing:border-box}
+#paywall .paywall-card{max-width:820px}
+@media(max-width:700px){.tiers{grid-template-columns:1fr}#paywall .paywall-card{max-width:380px}}
 .license-label{display:block;font-size:13px;color:var(--dim);margin:6px 0}
 #licenseRedeem{width:100%;margin-bottom:4px}
 .paywall-msg{font-size:13px;min-height:16px;color:var(--dim)}
