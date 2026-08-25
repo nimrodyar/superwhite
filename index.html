@@ -341,7 +341,7 @@ footer a:hover{color:var(--ink)}
     {
       "@type": "Question",
       "name": "Do I need an account, and is it free?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sign in free with Google or email. Your first export is free at 2048px. A 5 euro pack gives 10 exports at full 3840px, and Pro at 9 euro a month is unlimited." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Sign in free with Google or email. Free is unlimited exports at 2048px. A 5 euro pack gives 10 exports at full 3840px, and Pro at 9 euro a month is unlimited full resolution." }
     },
     {
       "@type": "Question",
@@ -455,7 +455,7 @@ footer a:hover{color:var(--ink)}
     </div>
     <input type="file" id="batchFiles" accept="image/png,image/jpeg,image/webp" multiple hidden>
     <p class="batch-note" id="batchNote" hidden></p>
-    <p class="limit-note" id="limitNote">Free: first export on us at 2048px. A pack or Pro unlocks full 3840px.</p>
+    <p class="limit-note" id="limitNote">Free: unlimited exports at 2048px. A pack or Pro unlocks full 3840px.</p>
     <p class="busy" id="busy"></p>
     <div class="postdl" id="postdl" hidden>
       <b>Saved. Three rules so the glow survives:</b>
@@ -483,7 +483,7 @@ footer a:hover{color:var(--ink)}
 
   <section class="pro" id="pro">
     <h2>Superwhite Pro</h2>
-    <p>Your first export is free and everything runs in your browser. Pro adds unlimited full-resolution exports and the workflow features below.
+    <p>Free covers unlimited exports at 2048px, everything in your browser. Pro adds full-resolution exports and the workflow features below.
       Tell me which one you need first, and you get it first.</p>
 
     <div class="pro-grid">
@@ -536,7 +536,7 @@ footer a:hover{color:var(--ink)}
     </details>
     <details>
       <summary>Do I need an account, and is it free?</summary>
-      <p>Sign in free with Google or email. Your first export is free at 2048px. A &euro;5 pack gives 10 exports at full 3840px, and Pro at &euro;9 a month is unlimited.</p>
+      <p>Sign in free with Google or email. Free is unlimited exports at 2048px. A &euro;5 pack gives 10 exports at full 3840px, and Pro at &euro;9 a month is unlimited full resolution.</p>
     </details>
     <details>
       <summary>Will the effect survive if I screenshot or repost the image?</summary>
@@ -652,10 +652,10 @@ footer a:hover{color:var(--ink)}
 <div id="paywall" class="paywall-overlay" role="dialog" aria-modal="true" aria-label="Unlock unlimited exports">
   <div class="paywall-card">
     <button class="paywall-close" id="paywallClose" aria-label="Close">&times;</button>
-    <h3>Keep exporting</h3>
-    <p>Your first export is free. Pick how you want to continue.</p>
+    <h3>Unlock full resolution</h3>
+    <p>Free is unlimited at 2048px. Full 3840px comes with a pack or Pro.</p>
     <div class="tiers">
-      <div class="tier"><b>Free</b><span>One bonus export at 2048px when you follow Superwhite on LinkedIn.</span><a class="btn ghost" href="https://www.linkedin.com/company/superwhiteapp" target="_blank" rel="noopener" id="shareUnlock">Follow for one bonus export</a></div>
+      <div class="tier"><b>Free</b><span>Unlimited exports at 2048px. You already have this one.</span><a class="btn ghost" href="https://www.linkedin.com/company/superwhiteapp" target="_blank" rel="noopener" id="shareUnlock" data-loc="tier_modal">Follow Superwhite on LinkedIn</a></div>
       <div class="tier"><b>Pack, &euro;5 one time</b><span>10 exports at full 3840px. License key by email, paste it below.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/awrzbf" target="_blank" rel="noopener" data-tier="pack">Get 10 exports</a></div>
       <div class="tier"><b>Pro, &euro;9 a month</b><span>Unlimited exports at full 3840px, max settings, batch and brand presets. Cancel anytime.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/xvdzcy" target="_blank" rel="noopener" data-tier="pro">Go Pro</a></div>
     </div>
@@ -886,7 +886,7 @@ function load(file) {
   const img = new Image();
   img.onload = () => {
     let w = img.naturalWidth, h = img.naturalHeight;
-    const cap = swCapPx(); if (Math.max(w, h) > cap) { const s = cap / Math.max(w, h); w = Math.round(w*s); h = Math.round(h*s); }
+    const cap = swCapPx(); if (Math.max(w, h) > cap) { const s = cap / Math.max(w, h); w = Math.round(w*s); h = Math.round(h*s); if (!swPaid()) { swToast('Free tier: downscaled to 2048px. A pack or Pro keeps full resolution.'); gtag('event', 'res_cap_hit', {}); } }
     srcCanvas = document.createElement('canvas');
     srcCanvas.width = w; srcCanvas.height = h;
     const ctx = srcCanvas.getContext('2d');
@@ -1001,19 +1001,12 @@ async function render() {
 }
 
 /* ================= tiers ================= */
-const FREE_LIMIT = 1;
 let swEnt = { type: null, credits: 0 };
 
 function isPro(){ return swEnt.type === 'pro'; }
 function hasPack(){ return swEnt.type === 'pack' && swEnt.credits > 0; }
 function swPaid(){ return isPro() || hasPack(); }
 function swCapPx(){ return swPaid() ? MAX_PX : 2048; }
-function followBonus(){
-  if (localStorage.getItem('sw_follow_bonus') === '1') return 1;
-  if (window.Clerk && Clerk.user && Clerk.user.unsafeMetadata && Clerk.user.unsafeMetadata.followBonus) return 1;
-  return 0;
-}
-function freeLimit(){ return FREE_LIMIT + followBonus(); }
 function dlCount(){
   if (window.Clerk && Clerk.user) return +((Clerk.user.unsafeMetadata && Clerk.user.unsafeMetadata.dlCount) || 0);
   return +(sessionStorage.getItem('sw_dl_count') || 0);
@@ -1031,9 +1024,10 @@ function updateLimitNote(){
   if (!el) return;
   if (isPro()) { el.textContent = 'Pro: unlimited exports at full 3840px.'; return; }
   if (swEnt.type === 'pack') { el.textContent = 'Pack: ' + swEnt.credits + ' export' + (swEnt.credits === 1 ? '' : 's') + ' left at full 3840px.'; return; }
-  const left = Math.max(0, freeLimit() - dlCount());
-  el.textContent = 'Free: ' + left + ' export' + (left === 1 ? '' : 's') + ' left at 2048px. A pack or Pro unlocks full 3840px.';
+  el.textContent = 'Free: unlimited exports at 2048px. A pack or Pro unlocks full 3840px.';
 }
+const swLimitEl = $('limitNote');
+if (swLimitEl) swLimitEl.addEventListener('click', () => { if (!swPaid()) { gtag('event', 'tier_modal_shown', { trigger: 'limit_note' }); openPaywall(); } });
 const CAPTION_TEXT = "Made this with superwhite.app. Free tool that makes the whites in an image glow brighter than white on HDR screens. Runs in the browser, nothing gets uploaded.";
 function proUpsellPostDl(){
   const box = $('postdl');
@@ -1072,28 +1066,7 @@ function closePaywall(){ $('paywall').classList.remove('on'); }
 
 $('paywallClose').addEventListener('click', closePaywall);
 const followBtn = $('shareUnlock');
-let swFollowed = false;
-followBtn.addEventListener('click', async (e) => {
-  if (followBonus()) { e.preventDefault(); $('paywallMsg').textContent = 'Bonus export already unlocked.'; return; }
-  if (!swFollowed) {
-    swFollowed = true;
-    gtag('event', 'follow_gate_click', {});
-    followBtn.textContent = 'I followed, unlock my bonus export';
-    $('paywallMsg').textContent = 'Tap Follow on LinkedIn, then come back here.';
-    $('paywallMsg').className = 'paywall-msg';
-    return; /* anchor opens the company page in a new tab */
-  }
-  e.preventDefault();
-  localStorage.setItem('sw_follow_bonus', '1');
-  gtag('event', 'follow_unlock_confirmed', {});
-  try {
-    if (window.Clerk && Clerk.user) await Clerk.user.update({ unsafeMetadata: Object.assign({}, Clerk.user.unsafeMetadata, { followBonus: true, unlockedVia: 'linkedin_follow', unlockedAt: new Date().toISOString() }) });
-  } catch (err) {}
-  $('paywallMsg').textContent = 'One bonus export unlocked.';
-  $('paywallMsg').className = 'paywall-msg ok';
-  updateLimitNote();
-  setTimeout(closePaywall, 1600);
-});
+if (followBtn) followBtn.addEventListener('click', () => gtag('event', 'follow_gate_click', {}));
 
 /* ================= GA4 events ================= */
 /* ================= Clerk signup gate ================= */
@@ -1147,16 +1120,10 @@ $('download').addEventListener('click', (e) => {
     Clerk.openSignIn();
     return;
   }
-  if (hasPack()) {
+  if (hasPack() && srcCanvas && Math.max(srcCanvas.width, srcCanvas.height) > 2048) {
     swEnt.credits -= 1;
     proSpend().then(sp => { if (sp && typeof sp.credits === 'number') { swEnt.credits = sp.credits; updateLimitNote(); } }).catch(()=>{});
-  } else if (!isPro()) {
-    if (dlCount() >= freeLimit()) {
-      e.preventDefault();
-      gtag('event', 'tier_modal_shown', { trigger: 'download_limit' });
-      openPaywall();
-      return;
-    }
+  } else if (!isPro() && !hasPack()) {
     bumpDlCount();
   }
   updateLimitNote();
