@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn's Redesign Didn't Touch the HDR Glow | Superwhite</title>
+<meta name="description" content="LinkedIn shipped a visual refresh: a rounder logo mark, a calmer color palette, cleaner spacing across the feed. The HDR glow trick still works. Why a UI redesign and an image pipeline change are two different things.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://superwhite.app/blog/linkedin-redesign-hdr-glow">
+<meta property="og:title" content="LinkedIn's redesign didn't touch the HDR glow">
+<meta property="og:description" content="New logo mark, new colors, same feed. The HDR glow trick behind superwhited images still survives, because it lives in the image pipeline, not the UI.">
+<meta property="og:url" content="https://superwhite.app/blog/linkedin-redesign-hdr-glow">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://superwhite.app/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A white logo rendering brighter than the white page around it on an HDR display">
+<meta property="og:site_name" content="Superwhite">
+<meta property="article:published_time" content="2026-08-27">
+<meta property="article:modified_time" content="2026-08-27">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LinkedIn's redesign didn't touch the HDR glow">
+<meta name="twitter:description" content="New logo mark, new colors, same feed. The HDR glow trick still survives LinkedIn's latest visual refresh.">
+<meta name="twitter:image" content="https://superwhite.app/og.jpg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HE8J29XL52');
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FFFFFF;--ink:#141317;--dim:#5F5C66;--faint:#8B8894;--line:#E7E5EC;--accent:#4316B8;--radius:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.7 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{padding:28px 0;display:flex;align-items:baseline;justify-content:space-between}
+.logo{font:800 20px/1 'Inter Tight',sans-serif;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.back{font:500 13px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+.back:hover{color:var(--ink)}
+article{padding:24px 0 56px}
+h1{font:800 clamp(30px,5vw,44px)/1.1 'Inter Tight',sans-serif;letter-spacing:-.03em;margin-bottom:12px}
+.byline{font:500 12px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:32px}
+h2{font:700 22px/1.3 'Inter Tight',sans-serif;letter-spacing:-.02em;margin:36px 0 12px}
+h3{font:600 17px/1.4 'Inter Tight',sans-serif;letter-spacing:-.01em;margin:26px 0 8px}
+p{margin-bottom:16px}
+a{color:var(--accent)}
+ol,ul{margin:0 0 16px 22px}
+ol li,ul li{margin-bottom:8px}
+code{font:500 13px 'JetBrains Mono',monospace;background:#F4F2F9;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+.callout{border-left:3px solid var(--accent);background:#F8F7FC;border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;margin-bottom:16px}
+.callout p{margin:0}
+.cta{display:inline-block;font:600 15px/1 'Inter',sans-serif;padding:13px 20px;border-radius:99px;background:var(--ink);color:#fff;text-decoration:none;margin-top:8px}
+.cta:hover{background:#000}
+footer{padding:24px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
+footer a{color:var(--dim)}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LinkedIn's redesign didn't touch the HDR glow",
+  "description": "LinkedIn shipped a visual refresh across the feed: a rounder logo mark and a calmer color palette. The HDR glow trick still works, because it lives in the image pipeline, not the interface.",
+  "datePublished": "2026-08-27",
+  "dateModified": "2026-08-27",
+  "author": {"@type": "Person", "name": "Nimrod Yarkoni", "url": "https://superwhite.app/"},
+  "publisher": {"@type": "Organization", "name": "Superwhite", "url": "https://superwhite.app/"},
+  "image": "https://superwhite.app/og.jpg",
+  "mainEntityOfPage": "https://superwhite.app/blog/linkedin-redesign-hdr-glow"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Superwhite", "item": "https://superwhite.app/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://superwhite.app/blog/"},
+    {"@type": "ListItem", "position": 3, "name": "LinkedIn's redesign didn't touch the HDR glow", "item": "https://superwhite.app/blog/linkedin-redesign-hdr-glow"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Did LinkedIn's redesign break the HDR glow trick?",
+      "acceptedAnswer": {"@type": "Answer", "text": "No. LinkedIn's latest visual refresh changed the logo mark, color palette and feed styling, all part of the front-end interface. The glow trick lives in the color profile embedded in the uploaded JPEG and how LinkedIn's image pipeline handles that file server-side, a completely separate system from the UI. Superwhited images still glow after the redesign."}
+    },
+    {
+      "@type": "Question",
+      "name": "Does a LinkedIn UI update affect how images are processed?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Not directly. Visual redesigns touch layout, typography and styling. Image processing, the re-encoding pipeline that strips or keeps metadata on upload, is separate backend infrastructure. The two can change independently, and historically only pipeline-level changes have affected the HDR glow trick."}
+    },
+    {
+      "@type": "Question",
+      "name": "What would actually break the HDR glow trick on LinkedIn?",
+      "acceptedAnswer": {"@type": "Answer", "text": "A change to how LinkedIn's image pipeline re-encodes uploaded JPEGs, specifically if it started stripping or normalizing ICC color profiles the way it already strips Ultra HDR gain maps. That is a backend change, not a visual one, and there is no sign of it as of this writing."}
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="/">superwhite</a>
+    <a class="back" href="/">back to the tool</a>
+  </header>
+  <article>
+    <h1>LinkedIn's redesign didn't touch the glow</h1>
+    <p class="byline">PUBLISHED 27 AUGUST 2026 · BY NIMROD YARKONI</p>
+
+    <p>LinkedIn shipped a visual refresh: a rounder, cleaner outline on the logo mark, a calmer color palette across the feed, tidier spacing throughout. It looks good. The obvious question for anyone who has been superwhiting their posts: does the glow still survive?</p>
+
+    <p>Yes, and the reason is structural rather than lucky. The refresh changed the interface. The glow does not live in the interface.</p>
+
+    <h2>Why a UI refresh doesn't touch it</h2>
+    <p>The glow doesn't come from anything on screen. It comes from a color profile embedded in the JPEG file itself, one that survives LinkedIn's image re-encoding on upload. That re-encoding pipeline, and the visual layer you're looking at when you scroll the feed, are different systems. A redesign changes fonts, corner radii, the logo, the color tokens used across the interface. It says nothing about how the backend handles a file once you hit upload.</p>
+    <p>The full mechanism, if you want the technical version, is in <a href="/blog/how-it-works">how Superwhite works</a>. Short version: LinkedIn's pipeline strips most HDR metadata but keeps ICC color profiles intact through the JPEG pipeline, and that profile is the entire payload. Nothing about a front-end redesign touches that.</p>
+
+    <h2>What would actually break it</h2>
+    <p>Not a new logo. A change to the image pipeline itself, specifically if LinkedIn started normalizing or stripping color profiles the way it already strips Ultra HDR gain maps on upload. That's a backend decision, and it's the only kind of change that has ever mattered for this trick. Worth watching, not worth worrying about today.</p>
+
+    <div class="callout"><p>Same rule applies to any platform redesign, not just this one. If the glow ever stops working somewhere, check whether the platform changed how it processes uploaded files, not whether it changed how the page looks.</p></div>
+
+    <p>If you haven't tried it since the update, it still takes about a minute.</p>
+    <a class="cta" href="/">Make your logo glow</a>
+
+    <h2>Frequently asked questions</h2>
+
+    <h3>Did LinkedIn's redesign break the HDR glow trick?</h3>
+    <p>No. The redesign changed the logo mark, colors and feed styling, all interface-level. The glow depends on the color profile embedded in the uploaded JPEG and LinkedIn's image pipeline, a separate system. Superwhited images still glow.</p>
+
+    <h3>Does a LinkedIn UI update affect how images are processed?</h3>
+    <p>Not directly. Visual design and image processing are separate systems that can change independently. Only pipeline-level changes, like how uploaded files get re-encoded, have historically affected the trick.</p>
+
+    <h3>What would actually break it?</h3>
+    <p>A backend change to LinkedIn's image pipeline, specifically stripping or normalizing ICC color profiles on upload the way Ultra HDR gain maps already get stripped. No sign of that as of this writing.</p>
+  </article>
+  <footer>
+    <a href="/">Superwhite</a> · <a href="/tools/">Free tools</a> · <a href="/blog/how-it-works">How it works, technically</a> · <a href="/blog/why-is-that-linkedin-image-glowing">Why is that LinkedIn image glowing?</a>
+  </footer>
+</div>
+</body>
+</html>
