@@ -43,7 +43,7 @@ const PRO_BALANCE = 100000;
 const PRO_RECHECK_MS = 24 * 60 * 60 * 1000;
 const REMINDER_DELAY_MS = 24 * 60 * 60 * 1000;
 const RESEND_API = "https://api.resend.com/emails";
-const REMINDER_FROM = "Nimrod at Superwhite <nimrod@superwhite.app>";
+const REMINDER_FROM = "Nimrod at Superwhite <info@superwhite.app>";
 const REMINDER_SUBJECT = "Still want Pro?";
 const REMINDER_TEXT = `Hey,
 
