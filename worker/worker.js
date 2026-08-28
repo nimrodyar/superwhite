@@ -4,24 +4,36 @@
  * Entitlement backend for superwhite.app, backed by Gumroad license keys.
  *
  * Endpoints:
- *   POST /redeem   { key: string }
+ *   POST /redeem   { key: string, clerkUserId?: string }
  *                  → { ok, type: "creator"|"pro" }
  *                  Verifies the key against Gumroad (creator first, then pro).
  *                  Creator keys unlock 1400px forever. Pro keys are accepted
- *                  while the subscription is active.
+ *                  while the subscription is active. If clerkUserId is given
+ *                  and a matching checkout attempt exists, it is marked converted
+ *                  so the reminder sweep skips it.
  *   GET  /balance?key=...
  *                  → { ok, type, credits }  (pro reports 100000 for batch compatibility)
  *   POST /spend    { key: string }
  *                  → { ok, credits }  pro only; anything else is 402
+ *   POST /checkout-attempt   { clerkUserId: string, email: string, tier: string }
+ *                  → { ok: true }
+ *                  Logged when a signed-in user clicks through to Gumroad checkout.
+ *                  Picked up by the scheduled reminder sweep below.
  *
  * Bindings required:
  *   KV namespace: CREDITS
+ *   Secret: RESEND_API_KEY (for the reminder sweep; see sendReminderEmail)
  *
  * KV layout:
- *   gr:<license-key> → { type: "creator"|"pro", checked: ISO }
+ *   gr:<license-key>     → { type: "creator"|"pro", checked: ISO }
+ *   attempt:<clerkUserId> → { email, tier, ts: ISO, reminded: bool, converted: bool }
  *
  * Pro keys are re-verified against Gumroad at most once per PRO_RECHECK_MS so
  * cancellations take effect within a day without a Gumroad call per request.
+ *
+ * Cron trigger (see wrangler.toml) runs the reminder sweep: any checkout
+ * attempt older than REMINDER_DELAY_MS, not yet reminded and not converted,
+ * gets a single nudge email via Resend.
  */
 
 const GUMROAD_VERIFY = "https://api.gumroad.com/v2/licenses/verify";
@@ -29,6 +41,25 @@ const PRODUCT_CREATOR = "BgO08xsE7P0XhbGRpUm3Gg==";
 const PRODUCT_PRO = "5ve1Khe8KhNCUd6nQ2wZnA==";
 const PRO_BALANCE = 100000;
 const PRO_RECHECK_MS = 24 * 60 * 60 * 1000;
+const REMINDER_DELAY_MS = 24 * 60 * 60 * 1000;
+const RESEND_API = "https://api.resend.com/emails";
+const REMINDER_FROM = "Nimrod at Superwhite <nimrod@superwhite.app>";
+const REMINDER_SUBJECT = "Still want Pro?";
+const REMINDER_TEXT = `Hey,
+
+You started upgrading to Superwhite Pro but didn't finish. No pressure, just checking in.
+
+Pro gets you:
+- Full resolution exports, up to 3840px
+- Batch processing
+- Brand presets
+
+\u20ac9/month, cancel anytime.
+
+Finish upgrading: https://nimrodian06.gumroad.com/l/xvdzcy
+
+Nimrod
+Superwhite`;
 
 const ALLOWED_ORIGINS = [
   "https://superwhite.app",
@@ -55,11 +86,18 @@ export default {
       if (url.pathname === "/spend" && request.method === "POST") {
         return await handleSpend(request, env, cors);
       }
+      if (url.pathname === "/checkout-attempt" && request.method === "POST") {
+        return await handleCheckoutAttempt(request, env, cors);
+      }
       return json({ error: "Not found" }, 404, cors);
     } catch (err) {
       console.error(err);
       return json({ error: "Server error" }, 500, cors);
     }
+  },
+
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(runReminderSweep(env));
   },
 };
 
@@ -69,6 +107,7 @@ async function handleRedeem(request, env, cors) {
   const body = await request.json().catch(() => ({}));
   const key = cleanKey(body.key);
   if (!key) return json({ error: "Missing key" }, 400, cors);
+  const clerkUserId = typeof body.clerkUserId === "string" ? body.clerkUserId : null;
 
   // Already redeemed → return current state (idempotent)
   const existing = await getRec(env, key);
@@ -76,8 +115,10 @@ async function handleRedeem(request, env, cors) {
     if (existing.type === "pro") {
       const rec = await freshenPro(env, key, existing);
       if (!rec) return json({ error: "Subscription inactive" }, 402, cors);
+      await markAttemptConverted(env, clerkUserId);
       return json({ ok: true, type: "pro", credits: PRO_BALANCE }, 200, cors);
     }
+    await markAttemptConverted(env, clerkUserId);
     return json({ ok: true, type: "creator" }, 200, cors);
   }
 
@@ -90,6 +131,7 @@ async function handleRedeem(request, env, cors) {
     }
     const rec = { type: "creator", checked: new Date().toISOString() };
     await putRec(env, key, rec);
+    await markAttemptConverted(env, clerkUserId);
     return json({ ok: true, type: "creator" }, 200, cors);
   }
 
@@ -100,10 +142,30 @@ async function handleRedeem(request, env, cors) {
     }
     const rec = { type: "pro", checked: new Date().toISOString() };
     await putRec(env, key, rec);
+    await markAttemptConverted(env, clerkUserId);
     return json({ ok: true, type: "pro", credits: PRO_BALANCE }, 200, cors);
   }
 
   return json({ error: "Key not recognized" }, 404, cors);
+}
+
+async function handleCheckoutAttempt(request, env, cors) {
+  const body = await request.json().catch(() => ({}));
+  const clerkUserId = typeof body.clerkUserId === "string" ? body.clerkUserId : "";
+  const email = typeof body.email === "string" ? body.email : "";
+  const tier = typeof body.tier === "string" ? body.tier : "unknown";
+  if (!clerkUserId || !email) return json({ error: "Missing clerkUserId or email" }, 400, cors);
+
+  // Don't overwrite an already-converted or already-reminded record with a re-click.
+  const existing = await getAttempt(env, clerkUserId);
+  if (existing && (existing.converted || existing.reminded)) {
+    return json({ ok: true }, 200, cors);
+  }
+
+  await putAttempt(env, clerkUserId, {
+    email, tier, ts: new Date().toISOString(), reminded: false, converted: false,
+  });
+  return json({ ok: true }, 200, cors);
 }
 
 async function handleBalance(url, env, cors) {
@@ -188,6 +250,74 @@ async function getRec(env, key) {
 
 async function putRec(env, key, rec) {
   await env.CREDITS.put(`gr:${key}`, JSON.stringify(rec));
+}
+
+async function getAttempt(env, clerkUserId) {
+  if (!clerkUserId) return null;
+  const raw = await env.CREDITS.get(`attempt:${clerkUserId}`);
+  return raw ? JSON.parse(raw) : null;
+}
+
+async function putAttempt(env, clerkUserId, rec) {
+  await env.CREDITS.put(`attempt:${clerkUserId}`, JSON.stringify(rec));
+}
+
+async function markAttemptConverted(env, clerkUserId) {
+  if (!clerkUserId) return;
+  const rec = await getAttempt(env, clerkUserId);
+  if (!rec || rec.converted) return;
+  rec.converted = true;
+  await putAttempt(env, clerkUserId, rec);
+}
+
+/* ---------------- reminder sweep (cron) ---------------- */
+
+async function runReminderSweep(env) {
+  const now = Date.now();
+  let cursor;
+  do {
+    const page = await env.CREDITS.list({ prefix: "attempt:", cursor });
+    for (const { name } of page.keys) {
+      const raw = await env.CREDITS.get(name);
+      if (!raw) continue;
+      const rec = JSON.parse(raw);
+      if (rec.converted || rec.reminded) continue;
+      if (now - Date.parse(rec.ts) < REMINDER_DELAY_MS) continue;
+
+      const sent = await sendReminderEmail(env, rec.email);
+      if (sent) {
+        rec.reminded = true;
+        await env.CREDITS.put(name, JSON.stringify(rec));
+      }
+    }
+    cursor = page.list_complete ? undefined : page.cursor;
+  } while (cursor);
+}
+
+async function sendReminderEmail(env, to) {
+  if (!env.RESEND_API_KEY) {
+    console.error("RESEND_API_KEY not configured, skipping reminder to", to);
+    return false;
+  }
+  try {
+    const r = await fetch(RESEND_API, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: REMINDER_FROM,
+        to: [to],
+        subject: REMINDER_SUBJECT,
+        text: REMINDER_TEXT,
+      }),
+    });
+    return r.ok;
+  } catch (e) {
+    console.error("Reminder email failed", e);
+    return false;
+  }
 }
 
 function json(obj, status, cors) {
