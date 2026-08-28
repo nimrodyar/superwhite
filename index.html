@@ -1074,6 +1074,12 @@ if (followBtn) followBtn.addEventListener('click', () => gtag('event', 'follow_g
 /* ================= Clerk signup gate ================= */
 let swAuthReady = false;
 function swSignedIn(){ return !!(window.Clerk && Clerk.user); }
+function swClerkIdentity(){
+  if (!window.Clerk || !Clerk.user) return null;
+  const email = Clerk.user.primaryEmailAddress && Clerk.user.primaryEmailAddress.emailAddress;
+  if (!email) return null;
+  return { id: Clerk.user.id, email: email };
+}
 function swResume(user) {
   if (!user || sessionStorage.getItem('sw_pending_dl') !== '1') return;
   sessionStorage.removeItem('sw_pending_dl');
@@ -1311,7 +1317,8 @@ async function swRedeem(){
   if (!key) { msg.textContent = 'Paste the license key from your Gumroad receipt.'; msg.className = 'paywall-msg'; return; }
   msg.textContent = 'Checking your key\u2026'; msg.className = 'paywall-msg';
   try {
-    const r = await fetch(SW_API + '/redeem', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ key: key }) });
+    const idn = swClerkIdentity();
+    const r = await fetch(SW_API + '/redeem', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ key: key, clerkUserId: idn ? idn.id : undefined }) });
     const d = await r.json().catch(()=>({}));
     if (!r.ok || !d.ok) { msg.textContent = d.error === 'Subscription inactive' ? 'That subscription is not active.' : 'Key not recognized. Check for typos and try again.'; return; }
     proKeyStore(key.toUpperCase());
@@ -1326,7 +1333,16 @@ async function swRedeem(){
 }
 const swRedeemBtn = $('licenseRedeem');
 if (swRedeemBtn) swRedeemBtn.addEventListener('click', swRedeem);
-document.querySelectorAll('#paywall [data-tier]').forEach(a => a.addEventListener('click', () => gtag('event', 'tier_checkout_click', { tier: a.dataset.tier })));
+document.querySelectorAll('#paywall [data-tier]').forEach(a => a.addEventListener('click', () => {
+  gtag('event', 'tier_checkout_click', { tier: a.dataset.tier });
+  const idn = swClerkIdentity();
+  if (idn && a.dataset.tier === 'pro') {
+    fetch(SW_API + '/checkout-attempt', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clerkUserId: idn.id, email: idn.email, tier: a.dataset.tier })
+    }).catch(() => {});
+  }
+}));
 swLoadEnt();
 
 /* ---- zip (STORE mode, no compression: JPEGs are already compressed) ---- */
