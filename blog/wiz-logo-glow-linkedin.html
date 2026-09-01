@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Why the Wiz Logo Glows on LinkedIn: the HDR Glow Trick Explained | Superwhite</title>
-<meta name="description" content="The Wiz logo renders brighter than white in the LinkedIn feed. It's an HDR trick, not a filter: how it works, who did it first, why it looks broken on some screens, and how to do it with your own logo free in about a minute.">
+<meta name="description" content="The Wiz logo renders brighter than white in the LinkedIn feed. It's an HDR trick, not a filter: how it works, who did it first, why it looks broken on some screens, and how to do it with your own logo in about a minute.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://superwhite.app/blog/wiz-logo-glow-linkedin">
 <meta property="og:title" content="Why the Wiz logo glows on LinkedIn: the HDR glow trick explained">
@@ -20,7 +20,7 @@
 <meta property="article:modified_time" content="2026-07-28">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Why the Wiz logo glows on LinkedIn: the HDR glow trick explained">
-<meta name="twitter:description" content="It's an HDR trick, not a filter. How it works, who did it first, and how to do it with your own logo, free.">
+<meta name="twitter:description" content="It's an HDR trick, not a filter. How it works, who did it first, and how to do it with your own logo.">
 <meta name="twitter:image" content="https://superwhite.app/og.jpg">
 <link rel="icon" type="image/png" href="/favicon.png">
 <!-- Google tag (gtag.js) -->
@@ -107,7 +107,7 @@ footer a{color:var(--dim)}
     {
       "@type": "Question",
       "name": "How do you make a logo glow on LinkedIn?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Embed an HDR color signal in the image so its whites decode above normal screen white. For LinkedIn feed posts, a JPEG with a Rec.2100 PQ ICC profile survives the upload pipeline; superwhite.app does this free in the browser with a brightness slider. For company-page logos, a PNG tagged with BT.2020 primaries and a PQ transfer also passes through. Post the exported file directly without cropping or editing it in the composer."}
+      "acceptedAnswer": {"@type": "Answer", "text": "Embed an HDR color signal in the image so its whites decode above normal screen white. For LinkedIn feed posts, a JPEG with a Rec.2100 PQ ICC profile survives the upload pipeline; superwhite.app does this in the browser with a brightness slider. For company-page logos, a PNG tagged with BT.2020 primaries and a PQ transfer also passes through. Post the exported file directly without cropping or editing it in the composer."}
     },
     {
       "@type": "Question",
@@ -211,13 +211,13 @@ ffprobe -show_entries stream=color_transfer,color_primaries logo-hdr.png</code><
       <li>Adjust peak brightness and the glow threshold until the mark glows and the background stays put. Preview it live — if you are on an HDR screen you will see exactly what your audience sees.</li>
       <li>Download the HDR JPEG and post it straight to LinkedIn as a feed image. Do not crop or edit it in LinkedIn's composer, that strips the profile.</li>
     </ol>
-    <p>Everything runs in your browser, nothing gets uploaded. Sign in free, exports are unlimited up to 400px.</p>
+    <p>Everything runs in your browser, nothing gets uploaded. Sign in, exports from €2.99, unlimited up to 400px.</p>
     <a class="cta" href="/">Make your logo glow</a>
 
     <h2>Frequently asked questions</h2>
 
     <h3>How do you make a logo glow on LinkedIn?</h3>
-    <p>Embed an HDR color signal so the image's whites decode above normal screen white. For feed posts, a JPEG with a Rec.2100 PQ ICC profile survives LinkedIn's pipeline — <a href="/">Superwhite</a> does this free in the browser. For company-page logos, a PNG tagged with BT.2020 + PQ also passes through. Post the exported file directly, without cropping or editing it in the composer.</p>
+    <p>Embed an HDR color signal so the image's whites decode above normal screen white. For feed posts, a JPEG with a Rec.2100 PQ ICC profile survives LinkedIn's pipeline — <a href="/">Superwhite</a> does this in the browser. For company-page logos, a PNG tagged with BT.2020 + PQ also passes through. Post the exported file directly, without cropping or editing it in the composer.</p>
 
     <h3>Why does the Wiz logo look brighter than everything else on my screen?</h3>
     <p>Its whites are encoded on the PQ HDR curve at levels far above the ~200 nits your screen uses for normal white, so on an HDR display the logo taps the panel's reserve brightness and physically emits more light than the interface around it.</p>
