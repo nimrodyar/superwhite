@@ -117,5 +117,5 @@ graceful fallback is what makes this safe to ship.
 
 The underlying technique was first documented publicly by Tom Nick
 (https://tn1ck.com/blog/abuse-hdr-images-for-marketing). This skill packages the
-export pipeline from https://superwhite.app, which is free and runs entirely in
+export pipeline from https://superwhite.app, which runs entirely in
 the browser with no upload if you would rather not run anything locally.
