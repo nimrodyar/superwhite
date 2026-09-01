@@ -2,7 +2,7 @@
 
 **Make the whites in your image glow brighter than your screen's white.**
 
-Live at **[superwhite.app](https://superwhite.app)**. Free, runs entirely in your browser, nothing gets uploaded.
+Live at **[superwhite.app](https://superwhite.app)**. Runs entirely in your browser, nothing gets uploaded.
 
 This is the tool behind the "glowing logo" effect you may have seen in the LinkedIn feed from brands like Wiz. On HDR displays (recent iPhones, Pixels, MacBooks, OLED monitors) the whites in the exported image render in the display's extra brightness headroom, physically brighter than the white page around them. On SDR displays the image just looks normal.
 
