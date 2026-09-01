@@ -5,10 +5,10 @@
  *
  * Endpoints:
  *   POST /redeem   { key: string, clerkUserId?: string }
- *                  → { ok, type: "creator"|"pro" }
- *                  Verifies the key against Gumroad (creator first, then pro).
- *                  Creator keys unlock 1400px forever. Pro keys are accepted
- *                  while the subscription is active. If clerkUserId is given
+ *                  → { ok, type: "basic"|"creator"|"pro" }
+ *                  Verifies the key against Gumroad (basic, then creator, then pro).
+ *                  Basic keys unlock 400px forever, creator keys 1400px forever.
+ *                  Pro keys are accepted while the subscription is active. If clerkUserId is given
  *                  and a matching checkout attempt exists, it is marked converted
  *                  so the reminder sweep skips it.
  *   GET  /balance?key=...
@@ -25,7 +25,7 @@
  *   Secret: RESEND_API_KEY (for the reminder sweep; see sendReminderEmail)
  *
  * KV layout:
- *   gr:<license-key>     → { type: "creator"|"pro", checked: ISO }
+ *   gr:<license-key>     → { type: "basic"|"creator"|"pro", checked: ISO }
  *   attempt:<clerkUserId> → { email, tier, ts: ISO, reminded: bool, converted: bool }
  *
  * Pro keys are re-verified against Gumroad at most once per PRO_RECHECK_MS so
@@ -37,6 +37,7 @@
  */
 
 const GUMROAD_VERIFY = "https://api.gumroad.com/v2/licenses/verify";
+const PRODUCT_BASIC = "u1sbv3NxLg2ckggpwBFnfA==";
 const PRODUCT_CREATOR = "BgO08xsE7P0XhbGRpUm3Gg==";
 const PRODUCT_PRO = "5ve1Khe8KhNCUd6nQ2wZnA==";
 const PRO_BALANCE = 100000;
@@ -119,10 +120,22 @@ async function handleRedeem(request, env, cors) {
       return json({ ok: true, type: "pro", credits: PRO_BALANCE }, 200, cors);
     }
     await markAttemptConverted(env, clerkUserId);
-    return json({ ok: true, type: "creator" }, 200, cors);
+    return json({ ok: true, type: existing.type }, 200, cors);
   }
 
-  // Try creator, then pro
+  // Try basic, then creator, then pro
+  const basic = await gumroadVerify(PRODUCT_BASIC, key, false);
+  if (basic && basic.success) {
+    const p = basic.purchase || {};
+    if (p.refunded || p.chargebacked || p.disputed) {
+      return json({ error: "Purchase refunded" }, 402, cors);
+    }
+    const rec = { type: "basic", checked: new Date().toISOString() };
+    await putRec(env, key, rec);
+    await markAttemptConverted(env, clerkUserId);
+    return json({ ok: true, type: "basic" }, 200, cors);
+  }
+
   const creator = await gumroadVerify(PRODUCT_CREATOR, key, false);
   if (creator && creator.success) {
     const p = creator.purchase || {};
@@ -180,7 +193,7 @@ async function handleBalance(url, env, cors) {
     if (!fresh) return json({ error: "Subscription inactive" }, 402, cors);
     return json({ ok: true, type: "pro", credits: PRO_BALANCE }, 200, cors);
   }
-  return json({ ok: true, type: "creator" }, 200, cors);
+  return json({ ok: true, type: rec.type }, 200, cors);
 }
 
 async function handleSpend(request, env, cors) {
