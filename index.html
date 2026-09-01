@@ -485,7 +485,7 @@ footer a:hover{color:var(--ink)}
 
   <section class="pro" id="pro">
     <h2>Superwhite Pro</h2>
-    <p>Basic covers unlimited logo exports at 400px, everything in your browser. Creator unlocks post sizes, and Pro adds full resolution plus the workflow features below.
+    <p>Basic starts at &euro;2.99 and covers unlimited logo exports at 400px, everything in your browser. Creator unlocks post sizes, and Pro adds full resolution plus the workflow features below.
       Tell me which one you need first, and you get it first.</p>
 
     <div class="pro-grid">
@@ -654,10 +654,10 @@ footer a:hover{color:var(--ink)}
 <div id="paywall" class="paywall-overlay" role="dialog" aria-modal="true" aria-label="Unlock unlimited exports">
   <div class="paywall-card">
     <button class="paywall-close" id="paywallClose" aria-label="Close">&times;</button>
-    <h3>Unlock bigger exports</h3>
-    <p>Basic covers logos at 400px, unlimited. Posts and ads need Creator or Pro.</p>
+    <h3>Unlock exports</h3>
+    <p>Basic starts at &euro;2.99 and covers logos at 400px, unlimited. Posts and ads need Creator or Pro.</p>
     <div class="tiers">
-      <div class="tier"><b>Free</b><span>Logos and avatars up to 400px, unlimited exports.</span><a class="btn ghost" href="https://www.linkedin.com/company/superwhiteapp" target="_blank" rel="noopener" id="shareUnlock" data-loc="tier_modal">Follow Superwhite on LinkedIn</a></div>
+      <div class="tier"><b>Basic, from &euro;2.99</b><span>Unlimited exports at 400px, sized for logos and avatars. Pay what you want above &euro;2.99. License key by email, paste it below.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/gxfgak" target="_blank" rel="noopener" data-tier="basic">Get Basic</a></div>
       <div class="tier"><b>Creator, &euro;5 one time</b><span>Unlimited exports at 1400px, sized for LinkedIn posts and ads. License key by email, paste it below.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/awrzbf" target="_blank" rel="noopener" data-tier="creator">Get Creator</a></div>
       <div class="tier"><b>Pro, &euro;9 a month</b><span>Any size up to 3840px, max settings, batch and brand presets. Cancel anytime.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/xvdzcy" target="_blank" rel="noopener" data-tier="pro">Go Pro</a></div>
     </div>
@@ -1007,7 +1007,9 @@ let swEnt = { type: null, credits: 0 };
 
 function isPro(){ return swEnt.type === 'pro'; }
 function isCreator(){ return swEnt.type === 'creator'; }
-function swPaid(){ return isPro() || isCreator(); }
+function isBasic(){ return swEnt.type === 'basic'; }
+function swPaid(){ return isPro() || isCreator() || isBasic(); }
+function swEntitled(){ return swPaid(); }
 function swCapPx(){ return isPro() ? MAX_PX : (isCreator() ? 1400 : 400); }
 function dlCount(){
   if (window.Clerk && Clerk.user) return +((Clerk.user.unsafeMetadata && Clerk.user.unsafeMetadata.dlCount) || 0);
@@ -1026,7 +1028,8 @@ function updateLimitNote(){
   if (!el) return;
   if (isPro()) { el.textContent = 'Pro: unlimited exports at full 3840px.'; return; }
   if (isCreator()) { el.textContent = 'Creator: unlimited exports at 1400px. Pro unlocks full 3840px.'; return; }
-  el.textContent = 'Basic: logos up to 400px, unlimited. Creator unlocks 1400px, Pro goes full size.';
+  if (isBasic()) { el.textContent = 'Basic: unlimited exports at 400px. Creator unlocks 1400px, Pro goes full size.'; return; }
+  el.textContent = 'Exports start at \u20ac2.99: unlimited logos at 400px. Creator unlocks 1400px, Pro goes full size.';
 }
 const swLimitEl = $('limitNote');
 if (swLimitEl) swLimitEl.addEventListener('click', () => { if (!swPaid()) { gtag('event', 'tier_modal_shown', { trigger: 'limit_note' }); openPaywall(); } });
@@ -1080,10 +1083,11 @@ function swClerkIdentity(){
   if (!email) return null;
   return { id: Clerk.user.id, email: email };
 }
-function swResume(user) {
+async function swResume(user) {
   if (!user || sessionStorage.getItem('sw_pending_dl') !== '1') return;
   sessionStorage.removeItem('sw_pending_dl');
   if (Date.now() - new Date(user.createdAt).getTime() < 120000) gtag('event', 'sign_up', { method: 'clerk' });
+  await swLoadEnt();
   if (srcCanvas) { setTimeout(() => $('download').click(), 400); }
   else { drop.scrollIntoView({ behavior: 'smooth', block: 'center' }); swToast('Signed in. Drop your image again to download.'); }
 }
@@ -1095,7 +1099,7 @@ function swMountAccount() {
 }
 function swSyncUI() {
   const dl = $('download');
-  if (dl) dl.textContent = (swAuthReady && !swSignedIn()) ? 'Sign in and download' : 'Download HDR JPEG';
+  if (dl) dl.textContent = (swAuthReady && !swSignedIn()) ? 'Sign in and download' : (swEntitled() ? 'Download HDR JPEG' : 'Unlock to download');
   const si = $('hdrSignIn');
   if (si) si.hidden = !swAuthReady || swSignedIn();
   updateLimitNote();
@@ -1116,7 +1120,7 @@ window.addEventListener('load', async () => {
     if (Clerk.user) { bpSyncFromClerk(); bpRender(); }
     swSyncUI();
     swResume(Clerk.user);
-    Clerk.addListener(({ user }) => { swMountAccount(); swSyncUI(); swResume(user); });
+    Clerk.addListener(({ user }) => { swMountAccount(); swSyncUI(); if (user) swLoadEnt(); swResume(user); });
   } catch (err) { swAuthReady = false; }
 });
 
@@ -1126,6 +1130,12 @@ $('download').addEventListener('click', (e) => {
     sessionStorage.setItem('sw_pending_dl', '1');
     gtag('event', 'signup_gate_shown', {});
     Clerk.openSignIn();
+    return;
+  }
+  if (!swEntitled()) {
+    e.preventDefault();
+    gtag('event', 'export_paywall_shown', { tier: swEnt.type || 'none' });
+    openPaywall();
     return;
   }
   if (!swPaid()) bumpDlCount();
@@ -1285,9 +1295,10 @@ async function proBalance(){
   } catch(e){ return null; }
 }
 async function swLoadEnt(){
-  const k = proKey(); if (!k) { updateLimitNote(); return; }
+  const k = proKey(); if (!k) { updateLimitNote(); swSyncUI(); return; }
   await proBalance();
   updateLimitNote();
+  swSyncUI();
 }
 async function proSpend(){
   const k = proKey(); if (!k) return { ok:false, credits:0 };
@@ -1324,9 +1335,10 @@ async function swRedeem(){
     proKeyStore(key.toUpperCase());
     swEnt = { type: d.type, credits: d.credits || 0 };
     gtag('event', 'license_redeemed', { type: d.type });
-    msg.textContent = d.type === 'pro' ? 'Pro unlocked: unlimited exports at full resolution.' : 'Creator unlocked: unlimited exports at 1400px.';
+    msg.textContent = d.type === 'pro' ? 'Pro unlocked: unlimited exports at full resolution.' : (d.type === 'basic' ? 'Basic unlocked: unlimited exports at 400px.' : 'Creator unlocked: unlimited exports at 1400px.');
     msg.className = 'paywall-msg ok';
     updateLimitNote();
+    swSyncUI();
     if (swLastFile) load(swLastFile);
     setTimeout(closePaywall, 1600);
   } catch(e){ msg.textContent = 'Could not reach the license server, try again in a minute.'; }
@@ -1336,7 +1348,7 @@ if (swRedeemBtn) swRedeemBtn.addEventListener('click', swRedeem);
 document.querySelectorAll('#paywall [data-tier]').forEach(a => a.addEventListener('click', () => {
   gtag('event', 'tier_checkout_click', { tier: a.dataset.tier });
   const idn = swClerkIdentity();
-  if (idn && a.dataset.tier === 'pro') {
+  if (idn) {
     fetch(SW_API + '/checkout-attempt', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ clerkUserId: idn.id, email: idn.email, tier: a.dataset.tier })
