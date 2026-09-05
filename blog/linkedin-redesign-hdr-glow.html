@@ -58,6 +58,13 @@ code{font:500 13px 'JetBrains Mono',monospace;background:#F4F2F9;border:1px soli
 .cta:hover{background:#000}
 footer{padding:24px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
 footer a{color:var(--dim)}
+.related{border-top:1px solid var(--line);padding-top:26px;margin:0 0 10px}
+.related h2{font:700 18px 'Inter',sans-serif;margin:0 0 16px;letter-spacing:-.01em}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{margin-bottom:12px}
+.related a{color:var(--ink);text-decoration:none;font-weight:600;display:block}
+.related a:hover{color:var(--violet-hot)}
+.related span{display:block;color:var(--faint);font-size:14px;font-weight:400;line-height:1.5}
 </style>
 <script type="application/ld+json">
 {
@@ -145,6 +152,15 @@ footer a{color:var(--dim)}
     <h3>What would actually break it?</h3>
     <p>A backend change to LinkedIn's image pipeline, specifically stripping or normalizing ICC color profiles on upload the way Ultra HDR gain maps already get stripped. No sign of that as of this writing.</p>
   </article>
+
+  <nav class="related" aria-label="Related reading">
+    <h2>Keep reading</h2>
+    <ul>
+    <li><a href="/blog/why-is-that-linkedin-image-glowing">Why is that LinkedIn image glowing?</a><span>The plain language explainer for the effect you just scrolled past.</span></li>
+    <li><a href="/blog/wiz-logo-glow-linkedin">Why the Wiz logo glows on LinkedIn</a><span>The full teardown of the trick that made the effect famous.</span></li>
+    <li><a href="/blog/port-logo-glow-linkedin">Port did the glowing logo before Wiz</a><span>The lineage of the trick, and who actually shipped it first.</span></li>
+    </ul>
+  </nav>
   <footer>
     <a href="/">Superwhite</a> · <a href="/tools/">Free tools</a> · <a href="/blog/how-it-works">How it works, technically</a> · <a href="/blog/why-is-that-linkedin-image-glowing">Why is that LinkedIn image glowing?</a>
   </footer>
