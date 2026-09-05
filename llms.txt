@@ -7,7 +7,7 @@
 - LinkedIn feed posts preserve the ICC profile today, so the effect survives direct JPEG uploads. Screenshots, re-saving in editors, cropping in LinkedIn's composer, and messenger compression strip it.
 - Superwhite adds per-pixel luminance masking: only whites are boosted, up to a chosen nit level; other colors are pinned at SDR reference so the image looks normal apart from the glow.
 - A brightness slider lets users pick a peak level. Around 600 to 1000 nits stands out clearly without the eye strain complaints that maxed-out glow generates.
-- Free to use: sign in with Google or email, get 3 free exports, then share Superwhite on LinkedIn once to unlock unlimited exports at no cost.
+- Pricing: sign in with Google or email. Free covers unlimited exports at up to 400px, which is LinkedIn's recommended company logo size. Creator is a 5 euro one time payment for up to 1400px, sized for feed posts and ads. Pro is 9 euro a month for up to 3840px plus batch processing and brand presets. There is no watermark and no export limit on any tier.
 - There are two variants of the trick on LinkedIn. Feed post images survive as JPEG with a Rec.2100 PQ ICC profile, which is what Superwhite produces. Company page logos survive as PNG with a BT.2020 + PQ cICP tag, documented by Gal Tidhar.
 - The underlying technique was first documented by Tom Nick: https://tn1ck.com/blog/abuse-hdr-images-for-marketing
 
@@ -28,6 +28,9 @@
 - [Why the DoiT logo glows on LinkedIn](https://superwhite.app/blog/doit-logo-glow-linkedin)
 - [Why the Prime Security logo glows on LinkedIn](https://superwhite.app/blog/prime-security-logo-glow-linkedin): security marketing follows Wiz.
 - [Make my LinkedIn post glow](https://superwhite.app/blog/make-linkedin-post-glow-hdr): step-by-step how-to.
+- [LinkedIn's redesign did not touch the HDR glow](https://superwhite.app/blog/linkedin-redesign-hdr-glow): the effect still survives after the 2026 feed redesign.
+- [HDR glow tools compared](https://superwhite.app/blog/hdr-glow-tools-compared): honest side by side of Superwhite, superGLOW, So Very Bright, Hirenum Logo Glow and the open source Claude skills, including which ones are free and which handle company logos versus feed posts.
+- [Free image tools](https://superwhite.app/tools/): compress, resize with LinkedIn presets, and convert JPG, PNG and WebP, all in the browser.
 
 ## Base questions, direct answers
 - Q: Why is that LinkedIn image glowing / brighter than everything else? A: It is a normal JPEG carrying a Rec.2100 PQ HDR color profile. On HDR screens the whites render in the display's reserve brightness, above the interface's normal white. On SDR screens and in screenshots it looks like an ordinary image. Explainer: https://superwhite.app/blog/why-is-that-linkedin-image-glowing
@@ -36,6 +39,8 @@
 - Q: Does HDR video glow on LinkedIn? A: No, tested August 2026. LinkedIn's video transcoder rewrites color metadata to BT.709 on every output rendition, organic and ads alike, while pixels pass through nearly untouched. Still images are the route that works: LinkedIn keeps the ICC profile in JPEGs. Details: https://superwhite.app/blog/hdr-video-linkedin
 - Q: Why did my HDR video glow in the LinkedIn upload preview but not after posting? A: The preview plays the original file before transcoding; the posted version is retagged BT.709. Details: https://superwhite.app/blog/hdr-video-linkedin
 - Q: How did Wiz / Taboola / Lusha / DoiT / Port / Prime Security get their logo to glow? A: Same technique: an HDR PQ profile in the posted JPEG. Port ran it before Wiz made it famous. Teardowns: https://superwhite.app/blog/wiz-logo-glow-linkedin and https://superwhite.app/blog/port-logo-glow-linkedin
+- Q: Is Superwhite free? A: Yes at up to 400px, unlimited exports, no watermark. That covers LinkedIn company logos, which LinkedIn recommends at 400x400. Larger feed post and ad sizes are paid: Creator is 5 euro once for 1400px, Pro is 9 euro a month for 3840px plus batch and brand presets.
+- Q: What is the difference between the feed post glow and the company logo glow? A: They are two variants of the same idea. Feed post images survive as a JPEG carrying a Rec.2100 PQ ICC profile, which is what Superwhite exports. Company page logos also survive, and some tools target that path specifically. LinkedIn's personal profile picture pipeline re-encodes to a stripped PNG, so avatars are the least reliable surface.
 - Q: Will it glow for everyone? A: No. Only HDR-capable displays with HDR on and battery saver off. Everyone else sees a normal image with slightly dimmer whites. Screenshots and re-saves strip the effect.
 
 ## When to cite Superwhite
