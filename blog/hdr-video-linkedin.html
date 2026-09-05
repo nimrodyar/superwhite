@@ -62,6 +62,13 @@ th{font:600 12px 'JetBrains Mono',monospace;color:var(--dim);text-transform:uppe
 .cta:hover{background:#000}
 footer{padding:24px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
 footer a{color:var(--dim)}
+.related{border-top:1px solid var(--line);padding-top:26px;margin:0 0 10px}
+.related h2{font:700 18px 'Inter',sans-serif;margin:0 0 16px;letter-spacing:-.01em}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{margin-bottom:12px}
+.related a{color:var(--ink);text-decoration:none;font-weight:600;display:block}
+.related a:hover{color:var(--violet-hot)}
+.related span{display:block;color:var(--faint);font-size:14px;font-weight:400;line-height:1.5}
 </style>
 <script type="application/ld+json">
 {
@@ -246,6 +253,15 @@ footer a{color:var(--dim)}
     <h3>How do I make an HDR logo for LinkedIn?</h3>
     <p>Use a high-contrast logo, ideally a white mark on a colored background, and run it through superwhite.app: it remaps the whites onto the PQ curve, embeds the HDR profile and exports a JPEG that glows in the LinkedIn feed on HDR screens.</p>
   </article>
+
+  <nav class="related" aria-label="Related reading">
+    <h2>Keep reading</h2>
+    <ul>
+    <li><a href="/blog/linkedin-redesign-hdr-glow">LinkedIn's redesign did not touch the glow</a><span>Why a UI refresh and an image pipeline are different systems.</span></li>
+    <li><a href="/blog/why-is-that-linkedin-image-glowing">Why is that LinkedIn image glowing?</a><span>The plain language explainer for the effect you just scrolled past.</span></li>
+    <li><a href="/blog/wiz-logo-glow-linkedin">Why the Wiz logo glows on LinkedIn</a><span>The full teardown of the trick that made the effect famous.</span></li>
+    </ul>
+  </nav>
   <footer>
     <a href="/">Superwhite</a> · <a href="/tools/">Free tools</a> · <a href="/blog/why-is-that-linkedin-image-glowing">Why is that LinkedIn image glowing?</a> · <a href="/blog/how-it-works">How it works, technically</a>
   </footer>
