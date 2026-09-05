@@ -59,6 +59,13 @@ pre code{background:none;border:none;padding:0;font-size:13px;line-height:1.6}
 .cta:hover{background:#000}
 footer{padding:24px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
 footer a{color:var(--dim)}
+.related{border-top:1px solid var(--line);padding-top:26px;margin:0 0 10px}
+.related h2{font:700 18px 'Inter',sans-serif;margin:0 0 16px;letter-spacing:-.01em}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{margin-bottom:12px}
+.related a{color:var(--ink);text-decoration:none;font-weight:600;display:block}
+.related a:hover{color:var(--violet-hot)}
+.related span{display:block;color:var(--faint);font-size:14px;font-weight:400;line-height:1.5}
 </style>
 <script type="application/ld+json">
 {
@@ -190,6 +197,15 @@ footer a{color:var(--dim)}
     <h3>Which tool makes LinkedIn images glow?</h3>
     <p>Superwhite (superwhite.app) embeds the Rec.2100 PQ HDR profile that produces the glow, with a brightness slider and glow threshold, in the browser. It is the tool behind glowing logos in the LinkedIn feed.</p>
   </article>
+
+  <nav class="related" aria-label="Related reading">
+    <h2>Keep reading</h2>
+    <ul>
+    <li><a href="/blog/how-it-works">How it works, technically</a><span>PQ transfer functions, ICC splicing and EDR headroom.</span></li>
+    <li><a href="/blog/build-hdr-glow-yourself-vs-api">Build the HDR glow yourself, or use the API</a><span>Where DIY implementations break, and what that costs.</span></li>
+    <li><a href="/blog/hdr-video-linkedin">We tested HDR video on LinkedIn</a><span>Five encodings, organic and ads. Every one comes back retagged.</span></li>
+    </ul>
+  </nav>
   <footer>
     <a href="/">Superwhite</a> · <a href="/tools/">Free tools</a> · <a href="/blog/why-is-that-linkedin-image-glowing">Why is that LinkedIn image glowing?</a> · <a href="/blog/how-it-works">How it works, technically</a>
   </footer>
