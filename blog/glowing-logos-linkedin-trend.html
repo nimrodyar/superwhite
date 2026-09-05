@@ -58,6 +58,13 @@ ol li,ul li{margin-bottom:8px}
 .cta:hover{background:#000}
 footer{padding:24px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
 footer a{color:var(--dim)}
+.related{border-top:1px solid var(--line);padding-top:26px;margin:0 0 10px}
+.related h2{font:700 18px 'Inter',sans-serif;margin:0 0 16px;letter-spacing:-.01em}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{margin-bottom:12px}
+.related a{color:var(--ink);text-decoration:none;font-weight:600;display:block}
+.related a:hover{color:var(--violet-hot)}
+.related span{display:block;color:var(--faint);font-size:14px;font-weight:400;line-height:1.5}
 </style>
 <script type="application/ld+json">
 {
@@ -71,6 +78,32 @@ footer a{color:var(--dim)}
   "publisher": {"@type": "Organization", "name": "Superwhite", "url": "https://superwhite.app/", "logo": {"@type": "ImageObject", "url": "https://superwhite.app/apple-touch-icon.png"}},
   "image": ["https://superwhite.app/blog/Wiz%20logo%20high%20res%20(1).jpg", "https://superwhite.app/og.jpg"],
   "mainEntityOfPage": "https://superwhite.app/blog/glowing-logos-linkedin-trend"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Superwhite",
+      "item": "https://superwhite.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://superwhite.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Glowing logos are taking over LinkedIn",
+      "item": "https://superwhite.app/blog/glowing-logos-linkedin-trend"
+    }
+  ]
 }
 </script>
 </head>
@@ -120,6 +153,15 @@ footer a{color:var(--dim)}
     <p>If you want to see your own mark glow before the window closes, <a href="/">Superwhite</a> does the whole thing in your browser. Drop in a logo, pick how bright, download, post to LinkedIn without cropping. Nothing gets uploaded to any server, and there is a slider precisely so you can be the brand that gets praised.</p>
     <a class="cta" href="/">Make your logo glow</a>
   </article>
+
+  <nav class="related" aria-label="Related reading">
+    <h2>Keep reading</h2>
+    <ul>
+    <li><a href="/blog/hdr-glow-tools-compared">HDR glow tools compared</a><span>Superwhite, superGLOW, So Very Bright, Hirenum and the open source skills, side by side.</span></li>
+    <li><a href="/blog/make-linkedin-post-glow-hdr">Make your LinkedIn post glow in HDR</a><span>The 30 second version, step by step.</span></li>
+    <li><a href="/blog/make-image-glow-online">How to make an image glow online</a><span>Real HDR light versus painted glow filters.</span></li>
+    </ul>
+  </nav>
   <footer>
     <a href="/">Superwhite</a> · <a href="/blog/wiz-logo-glow-linkedin">Why the Wiz logo glows on LinkedIn</a> · <a href="/blog/how-it-works">How it works, technically</a> · <a href="/blog/why-is-that-linkedin-image-glowing">Why is that LinkedIn image glowing?</a>
   </footer>
