@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Superwhite HDR: Glow Brighter Than White on LinkedIn</title>
-<meta name="description" content="Superwhite is the HDR tool behind the glowing Wiz logo on LinkedIn. Embed an HDR profile into any JPEG so whites glow brighter than white.">
+<meta name="description" content="Superwhite is the free HDR tool behind the glowing Wiz logo on LinkedIn. Embed an HDR profile into any JPEG so whites glow brighter than white.">
 <link rel="canonical" href="https://superwhite.app/">
 <meta property="og:title" content="Superwhite HDR: Make Your Logo Glow Brighter Than White on LinkedIn">
-<meta property="og:description" content="Push your image's whites into your screen's HDR headroom, the same trick behind the glowing Wiz logo. In-browser, built for LinkedIn.">
+<meta property="og:description" content="Push your image's whites into your screen's HDR headroom, the same trick behind the glowing Wiz logo. Free, in-browser, built for LinkedIn.">
 <meta property="og:url" content="https://superwhite.app/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://superwhite.app/og.jpg">
@@ -22,9 +22,9 @@
   gtag('js', new Date());
   gtag('config', 'G-HE8J29XL52');
 </script>
-<!-- Clerk auth -->
-<script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsuc3VwZXJ3aGl0ZS5hcHAk" src="https://clerk.superwhite.app/npm/@clerk/clerk-js@5/dist/clerk.browser.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://clerk.superwhite.app">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -266,12 +266,12 @@ footer a:hover{color:var(--ink)}
 .paywall-redeem label{display:block;font-size:12px;color:var(--faint);margin-bottom:8px}
 #licenseInput{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:14px 'JetBrains Mono',monospace;margin-bottom:10px;box-sizing:border-box}
 #licenseInput:focus{outline:none;border-color:var(--accent)}
-.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.tiers{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}
 .tier{border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-align:left;display:flex;flex-direction:column}
 .tier b{display:block;margin-bottom:2px}
 .tier span{display:block;font-size:13px;color:var(--dim);margin-bottom:8px}
 .tier .btn{width:100%;text-align:center;margin-top:auto;box-sizing:border-box}
-#paywall .paywall-card{max-width:820px}
+#paywall .paywall-card{max-width:620px}
 @media(max-width:700px){.tiers{grid-template-columns:1fr}#paywall .paywall-card{max-width:380px}}
 .license-label{display:block;font-size:13px;color:var(--dim);margin:6px 0}
 #licenseRedeem{width:100%;margin-bottom:4px}
@@ -293,7 +293,7 @@ footer a:hover{color:var(--ink)}
   "operatingSystem": "Any (runs in browser)",
   "offers": {
     "@type": "Offer",
-    "price": "2.99",
+    "price": "0",
     "priceCurrency": "EUR"
   },
   "browserRequirements": "Requires a browser that supports HTML5 Canvas",
@@ -313,7 +313,7 @@ footer a:hover{color:var(--ink)}
     {
       "@type": "Question",
       "name": "What is Superwhite HDR?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Superwhite is an HDR image tool at superwhite.app. It embeds a Rec.2100 PQ HDR profile into a JPEG so the whites render brighter than your screen's normal white on HDR displays. It is built for LinkedIn, where the effect survives image compression, and everything runs locally in your browser. It is not related to the older open source superwhite video demo on GitHub, which shows a bright white color using a small HDR video file." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Superwhite is an HDR image tool at superwhite.app. It embeds a Rec.2100 PQ HDR profile into a JPEG so the whites render brighter than your screen's normal white on HDR displays. It is built for LinkedIn, where the effect survives image compression, and everything runs free, locally in your browser. It is not related to the older open source superwhite video demo on GitHub, which shows a bright white color using a small HDR video file." }
     },
     {
       "@type": "Question",
@@ -343,7 +343,7 @@ footer a:hover{color:var(--ink)}
     {
       "@type": "Question",
       "name": "Do I need an account, and how much does it cost?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sign in with Google or email. From 2.99 euro (pay what you want) unlocks unlimited logo exports up to 400px. Creator at 5 euro one time unlocks 1400px for LinkedIn posts and ads, and Pro at 9 euro a month goes any size up to 3840px." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Sign in with Google or email. Free covers unlimited logo exports up to 400px, sized for logos and avatars. Creator at 5 euro one time unlocks 1400px for LinkedIn posts and ads, and Pro at 9 euro a month goes any size up to 3840px." }
     },
     {
       "@type": "Question",
@@ -389,7 +389,7 @@ footer a:hover{color:var(--ink)}
   <section class="hero">
     <p class="kicker">The trick behind the glowing Wiz logo on LinkedIn</p>
     <h1>Whites brighter than your screen's white.</h1>
-    <p class="sub">Superwhite embeds an HDR profile into your JPEG. On HDR screens the whites glow above everything around them, including this page. In your browser, nothing gets uploaded.</p>
+    <p class="sub">Superwhite embeds an HDR profile into your JPEG. On HDR screens the whites glow above everything around them, including this page. Free, in your browser, nothing gets uploaded.</p>
     <div class="hero-cta"><a class="btn primary" href="#try" id="heroCta">Try it now</a></div>
   </section>
 
@@ -457,7 +457,7 @@ footer a:hover{color:var(--ink)}
     </div>
     <input type="file" id="batchFiles" accept="image/png,image/jpeg,image/webp" multiple hidden>
     <p class="batch-note" id="batchNote" hidden></p>
-    <p class="limit-note" id="limitNote">From €2.99: logos up to 400px, unlimited. Creator unlocks 1400px, Pro goes full size.</p>
+    <p class="limit-note" id="limitNote">Free: logos up to 400px, unlimited. Creator unlocks 1400px, Pro goes full size.</p>
     <p class="busy" id="busy"></p>
     <div class="postdl" id="postdl" hidden>
       <b>Saved. Three rules so the glow survives:</b>
@@ -485,7 +485,7 @@ footer a:hover{color:var(--ink)}
 
   <section class="pro" id="pro">
     <h2>Superwhite Pro</h2>
-    <p>Basic starts at &euro;2.99 and covers unlimited logo exports at 400px, everything in your browser. Creator unlocks post sizes, and Pro adds full resolution plus the workflow features below.
+    <p>Free covers unlimited logo exports at 400px, everything in your browser. Creator unlocks post sizes, and Pro adds full resolution plus the workflow features below.
       Tell me which one you need first, and you get it first.</p>
 
     <div class="pro-grid">
@@ -514,7 +514,7 @@ footer a:hover{color:var(--ink)}
     <h2>Frequently asked questions</h2>
     <details>
       <summary>What is Superwhite HDR?</summary>
-      <p>Superwhite is an HDR image tool at superwhite.app. It embeds a Rec.2100 PQ HDR profile into a JPEG so the whites render brighter than your screen's normal white on HDR displays. It is built for LinkedIn, where the effect survives image compression, and everything runs locally in your browser. It is not related to the older open source superwhite video demo on GitHub, which shows a bright white color using a small HDR video file.</p>
+      <p>Superwhite is an HDR image tool at superwhite.app. It embeds a Rec.2100 PQ HDR profile into a JPEG so the whites render brighter than your screen's normal white on HDR displays. It is built for LinkedIn, where the effect survives image compression, and everything runs free, locally in your browser. It is not related to the older open source superwhite video demo on GitHub, which shows a bright white color using a small HDR video file.</p>
     </details>
     <details>
       <summary>How can I make my image glow brighter than white?</summary>
@@ -538,7 +538,7 @@ footer a:hover{color:var(--ink)}
     </details>
     <details>
       <summary>Do I need an account, and how much does it cost?</summary>
-      <p>Sign in with Google or email. From &euro;2.99 (pay what you want) unlocks unlimited logo exports up to 400px. Creator at &euro;5 one time unlocks 1400px for LinkedIn posts and ads, and Pro at &euro;9 a month goes any size up to 3840px.</p>
+      <p>Sign in with Google or email. Free covers unlimited logo exports up to 400px, sized for logos and avatars. Creator at &euro;5 one time unlocks 1400px for LinkedIn posts and ads, and Pro at &euro;9 a month goes any size up to 3840px.</p>
     </details>
     <details>
       <summary>Will the effect survive if I screenshot or repost the image?</summary>
@@ -641,7 +641,7 @@ footer a:hover{color:var(--ink)}
     <span>Superwhite runs 100% client-side. Your images never leave your device.</span>
     <span>Made by <a href="https://www.linkedin.com/in/nimrodyar/" target="_blank" rel="noopener">Nimrod Yarkoni</a> in Amsterdam</span>
     <span><a href="/tools/">Free tools</a> · <a href="/blog/">Blog</a> · <a href="https://www.linkedin.com/company/superwhiteapp" target="_blank" rel="noopener" data-loc="footer">Follow on LinkedIn</a></span>
-    <span><a href="/blog/wiz-logo-glow-linkedin">Wiz logo glow</a> · <a href="/blog/make-linkedin-post-glow-hdr">Make your post glow</a> · <a href="/blog/how-it-works">How it works</a> · <a href="/blog/glowing-logos-linkedin-trend">The glow trend</a> · <a href="/blog/why-is-that-linkedin-image-glowing">Why images glow</a> · <a href="/tools/compress-image">Compress image</a> · <a href="/tools/resize-image">Resize image</a> · <a href="/tools/convert-image">Convert image</a> · <a href="/tools/vectorize-image">Image to vector</a></span>
+    <span><a href="/blog/wiz-logo-glow-linkedin">Wiz logo glow</a> · <a href="/blog/make-linkedin-post-glow-hdr">Make your post glow</a> · <a href="/blog/how-it-works">How it works</a> · <a href="/blog/glowing-logos-linkedin-trend">The glow trend</a> · <a href="/blog/why-is-that-linkedin-image-glowing">Why images glow</a> · <a href="/tools/compress-image">Compress image</a> · <a href="/tools/resize-image">Resize image</a> · <a href="/tools/convert-image">Convert image</a></span>
   </footer>
 </div>
 
@@ -654,10 +654,9 @@ footer a:hover{color:var(--ink)}
 <div id="paywall" class="paywall-overlay" role="dialog" aria-modal="true" aria-label="Unlock unlimited exports">
   <div class="paywall-card">
     <button class="paywall-close" id="paywallClose" aria-label="Close">&times;</button>
-    <h3>Unlock exports</h3>
-    <p>Basic starts at &euro;2.99 and covers logos at 400px, unlimited. Posts and ads need Creator or Pro.</p>
+    <h3>Unlock bigger exports</h3>
+    <p>Free covers logos at 400px, unlimited. Posts and ads need Creator or Pro.</p>
     <div class="tiers">
-      <div class="tier"><b>Basic, from &euro;2.99</b><span>Unlimited exports at 400px, sized for logos and avatars. Pay what you want above &euro;2.99. License key by email, paste it below.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/gxfgak" target="_blank" rel="noopener" data-tier="basic">Get Basic</a></div>
       <div class="tier"><b>Creator, &euro;5 one time</b><span>Unlimited exports at 1400px, sized for LinkedIn posts and ads. License key by email, paste it below.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/awrzbf" target="_blank" rel="noopener" data-tier="creator">Get Creator</a></div>
       <div class="tier"><b>Pro, &euro;9 a month</b><span>Any size up to 3840px, max settings, batch and brand presets. Cancel anytime.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/xvdzcy" target="_blank" rel="noopener" data-tier="pro">Go Pro</a></div>
     </div>
@@ -888,7 +887,7 @@ function load(file) {
   const img = new Image();
   img.onload = () => {
     let w = img.naturalWidth, h = img.naturalHeight;
-    const cap = swCapPx(); if (Math.max(w, h) > cap) { const s = cap / Math.max(w, h); w = Math.round(w*s); h = Math.round(h*s); if (!isPro()) { swToast(isCreator() ? 'Creator tier: downscaled to 1400px. Pro goes full size.' : 'Basic tier: downscaled to 400px. Creator unlocks 1400px, Pro goes full size.'); gtag('event', 'res_cap_hit', { tier: swEnt.type || 'free' }); } }
+    const cap = swCapPx(); if (Math.max(w, h) > cap) { const s = cap / Math.max(w, h); w = Math.round(w*s); h = Math.round(h*s); if (!isPro()) { swToast(isCreator() ? 'Creator tier: downscaled to 1400px. Pro goes full size.' : 'Downscaled to 400px. Creator unlocks 1400px, Pro goes full size.'); gtag('event', 'res_cap_hit', { tier: swEnt.type || 'free' }); } }
     srcCanvas = document.createElement('canvas');
     srcCanvas.width = w; srcCanvas.height = h;
     const ctx = srcCanvas.getContext('2d');
@@ -1009,7 +1008,7 @@ function isPro(){ return swEnt.type === 'pro'; }
 function isCreator(){ return swEnt.type === 'creator'; }
 function isBasic(){ return swEnt.type === 'basic'; }
 function swPaid(){ return isPro() || isCreator() || isBasic(); }
-function swEntitled(){ return swPaid(); }
+function swEntitled(){ return true; } /* free tier exports at 400px, resolution is the gate */
 function swCapPx(){ return isPro() ? MAX_PX : (isCreator() ? 1400 : 400); }
 function dlCount(){
   if (window.Clerk && Clerk.user) return +((Clerk.user.unsafeMetadata && Clerk.user.unsafeMetadata.dlCount) || 0);
@@ -1029,7 +1028,7 @@ function updateLimitNote(){
   if (isPro()) { el.textContent = 'Pro: unlimited exports at full 3840px.'; return; }
   if (isCreator()) { el.textContent = 'Creator: unlimited exports at 1400px. Pro unlocks full 3840px.'; return; }
   if (isBasic()) { el.textContent = 'Basic: unlimited exports at 400px. Creator unlocks 1400px, Pro goes full size.'; return; }
-  el.textContent = 'Exports start at \u20ac2.99: unlimited logos at 400px. Creator unlocks 1400px, Pro goes full size.';
+  el.textContent = 'Free: unlimited logo exports at 400px. Creator unlocks 1400px, Pro goes full size.';
 }
 const swLimitEl = $('limitNote');
 if (swLimitEl) swLimitEl.addEventListener('click', () => { if (!swPaid()) { gtag('event', 'tier_modal_shown', { trigger: 'limit_note' }); openPaywall(); } });
@@ -1110,19 +1109,50 @@ if (swSignInBtn) swSignInBtn.addEventListener('click', () => {
   gtag('event', 'header_signin_click', {});
   Clerk.openSignIn();
 });
-window.addEventListener('load', async () => {
-  if (!window.Clerk) return;
-  try {
-    await Clerk.load();
-    swAuthReady = true;
-    swMountAccount();
-    swLoadEnt();
-    if (Clerk.user) { bpSyncFromClerk(); bpRender(); }
-    swSyncUI();
-    swResume(Clerk.user);
-    Clerk.addListener(({ user }) => { swMountAccount(); swSyncUI(); if (user) swLoadEnt(); swResume(user); });
-  } catch (err) { swAuthReady = false; }
-});
+/* Clerk is ~180KB and is only needed once someone touches the tool, so it is
+   loaded off the critical path: on first interaction, or on idle, or straight
+   away when we are coming back from a Clerk redirect. */
+const CLERK_SRC = 'https://clerk.superwhite.app/npm/@clerk/clerk-js@5/dist/clerk.browser.js';
+const CLERK_KEY = 'pk_live_Y2xlcmsuc3VwZXJ3aGl0ZS5hcHAk';
+let swClerkPromise = null;
+function swClerkLoad(){
+  if (swClerkPromise) return swClerkPromise;
+  swClerkPromise = new Promise((resolve) => {
+    const sc = document.createElement('script');
+    sc.src = CLERK_SRC;
+    sc.async = true;
+    sc.crossOrigin = 'anonymous';
+    sc.setAttribute('data-clerk-publishable-key', CLERK_KEY);
+    sc.onload = () => resolve(true);
+    sc.onerror = () => resolve(false);
+    document.head.appendChild(sc);
+  }).then(async (ok) => {
+    if (!ok || !window.Clerk) { swAuthReady = false; return; }
+    try {
+      await Clerk.load();
+      swAuthReady = true;
+      swMountAccount();
+      swLoadEnt();
+      if (Clerk.user) { bpSyncFromClerk(); bpRender(); }
+      swSyncUI();
+      swResume(Clerk.user);
+      Clerk.addListener(({ user }) => { swMountAccount(); swSyncUI(); if (user) swLoadEnt(); swResume(user); });
+    } catch (err) { swAuthReady = false; }
+  });
+  return swClerkPromise;
+}
+(function swClerkSchedule(){
+  const returning = sessionStorage.getItem('sw_pending_dl') === '1'
+    || /__clerk|__session|sign-in|sign-up/.test(location.href);
+  if (returning) { swClerkLoad(); return; }
+  const evts = ['pointerdown','keydown','touchstart','drop','dragover','focusin'];
+  const go = () => { evts.forEach(t => document.removeEventListener(t, go)); swClerkLoad(); };
+  evts.forEach(t => document.addEventListener(t, go, { passive: true }));
+  setTimeout(() => {
+    if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 3000 });
+    else go();
+  }, 2000);
+})();
 
 $('download').addEventListener('click', (e) => {
   if (swAuthReady && !swSignedIn()) {
@@ -1130,12 +1160,6 @@ $('download').addEventListener('click', (e) => {
     sessionStorage.setItem('sw_pending_dl', '1');
     gtag('event', 'signup_gate_shown', {});
     Clerk.openSignIn();
-    return;
-  }
-  if (!swEntitled()) {
-    e.preventDefault();
-    gtag('event', 'export_paywall_shown', { tier: swEnt.type || 'none' });
-    openPaywall();
     return;
   }
   if (!swPaid()) bumpDlCount();
