@@ -59,6 +59,13 @@ pre code{background:none;border:none;padding:0;font-size:13px;line-height:1.6}
 .cta:hover{background:#000}
 footer{padding:24px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
 footer a{color:var(--dim)}
+.related{border-top:1px solid var(--line);padding-top:26px;margin:0 0 10px}
+.related h2{font:700 18px 'Inter',sans-serif;margin:0 0 16px;letter-spacing:-.01em}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{margin-bottom:12px}
+.related a{color:var(--ink);text-decoration:none;font-weight:600;display:block}
+.related a:hover{color:var(--violet-hot)}
+.related span{display:block;color:var(--faint);font-size:14px;font-weight:400;line-height:1.5}
 </style>
 <script type="application/ld+json">
 {
@@ -205,6 +212,15 @@ footer a{color:var(--dim)}
     <h3>Why does my glowing image look normal on some screens?</h3>
     <p>The HDR glow only renders on HDR-capable displays with HDR enabled and battery saver off. On other screens the same file looks like a normal image with slightly dimmer whites.</p>
   </article>
+
+  <nav class="related" aria-label="Related reading">
+    <h2>Keep reading</h2>
+    <ul>
+    <li><a href="/blog/linkedin-glow-prompt">The LinkedIn glow prompt that does not exist</a><span>Why no AI prompt can produce the effect.</span></li>
+    <li><a href="/blog/how-it-works">How it works, technically</a><span>PQ transfer functions, ICC splicing and EDR headroom.</span></li>
+    <li><a href="/blog/build-hdr-glow-yourself-vs-api">Build the HDR glow yourself, or use the API</a><span>Where DIY implementations break, and what that costs.</span></li>
+    </ul>
+  </nav>
   <footer>
     <a href="/">Superwhite</a> · <a href="/tools/">Free tools</a> · <a href="/blog/why-is-that-linkedin-image-glowing">Why is that LinkedIn image glowing?</a> · <a href="/blog/how-it-works">How it works, technically</a>
   </footer>
