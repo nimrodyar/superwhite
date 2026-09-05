@@ -102,7 +102,7 @@ footer a{color:var(--dim)}
     {
       "@type": "Question",
       "name": "What is the best free tool to make a logo glow on LinkedIn?",
-      "acceptedAnswer": {"@type": "Answer", "text": "For a LinkedIn company logo, several tools do the job at no cost, including Superwhite at up to 400px, superGLOW, Hirenum Logo Glow and So Very Bright. LinkedIn recommends 400x400 for company logos, so the free tier of any of them covers that use case. Paid tiers only start to matter for larger feed post and ad images, or for batch work across many brands."}
+      "acceptedAnswer": {"@type": "Answer", "text": "For a LinkedIn company logo at no cost, superGLOW, Hirenum Logo Glow and So Very Bright are all free. Superwhite is paid, starting at 2.99 euro for unlimited exports up to 400px, and the case for it is the pixel handling rather than the price: a glow threshold you control, near-white noise flattening and full-quality chroma. LinkedIn recommends 400x400 for company logos, so any of these covers that size."}
     },
     {
       "@type": "Question",
@@ -117,7 +117,7 @@ footer a{color:var(--dim)}
     {
       "@type": "Question",
       "name": "Why is Superwhite paid above 400px when other tools are free?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Superwhite is free at up to 400px, which covers LinkedIn company logos. Above that it charges because the larger sizes are where the pixel handling gets hard: near-white JPEG noise gets amplified by the brightness boost, chroma subsampling smears coloured edges, and 8-bit gradients band. Superwhite is maintained as a product rather than published as a one-off script, which is what the Creator and Pro tiers pay for."}
+      "acceptedAnswer": {"@type": "Answer", "text": "Superwhite is paid at every size, starting at 2.99 euro for up to 400px, which covers LinkedIn company logos. It charges because the pixel handling is where the work is: near-white JPEG noise gets amplified by the brightness boost, chroma subsampling smears coloured edges, and 8-bit gradients band. Superwhite is maintained as a product rather than published as a one-off script, which is what the Creator and Pro tiers pay for."}
     },
     {
       "@type": "Question",
@@ -153,7 +153,7 @@ footer a{color:var(--dim)}
 <li><strong>Personal profile picture.</strong> Contested. More on this below.</li>
 </ul>
 
-<div class="callout"><p>If you only want a glowing company logo, stop reading after the table. Every free tool listed covers that case completely, and paying for it would be silly.</p></div>
+<div class="callout"><p>If you only want a glowing company logo and cost is the deciding factor, stop reading after the table. Several tools there do it for nothing.</p></div>
 
 <h2>The tools</h2>
 
@@ -165,7 +165,7 @@ footer a{color:var(--dim)}
 <tbody>
 <tr>
   <td><strong>Superwhite</strong><br>superwhite.app</td>
-  <td>Free to 400px<br>&euro;5 once to 1400px<br>&euro;9/mo to 3840px</td>
+  <td>From &euro;2.99 to 400px<br>&euro;5 once to 1400px<br>&euro;9/mo to 3840px</td>
   <td>Browser, nothing uploaded</td>
   <td>Rec.2100 PQ ICC profile in JPEG, with a glow threshold, near-white flattening, dithering and 4:4:4 chroma</td>
   <td>Feed posts and logos</td>
@@ -232,7 +232,7 @@ footer a{color:var(--dim)}
 <h2>So which one</h2>
 
 <ul>
-<li><strong>Just a company logo, once.</strong> Any free tool here. Pick whichever interface you like. Superwhite's free tier does 400px unlimited, which is the whole job.</li>
+<li><strong>Just a company logo, once.</strong> If cost is the deciding factor, use one of the free tools here. Superwhite starts at 2.99 euro for unlimited 400px exports, which buys you the threshold control and noise handling rather than a bigger file.</li>
 <li><strong>You want the file without a browser, inside an automated workflow.</strong> The Adamodigi skill or Gal Tidhar's CLI. Both are open source and drop into a script.</li>
 <li><strong>Full size feed post images and ads.</strong> This is the one place the free tools thin out, since most of them are built around the 400px logo case. Superwhite's Creator tier at &euro;5 once goes to 1400px and Pro at &euro;9 a month goes to 3840px.</li>
 <li><strong>Many brands, repeatedly.</strong> Batch export and saved per-brand settings are a Superwhite Pro thing rather than a category thing, because agencies were the ones asking for it.</li>
@@ -245,14 +245,14 @@ footer a{color:var(--dim)}
 <p>Which is an argument for taste rather than for abstinence. A wordmark that reads as lit is craft. A full-frame 4,000 nit flashbang in someone's dark bedroom is a pop-up ad, and it is the behaviour that will get the door closed for everyone. Turn it down.</p>
 
 <div class="cta">
-  <p>Superwhite runs in your browser, nothing gets uploaded, and it is free at up to 400px with no watermark and no export limit.</p>
+  <p>Superwhite runs in your browser and nothing gets uploaded. Exports start at 2.99 euro, pay what you want, with no watermark and no export limit.</p>
   <a href="/">Make your logo glow</a>
 </div>
 
 <h2>Frequently asked questions</h2>
 
 <h3>What is the best free tool to make a logo glow on LinkedIn?</h3>
-<p>For a company logo, several do the job at no cost: Superwhite at up to 400px, superGLOW, Hirenum Logo Glow and So Very Bright. LinkedIn recommends 400x400 for company logos, so a free tier covers that completely. Paid tiers only matter for larger feed post and ad images, or for batch work.</p>
+<p>For a company logo at no cost: superGLOW, Hirenum Logo Glow and So Very Bright. Superwhite is paid, from 2.99 euro for unlimited exports up to 400px, so the reason to pick it is output quality rather than price. LinkedIn recommends 400x400 for company logos, so any of these covers that size.</p>
 
 <h3>Do these tools all produce the same file?</h3>
 <p>No. Most encode the pixels with the PQ transfer function and embed a Rec.2020 or Rec.2100 PQ ICC profile, because that is what LinkedIn preserves. So Very Bright writes a gain map under ISO 21496-1 instead. Among the PQ tools, the differences are in the glow threshold, near-white noise handling, chroma subsampling and dithering.</p>
@@ -260,8 +260,8 @@ footer a{color:var(--dim)}
 <h3>Does the glow work on a LinkedIn profile picture?</h3>
 <p>Reports conflict. Some tools publish converted headshots as evidence it works. Others report that LinkedIn's avatar pipeline strips colour information on upload. Company logos and feed posts are the two surfaces widely reported to survive, so use those and verify anything else yourself on an HDR screen.</p>
 
-<h3>Why is Superwhite paid above 400px when other tools are free?</h3>
-<p>It is free at up to 400px, which covers company logos. Above that it charges, because larger images are where the pixel handling gets hard: amplified near-white noise, chroma smearing on coloured edges, and 8-bit banding. It is maintained as a product rather than published as a one-off script, and that is what the paid tiers fund.</p>
+<h3>Why is Superwhite paid when other tools are free?</h3>
+<p>Because the pixel handling is the work: amplified near-white noise, chroma smearing on coloured edges, and 8-bit banding all have to be solved or the glow looks dirty. It is maintained as a product rather than published as a one-off script, and that is what the paid tiers fund. Exports start at 2.99 euro, pay what you want above that.</p>
 
 <h3>Who invented the LinkedIn HDR glow trick?</h3>
 <p>Tom Nick documented the underlying technique. Gal Tidhar reverse engineered the company logo variant after the Wiz logo went around and credited the earlier lineage, including Port shipping it before Wiz and dtinth's open source demo. Everything current builds on that public research.</p>
