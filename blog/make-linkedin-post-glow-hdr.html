@@ -16,6 +16,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"HowTo","name":"Make your LinkedIn post glow in HDR",
+  "image": "https://superwhite.app/og.jpg",
   "author": {"@type": "Person", "name": "Nimrod Yarkoni", "url": "https://www.linkedin.com/in/nimrodyar/", "sameAs": ["https://github.com/nimrodyar"]},"description":"Make the image in a LinkedIn post render brighter than the screen's normal white using an in-browser HDR tool.","totalTime":"PT1M","tool":[{"@type":"HowToTool","name":"Superwhite (browser tool)"}],"step":[{"@type":"HowToStep","name":"Open Superwhite","text":"Go to superwhite.app in Chrome or Safari. Everything runs locally in the browser, nothing is uploaded.","url":"https://superwhite.app/"},{"@type":"HowToStep","name":"Drop your image in","text":"Use a high-contrast graphic: a logo, wordmark, or simple illustration with bright whites. Load your original file, not a previous Superwhite export."},{"@type":"HowToStep","name":"Set the brightness","text":"Move the slider until the preview clearly out-glows the white page around it. Around 1000 nits is a good start."},{"@type":"HowToStep","name":"Download the JPEG","text":"Export the file. The HDR color profile is embedded in the JPEG itself."},{"@type":"HowToStep","name":"Upload it to LinkedIn as-is","text":"Attach the file directly to a feed post. Do not crop, rotate, or edit it in LinkedIn's composer, that strips the profile and kills the glow."}]}
 </script>
 <script type="application/ld+json">
@@ -67,7 +68,40 @@ li{margin-bottom:10px}
 footer{margin-top:48px;padding:24px 0 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--faint)}
 footer a{color:var(--dim);text-decoration:none}
 footer a:hover{color:var(--ink)}
+.related{border-top:1px solid var(--line);padding-top:26px;margin:0 0 10px}
+.related h2{font:700 18px 'Inter',sans-serif;margin:0 0 16px;letter-spacing:-.01em}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{margin-bottom:12px}
+.related a{color:var(--ink);text-decoration:none;font-weight:600;display:block}
+.related a:hover{color:var(--violet-hot)}
+.related span{display:block;color:var(--faint);font-size:14px;font-weight:400;line-height:1.5}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Superwhite",
+      "item": "https://superwhite.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://superwhite.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Make your LinkedIn post glow in HDR",
+      "item": "https://superwhite.app/blog/make-linkedin-post-glow-hdr"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -132,6 +166,15 @@ footer a:hover{color:var(--ink)}
 
 <p style="margin-top:36px">Want the deeper technical story? Read <a href="/blog/how-it-works">how the Rec.2100 PQ trick works</a>, or the explainer on <a href="/blog/why-is-that-linkedin-image-glowing">why that LinkedIn image is glowing</a>. Credit to <a href="https://tn1ck.com/blog/abuse-hdr-images-for-marketing" rel="noopener">Tom Nick</a>, who first documented the technique.</p>
 </article>
+
+  <nav class="related" aria-label="Related reading">
+    <h2>Keep reading</h2>
+    <ul>
+    <li><a href="/blog/make-image-glow-online">How to make an image glow online</a><span>Real HDR light versus painted glow filters.</span></li>
+    <li><a href="/blog/linkedin-glow-prompt">The LinkedIn glow prompt that does not exist</a><span>Why no AI prompt can produce the effect.</span></li>
+    <li><a href="/blog/how-it-works">How it works, technically</a><span>PQ transfer functions, ICC splicing and EDR headroom.</span></li>
+    </ul>
+  </nav>
 
 <footer>
   <span>&copy; 2026 Superwhite</span>
