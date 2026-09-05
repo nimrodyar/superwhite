@@ -43,6 +43,13 @@ pre code{background:none;padding:0}
 .cta a{display:inline-block;margin-top:14px;background:var(--violet);color:#fff;text-decoration:none;
 font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
 footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
+.related{border-top:1px solid var(--line);padding-top:26px;margin:0 0 10px}
+.related h2{font:700 18px 'Inter',sans-serif;margin:0 0 16px;letter-spacing:-.01em}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{margin-bottom:12px}
+.related a{color:var(--ink);text-decoration:none;font-weight:600;display:block}
+.related a:hover{color:var(--violet-hot)}
+.related span{display:block;color:var(--faint);font-size:14px;font-weight:400;line-height:1.5}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
@@ -58,8 +65,35 @@ footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px soli
   "@type": "Article",
   "headline": "How Superwhite works: abusing Rec.2100 PQ profiles to render brighter than white",
   "url": "https://superwhite.app/blog/how-it-works",
+  "image": "https://superwhite.app/og.jpg",
   "author": {"@type": "Person", "name": "Nimrod Yarkoni", "url": "https://www.linkedin.com/in/nimrodyar/", "sameAs": ["https://github.com/nimrodyar"]},
   "publisher": {"@type": "Organization", "name": "Superwhite", "url": "https://superwhite.app", "sameAs": ["https://www.linkedin.com/company/superwhiteapp"]}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Superwhite",
+      "item": "https://superwhite.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://superwhite.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How Superwhite works, technically",
+      "item": "https://superwhite.app/blog/how-it-works"
+    }
+  ]
 }
 </script>
 </head>
@@ -110,6 +144,15 @@ footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px soli
   <a href="/">Open Superwhite →</a>
 </div>
 </article>
+
+  <nav class="related" aria-label="Related reading">
+    <h2>Keep reading</h2>
+    <ul>
+    <li><a href="/blog/build-hdr-glow-yourself-vs-api">Build the HDR glow yourself, or use the API</a><span>Where DIY implementations break, and what that costs.</span></li>
+    <li><a href="/blog/hdr-video-linkedin">We tested HDR video on LinkedIn</a><span>Five encodings, organic and ads. Every one comes back retagged.</span></li>
+    <li><a href="/blog/linkedin-redesign-hdr-glow">LinkedIn's redesign did not touch the glow</a><span>Why a UI refresh and an image pipeline are different systems.</span></li>
+    </ul>
+  </nav>
 
 <footer>superwhite.app · runs 100% client-side</footer>
 </div>
