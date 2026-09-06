@@ -293,7 +293,7 @@ footer a:hover{color:var(--ink)}
   "operatingSystem": "Any (runs in browser)",
   "offers": {
     "@type": "Offer",
-    "price": "2.99",
+    "price": "3",
     "priceCurrency": "EUR"
   },
   "browserRequirements": "Requires a browser that supports HTML5 Canvas",
@@ -343,7 +343,7 @@ footer a:hover{color:var(--ink)}
     {
       "@type": "Question",
       "name": "Do I need an account, and how much does it cost?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sign in with Google or email. From 2.99 euro (pay what you want) unlocks unlimited logo exports up to 400px. Creator at 5 euro one time unlocks 1400px for LinkedIn posts and ads, and Pro at 9 euro a month goes any size up to 3840px." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Sign in with Google or email. Simple is 3 euro one time and unlocks unlimited logo exports up to 400px. Creator at 5 euro one time unlocks 1400px for LinkedIn posts and ads, and Pro at 9 euro a month goes any size up to 3840px." }
     },
     {
       "@type": "Question",
@@ -457,7 +457,7 @@ footer a:hover{color:var(--ink)}
     </div>
     <input type="file" id="batchFiles" accept="image/png,image/jpeg,image/webp" multiple hidden>
     <p class="batch-note" id="batchNote" hidden></p>
-    <p class="limit-note" id="limitNote">From €2.99: logos up to 400px, unlimited. Creator unlocks 1400px, Pro goes full size.</p>
+    <p class="limit-note" id="limitNote">Simple, €3 one time: logos up to 400px, unlimited. Creator unlocks 1400px, Pro goes full size.</p>
     <p class="busy" id="busy"></p>
     <div class="postdl" id="postdl" hidden>
       <b>Saved. Three rules so the glow survives:</b>
@@ -485,7 +485,7 @@ footer a:hover{color:var(--ink)}
 
   <section class="pro" id="pro">
     <h2>Superwhite Pro</h2>
-    <p>Basic starts at &euro;2.99 and covers unlimited logo exports at 400px, everything in your browser. Creator unlocks post sizes, and Pro adds full resolution plus the workflow features below.
+    <p>Simple is &euro;3 one time and covers unlimited logo exports at 400px, everything in your browser. Creator unlocks post sizes, and Pro adds full resolution plus the workflow features below.
       Tell me which one you need first, and you get it first.</p>
 
     <div class="pro-grid">
@@ -538,7 +538,7 @@ footer a:hover{color:var(--ink)}
     </details>
     <details>
       <summary>Do I need an account, and how much does it cost?</summary>
-      <p>Sign in with Google or email. From &euro;2.99 (pay what you want) unlocks unlimited logo exports up to 400px. Creator at &euro;5 one time unlocks 1400px for LinkedIn posts and ads, and Pro at &euro;9 a month goes any size up to 3840px.</p>
+      <p>Sign in with Google or email. Simple is &euro;3 one time and unlocks unlimited logo exports up to 400px. Creator at &euro;5 one time unlocks 1400px for LinkedIn posts and ads, and Pro at &euro;9 a month goes any size up to 3840px.</p>
     </details>
     <details>
       <summary>Will the effect survive if I screenshot or repost the image?</summary>
@@ -655,9 +655,9 @@ footer a:hover{color:var(--ink)}
   <div class="paywall-card">
     <button class="paywall-close" id="paywallClose" aria-label="Close">&times;</button>
     <h3>Unlock exports</h3>
-    <p>Basic starts at &euro;2.99 and covers logos at 400px, unlimited. Posts and ads need Creator or Pro.</p>
+    <p>Simple is &euro;3 one time and covers logos at 400px, unlimited. Posts and ads need Creator or Pro.</p>
     <div class="tiers">
-      <div class="tier"><b>Basic, from &euro;2.99</b><span>Unlimited exports at 400px, sized for logos and avatars. Pay what you want above &euro;2.99. License key by email, paste it below.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/gxfgak" target="_blank" rel="noopener" data-tier="basic">Get Basic</a></div>
+      <div class="tier"><b>Simple, &euro;3 one time</b><span>Unlimited exports at 400px, sized for logos and avatars. License key by email, paste it below.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/gxfgak" target="_blank" rel="noopener" data-tier="basic">Get Simple</a></div>
       <div class="tier"><b>Creator, &euro;5 one time</b><span>Unlimited exports at 1400px, sized for LinkedIn posts and ads. License key by email, paste it below.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/awrzbf" target="_blank" rel="noopener" data-tier="creator">Get Creator</a></div>
       <div class="tier"><b>Pro, &euro;9 a month</b><span>Any size up to 3840px, max settings, batch and brand presets. Cancel anytime.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/xvdzcy" target="_blank" rel="noopener" data-tier="pro">Go Pro</a></div>
     </div>
@@ -888,7 +888,7 @@ function load(file) {
   const img = new Image();
   img.onload = () => {
     let w = img.naturalWidth, h = img.naturalHeight;
-    const cap = swCapPx(); if (Math.max(w, h) > cap) { const s = cap / Math.max(w, h); w = Math.round(w*s); h = Math.round(h*s); if (!isPro()) { swToast(isCreator() ? 'Creator tier: downscaled to 1400px. Pro goes full size.' : 'Basic tier: downscaled to 400px. Creator unlocks 1400px, Pro goes full size.'); gtag('event', 'res_cap_hit', { tier: swEnt.type || 'free' }); } }
+    const cap = swCapPx(); if (Math.max(w, h) > cap) { const s = cap / Math.max(w, h); w = Math.round(w*s); h = Math.round(h*s); if (!isPro()) { swToast(isCreator() ? 'Creator tier: downscaled to 1400px. Pro goes full size.' : 'Simple tier: downscaled to 400px. Creator unlocks 1400px, Pro goes full size.'); gtag('event', 'res_cap_hit', { tier: swEnt.type || 'free' }); } }
     srcCanvas = document.createElement('canvas');
     srcCanvas.width = w; srcCanvas.height = h;
     const ctx = srcCanvas.getContext('2d');
@@ -1028,8 +1028,8 @@ function updateLimitNote(){
   if (!el) return;
   if (isPro()) { el.textContent = 'Pro: unlimited exports at full 3840px.'; return; }
   if (isCreator()) { el.textContent = 'Creator: unlimited exports at 1400px. Pro unlocks full 3840px.'; return; }
-  if (isBasic()) { el.textContent = 'Basic: unlimited exports at 400px. Creator unlocks 1400px, Pro goes full size.'; return; }
-  el.textContent = 'Exports start at \u20ac2.99: unlimited logos at 400px. Creator unlocks 1400px, Pro goes full size.';
+  if (isBasic()) { el.textContent = 'Simple: unlimited exports at 400px. Creator unlocks 1400px, Pro goes full size.'; return; }
+  el.textContent = 'Simple, \u20ac3 one time: unlimited logos at 400px. Creator unlocks 1400px, Pro goes full size.';
 }
 const swLimitEl = $('limitNote');
 if (swLimitEl) swLimitEl.addEventListener('click', () => { if (!swPaid()) { gtag('event', 'tier_modal_shown', { trigger: 'limit_note' }); openPaywall(); } });
@@ -1366,7 +1366,7 @@ async function swRedeem(){
     proKeyStore(key.toUpperCase());
     swEnt = { type: d.type, credits: d.credits || 0 };
     gtag('event', 'license_redeemed', { type: d.type });
-    msg.textContent = d.type === 'pro' ? 'Pro unlocked: unlimited exports at full resolution.' : (d.type === 'basic' ? 'Basic unlocked: unlimited exports at 400px.' : 'Creator unlocked: unlimited exports at 1400px.');
+    msg.textContent = d.type === 'pro' ? 'Pro unlocked: unlimited exports at full resolution.' : (d.type === 'basic' ? 'Simple unlocked: unlimited exports at 400px.' : 'Creator unlocked: unlimited exports at 1400px.');
     msg.className = 'paywall-msg ok';
     updateLimitNote();
     swSyncUI();
