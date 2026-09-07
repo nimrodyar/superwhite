@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HDR Logo Maker: Turn Your Logo Into an HDR Asset for LinkedIn | Superwhite</title>
+<meta name="description" content="Make an HDR version of your logo that glows brighter than white on LinkedIn and looks normal everywhere else. How to prepare the file, which size to export, and batch export for agencies.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://superwhite.app/hdr-logo-maker">
+<meta property="og:title" content="HDR Logo Maker: Turn Your Logo Into an HDR Asset for LinkedIn | Superwhite">
+<meta property="og:description" content="Make an HDR version of your logo that glows brighter than white on LinkedIn and looks normal everywhere else. How to prepare the file, which size to export, and batch export for agencies.">
+<meta property="og:url" content="https://superwhite.app/hdr-logo-maker">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://superwhite.app/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A white logo rendering brighter than the white page around it on an HDR display">
+<meta property="og:site_name" content="Superwhite">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/favicon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HE8J29XL52');
+</script>
+<style>
+:root{--bg:#0D0B14;--surface:#161221;--line:#292139;--violet:#6B2EF5;--violet-hot:#8B5CF6;
+--brand:#5B21F5;--ink:#F2EFFA;--dim:#A79BD9;--faint:#6C6285}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.75 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{padding:24px 0;display:flex;align-items:center;justify-content:space-between}
+.logo{font:800 26px/1 'Baloo 2',sans-serif;color:var(--brand);-webkit-text-stroke:6px #fff;paint-order:stroke fill;
+text-shadow:0 3px 0 rgba(0,0,0,.35);transform:rotate(-2deg);text-decoration:none}
+.back{font:500 14px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+article{padding:30px 0 60px}
+h1{font:700 clamp(30px,5vw,44px)/1.15 'Inter',sans-serif;letter-spacing:-.03em;margin-bottom:14px}
+.byline{font:500 13px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:36px}
+h2{font:700 24px 'Inter',sans-serif;letter-spacing:-.02em;margin:44px 0 14px}
+h3{font:600 19px 'Inter',sans-serif;margin:28px 0 10px}
+p{color:var(--dim);margin-bottom:18px}
+p strong,li strong{color:var(--ink);font-weight:600}
+a{color:var(--violet-hot)}
+ul{margin:0 0 18px 22px;color:var(--dim)}
+li{margin-bottom:8px}
+.callout{border-left:3px solid var(--violet);background:var(--surface);border-radius:0 10px 10px 0;padding:16px 18px;margin-bottom:18px}
+.callout p{margin:0}
+.tablewrap{overflow-x:auto;margin:0 0 22px;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:15px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:top}
+th{color:var(--ink);font-weight:600;background:var(--surface);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td strong{color:var(--ink)}
+.cta{margin-top:50px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:28px;text-align:center}
+.cta a{display:inline-block;margin-top:14px;background:var(--violet);color:#fff;text-decoration:none;
+font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
+footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
+footer a{color:var(--dim)}
+.related{border-top:1px solid var(--line);padding-top:26px;margin:0 0 10px}
+.related h2{font:700 18px 'Inter',sans-serif;margin:0 0 16px;letter-spacing:-.01em}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{margin-bottom:12px}
+.related a{color:var(--ink);text-decoration:none;font-weight:600;display:block}
+.related a:hover{color:var(--violet-hot)}
+.related span{display:block;color:var(--faint);font-size:14px;font-weight:400;line-height:1.5}
+
+.hero-cta{margin:26px 0 34px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:24px 26px}
+.hero-cta p{margin:0 0 14px;color:var(--ink)}
+.hero-cta a.btn{display:inline-block;background:var(--violet);color:#fff;text-decoration:none;font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
+.hero-cta small{display:block;margin-top:12px;color:var(--faint);font-size:13px}
+ol{margin:0 0 18px 22px;color:var(--dim)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 22px}
+.grid div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.grid h3{margin:0 0 8px;font-size:16px}
+.grid ul{margin:0 0 0 18px;font-size:15px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "SoftwareApplication",
+ "name": "Superwhite HDR Logo Maker",
+ "applicationCategory": "MultimediaApplication",
+ "operatingSystem": "Any (browser)",
+ "url": "https://superwhite.app/hdr-logo-maker",
+ "description": "Make an HDR version of your logo that glows brighter than white on LinkedIn and looks normal everywhere else. How to prepare the file, which size to export, and batch export for agencies.",
+ "image": "https://superwhite.app/og.jpg",
+ "offers": [
+  {
+   "@type": "Offer",
+   "name": "Simple",
+   "price": "3",
+   "priceCurrency": "EUR",
+   "description": "One time. Unlimited HDR exports up to 400px, sized for LinkedIn logos and avatars."
+  },
+  {
+   "@type": "Offer",
+   "name": "Creator",
+   "price": "5",
+   "priceCurrency": "EUR",
+   "description": "One time. Unlimited HDR exports up to 1400px, sized for LinkedIn posts and ads."
+  },
+  {
+   "@type": "Offer",
+   "name": "Pro",
+   "price": "9",
+   "priceCurrency": "EUR",
+   "description": "Per month. Up to 3840px, batch export and saved brand presets."
+  }
+ ],
+ "publisher": {
+  "@type": "Organization",
+  "name": "Superwhite",
+  "url": "https://superwhite.app"
+ }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Superwhite",
+   "item": "https://superwhite.app/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "HDR logo maker",
+   "item": "https://superwhite.app/hdr-logo-maker"
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Can I use a transparent PNG logo?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. JPEG has no alpha channel, so transparent areas are composited onto a background before export. Choose the background colour deliberately, because the contrast between it and the glowing mark is the effect."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What size should an HDR LinkedIn logo be?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "400 by 400 pixels, square. That is what LinkedIn serves for company logos and it means LinkedIn has no reason to resize or crop, so the file comes through its re-encode almost untouched. Simple covers this size."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does the HDR logo maker work for post images and ads too?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Post and ad creative is 1200 by 627 on LinkedIn, which needs the Creator tier at 1400px. Sponsored Content keeps the ICC profile, so paid placements glow as well as organic ones."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I process many logos at once?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Batch export is in Superwhite Pro along with saved brand presets, so an agency can run a set of client logos through fixed settings in one pass and repeat it next month with one click."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Will the logo look broken on non-HDR screens?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. On an SDR display, or with HDR switched off, the file renders as a normal logo. That is the point of carrying the HDR inside the colour profile rather than in the pixel values."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is Superwhite an HDR logo maker for Instagram?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Instagram and other Meta surfaces need Ultra HDR gain map JPEGs, a different format from the ICC-profile JPEG that survives LinkedIn. Superwhite is built for the LinkedIn pipeline."
+   }
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="logo" href="/">superwhite</a>
+  <a class="back" href="/#try">&larr; open the tool</a>
+</header>
+
+<article>
+<h1>HDR logo maker for LinkedIn</h1>
+<p class="byline">superwhite.app &middot; HDR logo maker &middot; updated 7 September 2026</p>
+
+<div class="hero-cta">
+<p>Turn a brand logo into a real HDR asset for LinkedIn in under a minute. Batch export and saved brand presets on Pro, for teams doing this across many clients.</p>
+<a class="btn" href="/#try">Open the HDR logo maker</a>
+<small>Runs in your browser, nothing is uploaded. Simple is &euro;3 one time for unlimited exports at 400px. Creator &euro;5 one time to 1400px. Pro &euro;9 a month to 3840px.</small>
+</div>
+<h2>What an HDR logo maker does</h2>
+<p>It takes your existing logo file and produces a version that renders brighter than white on HDR displays while looking identical on everything else. The output is a standard JPEG, so it drops into any workflow that accepts an image. The HDR lives inside the colour management, as a Rec.2100 PQ ICC profile, which is why it passes through LinkedIn's re-encode when Ultra HDR gain maps and HDR PNGs do not.</p>
+<p>Superwhite is the HDR logo maker behind the Wiz logo that started the trend, and behind the Taboola, Port, Lusha, DoiT and Prime Security logos that followed it.</p>
+
+<h2>Preparing a logo for HDR</h2>
+<ol>
+<li><strong>Flatten it.</strong> JPEG has no alpha channel. Composite the mark onto its final background colour before you upload, or let Superwhite composite a transparent PNG for you.</li>
+<li><strong>Make the mark genuinely white.</strong> The glow targets near-white values. A wordmark at RGB 245 glows noticeably less than one at 255. Push it to pure white in your design tool if the brand allows it.</li>
+<li><strong>Keep contrast high.</strong> The effect is the gap between the glowing mark and the non-glowing field. A white mark on navy, black, deep green or brand red reads best.</li>
+<li><strong>Export square for logos.</strong> LinkedIn serves company logos at 400 &times; 400. Upload square so LinkedIn has nothing to crop.</li>
+</ol>
+
+<h2>Making the HDR version</h2>
+<ol>
+<li>Drop the logo into <a href="/#try">Superwhite</a>. The split preview shows the original beside the HDR version, and on an HDR screen the right side is already brighter than this page.</li>
+<li>Set the glow threshold. This is the luminance above which pixels are treated as white. Tighten it if any of the background is lifting.</li>
+<li>Set the strength. Logos read as lit at 1,000 to 1,600 nits. The full 4,000 nit setting is for a deliberate statement, not a default.</li>
+<li>Export. Superwhite writes a JPEG with the PQ profile, flattened near-whites, dithering in PQ space and 4:4:4 chroma at quality 97.</li>
+<li>Upload the exported file directly. Do not run it through another editor, a scheduling tool that re-compresses images, or LinkedIn's crop and filter controls.</li>
+</ol>
+
+<h2>For agencies and brand teams</h2>
+<p>If you are producing HDR logos for more than one brand, the repeat work is where a maker earns its place over a script. Superwhite Pro adds <strong>batch export</strong>, so a folder of client marks goes through the same settings in one pass, and <strong>saved brand presets</strong>, so each client's threshold and strength are one click away next month. Pro also lifts the size cap to 3840px for large-format post graphics and event assets. Pro is &euro;9 a month and cancels any time.</p>
+<p>For a single brand: Simple at &euro;3 one time covers unlimited exports at 400px, which is the logo and avatar size. Creator at &euro;5 one time covers 1400px for full-width LinkedIn posts and ads.</p>
+
+<h2>Where the HDR logo will and will not glow</h2>
+<ul>
+<li><strong>LinkedIn company logo, image posts, Sponsored Content:</strong> yes. The ICC profile survives all three, verified.</li>
+<li><strong>Your own website:</strong> yes, same JPEG.</li>
+<li><strong>Email signatures:</strong> depends entirely on the client. Apple Mail on an HDR Mac shows it; most others strip or ignore the profile.</li>
+<li><strong>Instagram, Facebook, Threads:</strong> no, Meta needs gain map JPEGs and re-encodes differently.</li>
+<li><strong>Video:</strong> no on LinkedIn, the transcoder rewrites colour metadata to SDR.</li>
+</ul>
+<p>More detail on each surface in <a href="/linkedin-hdr-glow">LinkedIn HDR glow</a>.</p>
+
+
+<h2>Frequently asked questions</h2>
+<h3>Can I use a transparent PNG logo?</h3>
+<p>Yes. JPEG has no alpha channel, so transparent areas are composited onto a background before export. Choose the background colour deliberately, because the contrast between it and the glowing mark is the effect.</p>
+<h3>What size should an HDR LinkedIn logo be?</h3>
+<p>400 by 400 pixels, square. That is what LinkedIn serves for company logos and it means LinkedIn has no reason to resize or crop, so the file comes through its re-encode almost untouched. Simple covers this size.</p>
+<h3>Does the HDR logo maker work for post images and ads too?</h3>
+<p>Yes. Post and ad creative is 1200 by 627 on LinkedIn, which needs the Creator tier at 1400px. Sponsored Content keeps the ICC profile, so paid placements glow as well as organic ones.</p>
+<h3>Can I process many logos at once?</h3>
+<p>Batch export is in Superwhite Pro along with saved brand presets, so an agency can run a set of client logos through fixed settings in one pass and repeat it next month with one click.</p>
+<h3>Will the logo look broken on non-HDR screens?</h3>
+<p>No. On an SDR display, or with HDR switched off, the file renders as a normal logo. That is the point of carrying the HDR inside the colour profile rather than in the pixel values.</p>
+<h3>Is Superwhite an HDR logo maker for Instagram?</h3>
+<p>No. Instagram and other Meta surfaces need Ultra HDR gain map JPEGs, a different format from the ICC-profile JPEG that survives LinkedIn. Superwhite is built for the LinkedIn pipeline.</p>
+</article>
+
+  <nav class="related" aria-label="Related reading">
+    <h2>Keep reading</h2>
+    <ul>
+    <li><a href="/linkedin-hdr-glow">LinkedIn HDR glow</a><span>Every LinkedIn surface, what survives and what does not.</span></li>
+    <li><a href="/blog/taboola-logo-glow-linkedin">Taboola logo glow on LinkedIn</a><span>A case study with the settings used.</span></li>
+    <li><a href="/blog/build-hdr-glow-yourself-vs-api">Build HDR glow yourself vs use the tool</a><span>When a script is enough and when it is not.</span></li>
+    <li><a href="/blog/hdr-glow-tools-compared">HDR glow tools compared</a><span>Price, format and survival for every tool in the category.</span></li>
+    </ul>
+  </nav>
+  <footer>
+    <a href="/">Superwhite</a> &middot; <a href="/linkedin-hdr-glow">LinkedIn HDR glow</a> &middot; <a href="/hdr-logo-glow">HDR logo glow</a> &middot; <a href="/hdr-logo-maker">HDR logo maker</a> &middot; <a href="/tools/">Free tools</a> &middot; <a href="/blog/">Blog</a>
+  </footer>
+</div>
+</body>
+</html>
