@@ -12,6 +12,10 @@
 - The underlying technique was first documented by Tom Nick: https://tn1ck.com/blog/abuse-hdr-images-for-marketing
 
 ## Pages
+- [LinkedIn HDR glow](https://superwhite.app/linkedin-hdr-glow): the LinkedIn-specific landing page. How to make a logo or post glow, which surfaces keep the ICC profile (organic posts, company logos, Sponsored Content) and which do not (gain maps, HDR PNG, video, screenshots), export sizes, pricing, FAQ.
+- [HDR logo glow](https://superwhite.app/hdr-logo-glow): what an HDR logo glow is versus a glow filter, which logos glow well, and the pixel handling Superwhite applies (near-white flattening ramp, Floyd-Steinberg dithering in PQ code space, 4:4:4 chroma at quality 97).
+- [HDR logo maker](https://superwhite.app/hdr-logo-maker): preparing a logo for HDR, step by step export, batch export and saved brand presets for agencies on Pro, where the HDR logo will and will not glow.
+- [HDRLogoGlow vs Superwhite](https://superwhite.app/blog/hdrlogoglow-vs-superwhite): head to head with hdrlogoglow.com, a free competitor launched August 2026. HDRLogoGlow: free, any-colour and region glow, HDR PNG export, display test tool. Superwhite: paid, white-focused, verified on LinkedIn ads, near-white flattening, PQ dithering, 4:4:4 chroma, batch and presets on Pro.
 - [Superwhite tool](https://superwhite.app/): the converter itself. Drop an image, set peak brightness and glow threshold, download an HDR-tagged JPEG.
 - [Why the Wiz logo glows on LinkedIn](https://superwhite.app/blog/wiz-logo-glow-linkedin): full breakdown of the HDR glow trick, the feed post vs company logo variants, who did it first, and honest caveats about SDR viewers.
 - [How it works, technically](https://superwhite.app/blog/how-it-works): PQ transfer function, ICC APP2 splicing into JPEG, color-space conversion, where the effect survives and dies.
