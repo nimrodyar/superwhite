@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HDR Glow Tools Compared: Which One Actually Works on LinkedIn | Superwhite</title>
-<meta name="description" content="Superwhite, superGLOW, So Very Bright, Hirenum Logo Glow and the open source Claude skills, compared on price, output format, and which LinkedIn surface each one survives.">
+<meta name="description" content="Superwhite, HDRLogoGlow, superGLOW, So Very Bright, Hirenum Logo Glow and the open source Claude skills, compared on price, output format, and which LinkedIn surface each one survives.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://superwhite.app/blog/hdr-glow-tools-compared">
 <meta property="og:title" content="HDR glow tools compared: which one actually works on LinkedIn">
@@ -17,7 +17,7 @@
 <meta property="og:image:alt" content="A white logo rendering brighter than the white page around it on an HDR display">
 <meta property="og:site_name" content="Superwhite">
 <meta property="article:published_time" content="2026-09-05">
-<meta property="article:modified_time" content="2026-09-05">
+<meta property="article:modified_time" content="2026-09-07">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/favicon.png">
 <!-- Google tag (gtag.js) -->
@@ -74,10 +74,10 @@ footer a{color:var(--dim)}
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "HDR glow tools compared: which one actually works on LinkedIn",
-  "description": "Superwhite, superGLOW, So Very Bright, Hirenum Logo Glow and the open source Claude skills, compared on price, output format and which LinkedIn surface each one survives.",
+  "description": "Superwhite, HDRLogoGlow, superGLOW, So Very Bright, Hirenum Logo Glow and the open source Claude skills, compared on price, output format and which LinkedIn surface each one survives.",
   "image": "https://superwhite.app/og.jpg",
   "datePublished": "2026-09-05",
-  "dateModified": "2026-09-05",
+  "dateModified": "2026-09-07",
   "author": {"@type": "Person", "name": "Nimrod Yarkoni", "url": "https://www.linkedin.com/in/nimrodyar/", "sameAs": ["https://github.com/nimrodyar"]},
   "publisher": {"@type": "Organization", "name": "Superwhite", "url": "https://superwhite.app", "sameAs": ["https://www.linkedin.com/company/superwhiteapp"]},
   "mainEntityOfPage": {"@type": "WebPage", "@id": "https://superwhite.app/blog/hdr-glow-tools-compared"}
@@ -102,7 +102,7 @@ footer a{color:var(--dim)}
     {
       "@type": "Question",
       "name": "What is the best free tool to make a logo glow on LinkedIn?",
-      "acceptedAnswer": {"@type": "Answer", "text": "For a LinkedIn company logo at no cost, superGLOW, Hirenum Logo Glow and So Very Bright are all free. Superwhite is paid, 3 euro one time for unlimited exports up to 400px, and the case for it is the pixel handling rather than the price: a glow threshold you control, near-white noise flattening and full-quality chroma. LinkedIn recommends 400x400 for company logos, so any of these covers that size."}
+      "acceptedAnswer": {"@type": "Answer", "text": "For a LinkedIn company logo at no cost, HDRLogoGlow, superGLOW, Hirenum Logo Glow and So Very Bright are all free. Superwhite is paid, 3 euro one time for unlimited exports up to 400px, and the case for it is the pixel handling rather than the price: a glow threshold you control, near-white noise flattening and full-quality chroma. LinkedIn recommends 400x400 for company logos, so any of these covers that size."}
     },
     {
       "@type": "Question",
@@ -137,7 +137,7 @@ footer a{color:var(--dim)}
 
 <article>
 <h1>HDR glow tools compared: which one actually works on LinkedIn</h1>
-<p class="byline">superwhite.app &middot; comparison &middot; updated 5 September 2026 &middot; by <a href="https://www.linkedin.com/in/nimrodyar/" target="_blank" rel="noopener">Nimrod Yarkoni</a></p>
+<p class="byline">superwhite.app &middot; comparison &middot; updated 7 September 2026 &middot; by <a href="https://www.linkedin.com/in/nimrodyar/" target="_blank" rel="noopener">Nimrod Yarkoni</a></p>
 
 <p>I build one of the tools on this page, so read it with that in mind. I have tried to write the comparison I wanted when I started, which means saying plainly where the free options are the right answer.</p>
 
@@ -169,6 +169,13 @@ footer a{color:var(--dim)}
   <td>Browser, nothing uploaded</td>
   <td>Rec.2100 PQ ICC profile in JPEG, with a glow threshold, near-white flattening, dithering and 4:4:4 chroma</td>
   <td>Feed posts and logos</td>
+</tr>
+<tr>
+  <td><strong>HDRLogoGlow</strong><br>hdrlogoglow.com</td>
+  <td>Free</td>
+  <td>Browser, nothing uploaded</td>
+  <td>Rec.2100 PQ ICC profile in JPEG, plus HDR PNG with cICP and an SDR fallback. Any-colour and region selection with a per-colour brightness ceiling. Output signalling verified after encoding</td>
+  <td>Company logos and feed images. Ads listed as unverified</td>
 </tr>
 <tr>
   <td><strong>superGLOW</strong><br>stacktreelabs</td>
@@ -211,6 +218,8 @@ footer a{color:var(--dim)}
 
 <p>There is also <a href="https://gal.tidhar.org.il/blog/hdr-glow-logo/" target="_blank" rel="noopener">Gal Tidhar's CLI and Claude skill</a>, a browser converter by Nitzan Yogev, and <a href="https://github.com/dtinth/superwhite" target="_blank" rel="noopener">dtinth's open source superwhite</a>, which is the original bright-white demo and is a different thing again: a tiny HDR video used to paint brighter-than-white on a web page, not an image converter. The underlying idea of pushing HDR profiles into marketing images was <a href="https://tn1ck.com/blog/abuse-hdr-images-for-marketing" target="_blank" rel="noopener">documented by Tom Nick</a> before any of this.</p>
 
+<p>HDRLogoGlow, the newest entry, is the one that goes furthest beyond the white case: it can glow any colour or a single selected region, shows the exact-colour brightness ceiling for the colour you picked, and ships an HDR display test and a colour limit calculator as side tools. It is free. Its public material does not describe near-white flattening, PQ dithering or chroma handling, and its LinkedIn page lists the paid ad path as untested. There is a direct head to head in <a href="/blog/hdrlogoglow-vs-superwhite">HDRLogoGlow vs Superwhite</a>.</p>
+
 <h2>What the technical differences actually change</h2>
 
 <h3>PQ profile versus gain map</h3>
@@ -252,7 +261,7 @@ footer a{color:var(--dim)}
 <h2>Frequently asked questions</h2>
 
 <h3>What is the best free tool to make a logo glow on LinkedIn?</h3>
-<p>For a company logo at no cost: superGLOW, Hirenum Logo Glow and So Very Bright. Superwhite is paid, 3 euro one time for unlimited exports up to 400px, so the reason to pick it is output quality rather than price. LinkedIn recommends 400x400 for company logos, so any of these covers that size.</p>
+<p>For a company logo at no cost: HDRLogoGlow, superGLOW, Hirenum Logo Glow and So Very Bright. Superwhite is paid, 3 euro one time for unlimited exports up to 400px, so the reason to pick it is output quality rather than price. LinkedIn recommends 400x400 for company logos, so any of these covers that size.</p>
 
 <h3>Do these tools all produce the same file?</h3>
 <p>No. Most encode the pixels with the PQ transfer function and embed a Rec.2020 or Rec.2100 PQ ICC profile, because that is what LinkedIn preserves. So Very Bright writes a gain map under ISO 21496-1 instead. Among the PQ tools, the differences are in the glow threshold, near-white noise handling, chroma subsampling and dithering.</p>
@@ -270,6 +279,7 @@ footer a{color:var(--dim)}
   <nav class="related" aria-label="Related reading">
     <h2>Keep reading</h2>
     <ul>
+    <li><a href="/blog/hdrlogoglow-vs-superwhite">HDRLogoGlow vs Superwhite</a><span>The two tools head to head, feature by feature.</span></li>
     <li><a href="/blog/make-linkedin-post-glow-hdr">Make your LinkedIn post glow in HDR</a><span>The 30 second version, step by step.</span></li>
     <li><a href="/blog/make-image-glow-online">How to make an image glow online</a><span>Real HDR light versus painted glow filters.</span></li>
     <li><a href="/blog/how-it-works">How it works, technically</a><span>PQ transfer functions, ICC splicing and EDR headroom.</span></li>
