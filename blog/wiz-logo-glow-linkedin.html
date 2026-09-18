@@ -160,7 +160,7 @@ footer a{color:var(--dim)}
     <h1>Why the Wiz logo glows on LinkedIn</h1>
     <p class="byline">PUBLISHED 21 JULY 2026 · UPDATED 28 JULY 2026 · BY NIMROD YARKONI</p>
 
-    <p>If you scrolled past Wiz on LinkedIn recently on a phone or a recent MacBook, the logo looked lit up. Not a brighter shade of white — actually brighter than the white page around it, like something is glowing behind the glass. People screenshot it to show a friend and the screenshot looks completely normal, which is usually the moment they start wondering if their screen is broken. It isn't. Here is a screen capture of it in the feed:</p>
+    <p>If you scrolled past Wiz on LinkedIn recently on a phone or a recent MacBook, the logo looked lit up. Not a brighter shade of white, actually brighter than the white page around it, like something is glowing behind the glass. People screenshot it to show a friend and the screenshot looks completely normal, which is usually the moment they start wondering if their screen is broken. It isn't. Here is a screen capture of it in the feed:</p>
 
     <video controls playsinline preload="metadata">
       <source src="/blog/New.mov">
@@ -170,32 +170,32 @@ footer a{color:var(--dim)}
 
     <h2>What are you actually looking at?</h2>
     <p>The glowing logo is a regular JPEG with a Rec.2100 PQ HDR color profile embedded, made with <a href="/">Superwhite</a>. LinkedIn strips most HDR metadata during upload but keeps ICC color profiles, so the file survives the compression pipeline intact. On HDR screens the white mark renders in the display's spare brightness headroom, above normal white. On SDR screens it looks like a normal logo, nothing broken.</p>
-    <p>There is no filter, no animation, no CSS. If you download the image and open it in a metadata inspector, the pixels are flat — the only unusual thing in the file is the color profile telling the renderer to treat those pixels as HDR content.</p>
+    <p>There is no filter, no animation, no CSS. If you download the image and open it in a metadata inspector, the pixels are flat, the only unusual thing in the file is the color profile telling the renderer to treat those pixels as HDR content.</p>
 
     <h2>Why does it look brighter than your screen's white?</h2>
     <p>A normal image tops out at signal value 255, which your operating system maps to a comfortable reference white of roughly 200 nits. But the panel in a recent iPhone, Pixel, or MacBook Pro can physically output 1,000–1,600 nits. That gap between reference white and panel peak is headroom, reserved for HDR content like movie highlights.</p>
-    <p>HDR video declares its brightness using the PQ (Perceptual Quantizer) transfer function, standardized in ITU-R <a href="https://en.wikipedia.org/wiki/Rec._2100" rel="noopener">BT.2100</a> and capable of encoding up to 10,000 nits. Embed that same signal in a still image and the renderer treats the image's whites as HDR highlights: the logo lands at four or five times the brightness of the page around it. Your eye is drawn to the brightest thing in view — it cannot help it. That is the entire trick, and it is why a static logo can out-compete video in the feed for a moment of attention.</p>
+    <p>HDR video declares its brightness using the PQ (Perceptual Quantizer) transfer function, standardized in ITU-R <a href="https://en.wikipedia.org/wiki/Rec._2100" rel="noopener">BT.2100</a> and capable of encoding up to 10,000 nits. Embed that same signal in a still image and the renderer treats the image's whites as HDR highlights: the logo lands at four or five times the brightness of the page around it. Your eye is drawn to the brightest thing in view, it cannot help it. That is the entire trick, and it is why a static logo can out-compete video in the feed for a moment of attention.</p>
 
     <h2>Feed posts vs. company logos: the two variants</h2>
     <p>There are two places this shows up on LinkedIn, and they work differently under the hood:</p>
     <ul>
-      <li><strong>Feed post images</strong> — LinkedIn re-encodes uploaded images but preserves ICC color profiles in JPEGs. A JPEG carrying a Rec.2100 PQ profile keeps its glow. This is the variant <a href="/">Superwhite</a> produces, with a luminance mask so only the whites glow while colors stay accurate.</li>
-      <li><strong>Company-page logos</strong> — logo uploads pass through with less processing, so a PNG tagged with BT.2020 primaries and a PQ transfer (a <code>cICP</code> chunk) also survives, while personal profile photos get re-encoded and lose it. Credit to <a href="https://gal.tidhar.org.il/blog/hdr-glow-logo/" rel="noopener">Gal Tidhar's teardown of the Wiz logo</a> for documenting the company-logo path in detail. By his read of the file, the white mark decodes around 4,000 nits against a roughly 60-nit background, on the order of 20 times normal screen white.</li>
+      <li><strong>Feed post images</strong>, LinkedIn re-encodes uploaded images but preserves ICC color profiles in JPEGs. A JPEG carrying a Rec.2100 PQ profile keeps its glow. This is the variant <a href="/">Superwhite</a> produces, with a luminance mask so only the whites glow while colors stay accurate.</li>
+      <li><strong>Company-page logos</strong>, logo uploads pass through with less processing, so a PNG tagged with BT.2020 primaries and a PQ transfer (a <code>cICP</code> chunk) also survives, while personal profile photos get re-encoded and lose it. Credit to <a href="https://gal.tidhar.org.il/blog/hdr-glow-logo/" rel="noopener">Gal Tidhar's teardown of the Wiz logo</a> for documenting the company-logo path in detail. By his read of the file, the white mark decodes around 4,000 nits against a roughly 60-nit background, on the order of 20 times normal screen white.</li>
     </ul>
-    <p>You can verify either variant landed by inspecting the file — if the transfer function reads as PQ (SMPTE ST 2084) and the primaries as BT.2020, the glow is armed:</p>
+    <p>You can verify either variant landed by inspecting the file, if the transfer function reads as PQ (SMPTE ST 2084) and the primaries as BT.2020, the glow is armed:</p>
     <pre><code>exiftool logo-hdr.jpg | grep -i profile
 # or
 ffprobe -show_entries stream=color_transfer,color_primaries logo-hdr.png</code></pre>
 
     <h2>Why does it work so well on a logo?</h2>
-    <p>High-contrast graphics are the ideal input. The Wiz mark is pure white on a solid blue background, so the glow lands exactly on the logo and nowhere else. The background stays at a normal level, which makes the contrast even more striking — a fully glowing image just looks overexposed, but a glowing mark on a calm background looks like a light source. Photos work too, but at 8 bits per channel smooth gradients can band, so a white mark on a colored background is the cleanest possible case.</p>
+    <p>High-contrast graphics are the ideal input. The Wiz mark is pure white on a solid blue background, so the glow lands exactly on the logo and nowhere else. The background stays at a normal level, which makes the contrast even more striking, a fully glowing image just looks overexposed, but a glowing mark on a calm background looks like a light source. Photos work too, but at 8 bits per channel smooth gradients can band, so a white mark on a colored background is the cleanest possible case.</p>
 
     <h2>Who did it first?</h2>
     <p>Wiz made it famous, but the lineage is longer, and worth crediting:</p>
     <ul>
       <li>The underlying profile-splicing technique was first documented publicly by <a href="https://tn1ck.com/blog/abuse-hdr-images-for-marketing" rel="noopener">Tom Nick in his write-up on HDR images</a>, after he spotted a glowing promotion in his own feed.</li>
-      <li>Port.io ran a glowing logo before Wiz, and versions circulated on Reddit for months. Slack had one too — and has since tone-mapped it away, the first sign of platforms patching.</li>
-      <li>AlphaSignal has run a glowing company logo since early 2026, prompting a wave of "is my GPU glitching?" posts — one engineer <a href="https://www.linkedin.com/posts/ajmedick_fun-little-linkedin-attention-hack-were-share-7416612295201476608-6jTJ/" rel="noopener">publicly dissected the file's metadata</a> and called it a Trojan Horse JPEG.</li>
+      <li>Port.io ran a glowing logo before Wiz, and versions circulated on Reddit for months. Slack had one too, and has since tone-mapped it away, the first sign of platforms patching.</li>
+      <li>AlphaSignal has run a glowing company logo since early 2026, prompting a wave of "is my GPU glitching?" posts, one engineer <a href="https://www.linkedin.com/posts/ajmedick_fun-little-linkedin-attention-hack-were-share-7416612295201476608-6jTJ/" rel="noopener">publicly dissected the file's metadata</a> and called it a Trojan Horse JPEG.</li>
       <li><a href="https://gal.tidhar.org.il/blog/hdr-glow-logo/" rel="noopener">Gal Tidhar reverse-engineered the Wiz logo</a> and published the company-page cICP variant with an open-source CLI.</li>
       <li><a href="https://hdr-shnitz.vercel.app/" rel="noopener">hdr-shnitz</a>, a no-code browser tool by Nitzan Yogev, does the same conversion for anyone who wants it without touching a command line.</li>
     </ul>
@@ -204,18 +204,18 @@ ffprobe -show_entries stream=color_transfer,color_primaries logo-hdr.png</code><
     <h2>What's the catch?</h2>
     <p>It is a trade-off, not a free win, and most posts about the trick skip this part:</p>
     <ul>
-      <li><strong>SDR viewers see a normal image at best.</strong> A meaningful share of the LinkedIn feed is viewed on non-HDR office monitors. Those viewers see a regular logo with slightly dimmer whites — and on some panels HDR-tagged files can render washed out. High-contrast inputs and moderate brightness settings give the most graceful fallback.</li>
-      <li><strong>Overdo it and people complain.</strong> Every viral wave of this trick produces the same comments: it hurts to look at, please change it back. Maximum brightness is not the goal — <em>standing out comfortably</em> is. This is exactly why Superwhite has a nits slider instead of a fixed maximum: around 600–1,000 nits your mark clearly out-glows the feed without searing anyone's retinas at 9 PM.</li>
+      <li><strong>SDR viewers see a normal image at best.</strong> A meaningful share of the LinkedIn feed is viewed on non-HDR office monitors. Those viewers see a regular logo with slightly dimmer whites, and on some panels HDR-tagged files can render washed out. High-contrast inputs and moderate brightness settings give the most graceful fallback.</li>
+      <li><strong>Overdo it and people complain.</strong> Every viral wave of this trick produces the same comments: it hurts to look at, please change it back. Maximum brightness is not the goal, <em>standing out comfortably</em> is. This is exactly why Superwhite has a nits slider instead of a fixed maximum: around 600–1,000 nits your mark clearly out-glows the feed without searing anyone's retinas at 9 PM.</li>
       <li><strong>The effect is fragile by design.</strong> Screenshots, re-saves, cropping in LinkedIn's composer, and messenger compression all strip the profile. Only the original exported file glows. If your campaign depends on reposts and shares, the glow will not travel with them.</li>
     </ul>
 
     <h2>Will LinkedIn patch it?</h2>
-    <p>Probably, eventually. Platforms clamped the same trick for HDR <em>video</em> after it flooded Reels and Shorts, and Slack has already tone-mapped glowing workspace logos. LinkedIn's image pipeline keeps ICC profiles today, which is the only reason the feed-post variant works. Treat it as attention arbitrage with a window: useful now, not something to build a brand system on. When the window closes, the same file simply renders as a normal image — nothing breaks.</p>
+    <p>Probably, eventually. Platforms clamped the same trick for HDR <em>video</em> after it flooded Reels and Shorts, and Slack has already tone-mapped glowing workspace logos. LinkedIn's image pipeline keeps ICC profiles today, which is the only reason the feed-post variant works. Treat it as attention arbitrage with a window: useful now, not something to build a brand system on. When the window closes, the same file simply renders as a normal image, nothing breaks.</p>
 
     <h2>How do you do it with your own logo?</h2>
     <ol>
       <li>Open <a href="/">superwhite.app</a> and drop in your logo. A white or near-white mark on a colored background works best.</li>
-      <li>Adjust peak brightness and the glow threshold until the mark glows and the background stays put. Preview it live — if you are on an HDR screen you will see exactly what your audience sees.</li>
+      <li>Adjust peak brightness and the glow threshold until the mark glows and the background stays put. Preview it live, if you are on an HDR screen you will see exactly what your audience sees.</li>
       <li>Download the HDR JPEG and post it straight to LinkedIn as a feed image. Do not crop or edit it in LinkedIn's composer, that strips the profile.</li>
     </ol>
     <p>Everything runs in your browser, nothing gets uploaded. Sign in, exports from €2.99, unlimited up to 400px.</p>
@@ -224,7 +224,7 @@ ffprobe -show_entries stream=color_transfer,color_primaries logo-hdr.png</code><
     <h2>Frequently asked questions</h2>
 
     <h3>How do you make a logo glow on LinkedIn?</h3>
-    <p>Embed an HDR color signal so the image's whites decode above normal screen white. For feed posts, a JPEG with a Rec.2100 PQ ICC profile survives LinkedIn's pipeline — <a href="/">Superwhite</a> does this in the browser. For company-page logos, a PNG tagged with BT.2020 + PQ also passes through. Post the exported file directly, without cropping or editing it in the composer.</p>
+    <p>Embed an HDR color signal so the image's whites decode above normal screen white. For feed posts, a JPEG with a Rec.2100 PQ ICC profile survives LinkedIn's pipeline, <a href="/">Superwhite</a> does this in the browser. For company-page logos, a PNG tagged with BT.2020 + PQ also passes through. Post the exported file directly, without cropping or editing it in the composer.</p>
 
     <h3>Why does the Wiz logo look brighter than everything else on my screen?</h3>
     <p>Its whites are encoded on the PQ HDR curve at levels far above the ~200 nits your screen uses for normal white, so on an HDR display the logo taps the panel's reserve brightness and physically emits more light than the interface around it.</p>
@@ -233,7 +233,7 @@ ffprobe -show_entries stream=color_transfer,color_primaries logo-hdr.png</code><
     <p>No. Screenshots capture the tone-mapped SDR result, not the HDR signal in the file. Re-saves, forwards through WhatsApp or iMessage, and copy-paste also strip the profile. Only the original exported file glows.</p>
 
     <h3>Why does it look dull or broken on some monitors?</h3>
-    <p>No HDR support, or battery saver on, means the renderer never uses the headroom — the file shows as a normal, slightly dim image, and on some non-HDR panels it can look washed out. That is the trade-off: part of your audience gets the glow, the rest gets a plain logo.</p>
+    <p>No HDR support, or battery saver on, means the renderer never uses the headroom, the file shows as a normal, slightly dim image, and on some non-HDR panels it can look washed out. That is the trade-off: part of your audience gets the glow, the rest gets a plain logo.</p>
 
     <h3>How bright should I go?</h3>
     <p>Moderate. Around 600–1,000 nits stands out clearly and stays comfortable; pushing toward a panel's maximum reads as glare and invites "my eyes" comments. The <a href="/">brightness slider</a> exists so you can find the level that fits your brand rather than defaulting to maximum.</p>
