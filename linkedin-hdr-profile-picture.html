@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn HDR Profile Picture: Can Your Photo Glow? What Works | Superwhite</title>
+<meta name="description" content="Can a LinkedIn profile picture glow brighter than white? Why the avatar pipeline strips HDR, how to test yours, and the three surfaces where the glow does work.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://superwhite.app/linkedin-hdr-profile-picture">
+<meta property="og:title" content="LinkedIn HDR Profile Picture: Can Your Photo Glow? What Works | Superwhite">
+<meta property="og:description" content="Can a LinkedIn profile picture glow brighter than white? Why the avatar pipeline strips HDR, how to test yours, and the three surfaces where the glow does work.">
+<meta property="og:url" content="https://superwhite.app/linkedin-hdr-profile-picture">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://superwhite.app/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A white logo rendering brighter than the white page around it on an HDR display">
+<meta property="og:site_name" content="Superwhite">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="Nimrod Yarkoni">
+<link rel="icon" type="image/png" href="/favicon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HE8J29XL52');
+</script>
+<style>
+:root{--bg:#0D0B14;--surface:#161221;--line:#292139;--violet:#6B2EF5;--violet-hot:#8B5CF6;
+--brand:#5B21F5;--ink:#F2EFFA;--dim:#A79BD9;--faint:#6C6285}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.75 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{padding:24px 0;display:flex;align-items:center;justify-content:space-between}
+.logo{font:800 26px/1 'Baloo 2',sans-serif;color:var(--brand);-webkit-text-stroke:6px #fff;paint-order:stroke fill;
+text-shadow:0 3px 0 rgba(0,0,0,.35);transform:rotate(-2deg);text-decoration:none}
+.back{font:500 14px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+article{padding:30px 0 60px}
+h1{font:700 clamp(30px,5vw,44px)/1.15 'Inter',sans-serif;letter-spacing:-.03em;margin-bottom:14px}
+.byline{font:500 13px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:36px}
+h2{font:700 24px 'Inter',sans-serif;letter-spacing:-.02em;margin:44px 0 14px}
+h3{font:600 19px 'Inter',sans-serif;margin:28px 0 10px}
+p{color:var(--dim);margin-bottom:18px}
+p strong,li strong{color:var(--ink);font-weight:600}
+a{color:var(--violet-hot)}
+ul{margin:0 0 18px 22px;color:var(--dim)}
+li{margin-bottom:8px}
+.callout{border-left:3px solid var(--violet);background:var(--surface);border-radius:0 10px 10px 0;padding:16px 18px;margin-bottom:18px}
+.callout p{margin:0}
+.tablewrap{overflow-x:auto;margin:0 0 22px;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:15px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:top}
+th{color:var(--ink);font-weight:600;background:var(--surface);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td strong{color:var(--ink)}
+.cta{margin-top:50px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:28px;text-align:center}
+.cta a{display:inline-block;margin-top:14px;background:var(--violet);color:#fff;text-decoration:none;
+font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
+footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
+footer a{color:var(--dim)}
+.related{border-top:1px solid var(--line);padding-top:26px;margin:0 0 10px}
+.related h2{font:700 18px 'Inter',sans-serif;margin:0 0 16px;letter-spacing:-.01em}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{margin-bottom:12px}
+.related a{color:var(--ink);text-decoration:none;font-weight:600;display:block}
+.related a:hover{color:var(--violet-hot)}
+.related span{display:block;color:var(--faint);font-size:14px;font-weight:400;line-height:1.5}
+
+.hero-cta{margin:26px 0 34px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:24px 26px}
+.hero-cta p{margin:0 0 14px;color:var(--ink)}
+.hero-cta a.btn{display:inline-block;background:var(--violet);color:#fff;text-decoration:none;font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
+.hero-cta small{display:block;margin-top:12px;color:var(--faint);font-size:13px}
+ol{margin:0 0 18px 22px;color:var(--dim)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 22px}
+.grid div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.grid h3{margin:0 0 8px;font-size:16px}
+.grid ul{margin:0 0 0 18px;font-size:15px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+</style>
+<style></style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Article",
+ "headline": "LinkedIn HDR profile picture: can your photo glow, and what to do instead",
+ "description": "Can a LinkedIn profile picture glow brighter than white? Why the avatar pipeline strips HDR, how to test yours, and the three surfaces where the glow does work.",
+ "url": "https://superwhite.app/linkedin-hdr-profile-picture",
+ "image": "https://superwhite.app/og.jpg",
+ "datePublished": "2026-09-18",
+ "dateModified": "2026-09-18",
+ "author": {
+  "@type": "Person",
+  "name": "Nimrod Yarkoni",
+  "url": "https://www.linkedin.com/in/nimrodyar/"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "Superwhite",
+  "url": "https://superwhite.app",
+  "logo": {
+   "@type": "ImageObject",
+   "url": "https://superwhite.app/apple-touch-icon.png"
+  }
+ },
+ "mainEntityOfPage": "https://superwhite.app/linkedin-hdr-profile-picture"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "SoftwareApplication",
+ "name": "Superwhite",
+ "applicationCategory": "MultimediaApplication",
+ "operatingSystem": "Any (browser)",
+ "url": "https://superwhite.app/",
+ "image": "https://superwhite.app/og.jpg",
+ "description": "Browser tool that makes a logo or LinkedIn image glow brighter than white on HDR screens.",
+ "offers": [
+  {
+   "@type": "Offer",
+   "name": "Simple",
+   "price": "3",
+   "priceCurrency": "EUR"
+  },
+  {
+   "@type": "Offer",
+   "name": "Creator",
+   "price": "5",
+   "priceCurrency": "EUR"
+  },
+  {
+   "@type": "Offer",
+   "name": "Pro",
+   "price": "9",
+   "priceCurrency": "EUR"
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Superwhite",
+   "item": "https://superwhite.app/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "LinkedIn HDR profile picture: can your photo glow, and what to do instead",
+   "item": "https://superwhite.app/linkedin-hdr-profile-picture"
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Can I make my LinkedIn profile picture glow?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Not reliably. LinkedIn's avatar pipeline is separate from the feed image pipeline and independent tests report it converts the upload to PNG and strips the colour profile that carries the HDR signal. Company page logos, image posts and banners do keep the profile and are the surfaces where the glow works."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Why did my HDR profile photo upload look normal?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The avatar pipeline removed the ICC profile, so the PQ-encoded pixels were read as ordinary sRGB. The photo is not damaged; it simply renders as a standard image. Use the same file as a post image or company logo and it will glow."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does a glowing LinkedIn banner work?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "In most tests the banner goes through the general image pipeline, which preserves the colour profile. Export at 1584 by 396 pixels, upload it directly without cropping, and check it from an HDR phone after upload."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Which LinkedIn surfaces reliably show the HDR glow?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Image posts in the feed, company page logos, and Sponsored Content image ads. Video, carousel documents and personal profile photos do not."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does the glow harm the photo on screens that cannot show HDR?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. On SDR screens and on any pipeline that strips the profile, the image looks like the original photo. The effect is additive on screens that support it and invisible everywhere else."
+   }
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="/">superwhite</a>
+    <a class="back" href="/">&larr; open the tool</a>
+  </header>
+  <article>
+<h1>LinkedIn HDR profile picture: can your photo glow, and what to do instead</h1>
+<p class="byline">superwhite.app &middot; by <a href="https://www.linkedin.com/in/nimrodyar/" rel="author">Nimrod Yarkoni</a> &middot; updated 18 September 2026</p>
+<div class="hero-cta">
+<p>People keep asking whether the glowing logo trick works on a personal profile photo. Here is what LinkedIn actually does to your avatar on upload, how to test it in two minutes, and where the glow reliably does work on a personal profile.</p>
+<a class="btn" href="/">Try it on your photo</a>
+<small>Runs in your browser, nothing is uploaded. Simple is &euro;3 one time for unlimited exports at 400px. Creator &euro;5 one time to 1400px. Pro &euro;9 a month to 3840px. Not sure your screen shows HDR? <a href="/tools/hdr-display-test">Run the free HDR display test</a>.</small>
+</div>
+
+<h2>What happens to a profile photo on upload</h2>
+<p>LinkedIn runs at least two different image pipelines. Feed images and company page logos are decoded, resized and re-encoded as JPEG with the colour profile carried across. That is why <a href="/glowing-logo-linkedin">glowing company logos</a> and glowing post images are a reliable effect.</p>
+<p>The personal profile photo goes through a separate avatar pipeline built for cropping, circular masking and serving at many sizes. Independent testers who fetched the file LinkedIn serves back after upload report that the avatar path converts the image to PNG and strips every colour chunk, including the ICC profile. Without the profile the PQ-encoded pixels are read as ordinary sRGB and the photo renders as a flat, slightly muted version of itself. Superwhite's own FAQ has said the same thing since the tool launched: the profile photo is the one surface where reports conflict, and where you should not rely on the glow.</p>
+<div class="callout"><p><strong>If you saw a glowing avatar on LinkedIn</strong>, check whether it belonged to a company page rather than a person. Company logos render in the same circular tile in the feed and comments, and those do glow. Most sightings of a "glowing profile picture" are company page logos.</p></div>
+
+<h2>Test it yourself in two minutes</h2>
+<ol>
+<li>Export your photo as an HDR JPEG. In <a href="/">Superwhite</a> drop the image in, set the glow threshold so only the highlights you want are affected, and export at 400px.</li>
+<li>Upload it as your profile photo without cropping in LinkedIn's editor. Any crop or filter step re-renders the image and drops the profile before the pipeline even starts.</li>
+<li>Open your own profile on an HDR phone or a recent MacBook. If the highlights glow above the white page, your account is on a pipeline that preserved the profile. If it looks normal, the profile was stripped and the photo is an ordinary photo, which is a safe outcome: nothing looks broken.</li>
+<li>If you want a definitive answer, right-click the served avatar in a desktop browser, open it in a new tab, and check the file type. A PNG means the profile is gone.</li>
+</ol>
+<p>Whatever the result, the file is harmless. An HDR export that lands on a pipeline without profile support just looks like the original photo.</p>
+
+<h2>What to do instead</h2>
+<h3>Make your company page logo glow</h3>
+<p>This is the surface the well known glowing logos use. It appears next to every post from the page, in every comment the page leaves, and on the page itself. The source is a 400 &times; 400 square, which is exactly what Superwhite's Simple tier exports for 3 euro one time. Read the <a href="/hdr-logo-glow">HDR logo glow guide</a> for the walkthrough.</p>
+<h3>Glow in your posts</h3>
+<p>A personal profile cannot glow, but every image post you publish can. A headshot with a lit rim light, a quote card with a glowing word, or your personal wordmark on a dark field all work in the feed. The <a href="/blog/make-linkedin-post-glow-hdr">30 second post guide</a> covers sizing and the upload rules.</p>
+<h3>Glow in your banner</h3>
+<p>The profile banner is served through the general image pipeline in most tests, and a banner with a single bright accent is a strong way to make a personal profile stand out on an HDR screen. Export at 1584 &times; 396 with the Creator tier and upload it directly. As with any surface, check it on an HDR phone after upload.</p>
+
+<h2>Photo tips for HDR export</h2>
+<ul>
+<li><strong>Decide what should glow.</strong> A photo has many near-white pixels: skin highlights, a white shirt, a bright sky. Set the glow threshold high so only the brightest one or two elements cross it. A face that glows all over looks like an overexposure.</li>
+<li><strong>Rim light and catchlights are ideal.</strong> A small bright edge on the hair or shoulder reads as a professional lighting choice on SDR and as a striking accent on HDR.</li>
+<li><strong>Keep the background dark or saturated.</strong> A white studio background will glow as a block and swallow the subject. Colour or dark grey lets the highlight do the work.</li>
+<li><strong>Do not re-save.</strong> The export is final. Any editor, compressor or messaging app between Superwhite and LinkedIn rewrites the file.</li>
+</ul>
+
+<div class="cta">
+<strong>Make your LinkedIn images glow</strong>
+<p>Company logos, posts and banners are the surfaces that work. Export the HDR JPEG in your browser and upload it straight to LinkedIn.</p>
+<a href="/">Open Superwhite</a>
+</div>
+
+<h2>Frequently asked questions</h2>
+<h3>Can I make my LinkedIn profile picture glow?</h3>
+<p>Not reliably. LinkedIn&#x27;s avatar pipeline is separate from the feed image pipeline and independent tests report it converts the upload to PNG and strips the colour profile that carries the HDR signal. Company page logos, image posts and banners do keep the profile and are the surfaces where the glow works.</p>
+<h3>Why did my HDR profile photo upload look normal?</h3>
+<p>The avatar pipeline removed the ICC profile, so the PQ-encoded pixels were read as ordinary sRGB. The photo is not damaged; it simply renders as a standard image. Use the same file as a post image or company logo and it will glow.</p>
+<h3>Does a glowing LinkedIn banner work?</h3>
+<p>In most tests the banner goes through the general image pipeline, which preserves the colour profile. Export at 1584 by 396 pixels, upload it directly without cropping, and check it from an HDR phone after upload.</p>
+<h3>Which LinkedIn surfaces reliably show the HDR glow?</h3>
+<p>Image posts in the feed, company page logos, and Sponsored Content image ads. Video, carousel documents and personal profile photos do not.</p>
+<h3>Does the glow harm the photo on screens that cannot show HDR?</h3>
+<p>No. On SDR screens and on any pipeline that strips the profile, the image looks like the original photo. The effect is additive on screens that support it and invisible everywhere else.</p>
+</article>
+
+  <nav class="related" aria-label="Related reading">
+    <h2>Keep reading</h2>
+    <ul>
+<li><a href="/glowing-logo-linkedin">Glowing logo on LinkedIn</a><span>The full explainer: why logos glow and how to make yours.</span></li>
+<li><a href="/hdr-logo-glow">HDR logo glow tool</a><span>Make a company page logo glow at 400px.</span></li>
+<li><a href="/blog/make-linkedin-post-glow-hdr">Make your LinkedIn post glow in HDR</a><span>The 30 second version, step by step.</span></li>
+<li><a href="/tools/hdr-display-test">HDR display test</a><span>Check whether your screen can show the glow at all.</span></li>
+    </ul>
+  </nav>
+  <footer>
+    <a href="/">Superwhite</a> &middot; <a href="/glowing-logo-linkedin">Glowing logo on LinkedIn</a> &middot; <a href="/linkedin-hdr-glow">LinkedIn HDR glow</a> &middot; <a href="/hdr-logo-glow">HDR logo glow</a> &middot; <a href="/hdr-logo-maker">HDR logo maker</a> &middot; <a href="/linkedin-hdr-profile-picture">Profile picture</a> &middot; <a href="/tools/">Free tools</a> &middot; <a href="/blog/">Blog</a>
+    <br>Written by <a href="https://www.linkedin.com/in/nimrodyar/" target="_blank" rel="noopener">Nimrod Yarkoni</a>, founder of Superwhite, Amsterdam.
+  </footer>
+</div>
+</body>
+</html>
