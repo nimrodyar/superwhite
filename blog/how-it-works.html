@@ -108,35 +108,35 @@ footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px soli
 <h1>How an image can render brighter than your screen's white</h1>
 <p class="byline">superwhite.app · technical notes · by <a href="https://www.linkedin.com/in/nimrodyar/" target="_blank" rel="noopener">Nimrod Yarkoni</a></p>
 
-<p>You may have seen posts on LinkedIn or Instagram where the image seems to <strong>glow</strong> — visibly brighter than the white page around it. It looks like it breaks the rules of the screen. It doesn't. It exploits a real, documented gap between what "white" means in SDR and what modern displays can actually output.</p>
+<p>You may have seen posts on LinkedIn or Instagram where the image seems to <strong>glow</strong>, visibly brighter than the white page around it. It looks like it breaks the rules of the screen. It doesn't. It exploits a real, documented gap between what "white" means in SDR and what modern displays can actually output.</p>
 
 <h2>SDR white is not your display's maximum</h2>
-<p>A normal image tops out at signal value 255 — "white." Your operating system maps that to a comfortable reference level, roughly 200&nbsp;nits. But an HDR-capable panel (recent MacBook Pro, iPhone, Pixel, most OLED TVs) can physically output 1,000–1,600&nbsp;nits. The gap between reference white and panel peak is <strong>headroom</strong> — Apple calls its implementation EDR. It's reserved for HDR content: video highlights, HDR photos. Regular UI never touches it.</p>
+<p>A normal image tops out at signal value 255, "white." Your operating system maps that to a comfortable reference level, roughly 200&nbsp;nits. But an HDR-capable panel (recent MacBook Pro, iPhone, Pixel, most OLED TVs) can physically output 1,000–1,600&nbsp;nits. The gap between reference white and panel peak is <strong>headroom</strong>, Apple calls its implementation EDR. It's reserved for HDR content: video highlights, HDR photos. Regular UI never touches it.</p>
 <p>The trick is convincing the renderer that your still image <em>is</em> HDR content.</p>
 
 <h2>The signal</h2>
 <p>HDR video signals its brightness using an absolute curve rather than a relative one: each value maps to a specific real-world brightness, capable of describing whites far beyond what a normal image ever calls for.</p>
-<p>It turns out certain embedded color profiles can carry that same signal — and color-managed renderers across Chrome, Safari, macOS and iOS will honor it, rendering an image's bright values into the display's spare headroom. White in the image lands well above the page's white. The image out-glows the interface.</p>
+<p>It turns out certain embedded color profiles can carry that same signal, and color-managed renderers across Chrome, Safari, macOS and iOS will honor it, rendering an image's bright values into the display's spare headroom. White in the image lands well above the page's white. The image out-glows the interface.</p>
 
-<div class="callout"><p><strong>Why this survives LinkedIn:</strong> platforms re-encode uploaded images, which strips most HDR metadata — Ultra HDR gain maps don't make it through. But ICC profiles are preserved through LinkedIn's JPEG pipeline. The profile <em>is</em> the payload.</p></div>
+<div class="callout"><p><strong>Why this survives LinkedIn:</strong> platforms re-encode uploaded images, which strips most HDR metadata, Ultra HDR gain maps don't make it through. But ICC profiles are preserved through LinkedIn's JPEG pipeline. The profile <em>is</em> the payload.</p></div>
 
 <div class="callout"><p><strong>Credit where due:</strong> the PQ-profile technique and the finding that it survives LinkedIn's image pipeline were first documented by <a href="https://tn1ck.com/blog/abuse-hdr-images-for-marketing" rel="noopener">Tom Nick in his excellent write-up</a>. Superwhite builds on that research and turns it into a self-serve tool - adding luminance masking so only the whites glow while colors stay accurate.</p></div>
 
 <h2>Why it's not just "tag it and go"</h2>
-<p>Naively marking a normal image as HDR remaps everything at once — colors shift and the whole image blows out. Superwhite does the color math per pixel instead: it works out which parts of the image are actually near-white, leaves everything else rendering exactly as it would in a normal photo, and only pushes the white regions up into the display's spare brightness.</p>
-<p>The whole thing runs on an ordinary JPEG — no special export mode, no video container, no exotic file format. That's also why simple, flat graphics work best: smooth photographic gradients can band under the brightness curve involved, but logos and wordmarks hold up cleanly.</p>
+<p>Naively marking a normal image as HDR remaps everything at once, colors shift and the whole image blows out. Superwhite does the color math per pixel instead: it works out which parts of the image are actually near-white, leaves everything else rendering exactly as it would in a normal photo, and only pushes the white regions up into the display's spare brightness.</p>
+<p>The whole thing runs on an ordinary JPEG, no special export mode, no video container, no exotic file format. That's also why simple, flat graphics work best: smooth photographic gradients can band under the brightness curve involved, but logos and wordmarks hold up cleanly.</p>
 
-<h2>Where it works — and dies</h2>
+<h2>Where it works, and where it dies</h2>
 <ul>
-<li><strong>Survives:</strong> LinkedIn feed posts, uploaded directly as JPEG. No cropping or editing in the composer — re-processing strips the profile.</li>
+<li><strong>Survives:</strong> LinkedIn feed posts, uploaded directly as JPEG. No cropping or editing in the composer, re-processing strips the profile.</li>
 <li><strong>Dies:</strong> screenshots (they capture the tone-mapped SDR result), re-saving in most editors, messenger compression, copy-paste.</li>
 <li><strong>Visible to:</strong> viewers on HDR displays in color-managed apps, with battery saver off. Everyone else sees a normal image with marginally dimmer whites.</li>
 </ul>
 
 <h2>The honest caveats</h2>
-<p>This is attention arbitrage, and it lives on borrowed time. Platforms clamped auto-HDR video brightness after the same trick flooded Reels and Shorts; still images will likely follow. Treat it as a novelty with a window, not infrastructure. And use taste — a subtle glow on a logo reads as craft; a 4,000-nit full-frame flashbang reads as a pop-up ad. The feed will tune out whatever gets abused.</p>
+<p>This is attention arbitrage, and it lives on borrowed time. Platforms clamped auto-HDR video brightness after the same trick flooded Reels and Shorts; still images will likely follow. Treat it as a novelty with a window, not infrastructure. And use taste, a subtle glow on a logo reads as craft; a 4,000-nit full-frame flashbang reads as a pop-up ad. The feed will tune out whatever gets abused.</p>
 
-<p>Everything Superwhite does happens in your browser — the color math and the export both run locally. Your image never touches a server.</p>
+<p>Everything Superwhite does happens in your browser, the color math and the export both run locally. Your image never touches a server.</p>
 
 <div class="cta">
   <strong>Try it on your own logo</strong>
