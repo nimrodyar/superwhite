@@ -126,7 +126,7 @@ footer a{color:var(--dim)}
     {
       "@type": "Question",
       "name": "Will LinkedIn patch the HDR glow trick?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Probably eventually. Platforms already clamped the equivalent trick for HDR video, and Slack has tone-mapped glowing workspace logos. Treat it as a window of attention arbitrage rather than permanent infrastructure. When it closes, the file simply renders as a normal image."}
+      "acceptedAnswer": {"@type": "Answer", "text": "It already has. LinkedIn began stripping colour profiles in September 2026, and the glow disappeared from the feed. Platforms had already clamped the equivalent trick for HDR video, and Slack had tone-mapped glowing workspace logos. It was a window of attention arbitrage rather than permanent infrastructure, and now that it has closed the files simply render as normal images."}
     }
   ]
 }
@@ -138,6 +138,7 @@ footer a{color:var(--dim)}
     <a class="logo" href="/">superwhite</a>
     <a class="back" href="/">back to the tool</a>
   </header>
+<div class="sw-status" role="note" style="background:rgba(232,163,23,.12);border-left:3px solid #e8a317;border-radius:0 10px 10px 0;padding:12px 16px;margin:6px 0 22px;font-size:14.5px;line-height:1.55"><b>Update, 21 September 2026:</b> LinkedIn now strips the color profile that carried the glow, so HDR images no longer glow in the LinkedIn feed, on company logos or in ads, and already-uploaded logos were affected too. The effect still works on your own website, in email and anywhere your file arrives intact. <a href="/blog/linkedin-hdr-glow-patched">What changed and what still works</a>.</div>
   <article>
     <h1>Why the Taboola logo glows on LinkedIn</h1>
     <p class="byline">PUBLISHED 2 AUGUST 2026 · BY NIMROD YARKONI</p>
@@ -145,7 +146,7 @@ footer a{color:var(--dim)}
     <p>First it was <a href="/blog/wiz-logo-glow-linkedin">Wiz</a>. Now Taboola's logo is lighting up in the LinkedIn feed too: on a recent iPhone, Pixel or MacBook, the white smiley and wordmark render visibly brighter than the white page around them, as if the logo were backlit. Try to screenshot it and the screenshot looks perfectly ordinary. Your screen is not broken, and neither is theirs. It is the HDR glow trick, and Taboola appears to be the latest major brand to run it.</p>
 
     <h2>What are you actually looking at?</h2>
-    <p>The image carries an HDR color signal, the same technique behind the glowing Wiz logo. LinkedIn's upload pipeline strips most HDR metadata but keeps color profiles, so a file prepared this way arrives in the feed with its glow intact. On an HDR screen the white parts of the logo render in the display's spare brightness headroom, above the level the interface uses for normal white. On an SDR screen the same file is just a regular logo.</p>
+    <p>The image carries an HDR color signal, the same technique behind the glowing Wiz logo. Until September 2026 LinkedIn's upload pipeline stripped most HDR metadata but kept colour profiles, so the file arrived in the feed with its glow intact. LinkedIn now strips the profile too, and the logo no longer glows there. On an HDR screen the white parts of the logo render in the display's spare brightness headroom, above the level the interface uses for normal white. On an SDR screen the same file is just a regular logo.</p>
     <p>There is no filter, no animation and no CSS involved. The pixels themselves are flat. The only unusual thing in the file is the color information telling the renderer to treat those whites as HDR content. If you want the full mechanics of PQ curves and brightness headroom, they are in <a href="/blog/how-it-works">the technical write-up</a>; the short version is that your screen has more brightness in reserve than "white" normally uses, and this file is allowed to spend it.</p>
 
     <h2>Why Taboola's logo is a perfect fit for the trick</h2>
@@ -154,7 +155,7 @@ footer a{color:var(--dim)}
 
     <h2>The pattern: B2B brands are adopting it one by one</h2>
     <p>The lineage runs from Tom Nick's original write-up through Port.io, Slack, AlphaSignal and then the Wiz logo that made the trick famous, each one triggering a fresh wave of "is my screen broken?" comments. The full history, with teardowns and credits, is in <a href="/blog/wiz-logo-glow-linkedin">the Wiz post</a>. Taboola showing up in that list is notable for a different reason: Taboola is an advertising company. Their entire business is attention, and when an attention business starts using a trick to win attention in the feed, that says something about how well it works.</p>
-    <p>It also says something about the window. Every previous wave of this trick eventually got tone-mapped away somewhere: Slack has already patched glowing workspace logos, and platforms clamped the equivalent HDR video trick after it flooded short-form feeds. LinkedIn's image pipeline keeps color profiles today. When enough large brands are doing it, that is usually when platforms start looking at it. Useful now, not something to build a brand system on. If the window closes, the same file simply renders as a normal image and nothing breaks.</p>
+    <p>It also says something about the window. Every previous wave of this trick eventually got tone-mapped away somewhere: Slack has already patched glowing workspace logos, and platforms clamped the equivalent HDR video trick after it flooded short-form feeds. LinkedIn's image pipeline kept colour profiles until September 2026. When enough large brands were doing it, that is when the platform appears to have looked at it. It was useful while it lasted, and not something to build a brand system on. The window did close, in September 2026, and the same files now simply render as normal images. <a href=\"/blog/linkedin-hdr-glow-patched\">What changed</a>.</p>
 
     <h2>What's the catch?</h2>
     <ul>
