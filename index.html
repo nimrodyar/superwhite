@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HDR Logo Glow for LinkedIn: Brighter Than White | Superwhite</title>
-<meta name="description" content="Superwhite is the HDR logo glow tool behind the glowing Wiz and Taboola logos on LinkedIn. Make any logo or post image glow brighter than white on HDR screens, in your browser.">
+<title>HDR Logo Glow: Make Whites Brighter Than White on HDR Screens | Superwhite</title>
+<meta name="description" content="Superwhite is the HDR logo glow tool behind the glowing Wiz and Taboola logos. LinkedIn patched the trick in September 2026; the glow still works on your website, in email and anywhere your file arrives intact. Runs in your browser.">
 <link rel="canonical" href="https://superwhite.app/">
-<meta property="og:title" content="HDR Logo Glow for LinkedIn: Brighter Than White | Superwhite">
-<meta property="og:description" content="Push your image's whites into your screen's HDR headroom, the same trick behind the glowing Wiz logo. In-browser, built for LinkedIn.">
+<meta property="og:title" content="HDR Logo Glow: Make Whites Brighter Than White on HDR Screens | Superwhite">
+<meta property="og:description" content="Push your image's whites into your screen's HDR headroom, the same trick behind the glowing Wiz logo. In-browser, for your website, email and any surface that keeps your file intact.">
 <meta property="og:url" content="https://superwhite.app/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://superwhite.app/og.jpg">
@@ -288,7 +288,7 @@ footer a:hover{color:var(--ink)}
   "url": "https://superwhite.app/",
   "sameAs": ["https://github.com/nimrodyar/superwhite", "https://www.linkedin.com/company/superwhiteapp"],
   "author": {"@type": "Person", "name": "Nimrod Yarkoni", "url": "https://www.linkedin.com/in/nimrodyar/", "sameAs": ["https://github.com/nimrodyar"]},
-  "description": "In-browser tool that makes the whites in your image physically brighter than your screen's white point, using an embedded HDR ICC profile. Built for LinkedIn posts. Nothing is uploaded; everything runs locally in the browser.",
+  "description": "In-browser tool that makes the whites in your image physically brighter than your screen's white point, using an embedded HDR ICC profile. Built for surfaces that serve your file intact: websites, landing pages, email. Nothing is uploaded; everything runs locally in the browser.",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Any (runs in browser)",
   "offers": {
@@ -301,7 +301,7 @@ footer a:hover{color:var(--ink)}
     "Embeds a Rec.2100 PQ HDR ICC profile into JPEGs",
     "Makes image whites appear brighter than screen white on HDR displays",
     "Works entirely client-side, no upload required",
-    "Effect survives LinkedIn's image compression pipeline"
+    "Glow renders on any surface that serves the original file, such as your own website or email"
   ]
 }
 </script>
@@ -312,8 +312,13 @@ footer a:hover{color:var(--ink)}
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "Why did my LinkedIn logo stop glowing?",
+      "acceptedAnswer": { "@type": "Answer", "text": "LinkedIn's image pipeline started stripping embedded ICC color profiles in September 2026. The glow lived entirely inside that profile, so without it the file renders as a normal image. Logos that were already uploaded went flat too, so re-uploading does not help. The same exported file still glows on your own website, in email clients that honor profiles, and in files opened directly on Mac and iPhone." }
+    },
+    {
+      "@type": "Question",
       "name": "What is Superwhite HDR?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Superwhite is an HDR image tool at superwhite.app. It embeds a Rec.2100 PQ HDR profile into a JPEG so the whites render brighter than your screen's normal white on HDR displays. It is built for LinkedIn, where the effect survives image compression, and everything runs locally in your browser. It is not related to the older open source superwhite video demo on GitHub, which shows a bright white color using a small HDR video file." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Superwhite is an HDR image tool at superwhite.app. It embeds a Rec.2100 PQ HDR profile into a JPEG so the whites render brighter than your screen's normal white on HDR displays. It was built for LinkedIn, which stripped the profile in September 2026; the glow still works on your own website, in email and anywhere the file arrives intact. Everything runs locally in your browser. It is not related to the older open source superwhite video demo on GitHub, which shows a bright white color using a small HDR video file." }
     },
     {
       "@type": "Question",
@@ -323,12 +328,12 @@ footer a:hover{color:var(--ink)}
     {
       "@type": "Question",
       "name": "What is the HDR trick people are using on LinkedIn?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Some LinkedIn posts show images with whites that look like they're glowing on phones and HDR monitors. That comes from an HDR color profile embedded in the JPEG, a trick that survives LinkedIn's compression because LinkedIn strips other HDR metadata but keeps the color profile. Superwhite does that embedding for you in one click." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Some LinkedIn posts show images with whites that look like they're glowing on phones and HDR monitors. That came from an HDR color profile embedded in the JPEG. LinkedIn kept that profile through compression until September 2026, when it started stripping it, so the glow no longer shows there. Superwhite does the same embedding for surfaces that still pass the file through intact, such as your own website." }
     },
     {
       "@type": "Question",
       "name": "How did Wiz get their logo to glow on LinkedIn?",
-      "acceptedAnswer": { "@type": "Answer", "text": "The glowing Wiz logo in the LinkedIn feed is a regular JPEG with an HDR color profile embedded, made with Superwhite. On HDR screens the white mark renders brighter than the page around it, so it looks lit up while everything else stays normal. High-contrast logos work best: a white mark on a colored background. Drop yours in above, export, and post the file straight to LinkedIn without cropping or editing it in the composer." }
+      "acceptedAnswer": { "@type": "Answer", "text": "The glowing Wiz logo in the LinkedIn feed was a regular JPEG with an HDR color profile embedded, made with Superwhite. On HDR screens the white mark rendered brighter than the page around it, so it looked lit up while everything else stayed normal. LinkedIn began stripping that profile in September 2026, so it no longer glows there. High-contrast logos work best: a white mark on a colored background. Drop yours in above, export, and use the file where it arrives intact, such as your own website." }
     },
     {
       "@type": "Question",
@@ -338,17 +343,17 @@ footer a:hover{color:var(--ink)}
     {
       "@type": "Question",
       "name": "Does this work on Instagram or other platforms?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Not reliably yet. LinkedIn keeps the ICC color profile through its compression pipeline, which is what makes this trick work there. Instagram and most other platforms strip it or need a different HDR format (gain maps), which Superwhite doesn't support today." }
+      "acceptedAnswer": { "@type": "Answer", "text": "It works wherever the file is served without re-encoding: your own website, direct downloads, and email clients that honor embedded profiles. LinkedIn kept the profile until September 2026 and now strips it. Instagram and most other social platforms strip it too, or need a different HDR format (gain maps), which Superwhite doesn't support today. X, Threads and Bluesky are untested; results will be published as we get them." }
     },
     {
       "@type": "Question",
       "name": "Do I need an account, and how much does it cost?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sign in with Google or email. Simple is 3 euro one time and unlocks unlimited logo exports up to 400px. Creator at 5 euro one time unlocks 1400px for LinkedIn posts and ads, and Pro at 9 euro a month goes any size up to 3840px." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Sign in with Google or email. Simple is 3 euro one time and unlocks unlimited logo exports up to 400px. Creator at 5 euro one time unlocks 1400px for web hero images and email headers, and Pro at 9 euro a month goes any size up to 3840px, though new Pro subscriptions are paused since 21 September 2026 while platforms are retested." }
     },
     {
       "@type": "Question",
       "name": "Will the effect survive if I screenshot or repost the image?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. Screenshots, re-saving in an editor, and apps like WhatsApp or iMessage strip the color profile, which kills the effect. Post the original file Superwhite gives you, and don't crop or edit it in LinkedIn's composer." }
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Screenshots, re-saving in an editor, and apps like WhatsApp or iMessage strip the color profile, which kills the effect. Serve the original file Superwhite gives you, and avoid any image CDN or build step that recompresses it." }
     },
     {
       "@type": "Question",
@@ -358,12 +363,12 @@ footer a:hover{color:var(--ink)}
     {
       "@type": "Question",
       "name": "Is there an AI prompt or recipe for the glowing LinkedIn image effect?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No prompt can produce it, because the glow is not in the pixels. It comes from a Rec.2100 PQ color profile embedded in the JPEG file itself, which image generators and editors don't output. The recipe is one step: drop your image into Superwhite, set the brightness, and post the exported file to LinkedIn unedited." }
+      "acceptedAnswer": { "@type": "Answer", "text": "No prompt can produce it, because the glow is not in the pixels. It comes from a Rec.2100 PQ color profile embedded in the JPEG file itself, which image generators and editors don't output. The recipe is one step: drop your image into Superwhite, set the brightness, and serve the exported file unedited on a surface that keeps it intact." }
     },
     {
       "@type": "Question",
       "name": "Does HDR video work on LinkedIn like the glowing images?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Not the same way. Video pipelines on major platforms tone-map or clamp HDR brightness after creators abused it in short-form feeds. The image route is different: LinkedIn keeps the ICC color profile in JPEGs through compression, which is exactly what Superwhite uses, so the glow survives in feed images today." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Not the same way. Video pipelines on major platforms tone-map or clamp HDR brightness after creators abused it in short-form feeds. The image route worked differently: LinkedIn kept the ICC color profile in JPEGs through compression until September 2026, which is what Superwhite used. That route is now closed too, so neither images nor video glow on LinkedIn today." }
     },
     {
       "@type": "Question",
@@ -386,10 +391,12 @@ footer a:hover{color:var(--ink)}
     <div class="hdr-right"><div class="hdr-badge" id="hdrBadge">checking display…</div><button type="button" class="hdr-signin" id="hdrSignIn" hidden>Sign in</button><div id="swAccount" style="display:none"></div></div>
   </header>
 
+  <div class="sw-status" role="note" style="background:rgba(232,163,23,.12);border-left:3px solid #e8a317;border-radius:0 10px 10px 0;padding:12px 16px;margin:6px 0 22px;font-size:14.5px;line-height:1.55"><b>Update, 21 September 2026:</b> LinkedIn now strips the color profile that carried the glow, so HDR images no longer glow in the LinkedIn feed, on company logos or in ads, and already-uploaded logos were affected too. The effect still works on your own website, in email and anywhere your file arrives intact. <a href="/blog/linkedin-hdr-glow-patched">What changed and what still works</a>.</div>
+
   <section class="hero">
-    <p class="kicker">The trick behind the glowing Wiz logo on LinkedIn</p>
-    <h1>Make your logo glow brighter than white on LinkedIn.</h1>
-    <p class="sub">Superwhite embeds an HDR profile into your JPEG. On HDR screens the whites glow above everything around them, including this page. In your browser, nothing gets uploaded.</p>
+    <p class="kicker">The trick behind the glowing Wiz logo, for surfaces you control</p>
+    <h1>Make your logo glow brighter than white on HDR screens.</h1>
+    <p class="sub">Superwhite embeds an HDR profile into your JPEG. On HDR screens the whites glow above everything around them, including this page. Works on your website, in email and anywhere your file arrives intact. LinkedIn patched it in September 2026. In your browser, nothing gets uploaded.</p>
     <div class="hero-cta"><a class="btn primary" href="#try" id="heroCta">Try it now</a></div>
   </section>
 
@@ -462,9 +469,9 @@ footer a:hover{color:var(--ink)}
     <div class="postdl" id="postdl" hidden>
       <b>Saved. Three rules so the glow survives:</b>
       <ul>
-        <li>Upload the file straight to LinkedIn as an image post</li>
-        <li>Do not crop, edit or filter it in LinkedIn's composer, that strips the effect</li>
-        <li>The glow shows on HDR screens with battery saver off, most recent phones qualify</li>
+        <li>Serve the file as-is: an <code>&lt;img&gt;</code> on your site, a direct download, or an email in a client that honors color profiles</li>
+        <li>Do not screenshot, re-save, crop or pass it through an image CDN that recompresses, that strips the effect</li>
+        <li>The glow shows on HDR screens with battery saver off, most recent phones and Macs qualify. LinkedIn strips it since September 2026</li>
       </ul>
       <button type="button" class="btn ghost" id="copyCaption">Copy a ready-made caption</button>
       <span class="postdl-msg" id="postdlMsg"></span>
@@ -476,8 +483,8 @@ footer a:hover{color:var(--ink)}
     <h2>How it works</h2>
     <p>Your image gets re-encoded with a Rec.2100 PQ color profile, the same signal HDR video uses. On HDR screens the bright parts render with the display's spare brightness, above normal white. Everything happens locally in your browser.</p>
     <div class="rules">
-      <div><b>Where it survives</b><span>LinkedIn feed posts, as a JPEG, uploaded directly. Don't crop or edit in LinkedIn's composer, that strips the profile.</span></div>
-      <div><b>Where it dies</b><span>Screenshots, re-saving in editors, WhatsApp and iMessage compression, copy-paste. Move the file itself.</span></div>
+      <div><b>Where it survives</b><span>Anywhere the original file reaches the viewer: your website and landing pages, direct downloads, Apple Mail and other clients that honor profiles.</span></div>
+      <div><b>Where it dies</b><span>LinkedIn since September 2026, Instagram, Slack, screenshots, re-saving in editors, messenger compression, image CDNs that recompress. Move the file itself.</span></div>
       <div><b>Who sees it</b><span>Only people on HDR displays with battery saver off. Everyone else sees a normal image with slightly dimmer whites.</span></div>
       <div><b>Best input</b><span>High-contrast graphics: logos, wordmarks, simple illustrations. Photo gradients can band at 8-bit.</span></div>
     </div>
@@ -505,7 +512,7 @@ footer a:hover{color:var(--ink)}
         <span class="pro-cta">Live now &rarr;</span>
       </button>
     </div>
-    <p class="pro-note">Creator at &euro;5 one time unlocks 1400px forever. Pro at &euro;9 a month goes full size with batch and presets. Cancel anytime.</p>
+    <p class="pro-note">Creator at &euro;5 one time unlocks 1400px forever. Pro subscriptions are paused since 21 September 2026; existing Pro keys keep working.</p>
   </section>
 
 
@@ -513,8 +520,12 @@ footer a:hover{color:var(--ink)}
     <section class="faq" id="faq">
     <h2>Frequently asked questions</h2>
     <details>
+      <summary>Why did my LinkedIn logo stop glowing?</summary>
+      <p>LinkedIn's image pipeline started stripping embedded ICC color profiles in September 2026. The glow lived entirely inside that profile, so without it the file renders as a normal image. Logos that were already uploaded went flat too, so re-uploading does not help. The same exported file still glows on your own website, in email clients that honor profiles, and in files opened directly on Mac and iPhone. Full record: <a href="/blog/linkedin-hdr-glow-patched">what changed and what still works</a>.</p>
+    </details>
+    <details>
       <summary>What is Superwhite HDR?</summary>
-      <p>Superwhite is an HDR image tool at superwhite.app. It embeds a Rec.2100 PQ HDR profile into a JPEG so the whites render brighter than your screen's normal white on HDR displays. It is built for LinkedIn, where the effect survives image compression, and everything runs locally in your browser. It is not related to the older open source superwhite video demo on GitHub, which shows a bright white color using a small HDR video file.</p>
+      <p>Superwhite is an HDR image tool at superwhite.app. It embeds a Rec.2100 PQ HDR profile into a JPEG so the whites render brighter than your screen's normal white on HDR displays. It was built for LinkedIn, which stripped the profile in September 2026; the glow still works on your own website, in email and anywhere the file arrives intact. Everything runs locally in your browser. It is not related to the older open source superwhite video demo on GitHub, which shows a bright white color using a small HDR video file.</p>
     </details>
     <details>
       <summary>How can I make my image glow brighter than white?</summary>
@@ -522,11 +533,11 @@ footer a:hover{color:var(--ink)}
     </details>
     <details>
       <summary>What is the HDR trick people are using on LinkedIn?</summary>
-      <p>Some LinkedIn posts show images with whites that look like they're glowing on phones and HDR monitors. That comes from an HDR color profile embedded in the JPEG, a trick that survives LinkedIn's compression because LinkedIn strips other HDR metadata but keeps the color profile. Superwhite does that embedding for you in one click.</p>
+      <p>Some LinkedIn posts show images with whites that look like they're glowing on phones and HDR monitors. That came from an HDR color profile embedded in the JPEG. LinkedIn kept that profile through compression until September 2026, when it started stripping it, so the glow no longer shows there. Superwhite does the same embedding for surfaces that still pass the file through intact, such as your own website.</p>
     </details>
     <details>
       <summary>How did Wiz get their logo to glow on LinkedIn?</summary>
-      <p>The glowing Wiz logo in the LinkedIn feed is a regular JPEG with an HDR color profile embedded, made with Superwhite. On HDR screens the white mark renders brighter than the page around it, so it looks lit up while everything else stays normal. High-contrast logos work best: a white mark on a colored background. Drop yours in above, export, and post the file straight to LinkedIn without cropping or editing it in the composer. Full story: <a href="/blog/wiz-logo-glow-linkedin">why the Wiz logo glows on LinkedIn, the HDR glow trick explained</a>.</p>
+      <p>The glowing Wiz logo in the LinkedIn feed was a regular JPEG with an HDR color profile embedded, made with Superwhite. On HDR screens the white mark rendered brighter than the page around it, so it looked lit up while everything else stayed normal. LinkedIn began stripping that profile in September 2026, so it no longer glows there. High-contrast logos work best: a white mark on a colored background. Drop yours in above, export, and use the file where it arrives intact, such as your own website. Full story: <a href="/blog/wiz-logo-glow-linkedin">why the Wiz logo glows on LinkedIn, the HDR glow trick explained</a>.</p>
     </details>
     <details>
       <summary>Why does the image look brighter on my phone than on my laptop?</summary>
@@ -534,15 +545,15 @@ footer a:hover{color:var(--ink)}
     </details>
     <details>
       <summary>Does this work on Instagram or other platforms?</summary>
-      <p>Not reliably yet. LinkedIn keeps the ICC color profile through its compression pipeline, which is what makes this trick work there. Instagram and most other platforms strip it or need a different HDR format (gain maps), which Superwhite doesn't support today.</p>
+      <p>It works wherever the file is served without re-encoding: your own website, direct downloads, and email clients that honor embedded profiles. LinkedIn kept the profile until September 2026 and now strips it. Instagram and most other social platforms strip it too, or need a different HDR format (gain maps), which Superwhite doesn't support today. X, Threads and Bluesky are untested; results will be published as we get them.</p>
     </details>
     <details>
       <summary>Do I need an account, and how much does it cost?</summary>
-      <p>Sign in with Google or email. Simple is &euro;3 one time and unlocks unlimited logo exports up to 400px. Creator at &euro;5 one time unlocks 1400px for LinkedIn posts and ads, and Pro at &euro;9 a month goes any size up to 3840px.</p>
+      <p>Sign in with Google or email. Simple is &euro;3 one time and unlocks unlimited logo exports up to 400px. Creator at &euro;5 one time unlocks 1400px for web hero images and email headers, and Pro at &euro;9 a month goes any size up to 3840px, though new Pro subscriptions are paused since 21 September 2026 while platforms are retested.</p>
     </details>
     <details>
       <summary>Will the effect survive if I screenshot or repost the image?</summary>
-      <p>No. Screenshots, re-saving in an editor, and apps like WhatsApp or iMessage strip the color profile, which kills the effect. Post the original file Superwhite gives you, and don't crop or edit it in LinkedIn's composer.</p>
+      <p>No. Screenshots, re-saving in an editor, and apps like WhatsApp or iMessage strip the color profile, which kills the effect. Serve the original file Superwhite gives you, and avoid any image CDN or build step that recompresses it.</p>
     </details>
     <details>
       <summary>How do I make an image glow online?</summary>
@@ -550,11 +561,11 @@ footer a:hover{color:var(--ink)}
     </details>
     <details>
       <summary>Is there an AI prompt or recipe for the glowing LinkedIn image effect?</summary>
-      <p>No prompt can produce it, because the glow is not in the pixels. It comes from a Rec.2100 PQ color profile embedded in the JPEG file itself, which image generators and editors don't output. The recipe is one step: drop your image in above, set the brightness, and post the exported file to LinkedIn unedited.</p>
+      <p>No prompt can produce it, because the glow is not in the pixels. It comes from a Rec.2100 PQ color profile embedded in the JPEG file itself, which image generators and editors don't output. The recipe is one step: drop your image in above, set the brightness, and serve the exported file unedited on a surface that keeps it intact.</p>
     </details>
     <details>
       <summary>Does HDR video work on LinkedIn like the glowing images?</summary>
-      <p>Not the same way. Video pipelines on major platforms tone-map or clamp HDR brightness after creators abused it in short-form feeds. The image route is different: LinkedIn keeps the ICC color profile in JPEGs through compression, which is exactly what Superwhite uses, so the glow survives in feed images today.</p>
+      <p>Not the same way. Video pipelines on major platforms tone-map or clamp HDR brightness after creators abused it in short-form feeds. The image route worked differently: LinkedIn kept the ICC color profile in JPEGs through compression until September 2026, which is what Superwhite used. That route is now closed too, so neither images nor video glow on LinkedIn today.</p>
     </details>
     <details>
       <summary>How is Superwhite different from tools that just tag an image as HDR?</summary>
@@ -573,7 +584,7 @@ footer a:hover{color:var(--ink)}
     <div class="q" data-q="use_case">
       <p>Where would you post superwhited images?</p>
       <div class="opts">
-        <button data-a="linkedin">LinkedIn</button>
+        <button data-a="website">My website</button>
         <button data-a="instagram">Instagram</button>
         <button data-a="slides">Slides or decks</button>
         <button data-a="other">Somewhere else</button>
@@ -623,7 +634,7 @@ footer a:hover{color:var(--ink)}
 
   <section class="api" id="api">
     <h2>Building something with this?</h2>
-    <p>If you run a LinkedIn scheduling tool, content platform, or agency workflow, you can license the HDR pipeline directly: a hosted API endpoint or a licensed JS module, kept working when platforms change their image pipelines. Pilot licenses start at €149 per month. Tell me what you're building and I will reply within a day. Nimrod Yarkoni, founder.</p>
+    <p>If you run a content platform, email tool, website builder or agency workflow, you can license the HDR pipeline directly: a hosted API endpoint or a licensed JS module, kept working when platforms change their image pipelines. Pilot licenses start at €149 per month. Tell me what you're building and I will reply within a day. Nimrod Yarkoni, founder.</p>
     <form id="apiForm">
       <input type="hidden" name="access_key" value="3c20ecc9-7125-487b-94a1-32a222f5088c">
       <input type="hidden" name="subject" value="New API/integration request from Superwhite">
@@ -659,8 +670,8 @@ footer a:hover{color:var(--ink)}
     <p>Simple is &euro;3 one time and covers logos at 400px, unlimited. Posts and ads need Creator or Pro.</p>
     <div class="tiers">
       <div class="tier"><b>Simple, &euro;3 one time</b><span>Unlimited exports at 400px, sized for logos and avatars. License key by email, paste it below.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/gxfgak" target="_blank" rel="noopener" data-tier="basic">Get Simple</a></div>
-      <div class="tier"><b>Creator, &euro;5 one time</b><span>Unlimited exports at 1400px, sized for LinkedIn posts and ads. License key by email, paste it below.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/awrzbf" target="_blank" rel="noopener" data-tier="creator">Get Creator</a></div>
-      <div class="tier"><b>Pro, &euro;9 a month</b><span>Any size up to 3840px, max settings, batch and brand presets. Cancel anytime.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/xvdzcy" target="_blank" rel="noopener" data-tier="pro">Go Pro</a></div>
+      <div class="tier"><b>Creator, &euro;5 one time</b><span>Unlimited exports at 1400px, sized for web hero images, email headers and social cards. License key by email, paste it below.</span><a class="btn primary" href="https://nimrodian06.gumroad.com/l/awrzbf" target="_blank" rel="noopener" data-tier="creator">Get Creator</a></div>
+      <div class="tier"><b>Pro, &euro;9 a month</b><span>Any size up to 3840px, max settings, batch and brand presets. New subscriptions paused since 21 September 2026 while we retest platforms after the LinkedIn change. Existing keys keep working.</span><a class="btn primary" href="#pro" aria-disabled="true" style="opacity:.45;pointer-events:none" data-tier="pro">Paused</a></div>
     </div>
     <label for="licenseInput" class="license-label">Already bought? Paste your license key</label>
     <input id="licenseInput" type="text" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" autocomplete="off" spellcheck="false">
@@ -1488,7 +1499,7 @@ $('batchFiles').addEventListener('change', async e => {
     setTimeout(() => URL.revokeObjectURL(a.href), 30000);
   }
   note.textContent = out.length
-    ? 'Batch done: ' + out.length + ' images at ' + st.peak + ' nits' + (fail ? ', ' + fail + ' skipped' : '') + '. Post them straight to LinkedIn, no editing.'
+    ? 'Batch done: ' + out.length + ' images at ' + st.peak + ' nits' + (fail ? ', ' + fail + ' skipped' : '') + '. Serve them as-is, no editing or recompression.'
     : 'Batch failed: no images could be processed.';
   gtag('event', 'batch_done', { ok: out.length, failed: fail });
   batchBusy = false;
