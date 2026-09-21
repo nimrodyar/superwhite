@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Has Patched the HDR Logo Glow (September 2026): What Changed and What Still Works</title>
+<meta name="description" content="As of September 2026 LinkedIn strips the ICC color profile from uploaded images, so the HDR glow behind the Wiz, Taboola and Port logos no longer shows in the feed. What we observed, how to verify it, and where the glow still works.">
+<link rel="canonical" href="https://superwhite.app/blog/linkedin-hdr-glow-patched">
+<meta property="og:title" content="LinkedIn has patched the HDR logo glow. Here is what changed.">
+<meta property="og:description" content="LinkedIn now strips the color profile that carried the glow. Already-uploaded logos went flat too. What we observed, how to check, and where the effect still works.">
+<meta property="og:url" content="https://superwhite.app/blog/linkedin-hdr-glow-patched">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://superwhite.app/og.jpg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0D0B14;--surface:#161221;--line:#292139;--violet:#6B2EF5;--violet-hot:#8B5CF6;
+--brand:#5B21F5;--ink:#F2EFFA;--dim:#A79BD9;--faint:#6C6285}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.75 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{padding:24px 0;display:flex;align-items:center;justify-content:space-between}
+.logo{font:800 26px/1 'Baloo 2',sans-serif;color:var(--brand);-webkit-text-stroke:6px #fff;paint-order:stroke fill;
+text-shadow:0 3px 0 rgba(0,0,0,.35);transform:rotate(-2deg);text-decoration:none}
+.back{font:500 14px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+article{padding:30px 0 60px}
+h1{font:700 clamp(30px,5vw,44px)/1.15 'Inter',sans-serif;letter-spacing:-.03em;margin-bottom:14px}
+.byline{font:500 13px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:36px}
+h2{font:700 24px 'Inter',sans-serif;letter-spacing:-.02em;margin:44px 0 14px}
+h3{font:600 18px 'Inter',sans-serif;margin:28px 0 10px}
+p{color:var(--dim);margin-bottom:18px}
+p strong,li strong{color:var(--ink);font-weight:600}
+a{color:var(--violet-hot)}
+ul,ol{margin:0 0 18px 22px;color:var(--dim)}
+li{margin-bottom:8px}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;overflow-x:auto;
+font:400 13px/1.6 'JetBrains Mono',monospace;color:var(--ink);margin-bottom:18px}
+code{font:400 .92em 'JetBrains Mono',monospace;background:var(--surface);padding:2px 6px;border-radius:5px}
+pre code{background:none;padding:0}
+.callout{border-left:3px solid var(--violet);background:var(--surface);border-radius:0 10px 10px 0;padding:16px 18px;margin-bottom:18px}
+.callout p{margin:0}
+table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:15px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--dim)}
+th{color:var(--ink);font-weight:600}
+td:first-child{color:var(--ink);font-weight:500}
+.ok{color:#5BD39A}.no{color:#F07A7A}.unk{color:#E8B24A}
+.cta{margin-top:50px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:28px;text-align:center}
+.cta a{display:inline-block;margin-top:14px;background:var(--violet);color:#fff;text-decoration:none;
+font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
+footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
+.related{border-top:1px solid var(--line);padding-top:26px;margin:0 0 10px}
+.related h2{font:700 18px 'Inter',sans-serif;margin:0 0 16px;letter-spacing:-.01em}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{margin-bottom:12px}
+.related a{color:var(--ink);text-decoration:none;font-weight:600;display:block}
+.related a:hover{color:var(--violet-hot)}
+.related span{display:block;color:var(--faint);font-size:14px;font-weight:400;line-height:1.5}
+@media (max-width:600px){table{font-size:13.5px}th,td{padding:8px 6px}}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HE8J29XL52');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LinkedIn has patched the HDR logo glow (September 2026): what changed and what still works",
+  "url": "https://superwhite.app/blog/linkedin-hdr-glow-patched",
+  "image": "https://superwhite.app/og.jpg",
+  "datePublished": "2026-09-21",
+  "dateModified": "2026-09-21",
+  "author": {"@type": "Person", "name": "Nimrod Yarkoni", "url": "https://www.linkedin.com/in/nimrodyar/", "sameAs": ["https://github.com/nimrodyar"]},
+  "publisher": {"@type": "Organization", "name": "Superwhite", "url": "https://superwhite.app", "sameAs": ["https://www.linkedin.com/company/superwhiteapp"]}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why did my glowing LinkedIn logo stop glowing?",
+      "acceptedAnswer": { "@type": "Answer", "text": "As of September 2026 LinkedIn's image pipeline strips the embedded ICC color profile from uploaded images. The HDR glow lived entirely inside that profile, so without it the file renders as a normal SDR image. Previously uploaded logos and posts were affected too, not only new uploads." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the HDR glow trick still work on LinkedIn?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Since September 2026 the Rec.2100 PQ ICC profile route no longer survives LinkedIn's re-encode, and no other HDR image format ever did (gain-map JPEGs, HDR PNGs and HDR video were already flattened). Superwhite is tracking the pipeline and will publish results if a route reopens." }
+    },
+    {
+      "@type": "Question",
+      "name": "Where does the HDR glow still work?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Anywhere the file reaches the viewer intact: your own website and landing pages, HTML email in clients that honor embedded color profiles, files opened directly on Mac, iPhone and iPad, and any host that serves the original JPEG without re-encoding it. Platforms that re-encode uploads, including LinkedIn, Instagram and Slack, do not show it." }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I check whether a platform keeps the color profile?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Upload a Superwhite export, then download the served copy from the platform's CDN and look for a JPEG APP2 segment starting with the bytes ICC_PROFILE. If it is present, the glow can render on HDR screens. If it is missing, the platform stripped it. Superwhite's free HDR display test page confirms whether your screen renders HDR at all, so you can rule out the display before blaming the platform." }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Superwhite", "item": "https://superwhite.app/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://superwhite.app/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "LinkedIn has patched the HDR logo glow", "item": "https://superwhite.app/blog/linkedin-hdr-glow-patched" }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="logo" href="/">superwhite</a>
+  <a class="back" href="/">← back to the tool</a>
+</header>
+
+<article>
+<h1>LinkedIn has patched the HDR logo glow. Here is what changed.</h1>
+<p class="byline">superwhite.app · status update · 21 September 2026 · by <a href="https://www.linkedin.com/in/nimrodyar/" target="_blank" rel="noopener">Nimrod Yarkoni</a></p>
+
+<div class="callout"><p><strong>Short version:</strong> LinkedIn's image pipeline now strips the embedded ICC color profile on re-encode. The glow behind the Wiz, Taboola, Port and Lusha logos lived inside that profile, so it is gone from the feed, and logos that were already uploaded went flat as well. The effect still works on surfaces that serve your file intact: your website, email, and files opened directly on Mac and iPhone. This page is the canonical record and will be updated if anything changes.</p></div>
+
+<h2>What we observed</h2>
+<p>Around the third week of September 2026, images that had been glowing in the LinkedIn feed for months stopped glowing. That included company logos set long ago, feed post images, and fresh uploads of files that had passed through the pipeline intact the week before. Downloading the served copies from LinkedIn's CDN and inspecting the JPEG segments shows the difference: the <code>APP2 ICC_PROFILE</code> segment that previously came back untouched is now absent. The pixels are still the PQ-encoded values Superwhite wrote, but without the profile telling the browser to interpret them as PQ, every renderer falls back to sRGB and the image displays as a slightly dim, ordinary picture.</p>
+<p>Three things about this are worth stating plainly, because they change the advice we have been giving:</p>
+<ul>
+  <li><strong>It is not a new-uploads-only change.</strong> Existing logos and posts were affected too. That points to LinkedIn either reprocessing stored assets or changing the serving path so that all renditions are regenerated without the profile. Either way, re-uploading does not help.</li>
+  <li><strong>It is not tone-mapping.</strong> When Slack clamped glowing workspace logos it kept the profile and tone-mapped the brightness down. What we see on LinkedIn is the profile being removed outright, which is the same treatment gain-map JPEGs and HDR PNGs always received there.</li>
+  <li><strong>There is no alternative HDR route on LinkedIn today.</strong> We had already tested gain maps, HDR PNG with a cICP chunk, and five HDR video encodings. All were flattened before this change. The ICC route was the only one that ever worked, and it no longer does.</li>
+</ul>
+<p>LinkedIn has not published anything about this, so "patched" is our word for an observed pipeline change. It may be a deliberate response to the glow trend, which by August had spread from a handful of security and developer-tools brands to sales tech, ad tech and a wave of free generators. It may equally be a side effect of an unrelated image pipeline update. We cannot tell from the outside, and we will not speculate beyond what the bytes show.</p>
+
+<h2>How to verify it yourself</h2>
+<ol>
+  <li>Open any post or company page whose logo used to glow, on an HDR screen with battery saver off. If it is a plain logo now, that is the change.</li>
+  <li>Right-click the image, copy the image address (it will be on <code>media.licdn.com</code>), and download the file.</li>
+  <li>Check for a color profile. On a Mac, <code>exiftool file.jpg | grep -i profile</code> or open it in ColorSync Utility. On any system, search the bytes for the ASCII string <code>ICC_PROFILE</code>. Superwhite exports contain it. LinkedIn's served copies no longer do.</li>
+  <li>Open the original Superwhite export on the same screen, or run our free <a href="/tools/hdr-display-test">HDR display test</a> to confirm the display itself renders HDR. If the original glows and the downloaded LinkedIn copy does not, the profile was stripped in transit.</li>
+</ol>
+
+<h2>Where the glow still works</h2>
+<p>The technique itself has not changed. A JPEG whose pixels are PQ-encoded and whose embedded profile says so renders above screen white in every color-managed renderer we know of: Safari and Chrome on macOS and iOS, Finder, Preview, Photos, and Chrome on recent Android and Windows HDR setups. What changed is one platform's willingness to pass that file through. So the question for any surface is simply: does your original file reach the viewer, or does something re-encode it on the way?</p>
+
+<table>
+  <thead><tr><th>Surface</th><th>Status</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>Your own website or landing page</td><td class="ok">Works</td><td>Serve the exported JPEG as-is in an <code>&lt;img&gt;</code> tag. Do not run it through an image CDN or build step that recompresses; most strip profiles by default and need an explicit "preserve ICC" setting.</td></tr>
+    <tr><td>Files shared directly</td><td class="ok">Works</td><td>AirDrop, Google Drive, Dropbox and direct download links hand over the original bytes. Opened in Preview, Photos or a browser on an HDR display, the whites glow.</td></tr>
+    <tr><td>HTML email</td><td class="unk">Depends on the client</td><td>Apple Mail on Mac and iPhone renders embedded profiles. Clients that proxy or recompress images, which includes some webmail, may strip them. Test with your own list before relying on it.</td></tr>
+    <tr><td>Slides and decks</td><td class="unk">Depends on the app</td><td>Keynote and PowerPoint import the file but re-render it on export; whether the profile survives varies by version and export path. Treat as unverified.</td></tr>
+    <tr><td>X, Threads, Bluesky</td><td class="unk">Untested</td><td>All three re-encode uploads. We have not yet confirmed whether any keeps ICC profiles after the LinkedIn change, and we will publish results here when we have them.</td></tr>
+    <tr><td>LinkedIn (feed, logos, ads)</td><td class="no">Patched, September 2026</td><td>Profile stripped on re-encode. Existing assets affected.</td></tr>
+    <tr><td>Instagram, Facebook</td><td class="no">Never worked</td><td>Profiles stripped; gain maps are the only HDR path there, and only for photos in the native apps.</td></tr>
+    <tr><td>Slack</td><td class="no">Tone-mapped</td><td>Profile kept but brightness clamped, observed in 2026.</td></tr>
+    <tr><td>Screenshots, WhatsApp, iMessage, copy-paste</td><td class="no">Never worked</td><td>Screenshots capture the SDR result; messengers recompress and strip.</td></tr>
+  </tbody>
+</table>
+
+<h2>What this means if you bought Superwhite for LinkedIn</h2>
+<p>If you bought a Simple or Creator key primarily for LinkedIn in the last few weeks and the change means you got no use from it, email <a href="mailto:hello@superwhite.app">hello@superwhite.app</a> from the address on your order and I will sort it out. New Pro subscriptions are paused as of today. Existing Pro subscribers can cancel any time from Gumroad, and I would rather you did that than pay for something you cannot use; your key keeps working for as long as the membership is active.</p>
+<p>Superwhite itself keeps working exactly as before. The exports are correct PQ-encoded JPEGs with a Rec.2100 PQ profile, and on any surface in the "works" rows above they glow the same way they did in the feed. What has changed is our positioning: the homepage, the landing pages and the how-to posts now describe LinkedIn as a surface that was patched rather than one that works, and point to the surfaces you control instead. Every page that previously said the effect "survives LinkedIn" now carries a dated notice linking here.</p>
+
+<h2>What happens next</h2>
+<ul>
+  <li><strong>Monitoring.</strong> We re-test LinkedIn's pipeline on a schedule with reference files. If a route reopens, this page and the tool's export screen will say so the same day.</li>
+  <li><strong>Other platforms.</strong> X, Threads and Bluesky get the same battery of tests we ran on LinkedIn (organic uploads, served-copy byte inspection, HDR and SDR viewers). Results will be added to the table above.</li>
+  <li><strong>The web route.</strong> The most durable home for the glow was always the surface nobody re-encodes: your own site. Expect the tool to lean into that, with export presets for hero images and an embed snippet that avoids the common CDN pitfalls.</li>
+</ul>
+
+<h2>The honest note we always attached</h2>
+<p>Every explainer on this site has ended with the same caveat: the glow was attention arbitrage on borrowed time, platforms clamp whatever gets abused, and nobody should build a brand system on it. That window has now closed on the platform where the trend started. It stayed open for roughly a year, which is longer than most of these tricks get, and it produced a small category of tools, several teardowns, and a lot of "is my screen broken?" comments. The technique is still real and still renders brighter than white wherever your file arrives intact. It just no longer does so in the LinkedIn feed.</p>
+
+<div class="cta">
+  <strong>The glow still works on your own site</strong>
+  <p style="margin-top:6px">Export an HDR JPEG in your browser, drop it on your landing page, and the whites render above screen white on HDR displays.</p>
+  <a href="/">Open Superwhite →</a>
+</div>
+</article>
+
+  <nav class="related" aria-label="Related reading">
+    <h2>Keep reading</h2>
+    <ul>
+    <li><a href="/blog/how-it-works">How the HDR glow works, technically</a><span>PQ encoding, the ICC profile as payload, and why the profile is the whole trick.</span></li>
+    <li><a href="/blog/hdr-video-linkedin">We tested HDR video on LinkedIn</a><span>Five encodings, every one flattened. The image route was the only one that ever worked.</span></li>
+    <li><a href="/tools/hdr-display-test">HDR display test</a><span>Confirm your display renders HDR before testing a platform.</span></li>
+    </ul>
+  </nav>
+
+<footer>superwhite.app · runs 100% client-side</footer>
+</div>
+</body>
+</html>
