@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HDR Glow Tools Compared: Which One Actually Works on LinkedIn | Superwhite</title>
-<meta name="description" content="Superwhite, HDRLogoGlow, superGLOW, So Very Bright, Hirenum Logo Glow and the open source Claude skills, compared on price, output format, and which LinkedIn surface each one survives.">
+<meta name="description" content="Superwhite, HDRLogoGlow, superGLOW, So Very Bright, Hirenum Logo Glow and the open source Claude skills, compared on price, output format, and which surfaces each one works on now that LinkedIn strips profiles.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://superwhite.app/blog/hdr-glow-tools-compared">
 <meta property="og:title" content="HDR glow tools compared: which one actually works on LinkedIn">
-<meta property="og:description" content="Six ways to make a logo glow brighter than white, compared on price, format and which LinkedIn surface each one survives. Written by the person who runs one of them.">
+<meta property="og:description" content="Six ways to make a logo glow brighter than white, compared on price, format and which surfaces each one works on now that LinkedIn strips profiles. Written by the person who runs one of them.">
 <meta property="og:url" content="https://superwhite.app/blog/hdr-glow-tools-compared">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://superwhite.app/og.jpg">
@@ -74,7 +74,7 @@ footer a{color:var(--dim)}
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "HDR glow tools compared: which one actually works on LinkedIn",
-  "description": "Superwhite, HDRLogoGlow, superGLOW, So Very Bright, Hirenum Logo Glow and the open source Claude skills, compared on price, output format and which LinkedIn surface each one survives.",
+  "description": "Superwhite, HDRLogoGlow, superGLOW, So Very Bright, Hirenum Logo Glow and the open source Claude skills, compared on price, output format and which surfaces each one works on now that LinkedIn strips profiles.",
   "image": "https://superwhite.app/og.jpg",
   "datePublished": "2026-09-05",
   "dateModified": "2026-09-07",
@@ -112,7 +112,7 @@ footer a{color:var(--dim)}
     {
       "@type": "Question",
       "name": "Does the HDR glow work on a LinkedIn profile picture?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Reports conflict. Some tools advertise profile picture support and publish converted headshots. Others report that LinkedIn's avatar pipeline re-encodes the upload to a PNG with colour chunks stripped, which would remove the effect. Company page logos and feed post images are the two surfaces that are widely reported to survive, so those are the safe choices."}
+      "acceptedAnswer": {"@type": "Answer", "text": "Reports conflict. Some tools advertise profile picture support and publish converted headshots. Others report that LinkedIn's avatar pipeline re-encodes the upload to a PNG with colour chunks stripped, which would remove the effect. Company page logos and feed post images were the two surfaces widely reported to survive until September 2026. LinkedIn now strips profiles on all of them, so no tool in this list glows on LinkedIn today."}
     },
     {
       "@type": "Question",
@@ -134,6 +134,7 @@ footer a{color:var(--dim)}
   <a class="logo" href="/">superwhite</a>
   <a class="back" href="/">&larr; try the tool</a>
 </header>
+<div class="sw-status" role="note" style="background:rgba(232,163,23,.12);border-left:3px solid #e8a317;border-radius:0 10px 10px 0;padding:12px 16px;margin:6px 0 22px;font-size:14.5px;line-height:1.55"><b>Update, 21 September 2026:</b> LinkedIn now strips the color profile that carried the glow, so HDR images no longer glow in the LinkedIn feed, on company logos or in ads, and already-uploaded logos were affected too. The effect still works on your own website, in email and anywhere your file arrives intact. <a href="/blog/linkedin-hdr-glow-patched">What changed and what still works</a>.</div>
 
 <article>
 <h1>HDR glow tools compared: which one actually works on LinkedIn</h1>
@@ -223,7 +224,7 @@ footer a{color:var(--dim)}
 <h2>What the technical differences actually change</h2>
 
 <h3>PQ profile versus gain map</h3>
-<p>Most of these tools take the same route, because it is the route that works: encode the pixels with the PQ transfer function and put a Rec.2020 or Rec.2100 PQ ICC profile in the file. LinkedIn re-encodes every upload and discards gain map metadata, but preserves colour profiles, so the brightness has to travel inside colour management.</p>
+<p>Most of these tools take the same route, because it is the route that works: encode the pixels with the PQ transfer function and put a Rec.2020 or Rec.2100 PQ ICC profile in the file. LinkedIn re-encoded every upload and discarded gain map metadata but preserved colour profiles, so the brightness had to travel inside colour management. Since September 2026 LinkedIn strips the profile too, so none of these tools produce a glow in the LinkedIn feed; the comparison below still applies to your own website and other surfaces that serve the file intact. <a href="/blog/linkedin-hdr-glow-patched">What changed</a>.</p>
 <p>So Very Bright is the outlier, writing a gain map under ISO 21496-1. Gain maps are the more standards-correct way to do HDR images and they render beautifully in Apple Photos and modern browsers. Whether a given gain map file survives a given platform's re-encode is a separate question from whether it looks right on your desktop, and that is worth testing on your own account before you commit a brand asset to it.</p>
 
 <h3>The threshold, and what happens to everything that is not white</h3>
@@ -245,7 +246,7 @@ footer a{color:var(--dim)}
 <li><strong>You want the file without a browser, inside an automated workflow.</strong> The Adamodigi skill or Gal Tidhar's CLI. Both are open source and drop into a script.</li>
 <li><strong>Full size feed post images and ads.</strong> This is the one place the free tools thin out, since most of them are built around the 400px logo case. Superwhite's Creator tier at &euro;5 once goes to 1400px and Pro at &euro;9 a month goes to 3840px.</li>
 <li><strong>Many brands, repeatedly.</strong> Batch export and saved per-brand settings are a Superwhite Pro thing rather than a category thing, because agencies were the ones asking for it.</li>
-<li><strong>You care about standards correctness more than LinkedIn survival.</strong> Look at the gain map route.</li>
+<li><strong>You care about standards correctness.</strong> Look at the gain map route.</li>
 </ul>
 
 <h2>One thing worth saying about all of them</h2>
@@ -267,7 +268,7 @@ footer a{color:var(--dim)}
 <p>No. Most encode the pixels with the PQ transfer function and embed a Rec.2020 or Rec.2100 PQ ICC profile, because that is what LinkedIn preserves. So Very Bright writes a gain map under ISO 21496-1 instead. Among the PQ tools, the differences are in the glow threshold, near-white noise handling, chroma subsampling and dithering.</p>
 
 <h3>Does the glow work on a LinkedIn profile picture?</h3>
-<p>Reports conflict. Some tools publish converted headshots as evidence it works. Others report that LinkedIn's avatar pipeline strips colour information on upload. Company logos and feed posts are the two surfaces widely reported to survive, so use those and verify anything else yourself on an HDR screen.</p>
+<p>Reports conflict. Some tools publish converted headshots as evidence it works. Others report that LinkedIn's avatar pipeline strips colour information on upload. Company logos and feed posts were the two surfaces widely reported to survive until September 2026. LinkedIn now strips profiles everywhere, so none of these tools glow on LinkedIn today.</p>
 
 <h3>Why is Superwhite paid when other tools are free?</h3>
 <p>Because the pixel handling is the work: amplified near-white noise, chroma smearing on coloured edges, and 8-bit banding all have to be solved or the glow looks dirty. It is maintained as a product rather than published as a one-off script, and that is what the paid tiers fund. Exports are 3 euro one time.</p>
