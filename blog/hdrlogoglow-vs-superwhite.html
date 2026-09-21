@@ -3,22 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HDRLogoGlow vs Superwhite: Which HDR Glow Tool Should You Use? | Superwhite</title>
-<meta name="description" content="HDRLogoGlow is free and glows any colour. Superwhite is paid, white-focused, verified on LinkedIn ads and does more to the pixels. An honest feature by feature comparison from the Superwhite side.">
+<title>Why the Taboola Logo Glows on LinkedIn: Another HDR Glow Sighting | Superwhite</title>
+<meta name="description" content="The Taboola logo is the latest to render brighter than white in the LinkedIn feed. It carries the same HDR trick as the Wiz logo: how it works, why Taboola's white-on-blue mark is the perfect input, and how to do it with your own logo in about a minute.">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<link rel="canonical" href="https://superwhite.app/blog/hdrlogoglow-vs-superwhite">
-<meta property="og:title" content="HDRLogoGlow vs Superwhite: Which HDR Glow Tool Should You Use? | Superwhite">
-<meta property="og:description" content="HDRLogoGlow is free and glows any colour. Superwhite is paid, white-focused, verified on LinkedIn ads and does more to the pixels. An honest feature by feature comparison from the Superwhite side.">
-<meta property="og:url" content="https://superwhite.app/blog/hdrlogoglow-vs-superwhite">
+<link rel="canonical" href="https://superwhite.app/blog/taboola-logo-glow-linkedin">
+<meta property="og:title" content="Why the Taboola logo glows on LinkedIn: another HDR glow sighting">
+<meta property="og:description" content="First Wiz, now Taboola. The same HDR color profile trick, spotted again in the LinkedIn feed. How it works and how to do it with your own logo.">
+<meta property="og:url" content="https://superwhite.app/blog/taboola-logo-glow-linkedin">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://superwhite.app/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="A white logo rendering brighter than the white page around it on an HDR display">
 <meta property="og:site_name" content="Superwhite">
-<meta property="article:published_time" content="2026-09-07">
-<meta property="article:modified_time" content="2026-09-07">
+<meta property="article:published_time" content="2026-08-02">
+<meta property="article:modified_time" content="2026-08-02">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why the Taboola logo glows on LinkedIn: another HDR glow sighting">
+<meta name="twitter:description" content="First Wiz, now Taboola. The same HDR trick, spotted again in the feed. How it works and how to do it yourself.">
+<meta name="twitter:image" content="https://superwhite.app/og.jpg">
 <link rel="icon" type="image/png" href="/favicon.png">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script>
@@ -28,38 +31,34 @@
   gtag('js', new Date());
   gtag('config', 'G-HE8J29XL52');
 </script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0D0B14;--surface:#161221;--line:#292139;--violet:#6B2EF5;--violet-hot:#8B5CF6;
---brand:#5B21F5;--ink:#F2EFFA;--dim:#A79BD9;--faint:#6C6285}
+:root{--paper:#FFFFFF;--ink:#141317;--dim:#5F5C66;--faint:#8B8894;--line:#E7E5EC;--accent:#4316B8;--radius:10px}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--ink);font:400 17px/1.75 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.7 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:720px;margin:0 auto;padding:0 24px}
-header{padding:24px 0;display:flex;align-items:center;justify-content:space-between}
-.logo{font:800 26px/1 'Baloo 2',sans-serif;color:var(--brand);-webkit-text-stroke:6px #fff;paint-order:stroke fill;
-text-shadow:0 3px 0 rgba(0,0,0,.35);transform:rotate(-2deg);text-decoration:none}
-.back{font:500 14px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
-article{padding:30px 0 60px}
-h1{font:700 clamp(30px,5vw,44px)/1.15 'Inter',sans-serif;letter-spacing:-.03em;margin-bottom:14px}
-.byline{font:500 13px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:36px}
-h2{font:700 24px 'Inter',sans-serif;letter-spacing:-.02em;margin:44px 0 14px}
-h3{font:600 19px 'Inter',sans-serif;margin:28px 0 10px}
-p{color:var(--dim);margin-bottom:18px}
-p strong,li strong{color:var(--ink);font-weight:600}
-a{color:var(--violet-hot)}
-ul{margin:0 0 18px 22px;color:var(--dim)}
-li{margin-bottom:8px}
-.callout{border-left:3px solid var(--violet);background:var(--surface);border-radius:0 10px 10px 0;padding:16px 18px;margin-bottom:18px}
+header{padding:28px 0;display:flex;align-items:baseline;justify-content:space-between}
+.logo{font:800 20px/1 'Inter Tight',sans-serif;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.back{font:500 13px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+.back:hover{color:var(--ink)}
+article{padding:24px 0 56px}
+h1{font:800 clamp(30px,5vw,44px)/1.1 'Inter Tight',sans-serif;letter-spacing:-.03em;margin-bottom:12px}
+.byline{font:500 12px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:32px}
+h2{font:700 22px/1.3 'Inter Tight',sans-serif;letter-spacing:-.02em;margin:36px 0 12px}
+h3{font:600 17px/1.4 'Inter Tight',sans-serif;letter-spacing:-.01em;margin:26px 0 8px}
+p{margin-bottom:16px}
+a{color:var(--accent)}
+ol,ul{margin:0 0 16px 22px}
+ol li,ul li{margin-bottom:8px}
+code{font:500 13px 'JetBrains Mono',monospace;background:#F4F2F9;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+pre{background:#F4F2F9;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;overflow-x:auto;margin-bottom:16px}
+pre code{background:none;border:none;padding:0;font-size:13px;line-height:1.6}
+.callout{border-left:3px solid var(--accent);background:#F8F7FC;border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;margin-bottom:16px}
 .callout p{margin:0}
-.tablewrap{overflow-x:auto;margin:0 0 22px;border:1px solid var(--line);border-radius:12px}
-table{border-collapse:collapse;width:100%;min-width:620px;font-size:15px}
-th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:top}
-th{color:var(--ink);font-weight:600;background:var(--surface);white-space:nowrap}
-tbody tr:last-child td{border-bottom:none}
-td strong{color:var(--ink)}
-.cta{margin-top:50px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:28px;text-align:center}
-.cta a{display:inline-block;margin-top:14px;background:var(--violet);color:#fff;text-decoration:none;
-font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
-footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
+.cta{display:inline-block;font:600 15px/1 'Inter',sans-serif;padding:13px 20px;border-radius:99px;background:var(--ink);color:#fff;text-decoration:none;margin-top:8px}
+.cta:hover{background:#000}
+footer{padding:24px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
 footer a{color:var(--dim)}
 .related{border-top:1px solid var(--line);padding-top:26px;margin:0 0 10px}
 .related h2{font:700 18px 'Inter',sans-serif;margin:0 0 16px;letter-spacing:-.01em}
@@ -68,209 +67,144 @@ footer a{color:var(--dim)}
 .related a{color:var(--ink);text-decoration:none;font-weight:600;display:block}
 .related a:hover{color:var(--violet-hot)}
 .related span{display:block;color:var(--faint);font-size:14px;font-weight:400;line-height:1.5}
-
-.hero-cta{margin:26px 0 34px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:24px 26px}
-.hero-cta p{margin:0 0 14px;color:var(--ink)}
-.hero-cta a.btn{display:inline-block;background:var(--violet);color:#fff;text-decoration:none;font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
-.hero-cta small{display:block;margin-top:12px;color:var(--faint);font-size:13px}
-ol{margin:0 0 18px 22px;color:var(--dim)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 22px}
-.grid div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
-.grid h3{margin:0 0 8px;font-size:16px}
-.grid ul{margin:0 0 0 18px;font-size:15px}
-@media(max-width:600px){.grid{grid-template-columns:1fr}}
 </style>
 <script type="application/ld+json">
 {
- "@context": "https://schema.org",
- "@type": "Article",
- "headline": "HDRLogoGlow vs Superwhite: which HDR glow tool should you use",
- "description": "HDRLogoGlow is free and glows any colour. Superwhite is paid, white-focused, verified on LinkedIn ads and does more to the pixels. An honest feature by feature comparison from the Superwhite side.",
- "image": "https://superwhite.app/og.jpg",
- "datePublished": "2026-09-07",
- "dateModified": "2026-09-07",
- "author": {
-  "@type": "Person",
-  "name": "Nimrod Yarkoni",
-  "url": "https://www.linkedin.com/in/nimrodyar/",
-  "sameAs": [
-   "https://github.com/nimrodyar"
-  ]
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "Superwhite",
-  "url": "https://superwhite.app",
-  "sameAs": [
-   "https://www.linkedin.com/company/superwhiteapp"
-  ]
- },
- "mainEntityOfPage": {
-  "@type": "WebPage",
-  "@id": "https://superwhite.app/blog/hdrlogoglow-vs-superwhite"
- }
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why the Taboola logo glows on LinkedIn: another HDR glow sighting",
+  "description": "The Taboola logo is the latest to render brighter than white in the LinkedIn feed, carrying the same HDR color profile trick as the Wiz logo. How the trick works, why Taboola's white-on-blue mark is the ideal input, and how to apply it to any logo.",
+  "datePublished": "2026-08-02",
+  "dateModified": "2026-08-02",
+  "author": {"@type": "Person", "name": "Nimrod Yarkoni", "url": "https://superwhite.app/"},
+  "publisher": {"@type": "Organization", "name": "Superwhite", "url": "https://superwhite.app/"},
+  "image": "https://superwhite.app/og.jpg",
+  "mainEntityOfPage": "https://superwhite.app/blog/taboola-logo-glow-linkedin"
 }
 </script>
 <script type="application/ld+json">
 {
- "@context": "https://schema.org",
- "@type": "BreadcrumbList",
- "itemListElement": [
-  {
-   "@type": "ListItem",
-   "position": 1,
-   "name": "Superwhite",
-   "item": "https://superwhite.app/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 2,
-   "name": "Blog",
-   "item": "https://superwhite.app/blog/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 3,
-   "name": "HDRLogoGlow vs Superwhite",
-   "item": "https://superwhite.app/blog/hdrlogoglow-vs-superwhite"
-  }
- ]
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Superwhite", "item": "https://superwhite.app/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://superwhite.app/blog/"},
+    {"@type": "ListItem", "position": 3, "name": "Why the Taboola logo glows on LinkedIn", "item": "https://superwhite.app/blog/taboola-logo-glow-linkedin"}
+  ]
 }
 </script>
 <script type="application/ld+json">
 {
- "@context": "https://schema.org",
- "@type": "FAQPage",
- "mainEntity": [
-  {
-   "@type": "Question",
-   "name": "Is HDRLogoGlow free?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Yes. HDRLogoGlow is free with no account, no watermark and no export limit, according to its own pages. Superwhite is paid: 3 euro one time to 400px, 5 euro one time to 1400px, 9 euro a month to 3840px."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Do HDRLogoGlow and Superwhite produce the same kind of file for LinkedIn?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Both export a JPEG carrying a Rec.2100 PQ ICC profile, which is the only HDR signalling LinkedIn preserves. They differ in what is done to the pixels before encoding: Superwhite applies a near-white flattening ramp, dithering in PQ code space and 4:4:4 chroma at quality 97. HDRLogoGlow's public material does not describe equivalent steps."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Can Superwhite glow colours other than white?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "No. Superwhite is built around the white and near-white case with a glow threshold. HDRLogoGlow can glow any colour or a selected region, which is its main functional advantage."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Which tool works for LinkedIn ads?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Superwhite verified that the ICC profile survives LinkedIn's Sponsored Content pipeline. HDRLogoGlow's LinkedIn page states its ad path has not been verified end to end."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Which tool has batch export and presets?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Superwhite Pro. HDRLogoGlow lists both as not yet available on its own comparison page."
-   }
-  }
- ]
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why does the Taboola logo look like it is glowing on LinkedIn?",
+      "acceptedAnswer": {"@type": "Answer", "text": "The image carries an HDR color signal that tells HDR-capable screens to render its whites above normal screen white, using the panel's reserve brightness. It is the same technique seen earlier on the Wiz logo. On non-HDR screens the same image looks completely normal."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is the glowing Taboola logo a filter or animation?",
+      "acceptedAnswer": {"@type": "Answer", "text": "No. The pixels are flat and static. The only unusual thing in the file is a color profile that instructs the display to treat the whites as HDR content. There is no CSS, no video, and no editing trick involved."}
+    },
+    {
+      "@type": "Question",
+      "name": "How can I make my own logo glow on LinkedIn like Taboola's?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Embed an HDR color signal so the image's whites decode above normal screen white. superwhite.app does this in the browser: drop in a logo, set the brightness, download the JPEG and post it directly to LinkedIn without cropping or editing it in the composer."}
+    },
+    {
+      "@type": "Question",
+      "name": "Why do I see the glow on my phone but not on my monitor?",
+      "acceptedAnswer": {"@type": "Answer", "text": "The effect only renders on HDR-capable displays with HDR enabled and battery saver off. Most recent phones qualify by default, while many office monitors and older laptops do not. On those screens the same file shows as a normal, slightly dim image."}
+    },
+    {
+      "@type": "Question",
+      "name": "Does the glow survive screenshots or reposts?",
+      "acceptedAnswer": {"@type": "Answer", "text": "No. Screenshots capture the tone-mapped standard result, and re-saving, cropping in LinkedIn's composer, or forwarding through messaging apps strips the color profile. Only the original exported file glows."}
+    },
+    {
+      "@type": "Question",
+      "name": "Will LinkedIn patch the HDR glow trick?",
+      "acceptedAnswer": {"@type": "Answer", "text": "It already has. LinkedIn began stripping colour profiles in September 2026, and the glow disappeared from the feed. Platforms had already clamped the equivalent trick for HDR video, and Slack had tone-mapped glowing workspace logos. It was a window of attention arbitrage rather than permanent infrastructure, and now that it has closed the files simply render as normal images."}
+    }
+  ]
 }
 </script>
 </head>
 <body>
 <div class="wrap">
-<header>
-  <a class="logo" href="/">superwhite</a>
-  <a class="back" href="/#try">&larr; open the tool</a>
-</header>
+  <header>
+    <a class="logo" href="/">superwhite</a>
+    <a class="back" href="/">back to the tool</a>
+  </header>
+<div class="sw-status" role="note" style="background:rgba(232,163,23,.12);border-left:3px solid #e8a317;border-radius:0 10px 10px 0;padding:12px 16px;margin:6px 0 22px;font-size:14.5px;line-height:1.55"><b>Update, 21 September 2026:</b> LinkedIn now strips the color profile that carried the glow, so HDR images no longer glow in the LinkedIn feed, on company logos or in ads, and already-uploaded logos were affected too. The effect still works on your own website, in email and anywhere your file arrives intact. <a href="/blog/linkedin-hdr-glow-patched">What changed and what still works</a>.</div>
+  <article>
+    <h1>Why the Taboola logo glows on LinkedIn</h1>
+    <p class="byline">PUBLISHED 2 AUGUST 2026 · BY NIMROD YARKONI</p>
 
-<article>
-<h1>HDRLogoGlow vs Superwhite: which HDR glow tool should you use</h1>
-<p class="byline">superwhite.app &middot; comparison &middot; 7 September 2026 &middot; by <a href="https://www.linkedin.com/in/nimrodyar/" target="_blank" rel="noopener">Nimrod Yarkoni</a></p>
+    <p>First it was <a href="/blog/wiz-logo-glow-linkedin">Wiz</a>. Now Taboola's logo is lighting up in the LinkedIn feed too: on a recent iPhone, Pixel or MacBook, the white smiley and wordmark render visibly brighter than the white page around them, as if the logo were backlit. Try to screenshot it and the screenshot looks perfectly ordinary. Your screen is not broken, and neither is theirs. It is the HDR glow trick, and Taboola appears to be the latest major brand to run it.</p>
 
-<p>HDRLogoGlow launched in late August 2026 as a free, browser-based HDR glow tool and published a page comparing itself to Superwhite. This is the comparison from the other side. It is written by the person who runs Superwhite, so read it with that in mind, and check the other tool yourself. Where HDRLogoGlow is ahead, it says so.</p>
+    <h2>What are you actually looking at?</h2>
+    <p>The image carries an HDR color signal, the same technique behind the glowing Wiz logo. Until September 2026 LinkedIn's upload pipeline stripped most HDR metadata but kept colour profiles, so the file arrived in the feed with its glow intact. LinkedIn now strips the profile too, and the logo no longer glows there. On an HDR screen the white parts of the logo render in the display's spare brightness headroom, above the level the interface uses for normal white. On an SDR screen the same file is just a regular logo.</p>
+    <p>There is no filter, no animation and no CSS involved. The pixels themselves are flat. The only unusual thing in the file is the color information telling the renderer to treat those whites as HDR content. If you want the full mechanics of PQ curves and brightness headroom, they are in <a href="/blog/how-it-works">the technical write-up</a>; the short version is that your screen has more brightness in reserve than "white" normally uses, and this file is allowed to spend it.</p>
 
-<div class="callout"><p><strong>Short version.</strong> HDRLogoGlow is free, can glow any colour or a selected region, and ships two useful side tools. Superwhite is paid, white-focused, has a longer production track record on LinkedIn including paid ads, does more to the pixels before encoding, and has batch and presets for teams. If cost decides it, use HDRLogoGlow. If output quality on a white mark or a repeat workflow decides it, use Superwhite.</p></div>
+    <h2>Why Taboola's logo is a perfect fit for the trick</h2>
+    <p>Taboola's own brand guidelines call for the white version of their logo on colorful backgrounds because it makes the mark pop. That instinct is exactly what the HDR trick amplifies. A pure white smiley and wordmark on a solid blue background means the glow lands precisely on the logo and nowhere else. The background stays at a calm, normal level while the mark emits real extra light, which reads as a light source rather than an overexposed image.</p>
+    <p>This is the general rule for the technique: high-contrast graphics are the ideal input. A fully glowing photo just looks blown out, and smooth gradients can band at 8 bits per channel. A white mark on a flat colored background is the cleanest possible case, and both Wiz and Taboola happen to have exactly that.</p>
 
-<h2>Feature by feature</h2>
-<div class="tablewrap">
-<table>
-<thead><tr><th>Capability</th><th>Superwhite</th><th>HDRLogoGlow</th><th>Note</th></tr></thead>
-<tbody>
-<tr><td>White HDR glow on LinkedIn</td><td>Yes</td><td>Yes</td><td>Both export a JPEG with a Rec.2100 PQ ICC profile, the route that survives LinkedIn.</td></tr>
-<tr><td>Glow threshold control</td><td>Yes</td><td>Yes, via auto white detection</td><td>Superwhite exposes the luminance cut-off directly.</td></tr>
-<tr><td>Any-colour glow</td><td>No</td><td>Yes</td><td>Genuine HDRLogoGlow advantage. Note saturated colours have a hard ceiling in Rec.2020, blue especially.</td></tr>
-<tr><td>Region selection</td><td>No</td><td>Yes</td><td>Glow one object rather than every pixel of that colour.</td></tr>
-<tr><td>Near-white flattening ramp</td><td>Yes</td><td>Not advertised</td><td>Prevents invisible JPEG noise being amplified into visible grain by the boost.</td></tr>
-<tr><td>Dithering in PQ code space</td><td>Yes</td><td>Not advertised</td><td>Prevents banding at the top of the PQ curve.</td></tr>
-<tr><td>4:4:4 chroma at quality 97</td><td>Yes</td><td>Not advertised</td><td>Keeps coloured edges crisp against a glowing white through LinkedIn's re-encode.</td></tr>
-<tr><td>LinkedIn Sponsored Content verified</td><td>Yes</td><td>No, their page says untested</td><td>Superwhite confirmed the profile survives the paid ad path.</td></tr>
-<tr><td>HDR PNG (cICP) export</td><td>No</td><td>Yes</td><td>Useful for pages you host yourself. Does not survive any platform re-encode.</td></tr>
-<tr><td>Output verification scan</td><td>No</td><td>Yes</td><td>They read each export back and check the signalling.</td></tr>
-<tr><td>Batch export</td><td>Pro</td><td>No</td><td>Their comparison page lists this as a gap.</td></tr>
-<tr><td>Saved brand presets</td><td>Pro</td><td>No</td><td>Same.</td></tr>
-<tr><td>HDR display test page</td><td>No</td><td>Yes</td><td>Handy.</td></tr>
-<tr><td>Named production logos</td><td>Wiz, Taboola, Port, Lusha, DoiT, Prime Security</td><td>Shows brands already glowing on LinkedIn</td><td>Their examples page lists brands whose logos are encoded as HDR, including Taboola, whose glow Superwhite documented in August.</td></tr>
-<tr><td>Runs in the browser, nothing uploaded</td><td>Yes</td><td>Yes</td><td>Same on both.</td></tr>
-<tr><td>Price</td><td>&euro;3 once to 400px, &euro;5 once to 1400px, &euro;9/mo to 3840px</td><td>Free</td><td>No account or watermark on either.</td></tr>
-</tbody>
-</table>
-</div>
+    <h2>The pattern: B2B brands are adopting it one by one</h2>
+    <p>The lineage runs from Tom Nick's original write-up through Port.io, Slack, AlphaSignal and then the Wiz logo that made the trick famous, each one triggering a fresh wave of "is my screen broken?" comments. The full history, with teardowns and credits, is in <a href="/blog/wiz-logo-glow-linkedin">the Wiz post</a>. Taboola showing up in that list is notable for a different reason: Taboola is an advertising company. Their entire business is attention, and when an attention business starts using a trick to win attention in the feed, that says something about how well it works.</p>
+    <p>It also says something about the window. Every previous wave of this trick eventually got tone-mapped away somewhere: Slack has already patched glowing workspace logos, and platforms clamped the equivalent HDR video trick after it flooded short-form feeds. LinkedIn's image pipeline kept colour profiles until September 2026. When enough large brands were doing it, that is when the platform appears to have looked at it. It was useful while it lasted, and not something to build a brand system on. The window did close, in September 2026, and the same files now simply render as normal images. <a href=\"/blog/linkedin-hdr-glow-patched\">What changed</a>.</p>
 
-<h2>Where HDRLogoGlow is better</h2>
-<p>It is free, and for a one-off company logo that may be the whole decision. Any-colour and region selection are real capabilities Superwhite does not have. The colour limit calculator and the HDR display test are well made side tools. The standards write-up on their pages is careful, with ITU and SMPTE references, and their "last verified" dates are a good habit.</p>
+    <h2>What's the catch?</h2>
+    <ul>
+      <li><strong>Not everyone sees it.</strong> Viewers on non-HDR office monitors, or phones in battery saver mode, see a regular logo with slightly dimmer whites. High-contrast inputs and moderate brightness give the most graceful fallback.</li>
+      <li><strong>Too bright reads as glare.</strong> Every viral wave produces the same complaints: it hurts, change it back. Standing out comfortably beats maximum brightness. Around 600 to 1,000 nits your mark clearly out-glows the feed without searing anyone's retinas at 9 PM, which is why Superwhite gives you a brightness slider instead of a fixed maximum.</li>
+      <li><strong>The effect is fragile by design.</strong> Screenshots, re-saves, cropping in LinkedIn's composer and messenger compression all strip the profile. Only the original exported file glows, so the glow does not travel with reposts.</li>
+    </ul>
 
-<h2>Where Superwhite is better</h2>
-<p>Every tool in this category tags the file. The difference is what happens to the pixels before the tag, and that is where Superwhite has put its work. Near-white JPEG noise, which is invisible in SDR, becomes grain at 1,600 nits unless it is flattened first. Smooth areas band at the top of the PQ curve unless they are dithered. Coloured edges smear against a glowing white unless chroma is written at full resolution. Superwhite does all three by default. HDRLogoGlow's public material does not mention any of them, which does not mean they are absent, only that we could not verify them.</p>
-<p>Superwhite has also spent longer in production on LinkedIn specifically. It made the Wiz logo that started the trend, verified that the ICC profile survives the Sponsored Content pipeline and not only organic posts, and documented why HDR video does not survive at all despite the composer preview suggesting it does. HDRLogoGlow's LinkedIn page says its ad path is untested.</p>
-<p>Finally, batch export and saved presets. If you are an agency doing this for clients every week, those two features are the workflow, and they are the reason Pro exists.</p>
+    <h2>How do you do it with your own logo?</h2>
+    <p>You do not need Taboola's budget, or anyone's budget. The feed-post version of this takes about a minute:</p>
+    <ol>
+      <li>Open <a href="/">superwhite.app</a> and drop in your logo. A white or near-white mark on a colored background works best, exactly like Taboola's and Wiz's.</li>
+      <li>Set the peak brightness and the glow threshold so the mark glows and the background stays put. If you are on an HDR screen, the live preview shows exactly what your audience will see.</li>
+      <li>Download the HDR JPEG and post it to LinkedIn as a feed image. Do not crop or edit it in the composer, that strips the profile.</li>
+    </ol>
+    <p>Everything runs in your browser and nothing gets uploaded. Sign in, exports from €2.99, unlimited up to 400px.</p>
+    <a class="cta" href="/">Make your logo glow</a>
 
-<h2>A note on their Superwhite alternative page</h2>
-<p>Their comparison lists Superwhite as "not advertised" for any-colour selection, region selection and output verification. That is accurate. It lists batch processing and saved presets as Superwhite advantages. Also accurate. It lists Superwhite's price as "check their site", so here it is: &euro;3 one time for unlimited 400px exports, &euro;5 one time to 1400px, &euro;9 a month to 3840px with batch and presets. Nothing on Superwhite is free.</p>
+    <h2>Frequently asked questions</h2>
 
-<h2>Which one to use</h2>
-<ul>
-<li><strong>One white logo, cost matters most:</strong> HDRLogoGlow, or any of the free tools in <a href="/blog/hdr-glow-tools-compared">the wider comparison</a>.</li>
-<li><strong>You want a brand colour or a single region to glow:</strong> HDRLogoGlow. Superwhite does not do this.</li>
-<li><strong>A white mark where the result has to look clean at 1,600 nits, or a full-size post or ad:</strong> Superwhite.</li>
-<li><strong>Paid LinkedIn ads:</strong> Superwhite, because the ad path is verified.</li>
-<li><strong>Many brands, repeatedly:</strong> Superwhite Pro for batch and presets.</li>
-</ul>
+    <h3>Why does the Taboola logo look like it is glowing on LinkedIn?</h3>
+    <p>The image carries an HDR color signal that lets its whites render above normal screen white on HDR displays, using the panel's reserve brightness. It is the same technique seen earlier on the Wiz logo. On non-HDR screens the image looks completely normal.</p>
 
+    <h3>Is it a filter or an animation?</h3>
+    <p>No. The pixels are flat and static. The only unusual thing in the file is the color information instructing HDR displays to treat the whites as HDR content. There is nothing to see in the pixels themselves, which is why screenshots look ordinary.</p>
 
-<h2>Frequently asked questions</h2>
-<h3>Is HDRLogoGlow free?</h3>
-<p>Yes. HDRLogoGlow is free with no account, no watermark and no export limit, according to its own pages. Superwhite is paid: 3 euro one time to 400px, 5 euro one time to 1400px, 9 euro a month to 3840px.</p>
-<h3>Do HDRLogoGlow and Superwhite produce the same kind of file for LinkedIn?</h3>
-<p>Both export a JPEG carrying a Rec.2100 PQ ICC profile, which is the only HDR signalling LinkedIn preserves. They differ in what is done to the pixels before encoding: Superwhite applies a near-white flattening ramp, dithering in PQ code space and 4:4:4 chroma at quality 97. HDRLogoGlow's public material does not describe equivalent steps.</p>
-<h3>Can Superwhite glow colours other than white?</h3>
-<p>No. Superwhite is built around the white and near-white case with a glow threshold. HDRLogoGlow can glow any colour or a selected region, which is its main functional advantage.</p>
-<h3>Which tool works for LinkedIn ads?</h3>
-<p>Superwhite verified that the ICC profile survives LinkedIn's Sponsored Content pipeline. HDRLogoGlow's LinkedIn page states its ad path has not been verified end to end.</p>
-<h3>Which tool has batch export and presets?</h3>
-<p>Superwhite Pro. HDRLogoGlow lists both as not yet available on its own comparison page.</p>
-</article>
+    <h3>How can I make my own logo glow like that?</h3>
+    <p>Embed an HDR color signal so the whites decode above normal screen white. <a href="/">Superwhite</a> does this in the browser: drop in a logo, set the brightness, download the JPEG and post the file directly to LinkedIn without cropping or editing it in the composer.</p>
+
+    <h3>Why do I see it on my phone but not on my work monitor?</h3>
+    <p>The glow only renders on HDR-capable displays with HDR on and battery saver off. Most recent phones qualify by default; many office monitors and older laptops do not. On those screens the same file shows as a normal, slightly dim image, nothing broken.</p>
+
+    <h3>Does the glow survive screenshots or reposts?</h3>
+    <p>No. Screenshots capture the tone-mapped standard result, and re-saving, cropping or forwarding through messaging apps strips the color profile. Only the original exported file glows.</p>
+
+    <h3>Will LinkedIn patch it?</h3>
+    <p>Probably eventually. Slack has already tone-mapped glowing workspace logos and platforms clamped the equivalent HDR video trick. Treat it as attention arbitrage with a window. When the window closes, the file simply renders as a normal image.</p>
+  </article>
 
   <nav class="related" aria-label="Related reading">
     <h2>Keep reading</h2>
     <ul>
-    <li><a href="/blog/hdr-glow-tools-compared">HDR glow tools compared</a><span>Every tool in the category, on price, format and what survives LinkedIn.</span></li>
-    <li><a href="/hdr-logo-glow">HDR logo glow</a><span>What Superwhite does to the pixels, and why.</span></li>
-    <li><a href="/linkedin-hdr-glow">LinkedIn HDR glow</a><span>Every LinkedIn surface, what survives and what does not.</span></li>
-    <li><a href="/blog/how-it-works">How Superwhite works</a><span>PQ transfer functions, ICC splicing and display headroom.</span></li>
+    <li><a href="/blog/lusha-logo-glow-linkedin">Why the Lusha logo glows on LinkedIn</a><span>Sales tech picks up the HDR glow.</span></li>
+    <li><a href="/blog/doit-logo-glow-linkedin">Why the DoiT logo glows on LinkedIn</a><span>The glow reaches FinOps.</span></li>
+    <li><a href="/blog/prime-security-logo-glow-linkedin">Why the Prime Security logo glows</a><span>Security marketing follows Wiz into the brightness headroom.</span></li>
     </ul>
   </nav>
   <footer>
-    <a href="/">Superwhite</a> &middot; <a href="/glowing-logo-linkedin">Glowing logo on LinkedIn</a> &middot; <a href="/linkedin-hdr-glow">LinkedIn HDR glow</a> &middot; <a href="/hdr-logo-glow">HDR logo glow</a> &middot; <a href="/hdr-logo-maker">HDR logo maker</a> &middot; <a href="/tools/">Free tools</a> &middot; <a href="/blog/">Blog</a>
+    <a href="/">Superwhite</a> · <a href="/tools/">Free tools</a> · <a href="/blog/wiz-logo-glow-linkedin">Why the Wiz logo glows</a> · <a href="/blog/how-it-works">How it works, technically</a> · <a href="/blog/why-is-that-linkedin-image-glowing">Why is that LinkedIn image glowing?</a>
   </footer>
 </div>
 </body>
