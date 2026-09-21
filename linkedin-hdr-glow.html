@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LinkedIn HDR Glow: Make Your Logo or Post Glow Brighter Than White | Superwhite</title>
-<meta name="description" content="Make a LinkedIn logo or post image glow brighter than white on HDR screens. The tool behind the Wiz and Taboola glows. What survives LinkedIn's compression, which size to export, and how.">
+<meta name="description" content="Make a LinkedIn logo or post image glow brighter than white on HDR screens. The tool behind the Wiz and Taboola glows. LinkedIn patched the trick in September 2026; what still works, what changed, and where the glow renders today.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://superwhite.app/linkedin-hdr-glow">
 <meta property="og:title" content="LinkedIn HDR Glow: Make Your Logo or Post Glow Brighter Than White | Superwhite">
-<meta property="og:description" content="Make a LinkedIn logo or post image glow brighter than white on HDR screens. The tool behind the Wiz and Taboola glows. What survives LinkedIn's compression, which size to export, and how.">
+<meta property="og:description" content="Make a LinkedIn logo or post image glow brighter than white on HDR screens. The tool behind the Wiz and Taboola glows. LinkedIn patched the trick in September 2026; what still works, what changed, and where the glow renders today.">
 <meta property="og:url" content="https://superwhite.app/linkedin-hdr-glow">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://superwhite.app/og.jpg">
@@ -86,7 +86,7 @@ ol{margin:0 0 18px 22px;color:var(--dim)}
  "applicationCategory": "MultimediaApplication",
  "operatingSystem": "Any (browser)",
  "url": "https://superwhite.app/linkedin-hdr-glow",
- "description": "Make a LinkedIn logo or post image glow brighter than white on HDR screens. The tool behind the Wiz and Taboola glows. What survives LinkedIn's compression, which size to export, and how.",
+ "description": "Make a LinkedIn logo or post image glow brighter than white on HDR screens. The tool behind the Wiz and Taboola glows. LinkedIn patched the trick in September 2026; what still works, what changed, and where the glow renders today.",
  "image": "https://superwhite.app/og.jpg",
  "offers": [
   {
@@ -180,7 +180,7 @@ ol{margin:0 0 18px 22px;color:var(--dim)}
    "name": "How much does Superwhite cost?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Simple is 3 euro one time for unlimited exports up to 400px, which covers logos and avatars. Creator is 5 euro one time up to 1400px for posts and ads. Pro is 9 euro a month up to 3840px with batch export and saved presets."
+    "text": "Simple is 3 euro one time for unlimited exports up to 400px, which covers logos and avatars. Creator is 5 euro one time up to 1400px for web hero images and email headers. Pro is 9 euro a month up to 3840px with batch export and saved presets; new Pro subscriptions are paused since 21 September 2026."
    }
   },
   {
@@ -201,9 +201,10 @@ ol{margin:0 0 18px 22px;color:var(--dim)}
   <a class="logo" href="/">superwhite</a>
   <a class="back" href="/#try">&larr; open the tool</a>
 </header>
+<div class="sw-status" role="note" style="background:rgba(232,163,23,.12);border-left:3px solid #e8a317;border-radius:0 10px 10px 0;padding:12px 16px;margin:6px 0 22px;font-size:14.5px;line-height:1.55"><b>Update, 21 September 2026:</b> LinkedIn now strips the color profile that carried the glow, so HDR images no longer glow in the LinkedIn feed, on company logos or in ads, and already-uploaded logos were affected too. The effect still works on your own website, in email and anywhere your file arrives intact. <a href="/blog/linkedin-hdr-glow-patched">What changed and what still works</a>.</div>
 
 <article>
-<h1>LinkedIn HDR glow: make your logo or post glow brighter than white</h1>
+<h1>LinkedIn HDR glow: how it worked, and why it stopped in September 2026</h1>
 <p class="byline">superwhite.app &middot; LinkedIn HDR glow tool &middot; updated 7 September 2026</p>
 
 <div class="hero-cta">
@@ -224,14 +225,15 @@ ol{margin:0 0 18px 22px;color:var(--dim)}
 <li><strong>Upload that exact file to LinkedIn</strong> as an image post or as the company logo. Do not crop, filter or edit it in LinkedIn's composer, and do not re-save it in another editor first.</li>
 </ol>
 
-<h2>What survives LinkedIn, and what does not</h2>
+<h2>What survived LinkedIn until September 2026, and what changed</h2>
+<p>Until September 2026 the ICC profile route was the one HDR format that came through LinkedIn's re-encode. That is no longer the case: the pipeline now strips the profile, on organic posts, company logos and Sponsored Content alike, and assets uploaded before the change were flattened too. The lists below are kept as a record of what was verified. Full write-up: <a href="/blog/linkedin-hdr-glow-patched">what changed and what still works</a>.</p>
 <div class="grid">
-<div><h3>Survives</h3><ul>
+<div><h3>Survived until September 2026</h3><ul>
 <li>JPEG with a Rec.2100 PQ ICC profile, uploaded directly as an image post</li>
 <li>Company page logos</li>
-<li>Sponsored Content and paid image ads. Superwhite verified the profile is retained on the paid path as well as organic</li>
+<li>Sponsored Content and paid image ads. Superwhite had verified the profile was retained on the paid path as well as organic</li>
 </ul></div>
-<div><h3>Dies</h3><ul>
+<div><h3>Never survived</h3><ul>
 <li>Gain map (Ultra HDR) JPEGs. LinkedIn strips the MPF and XMP payload on re-encode</li>
 <li>PNG with a cICP chunk. LinkedIn re-encodes to JPEG and the chunk is gone</li>
 <li>HDR video. LinkedIn's transcoder rewrites the colour metadata to SDR regardless of input, even though the upload preview plays the HDR original</li>
@@ -250,15 +252,15 @@ ol{margin:0 0 18px 22px;color:var(--dim)}
 
 <h2>Frequently asked questions</h2>
 <h3>Does LinkedIn HDR glow work on profile pictures?</h3>
-<p>Company page logos and feed image posts are the reliable surfaces. Personal profile photos go through a more aggressive pipeline and reports conflict, so test yours on an HDR phone after upload before relying on it.</p>
+<p>Not any more, on any LinkedIn surface. Company page logos and feed image posts were the reliable surfaces until September 2026; personal profile photos were unreliable even before. Since the change, the profile is stripped everywhere on LinkedIn.</p>
 <h3>Does the glow survive in LinkedIn ads?</h3>
-<p>Yes. Superwhite verified that Sponsored Content and paid image ads keep the ICC profile through LinkedIn's ad pipeline, not only organic posts. Upload the exported JPEG directly to Campaign Manager without re-saving it.</p>
+<p>Not since September 2026. Superwhite had verified that Sponsored Content and paid image ads kept the ICC profile through LinkedIn's ad pipeline, but the paid path now strips it along with the organic one.</p>
 <h3>Why does my colleague see a normal image?</h3>
 <p>Their display has no HDR headroom or HDR is switched off, or their phone is in battery saver. The file is unchanged. Roughly half of a typical LinkedIn audience is on an HDR-capable screen, so design the image to work without the glow too.</p>
 <h3>Can I make a LinkedIn video glow?</h3>
-<p>Not today. LinkedIn's transcoder rewrites video colour metadata to SDR on every upload, even though the composer preview plays the original HDR file. The effect is image-only on LinkedIn.</p>
+<p>No. LinkedIn's transcoder rewrites video colour metadata to SDR on every upload, even though the composer preview plays the original HDR file. Since September 2026 images are stripped too, so nothing glows on LinkedIn today.</p>
 <h3>How much does Superwhite cost?</h3>
-<p>Simple is 3 euro one time for unlimited exports up to 400px, which covers logos and avatars. Creator is 5 euro one time up to 1400px for posts and ads. Pro is 9 euro a month up to 3840px with batch export and saved presets.</p>
+<p>Simple is 3 euro one time for unlimited exports up to 400px, which covers logos and avatars. Creator is 5 euro one time up to 1400px for web hero images and email headers. Pro is 9 euro a month up to 3840px with batch export and saved presets; new Pro subscriptions are paused since 21 September 2026.</p>
 <h3>Does the same file glow on Instagram or Facebook?</h3>
 <p>No. Meta platforms need a gain map JPEG under ISO 21496-1 rather than an ICC-profile JPEG, and they re-encode differently. Superwhite's LinkedIn export is built for LinkedIn's pipeline specifically.</p>
 </article>
@@ -268,7 +270,7 @@ ol{margin:0 0 18px 22px;color:var(--dim)}
     <ul>
     <li><a href="/blog/make-linkedin-post-glow-hdr">Make your LinkedIn post glow in HDR</a><span>The 30 second version, step by step.</span></li>
     <li><a href="/blog/hdr-video-linkedin">HDR video on LinkedIn</a><span>Why the preview lies and the feed does not.</span></li>
-    <li><a href="/blog/hdr-glow-tools-compared">HDR glow tools compared</a><span>Every tool in the category, on price, format and what survives.</span></li>
+    <li><a href="/blog/hdr-glow-tools-compared">HDR glow tools compared</a><span>Every tool in the category, on price, format and where each still works.</span></li>
     <li><a href="/blog/wiz-logo-glow-linkedin">The Wiz logo glow</a><span>The post that started the trend, and how it was made.</span></li>
     </ul>
   </nav>
