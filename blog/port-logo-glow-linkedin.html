@@ -126,7 +126,7 @@ footer a{color:var(--dim)}
     {
       "@type": "Question",
       "name": "Will platforms patch the HDR glow trick?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Some already have. Slack tone-mapped glowing workspace logos, and platforms clamped the equivalent HDR video trick in short-form feeds. LinkedIn's image pipeline still keeps color profiles today, so treat it as a window rather than permanent infrastructure."}
+      "acceptedAnswer": {"@type": "Answer", "text": "LinkedIn did, in September 2026, by stripping colour profiles on upload. Slack had already tone-mapped glowing workspace logos, and platforms clamped the equivalent HDR video trick in short-form feeds. LinkedIn's image pipeline kept colour profiles until September 2026, which was the whole reason the trick worked there."}
     }
   ]
 }
@@ -138,6 +138,7 @@ footer a{color:var(--dim)}
     <a class="logo" href="/">superwhite</a>
     <a class="back" href="/">back to the tool</a>
   </header>
+<div class="sw-status" role="note" style="background:rgba(232,163,23,.12);border-left:3px solid #e8a317;border-radius:0 10px 10px 0;padding:12px 16px;margin:6px 0 22px;font-size:14.5px;line-height:1.55"><b>Update, 21 September 2026:</b> LinkedIn now strips the color profile that carried the glow, so HDR images no longer glow in the LinkedIn feed, on company logos or in ads, and already-uploaded logos were affected too. The effect still works on your own website, in email and anywhere your file arrives intact. <a href="/blog/linkedin-hdr-glow-patched">What changed and what still works</a>.</div>
   <article>
     <h1>Port did the glowing logo before Wiz</h1>
     <p class="byline">PUBLISHED 2 AUGUST 2026 · BY NIMROD YARKONI</p>
@@ -149,7 +150,7 @@ footer a{color:var(--dim)}
     <p>Being early bought Port something interesting: for a while, their mark was often the only thing in the entire feed emitting real extra light. Before the trick was widely known, most viewers had no frame for what they were seeing. The logo just felt impossible to scroll past.</p>
 
     <h2>What was actually glowing?</h2>
-    <p>Nothing in the pixels. The image is flat and static. What makes it glow is an HDR color signal that tells an HDR-capable display to render the image's whites in the panel's reserve brightness, well above the roughly 200 nits your screen uses for the white page around it. LinkedIn's upload pipeline strips most HDR metadata but keeps color profiles, so the file arrives in the feed with its glow intact. On SDR screens it looks like a normal logo. The full mechanics of PQ curves and brightness headroom are in <a href="/blog/how-it-works">the technical write-up</a>.</p>
+    <p>Nothing in the pixels. The image is flat and static. What makes it glow is an HDR color signal that tells an HDR-capable display to render the image's whites in the panel's reserve brightness, well above the roughly 200 nits your screen uses for the white page around it. Until September 2026 LinkedIn's upload pipeline stripped most HDR metadata but kept colour profiles, so the file arrived in the feed with its glow intact. LinkedIn now strips the profile too, and the logo no longer glows there. On SDR screens it looks like a normal logo. The full mechanics of PQ curves and brightness headroom are in <a href="/blog/how-it-works">the technical write-up</a>.</p>
 
     <h2>Why a developer tools brand went first</h2>
     <p>It is fitting that a dev-tools company was among the earliest adopters. Port sells to developers, and developers are exactly the crowd that downloads a suspicious image and pulls its metadata apart instead of scrolling on. That is how the trick got documented, credited and reproduced: engineers inspecting files, writing teardowns and publishing tools. The trick spread through the same audience Port was marketing to.</p>
