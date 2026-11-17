@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HDR Logo Glow: Make Whites Brighter Than White on HDR Screens | Superwhite</title>
-<meta name="description" content="Superwhite is the HDR logo glow tool behind the glowing Wiz and Taboola logos. LinkedIn patched the trick in September 2026; the glow still works on your website, in email and anywhere your file arrives intact. Runs in your browser.">
+<title>Superwhite: Make Whites Brighter Than White on HDR Screens (HDR White Image Tool)</title>
+<meta name="description" content="Make an HDR white image in your browser: whites that render brighter than your screen's white on HDR displays. Real Rec.2100 PQ, no filter. Works on your website, in email and direct downloads. From 3 euro one time, nothing uploaded.">
 <link rel="canonical" href="https://superwhite.app/">
-<meta property="og:title" content="HDR Logo Glow: Make Whites Brighter Than White on HDR Screens | Superwhite">
-<meta property="og:description" content="Push your image's whites into your screen's HDR headroom, the same trick behind the glowing Wiz logo. In-browser, for your website, email and any surface that keeps your file intact.">
+<meta property="og:title" content="Superwhite: Make Whites Brighter Than White on HDR Screens">
+<meta property="og:description" content="Make an HDR white image in your browser: whites that render brighter than your screen's white on HDR displays. Works on your website, in email and direct downloads. From 3 euro one time.">
 <meta property="og:url" content="https://superwhite.app/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://superwhite.app/og.jpg">
@@ -213,6 +213,11 @@ footer a:hover{color:var(--ink)}
 .postdl-pro .btn{padding:9px 14px;font-size:13px}
 @keyframes bpulse{0%,100%{box-shadow:0 0 0 0 rgba(67,22,184,0)}50%{box-shadow:0 0 0 5px rgba(67,22,184,.18)}}
 .pulse{animation:bpulse 1.1s ease 2}
+.dlbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;gap:10px;align-items:center;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(0,0,0,.08)}
+.dlbar.on{display:flex}
+.dlbar .btn{flex:1;text-align:center;justify-content:center}
+.dlbar small{font-size:12px;color:var(--faint);white-space:nowrap}
+@media(min-width:900px){.dlbar{left:auto;right:24px;bottom:24px;border:1px solid var(--line);border-radius:14px;padding:10px 12px}}
 .packs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 4px}
 @media(max-width:420px){.packs{grid-template-columns:1fr}}
 .pack{border:1px solid var(--line);border-radius:10px;padding:14px;cursor:pointer;background:none;
@@ -394,9 +399,9 @@ footer a:hover{color:var(--ink)}
   <div class="sw-status" role="note" style="background:rgba(232,163,23,.12);border-left:3px solid #e8a317;border-radius:0 10px 10px 0;padding:12px 16px;margin:6px 0 22px;font-size:14.5px;line-height:1.55"><b>Update, 21 September 2026:</b> LinkedIn now strips the color profile that carried the glow, so HDR images no longer glow in the LinkedIn feed, on company logos or in ads, and already-uploaded logos were affected too. The effect still works on your own website, in email and anywhere your file arrives intact. <a href="/blog/linkedin-hdr-glow-patched">What changed and what still works</a>.</div>
 
   <section class="hero">
-    <p class="kicker">The trick behind the glowing Wiz logo, for surfaces you control</p>
-    <h1>Make your logo glow brighter than white on HDR screens.</h1>
-    <p class="sub">Superwhite embeds an HDR profile into your JPEG. On HDR screens the whites glow above everything around them, including this page. Works on your website, in email and anywhere your file arrives intact. LinkedIn patched it in September 2026. In your browser, nothing gets uploaded.</p>
+    <p class="kicker">HDR white image tool, for surfaces you control</p>
+    <h1>Make your image brighter than white on HDR screens.</h1>
+    <p class="sub">Superwhite re-encodes the whites in your logo, hero image or product shot as real HDR and embeds the profile in a JPEG. On HDR screens they glow above everything around them, including this page. Works on your website, in email and anywhere your file arrives intact. LinkedIn patched it in September 2026. In your browser, nothing gets uploaded.</p>
     <div class="hero-cta"><a class="btn primary" href="#try" id="heroCta">Try it now</a></div>
   </section>
 
@@ -651,7 +656,7 @@ footer a:hover{color:var(--ink)}
   <footer>
     <span>Superwhite runs 100% client-side. Your images never leave your device.</span>
     <span>Made by <a href="https://www.linkedin.com/in/nimrodyar/" target="_blank" rel="noopener">Nimrod Yarkoni</a> in Amsterdam</span>
-    <span><a href="/glowing-logo-linkedin">Why logos glow on LinkedIn</a> · <a href="/linkedin-hdr-glow">LinkedIn HDR glow</a> · <a href="/hdr-logo-glow">HDR logo glow</a> · <a href="/hdr-logo-maker">HDR logo maker</a> · <a href="/linkedin-hdr-profile-picture">Profile picture</a> · <a href="/blog/hdr-glow-tools-compared">Tools compared</a> · <a href="/blog/hdrlogoglow-vs-superwhite">HDRLogoGlow vs Superwhite</a></span>
+    <span><a href="/glowing-logo-linkedin">Why logos glow on LinkedIn</a> · <a href="/linkedin-hdr-glow">LinkedIn HDR glow</a> · <a href="/hdr-white">HDR white</a> · <a href="/hdr-logo-glow">HDR logo glow</a> · <a href="/hdr-logo-maker">HDR logo maker</a> · <a href="/linkedin-hdr-profile-picture">Profile picture</a> · <a href="/blog/hdr-glow-tools-compared">Tools compared</a> · <a href="/blog/hdrlogoglow-vs-superwhite">HDRLogoGlow vs Superwhite</a></span>
     <span><a href="/tools/">Free tools</a> · <a href="/blog/">Blog</a> · <a href="https://www.linkedin.com/company/superwhiteapp" target="_blank" rel="noopener" data-loc="footer">Follow on LinkedIn</a></span>
     <span><a href="/blog/wiz-logo-glow-linkedin">Wiz logo glow</a> · <a href="/blog/make-linkedin-post-glow-hdr">Make your post glow</a> · <a href="/blog/how-it-works">How it works</a> · <a href="/blog/glowing-logos-linkedin-trend">The glow trend</a> · <a href="/blog/why-is-that-linkedin-image-glowing">Why images glow</a> · <a href="/blog/make-image-glow-online">Make an image glow online</a> · <a href="/blog/hdr-video-linkedin">HDR video test</a> · <a href="/tools/hdr-display-test">HDR display test</a> · <a href="/tools/compress-image">Compress image</a> · <a href="/tools/resize-image">Resize image</a> · <a href="/tools/convert-image">Convert image</a></span>
   </footer>
@@ -680,6 +685,8 @@ footer a:hover{color:var(--ink)}
     <p class="credit-note">Everything runs in your browser. Your images never leave your device.</p>
   </div>
 </div>
+
+<div class="dlbar" id="dlbar" aria-hidden="true"><button type="button" class="btn primary" id="dlbarBtn">Download HDR JPEG</button><small>Your image is ready</small></div>
 
 <script>/* jpeg-js encoder, MIT (github.com/jpeg-js/jpeg-js) - 4:4:4 chroma, quality 97, used for exports */
 window.Buffer = window.Buffer || { from: (a) => Uint8Array.from(a) };
@@ -967,7 +974,17 @@ presetBtns.forEach(b => b.addEventListener('click', () => {
   setMode('hi');
   applyingPreset = false;
   gtag('event', 'preset_click', { preset: b.textContent.trim().toLowerCase() });
+  const dlb = $('download'); dlb.classList.remove('pulse'); void dlb.offsetWidth; dlb.classList.add('pulse');
 }));
+/* Sticky download bar: shows whenever an image is loaded and the real Download button is off screen. */
+(function(){
+  const dl = $('download'), bar = $('dlbar'), btn = $('dlbarBtn'); if (!dl || !bar || !btn) return;
+  let dlOnScreen = true;
+  const sync = () => { const on = studio.classList.contains('on') && !dlOnScreen; if (on && !bar.classList.contains('on')) gtag('event', 'dlbar_shown', {}); bar.classList.toggle('on', on); bar.setAttribute('aria-hidden', on ? 'false' : 'true'); };
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => { dlOnScreen = es[0].isIntersecting && es[0].intersectionRatio >= 0.4; sync(); }, { threshold: 0.4 }).observe(dl);
+  new MutationObserver(sync).observe(studio, { attributes: true, attributeFilter: ['class'] });
+  btn.addEventListener('click', () => { gtag('event', 'dlbar_click', {}); dl.click(); });
+})();
 $('modeHi').addEventListener('click', () => setMode('hi'));
 $('modeAll').addEventListener('click', () => setMode('all'));
 function setMode(m) {
