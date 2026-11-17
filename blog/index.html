@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog | Superwhite</title>
-<meta name="description" content="Notes on the HDR glow trick: why glowing LinkedIn logos render brighter than white, how the HDR profile works, which brands run it, and how to make your own image glow.">
+<meta name="description" content="Practical guides to HDR images for websites and email, brighter-than-white highlights, HDR JPEG encoding, and the history of the LinkedIn glow.">
 <link rel="canonical" href="https://superwhite.app/blog/">
 <meta property="og:title" content="Superwhite Blog">
-<meta property="og:description" content="Notes on the HDR glow trick: why glowing LinkedIn logos render brighter than white, how the HDR profile works, which brands run it, and how to make your own image glow.">
+<meta property="og:description" content="Practical guides to HDR images for websites and email, brighter-than-white highlights, HDR JPEG encoding, and the history of the LinkedIn glow.">
 <meta property="og:url" content="https://superwhite.app/blog/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://superwhite.app/og.jpg">
@@ -54,7 +54,7 @@ footer a:hover{color:var(--ink)}
   "@type": "Blog",
   "@id": "https://superwhite.app/blog/",
   "name": "Superwhite Blog",
-  "description": "Notes on the HDR glow trick: why glowing LinkedIn logos render brighter than white, how the HDR profile works, which brands run it, and how to make your own image glow.",
+  "description": "Practical guides to HDR images for websites and email, brighter-than-white highlights, HDR JPEG encoding, and the history of the LinkedIn glow.",
   "url": "https://superwhite.app/blog/",
   "publisher": {
     "@type": "Organization",
@@ -69,7 +69,7 @@ footer a:hover{color:var(--ink)}
     },
     {
       "@type": "BlogPosting",
-      "headline": "LinkedIn's redesign did not touch the glow",
+      "headline": "LinkedIn redesign and the later HDR patch",
       "url": "https://superwhite.app/blog/linkedin-redesign-hdr-glow"
     },
     {
@@ -174,12 +174,17 @@ footer a:hover{color:var(--ink)}
 </header>
 
 <h1>Blog</h1>
-<p class="sub">Notes on the HDR glow trick, why some LinkedIn images look brighter than white, how it works, and how to make your own.</p>
+<p class="sub">Start with an HDR guide for a website, email or image workflow you control. The LinkedIn case studies document the earlier glow effect, which no longer works there.</p>
 
 <div class="cards">
+<a class="card" href="/hdr-image-for-website"><h2>How to put an HDR image on your website</h2><p>Make a website logo or hero image brighter than white on HDR screens. Export an HDR JPEG, embed it with an img tag, and avoid image optimisation that removes the effect.</p></a>
+<a class="card" href="/hdr-email-image"><h2>How to use an HDR image in email</h2><p>Create an HDR JPEG for an email header or logo. Learn how to test Apple Mail and iOS Mail, preserve the original image, and prepare a readable fallback for other clients.</p></a>
+<a class="card" href="/brighter-than-white"><h2>Can an image be brighter than white?</h2><p>Yes, on a compatible HDR display. See a live brighter-than-white comparison, understand HDR versus glow filters, and make your own image with Superwhite.</p></a>
+<a class="card" href="/hdr-jpeg"><h2>How to make an HDR JPEG with a PQ ICC profile</h2><p>Learn what an HDR JPEG needs: PQ-encoded pixels, a matching Rec.2100 colour profile, and an unchanged delivery path. Includes an ICC embedding code example.</p></a>
+
   <a class="card" href="/glowing-logo-linkedin">
     <h2>Glowing logo on LinkedIn: the complete explainer</h2>
-    <p>Why logos glow brighter than white, which LinkedIn surfaces survive, who sees it, and how to make yours. Start here.</p>
+    <p>Why logos glow brighter than white, how the original effect worked, and why LinkedIn no longer preserves it.</p>
   </a>
   <a class="card" href="/linkedin-hdr-profile-picture">
     <h2>Can a LinkedIn profile picture glow?</h2>
@@ -191,11 +196,11 @@ footer a:hover{color:var(--ink)}
   </a>
   <a class="card" href="/blog/hdr-glow-tools-compared">
     <h2>HDR glow tools compared</h2>
-    <p>Superwhite, superGLOW, So Very Bright, Hirenum and the open source skills, side by side on price, format and which LinkedIn surface each one survives.</p>
+    <p>Superwhite, superGLOW, So Very Bright, Hirenum and the open source skills, side by side on price, format and their output workflows and platform limitations.</p>
   </a>
   <a class="card" href="/blog/linkedin-redesign-hdr-glow">
-    <h2>LinkedIn’s redesign didn’t touch the glow</h2>
-    <p>New logo mark, new colors, same feed. Why the HDR glow still survives the refresh.</p>
+    <h2>LinkedIn redesign and the later HDR patch</h2>
+    <p>The redesign came first. LinkedIn later began stripping the profile in September 2026.</p>
   </a>
   <a class="card" href="/blog/why-is-that-linkedin-image-glowing">
     <h2>Why is that LinkedIn image glowing brighter than white?</h2>
@@ -211,7 +216,7 @@ footer a:hover{color:var(--ink)}
   </a>
   <a class="card" href="/blog/glowing-logos-linkedin-trend">
     <h2>Glowing logos are taking over LinkedIn</h2>
-    <p>The trend, the brands running it, and where the attention arms race goes next.</p>
+    <p>The history of the trend and the brands that used it before LinkedIn removed the profile.</p>
   </a>
   <a class="card" href="/blog/wiz-logo-glow-linkedin">
     <h2>How the Wiz logo glows on LinkedIn</h2>
@@ -257,7 +262,7 @@ footer a:hover{color:var(--ink)}
 
 <div class="cta">
   <strong>Try it on your own image</strong>
-  <p>From €2.99, in-browser, ~10 seconds. Nothing gets uploaded.</p>
+  <p>Free preview, paid exports from €3 one time. Everything runs in your browser.</p>
   <a href="/">Open Superwhite &rarr;</a>
 </div>
 
