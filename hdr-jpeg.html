@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Make an HDR JPEG: PQ Encoding and ICC Profiles | Superwhite</title><meta name="description" content="Learn what an HDR JPEG needs: PQ-encoded pixels, a matching Rec.2100 colour profile, and an unchanged delivery path. Includes an ICC embedding code example."><meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://superwhite.app/hdr-jpeg"><meta property="og:title" content="How to Make an HDR JPEG: PQ Encoding and ICC Profiles | Superwhite"><meta property="og:description" content="Learn what an HDR JPEG needs: PQ-encoded pixels, a matching Rec.2100 colour profile, and an unchanged delivery path. Includes an ICC embedding code example."><meta property="og:url" content="https://superwhite.app/hdr-jpeg"><meta property="og:type" content="article"><meta property="og:image" content="https://superwhite.app/og.jpg"><meta property="og:site_name" content="Superwhite"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HE8J29XL52');</script>
+<style>
+:root{--bg:#0D0B14;--surface:#161221;--line:#292139;--violet:#6B2EF5;--violet-hot:#8B5CF6;
+--brand:#5B21F5;--ink:#F2EFFA;--dim:#A79BD9;--faint:#AAA0BD}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.75 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{padding:24px 0;display:flex;align-items:center;justify-content:space-between}
+.logo{font:800 26px/1 'Baloo 2',sans-serif;color:var(--brand);-webkit-text-stroke:6px #fff;paint-order:stroke fill;
+text-shadow:0 3px 0 rgba(0,0,0,.35);transform:rotate(-2deg);text-decoration:none}
+.back{font:500 14px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+article{padding:30px 0 60px}
+h1{font:700 clamp(30px,5vw,44px)/1.15 'Inter',sans-serif;letter-spacing:-.03em;margin-bottom:14px}
+.byline{font:500 13px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:36px}
+h2{font:700 24px 'Inter',sans-serif;letter-spacing:-.02em;margin:44px 0 14px}
+h3{font:600 19px 'Inter',sans-serif;margin:28px 0 10px}
+p{color:var(--dim);margin-bottom:18px}
+p strong,li strong{color:var(--ink);font-weight:600}
+a{color:var(--violet-hot)}
+ul,ol{margin:0 0 18px 22px;color:var(--dim)}
+li{margin-bottom:8px}
+.callout{border-left:3px solid var(--violet);background:var(--surface);border-radius:0 10px 10px 0;padding:16px 18px;margin-bottom:18px}
+.callout p{margin:0}
+.tablewrap{overflow-x:auto;margin:0 0 22px;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:top}
+th{color:var(--ink);font-weight:600;background:var(--surface);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td strong{color:var(--ink)}
+.hero-cta{margin:26px 0 34px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:24px 26px}
+.hero-cta p{margin:0 0 14px;color:var(--ink)}
+.hero-cta a.btn{display:inline-block;background:var(--violet);color:#fff;text-decoration:none;font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
+.hero-cta small{display:block;margin-top:12px;color:var(--faint);font-size:13px}
+.cta{margin-top:50px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:28px;text-align:center}
+.cta a{display:inline-block;margin-top:14px;background:var(--violet);color:#fff;text-decoration:none;
+font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
+footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
+footer a{color:var(--dim)}
+.related{border-top:1px solid var(--line);padding-top:26px;margin:0 0 10px}
+.related h2{font:700 18px 'Inter',sans-serif;margin:0 0 16px;letter-spacing:-.01em}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{margin-bottom:12px}
+.related a{color:var(--ink);text-decoration:none;font-weight:600;display:block}
+.related a:hover{color:var(--violet-hot)}
+.related span{display:block;color:var(--faint);font-size:14px;font-weight:400;line-height:1.5}
+/* live swatch */
+.swatch{background:#fff;border-radius:14px;padding:22px;margin:0 0 14px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.swatch div{border-radius:10px;height:150px;display:flex;align-items:flex-end;justify-content:center;padding:10px;
+font:600 13px 'Inter',sans-serif;color:#111;letter-spacing:.02em}
+.sw-sdr{background:#fff;border:1px solid #e3e3e3}
+.sw-hdr{background:#fff;border:1px solid #e3e3e3}
+@media(dynamic-range:high){@supports(color:color(rec2100-pq 1 1 1)){
+  .sw-hdr{background:color(rec2100-pq .7518 .7518 .7518);border-color:transparent}
+  .sw-hdr{color:#000}
+}}
+.sw-note{font-size:14px;color:var(--faint);margin-bottom:28px}
+.sw-note b{color:var(--dim);font-weight:600}
+@media(max-width:480px){.swatch{grid-template-columns:1fr}.swatch div{height:110px}}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 22px}
+.grid div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.grid h3{margin:0 0 8px;font-size:16px}
+.grid ul{margin:0 0 0 18px;font-size:15px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+
+.logo{font-family:system-ui,sans-serif;-webkit-text-stroke:0;text-shadow:none;transform:none;color:var(--ink);font-size:22px;letter-spacing:-.04em}pre{overflow:auto;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:12px;font-size:13px;line-height:1.65;margin-bottom:24px}code{font-family:ui-monospace,monospace}p code,li code{font-size:.88em;color:var(--ink)}.breadcrumb{font-size:13px;color:var(--faint);margin:8px 0 26px}a:focus-visible,button:focus-visible{outline:3px solid var(--violet-hot);outline-offset:4px}.byline{margin-bottom:20px}.demo-status{font-size:13px;color:var(--dim)}.related a{display:inline}.related li{margin-bottom:10px}table{min-width:480px}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to make an HDR JPEG with a PQ ICC profile", "description": "Learn what an HDR JPEG needs: PQ-encoded pixels, a matching Rec.2100 colour profile, and an unchanged delivery path. Includes an ICC embedding code example.", "datePublished": "2026-11-17", "dateModified": "2026-11-17", "mainEntityOfPage": "https://superwhite.app/hdr-jpeg", "author": {"@type": "Person", "name": "Nimrod Yarkoni", "url": "https://superwhite.app/"}, "publisher": {"@type": "Organization", "name": "Superwhite", "url": "https://superwhite.app/"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Superwhite", "item": "https://superwhite.app/"}, {"@type": "ListItem", "position": 2, "name": "How to make an HDR JPEG with a PQ ICC profile", "item": "https://superwhite.app/hdr-jpeg"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is adding a PQ ICC profile enough to make an SDR JPEG HDR?", "acceptedAnswer": {"@type": "Answer", "text": "No. The pixel values must also be converted for the transfer function, colour space and luminance convention represented by that profile."}}, {"@type": "Question", "name": "Does this example generate a gain-map JPEG?", "acceptedAnswer": {"@type": "Answer", "text": "No. It demonstrates embedding a small ICC profile in an already encoded JPEG. Gain-map JPEG is a different workflow."}}, {"@type": "Question", "name": "Why can an HDR JPEG look washed out or banded?", "acceptedAnswer": {"@type": "Answer", "text": "Possible causes include mismatched pixel encoding and profile, an unsupported renderer, quantisation, repeated PQ conversion or an image service changing the file. Test the original file and the delivered version separately."}}, {"@type": "Question", "name": "Can I get a Superwhite API key immediately?", "acceptedAnswer": {"@type": "Answer", "text": "The integration form starts a conversation about a pilot licence. It is not an automated API-key checkout or a documented public endpoint."}}]}</script>
+</head><body><div class="wrap"><header><a class="logo" href="/">superwhite</a><a class="back" href="/#try">Open the tool →</a></header><main><article><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Superwhite</a> / <a href="/hdr-white">HDR guides</a></nav><h1>How to make an HDR JPEG with a PQ ICC profile</h1><p class="byline">By Nimrod Yarkoni · Updated 17 November 2026</p><p>For Superwhite's HDR JPEG workflow, two things must agree: the pixel values must be encoded for PQ HDR, and the JPEG must carry the matching Rec.2100 PQ ICC profile. A normal JPEG with a new profile label is not a correct conversion.</p><div class="hero-cta"><p><strong>Try your image before buying.</strong> Preview it in your browser, then choose the export size you need.</p><a class="btn" href="/#try" data-traffic-cta="preview">Preview my image</a><small>Simple: €3 one time, up to 400px. Creator: €5 one time, up to 1400px. Paid exports, unlimited on your tier. Nothing uploaded.</small></div><h2>A live brighter-than-white comparison</h2><div class="swatch" aria-label="Ordinary white beside a live HDR white patch"><div class="sw-sdr">Ordinary white</div><div class="sw-hdr">HDR white</div></div><p class="sw-note">This CSS demonstration uses the display's extra brightness only where supported. It does not measure your screen's brightness or verify JPEG support. If the patches look alike, try the <a href="/tools/hdr-display-test">HDR display test</a>. Actual results depend on the screen, browser, brightness and power settings.</p><p class="demo-status" id="demoStatus">Open this page on an HDR-capable display to compare the patches.</p>
+<h2>Choose the HDR format for your use case</h2><p>HDR JPEG is an umbrella term. A gain-map JPEG carries a base rendition plus extra information for HDR reconstruction. Superwhite uses a different route: a PQ-encoded JPEG with a matching embedded ICC profile. It does not currently export a gain-map JPEG or a separate SDR rendition.</p><p>Choose deliberately. If you need a paired SDR/HDR representation, investigate a gain-map workflow. If you want Superwhite's brighter-than-white treatment on a surface that preserves its original JPEG, the PQ route is the one described here.</p>
+<h2>The conversion pipeline</h2><ol><li><strong>Decode your source correctly.</strong> Interpret the source colour space and flatten transparency onto the intended background for JPEG output.</li><li><strong>Work in linear light.</strong> Convert source values before applying luminance and colour-space transforms.</li><li><strong>Choose the boost.</strong> Superwhite uses a threshold to boost white and near-white areas while retaining an SDR reference for other pixels.</li><li><strong>Encode PQ values.</strong> Use the ST 2084 transfer function with consistent luminance units and the colour space described by the output profile.</li><li><strong>Handle quantisation.</strong> An 8-bit JPEG can show banding or amplify near-white noise. Superwhite applies noise flattening and dithering, then encodes high-quality 4:4:4 JPEG.</li><li><strong>Embed the matching ICC profile.</strong> Preserve it through delivery and verify on the intended browser and display.</li></ol>
+<h2>Embed a small ICC profile in JPEG: JavaScript example</h2><pre><code>// The JPEG pixels must already be encoded for the PQ profile.
+// This adds one ICC APP2 segment; it does not convert sRGB to HDR.
+function embedSmallICC(jpeg, icc) {
+  if (jpeg[0] !== 0xff || jpeg[1] !== 0xd8) throw Error(&#x27;Expected JPEG&#x27;);
+  if (icc.length &gt; 65519) throw Error(&#x27;Split large ICC profiles into segments&#x27;);
+  const tag = new TextEncoder().encode(&#x27;ICC_PROFILE\0&#x27;);
+  const payload = new Uint8Array(icc.length + 14);
+  payload.set(tag); payload[12] = 1; payload[13] = 1;
+  payload.set(icc, 14);
+  const length = payload.length + 2;
+  const segment = Uint8Array.of(0xff, 0xe2, length &gt;&gt; 8, length &amp; 255);
+  let pos = 2;
+  while (pos + 4 &lt;= jpeg.length &amp;&amp; jpeg[pos] === 0xff &amp;&amp;
+         (jpeg[pos + 1] === 0xe0 || jpeg[pos + 1] === 0xe1)) {
+    const size = (jpeg[pos + 2] &lt;&lt; 8) | jpeg[pos + 3];
+    if (size &lt; 2 || pos + size + 2 &gt; jpeg.length) throw Error(&#x27;Invalid APP segment&#x27;);
+    pos += size + 2;
+  }
+  const out = new Uint8Array(jpeg.length + payload.length + 4);
+  out.set(jpeg.subarray(0, pos)); out.set(segment, pos);
+  out.set(payload, pos + 4);
+  out.set(jpeg.subarray(pos), pos + 4 + payload.length);
+  return out;
+}</code></pre><p>This example takes JPEG bytes and ICC bytes as <code>Uint8Array</code> inputs. It inserts an APP2 ICC segment after initial APP0/APP1 segments. Use an input with no existing ICC profile; a general-purpose implementation must replace or remove old ICC segments, support multi-segment profiles and validate the complete JPEG structure.</p><div class="callout"><p><strong>The code only embeds metadata.</strong> It does not perform colour conversion, generate a PQ profile, encode PQ pixels or make an arbitrary JPEG a valid HDR image. The profile and encoded pixels must match.</p></div>
+<h2>Check the output before shipping it</h2><ul><li>Inspect the embedded profile and confirm it is the one used to encode the pixel data.</li><li>Check highlights, gradients and coloured edges at multiple glow settings.</li><li>Test compatible HDR and SDR rendering paths. A CSS HDR media query is not a format-conformance test.</li><li>Fetch the actual deployed image. Compare it with the generated bytes to catch transformations in the CDN or CMS.</li><li>Avoid reprocessing an already PQ-encoded export as if it were ordinary sRGB. Keep the source image.</li></ul>
+<h2>Use the tool or discuss an integration</h2><p><a href="/#try">Superwhite</a> runs the image pipeline in your browser. Simple exports up to 400px for €3 one time, and Creator exports up to 1400px for €5 one time. Previewing is free; exporting is paid.</p><p>For a product integration, <a href="/#api" data-traffic-cta="integration">describe your workflow to the founder</a>. Integration pilot licences start at €149 per month; the form is an enquiry, not a self-serve API-key signup. There is no public API endpoint promised by this example.</p><h2>Further reading</h2><p>The <a href="https://www.color.org/icc_specs2.xalter">ICC specifications</a> describe profile structures. Apple's <a href="https://developer.apple.com/videos/play/wwdc2025/233/">Safari and WebKit presentation</a> discusses HDR images and display-range control. Superwhite's <a href="https://github.com/nimrodyar/superwhite">source repository</a> shows this tool's current implementation.</p>
+<h2>Frequently asked questions</h2><h3>Is adding a PQ ICC profile enough to make an SDR JPEG HDR?</h3><p>No. The pixel values must also be converted for the transfer function, colour space and luminance convention represented by that profile.</p><h3>Does this example generate a gain-map JPEG?</h3><p>No. It demonstrates embedding a small ICC profile in an already encoded JPEG. Gain-map JPEG is a different workflow.</p><h3>Why can an HDR JPEG look washed out or banded?</h3><p>Possible causes include mismatched pixel encoding and profile, an unsupported renderer, quantisation, repeated PQ conversion or an image service changing the file. Test the original file and the delivered version separately.</p><h3>Can I get a Superwhite API key immediately?</h3><p>The integration form starts a conversation about a pilot licence. It is not an automated API-key checkout or a documented public endpoint.</p><div class="cta"><strong>See what your image can do</strong><p>Free preview. Paid exports from €3 one time. Runs locally in your browser.</p><a href="/#try" data-traffic-cta="bottom_preview">Try Superwhite</a></div></article></main><nav class="related" aria-label="Related HDR guides"><h2>Keep exploring</h2><ul><li><a href="/hdr-image-for-website">HDR images for your website</a></li><li><a href="/hdr-email-image">HDR images for email</a></li><li><a href="/brighter-than-white">Brighter than white explained</a></li><li><a href="/hdr-white">What is HDR white?</a></li><li><a href="/tools/hdr-display-test">Free HDR display test</a></li></ul></nav><footer><a href="/">Superwhite</a> · <a href="/tools/">Free tools</a> · <a href="/blog/">Blog</a> · <a href="/blog/linkedin-hdr-glow-patched">LinkedIn status</a></footer></div>
+<script>const high=matchMedia('(dynamic-range: high)').matches;const pq=CSS.supports('color','color(rec2100-pq .7518 .7518 .7518)');document.getElementById('demoStatus').textContent=high&&pq?'Your browser reports HDR headroom and supports this CSS colour. Compare the patches; exact brightness varies.':'Your browser does not report both requirements for this CSS demo. The patches may look identical.';document.querySelectorAll('[data-traffic-cta]').forEach(a=>a.addEventListener('click',()=>gtag('event','guide_cta_click',{guide:'hdr-jpeg',placement:a.dataset.trafficCta})));</script></body></html>

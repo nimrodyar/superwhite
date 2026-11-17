@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HDR Email Images: Glowing Headers in Apple Mail | Superwhite</title><meta name="description" content="Create an HDR JPEG for an email header or logo. Learn how to test Apple Mail and iOS Mail, preserve the original image, and prepare a readable fallback for other clients."><meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://superwhite.app/hdr-email-image"><meta property="og:title" content="HDR Email Images: Glowing Headers in Apple Mail | Superwhite"><meta property="og:description" content="Create an HDR JPEG for an email header or logo. Learn how to test Apple Mail and iOS Mail, preserve the original image, and prepare a readable fallback for other clients."><meta property="og:url" content="https://superwhite.app/hdr-email-image"><meta property="og:type" content="article"><meta property="og:image" content="https://superwhite.app/og.jpg"><meta property="og:site_name" content="Superwhite"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HE8J29XL52');</script>
+<style>
+:root{--bg:#0D0B14;--surface:#161221;--line:#292139;--violet:#6B2EF5;--violet-hot:#8B5CF6;
+--brand:#5B21F5;--ink:#F2EFFA;--dim:#A79BD9;--faint:#AAA0BD}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.75 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{padding:24px 0;display:flex;align-items:center;justify-content:space-between}
+.logo{font:800 26px/1 'Baloo 2',sans-serif;color:var(--brand);-webkit-text-stroke:6px #fff;paint-order:stroke fill;
+text-shadow:0 3px 0 rgba(0,0,0,.35);transform:rotate(-2deg);text-decoration:none}
+.back{font:500 14px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+article{padding:30px 0 60px}
+h1{font:700 clamp(30px,5vw,44px)/1.15 'Inter',sans-serif;letter-spacing:-.03em;margin-bottom:14px}
+.byline{font:500 13px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:36px}
+h2{font:700 24px 'Inter',sans-serif;letter-spacing:-.02em;margin:44px 0 14px}
+h3{font:600 19px 'Inter',sans-serif;margin:28px 0 10px}
+p{color:var(--dim);margin-bottom:18px}
+p strong,li strong{color:var(--ink);font-weight:600}
+a{color:var(--violet-hot)}
+ul,ol{margin:0 0 18px 22px;color:var(--dim)}
+li{margin-bottom:8px}
+.callout{border-left:3px solid var(--violet);background:var(--surface);border-radius:0 10px 10px 0;padding:16px 18px;margin-bottom:18px}
+.callout p{margin:0}
+.tablewrap{overflow-x:auto;margin:0 0 22px;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:top}
+th{color:var(--ink);font-weight:600;background:var(--surface);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td strong{color:var(--ink)}
+.hero-cta{margin:26px 0 34px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:24px 26px}
+.hero-cta p{margin:0 0 14px;color:var(--ink)}
+.hero-cta a.btn{display:inline-block;background:var(--violet);color:#fff;text-decoration:none;font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
+.hero-cta small{display:block;margin-top:12px;color:var(--faint);font-size:13px}
+.cta{margin-top:50px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:28px;text-align:center}
+.cta a{display:inline-block;margin-top:14px;background:var(--violet);color:#fff;text-decoration:none;
+font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
+footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
+footer a{color:var(--dim)}
+.related{border-top:1px solid var(--line);padding-top:26px;margin:0 0 10px}
+.related h2{font:700 18px 'Inter',sans-serif;margin:0 0 16px;letter-spacing:-.01em}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{margin-bottom:12px}
+.related a{color:var(--ink);text-decoration:none;font-weight:600;display:block}
+.related a:hover{color:var(--violet-hot)}
+.related span{display:block;color:var(--faint);font-size:14px;font-weight:400;line-height:1.5}
+/* live swatch */
+.swatch{background:#fff;border-radius:14px;padding:22px;margin:0 0 14px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.swatch div{border-radius:10px;height:150px;display:flex;align-items:flex-end;justify-content:center;padding:10px;
+font:600 13px 'Inter',sans-serif;color:#111;letter-spacing:.02em}
+.sw-sdr{background:#fff;border:1px solid #e3e3e3}
+.sw-hdr{background:#fff;border:1px solid #e3e3e3}
+@media(dynamic-range:high){@supports(color:color(rec2100-pq 1 1 1)){
+  .sw-hdr{background:color(rec2100-pq .7518 .7518 .7518);border-color:transparent}
+  .sw-hdr{color:#000}
+}}
+.sw-note{font-size:14px;color:var(--faint);margin-bottom:28px}
+.sw-note b{color:var(--dim);font-weight:600}
+@media(max-width:480px){.swatch{grid-template-columns:1fr}.swatch div{height:110px}}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 22px}
+.grid div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.grid h3{margin:0 0 8px;font-size:16px}
+.grid ul{margin:0 0 0 18px;font-size:15px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+
+.logo{font-family:system-ui,sans-serif;-webkit-text-stroke:0;text-shadow:none;transform:none;color:var(--ink);font-size:22px;letter-spacing:-.04em}pre{overflow:auto;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:12px;font-size:13px;line-height:1.65;margin-bottom:24px}code{font-family:ui-monospace,monospace}p code,li code{font-size:.88em;color:var(--ink)}.breadcrumb{font-size:13px;color:var(--faint);margin:8px 0 26px}a:focus-visible,button:focus-visible{outline:3px solid var(--violet-hot);outline-offset:4px}.byline{margin-bottom:20px}.demo-status{font-size:13px;color:var(--dim)}.related a{display:inline}.related li{margin-bottom:10px}table{min-width:480px}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to use an HDR image in email", "description": "Create an HDR JPEG for an email header or logo. Learn how to test Apple Mail and iOS Mail, preserve the original image, and prepare a readable fallback for other clients.", "datePublished": "2026-11-17", "dateModified": "2026-11-17", "mainEntityOfPage": "https://superwhite.app/hdr-email-image", "author": {"@type": "Person", "name": "Nimrod Yarkoni", "url": "https://superwhite.app/"}, "publisher": {"@type": "Organization", "name": "Superwhite", "url": "https://superwhite.app/"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Superwhite", "item": "https://superwhite.app/"}, {"@type": "ListItem", "position": 2, "name": "How to use an HDR image in email", "item": "https://superwhite.app/hdr-email-image"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which email clients should I test first?", "acceptedAnswer": {"@type": "Answer", "text": "Start with Apple Mail and iOS Mail on HDR-capable devices, using the original JPEG. Test your actual sending platform and recipient devices; support is not guaranteed across all clients."}}, {"@type": "Question", "name": "Will an HDR email image glow in Gmail or Outlook?", "acceptedAnswer": {"@type": "Answer", "text": "Do not rely on it. Image proxies, client versions, devices and sending platforms can change the result. Test readability and SDR behaviour for those recipients."}}, {"@type": "Question", "name": "Is this a solution for email dark mode?", "acceptedAnswer": {"@type": "Answer", "text": "No. HDR brightness and dark-mode colour inversion are different behaviours. Test both and keep essential information in ordinary email text."}}, {"@type": "Question", "name": "Do I need Creator for an email signature?", "acceptedAnswer": {"@type": "Answer", "text": "Not necessarily. Simple exports up to 400px, which can suit a small logo. Creator exports up to 1400px for larger headers or artwork."}}]}</script>
+</head><body><div class="wrap"><header><a class="logo" href="/">superwhite</a><a class="back" href="/#try">Open the tool →</a></header><main><article><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Superwhite</a> / <a href="/hdr-white">HDR guides</a></nav><h1>How to use an HDR image in email</h1><p class="byline">By Nimrod Yarkoni · Updated 17 November 2026</p><p>An HDR email image can make a small white logo or highlight brighter than ordinary white on a compatible display. Start by testing Apple Mail or iOS Mail with the original JPEG. Email clients and sending platforms handle images differently, so a working browser preview is only the first check.</p><div class="hero-cta"><p><strong>Try your image before buying.</strong> Preview it in your browser, then choose the export size you need.</p><a class="btn" href="/#try" data-traffic-cta="preview">Preview my image</a><small>Simple: €3 one time, up to 400px. Creator: €5 one time, up to 1400px. Paid exports, unlimited on your tier. Nothing uploaded.</small></div><h2>A live brighter-than-white comparison</h2><div class="swatch" aria-label="Ordinary white beside a live HDR white patch"><div class="sw-sdr">Ordinary white</div><div class="sw-hdr">HDR white</div></div><p class="sw-note">This CSS demonstration uses the display's extra brightness only where supported. It does not measure your screen's brightness or verify JPEG support. If the patches look alike, try the <a href="/tools/hdr-display-test">HDR display test</a>. Actual results depend on the screen, browser, brightness and power settings.</p><p class="demo-status" id="demoStatus">Open this page on an HDR-capable display to compare the patches.</p>
+<h2>Choose an accent, not the whole message</h2><p>Keep the subject, offer, body copy and call to action in normal email text. Use HDR for a modest decorative accent that adds something on a supporting screen. The recipient must still understand the message when images are blocked, the client shows SDR, or the glow disappears.</p><h2>Make the header or logo</h2><ol><li>Prepare the artwork with its intended background. Superwhite exports JPEG, so it cannot retain a transparent background.</li><li>Load it into <a href="/#try">Superwhite</a>. Preview a restrained glow first.</li><li>Choose Simple for exports up to 400px, or Creator for artwork up to 1400px.</li><li>Save the HDR JPEG and keep the original SDR artwork for fallback testing.</li></ol><p>A 400px image can be enough for a small signature mark. A wider email header may need Creator. Choose the size for the actual layout rather than buying a larger tier just because the image is for work.</p>
+<h2>Host it unchanged and use an ordinary email image</h2><pre><code>&lt;img src=&quot;https://your-domain.example/images/header-hdr.jpg&quot;
+     alt=&quot;Your campaign headline&quot;
+     width=&quot;600&quot;
+     style=&quot;display:block;width:100%;max-width:600px;height:auto;border:0&quot;&gt;</code></pre><p>This example uses a placeholder domain. Replace it with a public HTTPS URL for your original export. The alt text should describe the content, not promise a glow. There is no special HDR email tag: the brightness information lives in the JPEG's pixel encoding and embedded colour profile.</p>
+<h2>Send a real test through your email platform</h2><p>Your email builder may resize or recompress images when you upload them. An image proxy may fetch and transform them later. A screenshot in a campaign preview cannot establish whether the original profile survived.</p><ol><li>Send to your own test inboxes using the actual campaign or transactional email workflow.</li><li>Open the message in Apple Mail and iOS Mail on an HDR-capable device, then compare with the original file.</li><li>Check Gmail, Outlook and any clients important to your audience for readability and acceptable colours. Do not assume they preserve this HDR effect.</li><li>Repeat with images blocked, in dark mode and with power saving enabled.</li></ol><p>For a signature, test replies and forwards as well. Those paths can rewrap or replace images. A result in the first received message does not guarantee the same result after forwarding.</p>
+<h2>Build a fallback that earns its place</h2><p>Remote images can be blocked and HDR support varies. Keep logos recognisable without extra brightness, place important information outside images, and include a web-view link to a page you control. If your sending setup can reliably choose a separate SDR rendition, test that path too. Do not depend on one media query working across every inbox.</p><div class="callout"><p><strong>Do not promise universal glow.</strong> This is a format-specific enhancement for tested clients. It is not a fix for dark-mode image inversion or a guarantee of higher open or click rates.</p></div>
+<h2>What to do if the glow disappears</h2><p>Open the exported file directly on the same device. If it works there, inspect your sender's image processing and the received image URL. If it does not, start with the <a href="/tools/hdr-display-test">display test</a>. For a more controllable first experiment, follow the <a href="/hdr-image-for-website">website image guide</a>.</p>
+<h2>Frequently asked questions</h2><h3>Which email clients should I test first?</h3><p>Start with Apple Mail and iOS Mail on HDR-capable devices, using the original JPEG. Test your actual sending platform and recipient devices; support is not guaranteed across all clients.</p><h3>Will an HDR email image glow in Gmail or Outlook?</h3><p>Do not rely on it. Image proxies, client versions, devices and sending platforms can change the result. Test readability and SDR behaviour for those recipients.</p><h3>Is this a solution for email dark mode?</h3><p>No. HDR brightness and dark-mode colour inversion are different behaviours. Test both and keep essential information in ordinary email text.</p><h3>Do I need Creator for an email signature?</h3><p>Not necessarily. Simple exports up to 400px, which can suit a small logo. Creator exports up to 1400px for larger headers or artwork.</p><div class="cta"><strong>See what your image can do</strong><p>Free preview. Paid exports from €3 one time. Runs locally in your browser.</p><a href="/#try" data-traffic-cta="bottom_preview">Try Superwhite</a></div></article></main><nav class="related" aria-label="Related HDR guides"><h2>Keep exploring</h2><ul><li><a href="/hdr-image-for-website">HDR images for your website</a></li><li><a href="/brighter-than-white">Brighter than white explained</a></li><li><a href="/hdr-jpeg">How to make an HDR JPEG</a></li><li><a href="/hdr-white">What is HDR white?</a></li><li><a href="/tools/hdr-display-test">Free HDR display test</a></li></ul></nav><footer><a href="/">Superwhite</a> · <a href="/tools/">Free tools</a> · <a href="/blog/">Blog</a> · <a href="/blog/linkedin-hdr-glow-patched">LinkedIn status</a></footer></div>
+<script>const high=matchMedia('(dynamic-range: high)').matches;const pq=CSS.supports('color','color(rec2100-pq .7518 .7518 .7518)');document.getElementById('demoStatus').textContent=high&&pq?'Your browser reports HDR headroom and supports this CSS colour. Compare the patches; exact brightness varies.':'Your browser does not report both requirements for this CSS demo. The patches may look identical.';document.querySelectorAll('[data-traffic-cta]').forEach(a=>a.addEventListener('click',()=>gtag('event','guide_cta_click',{guide:'hdr-email-image',placement:a.dataset.trafficCta})));</script></body></html>

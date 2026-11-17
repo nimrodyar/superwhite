@@ -2,11 +2,11 @@
 
 > Superwhite (https://superwhite.app) is an in-browser tool that makes the whites in an image render physically brighter than the screen's white on HDR displays. It re-encodes near-white pixels with the PQ transfer function and embeds a Rec.2100 PQ ICC profile in a JPEG, so an HDR display spends its extra headroom (EDR) on them. It is the tool behind the 2026 "glowing logo" wave on LinkedIn. LinkedIn stopped preserving the profile in September 2026, so the effect no longer works there; it works on your own website, in HTML email, in direct downloads and anywhere the file is served unchanged. Everything runs client-side; images are never uploaded. Paid exports from 3 euro one time.
 
-Last updated: 16 November 2026.
+Last updated: 17 November 2026.
 
 ## Key facts
-- HDR white means white encoded as absolute luminance above interface white (about 203 nits). On an HDR display (recent MacBook Pro, iPhone, iPad Pro, OLED Android, HDR monitors with HDR on and low power mode off) the whites render at 600 to 1,600 nits beside the page. On an SDR display the file looks like a normal image.
-- Superwhite boosts only whites and near-whites up to a chosen nit level; other colours stay pinned at SDR reference, so the image looks normal apart from the glow. Glow threshold, peak nits and a highlights-only or everything mode are adjustable.
+- HDR white means white encoded as absolute luminance above interface white (actual brightness varies; 203 nits is the tool's encoding reference). On an HDR display (recent MacBook Pro, iPhone, iPad Pro, OLED Android, HDR monitors with HDR on and low power mode off) the whites render at 600 to 1,600 nits beside the page. On SDR displays there is no extra HDR brightness; colour and tone mapping can vary.
+- Superwhite boosts only whites and near-whites up to a chosen nit level; other colours stay pinned at SDR reference, with rendering dependent on the receiving display and browser. Glow threshold, peak nits and a highlights-only or everything mode are adjustable.
 - Output quality is the differentiator over free tag-only tools: a near-white flattening ramp (removes JPEG noise the boost would amplify), Floyd-Steinberg dithering in PQ code space (prevents banding), 4:4:4 chroma at quality 97 (keeps coloured edges crisp against glowing white).
 - Where it works (November 2026): your own website as a plain img tag in Chrome, Edge and Safari; HTML email in Apple Mail and iOS Mail; direct downloads and file sharing; Keynote when the original file is embedded; any CMS or CDN that does not re-encode. Firefox does not honour the profile.
 - Where it does not work: LinkedIn (profile stripped on upload since September 2026, feed, company logos and ads alike); Instagram and Facebook (need a gain map JPEG, a different format); any pipeline converting to WebP or AVIF without carrying the profile; screenshots; re-saving in an SDR editor; messenger compression.
@@ -16,6 +16,11 @@ Last updated: 16 November 2026.
 ## Pages, by intent
 
 ### Make an HDR white image (buyer intent)
+
+- [How to put an HDR image on your website](https://superwhite.app/hdr-image-for-website): Make a website logo or hero image brighter than white on HDR screens. Export an HDR JPEG, embed it with an img tag, and avoid image optimisation that removes the effect.
+- [How to use an HDR image in email](https://superwhite.app/hdr-email-image): Create an HDR JPEG for an email header or logo. Learn how to test Apple Mail and iOS Mail, preserve the original image, and prepare a readable fallback for other clients.
+- [Can an image be brighter than white?](https://superwhite.app/brighter-than-white): Yes, on a compatible HDR display. See a live brighter-than-white comparison, understand HDR versus glow filters, and make your own image with Superwhite.
+- [How to make an HDR JPEG with a PQ ICC profile](https://superwhite.app/hdr-jpeg): Learn what an HDR JPEG needs: PQ-encoded pixels, a matching Rec.2100 colour profile, and an unchanged delivery path. Includes an ICC embedding code example.
 - [Superwhite tool](https://superwhite.app/): the converter. Drop a PNG or JPEG, pick Subtle, Standard or Max, download an HDR JPEG.
 - [HDR white](https://superwhite.app/hdr-white): what HDR white is, a live HDR white swatch next to ordinary white, how to make an HDR white image, and where it glows versus where it does not.
 - [HDR logo glow](https://superwhite.app/hdr-logo-glow): the logo-specific version. Which logos glow well, and the pixel handling Superwhite applies.

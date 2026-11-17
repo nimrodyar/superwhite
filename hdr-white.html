@@ -77,7 +77,7 @@ font:600 13px 'Inter',sans-serif;color:#111;letter-spacing:.02em}
 .sw-sdr{background:#fff;border:1px solid #e3e3e3}
 .sw-hdr{background:#fff;border:1px solid #e3e3e3}
 @media(dynamic-range:high){@supports(color:color(rec2100-pq 1 1 1)){
-  .sw-hdr{background:color(rec2100-pq .9 .9 .9);border-color:transparent}
+  .sw-hdr{background:color(rec2100-pq .7518 .7518 .7518);border-color:transparent}
   .sw-hdr{color:#000}
 }}
 .sw-note{font-size:14px;color:var(--faint);margin-bottom:28px}
@@ -122,7 +122,7 @@ font:600 13px 'Inter',sans-serif;color:#111;letter-spacing:.02em}
  "@type": "FAQPage",
  "mainEntity": [
   {"@type": "Question", "name": "What is HDR white?",
-   "acceptedAnswer": {"@type": "Answer", "text": "HDR white is white encoded as an absolute luminance above the display's interface white, which sits at about 203 nits on most systems. An HDR display spends its extra headroom on those pixels, so they render visibly brighter than the white of the page or app around them. On an SDR display the same file looks like ordinary white."}},
+   "acceptedAnswer": {"@type": "Answer", "text": "HDR white is white encoded as an absolute luminance above the display's interface white, whose actual brightness varies by screen and settings. An HDR display spends its extra headroom on those pixels, so they render visibly brighter than the white of the page or app around them. On SDR displays there is no extra HDR brightness; colour and tone mapping can vary."}},
   {"@type": "Question", "name": "Why does the HDR white swatch look the same as the normal white on my screen?",
    "acceptedAnswer": {"@type": "Answer", "text": "Your display or browser is not giving the page any luminance headroom. Common causes: an SDR monitor, HDR switched off in the operating system, low battery or low power mode on a laptop or phone, or a browser that does not support the CSS rec2100-pq colour space. Recent MacBook Pro, iPhone, iPad Pro and many OLED Android phones show it in Chrome and Safari."}},
   {"@type": "Question", "name": "How do I make an HDR white image?",
@@ -144,9 +144,9 @@ font:600 13px 'Inter',sans-serif;color:#111;letter-spacing:.02em}
 
 <article>
 <h1>HDR white: a white brighter than your screen's white</h1>
-<p class="byline">superwhite.app &middot; HDR white image tool &middot; updated 16 November 2026</p>
+<p class="byline">superwhite.app &middot; HDR white image tool &middot; updated 17 November 2026</p>
 
-<p>Every screen has a white it calls 100 percent. HDR white sits above it. The two patches below are both "white". On an HDR display the right one renders at roughly 1,000 nits beside the page's 203 nit white and visibly out-glows it. On an SDR display they look identical, which is the whole point: the file carries the brightness, the screen decides whether it can show it.</p>
+<p>Every screen has a white it calls 100 percent. HDR white sits above it. The two patches below are both "white". On a compatible HDR display, the right CSS patch can use brightness above ordinary white. Its visible brightness depends on your screen and settings. If your display or browser does not support this demonstration, the patches may look identical. Test exported JPEGs separately: CSS colours and embedded image profiles use different rendering paths.</p>
 
 <div class="swatch" aria-label="Live comparison of ordinary white and HDR white">
   <div class="sw-sdr">Normal white (SDR)</div>
@@ -161,7 +161,7 @@ font:600 13px 'Inter',sans-serif;color:#111;letter-spacing:.02em}
 </div>
 
 <h2>What HDR white actually is</h2>
-<p>An ordinary image stores white as the maximum code value, 255, and leaves it to the display to decide how bright that is. Interface white on a Mac, Windows or a phone is about 203 nits. An HDR white image stores the same pixels with the <strong>PQ transfer function</strong> from SMPTE ST 2084, which maps code values to absolute luminance up to 10,000 nits, and tags the file with a <strong>Rec.2100 PQ colour profile</strong> so the browser or OS knows to read it that way. An HDR display then spends its extra headroom on those pixels. A 2024 MacBook Pro can push a small white area past 1,600 nits while the page around it stays at 203.</p>
+<p>An ordinary image stores white as the maximum code value, 255, and leaves it to the display to decide how bright that is. Actual interface-white brightness varies with the system and display settings; 203 nits is a reference used in this tool's encoding, not a measurement of every screen. An HDR white image stores the same pixels with the <strong>PQ transfer function</strong> from SMPTE ST 2084, which maps code values to absolute luminance up to 10,000 nits, and tags the file with a <strong>Rec.2100 PQ colour profile</strong> so the browser or OS knows to read it that way. An HDR display then spends its extra headroom on those pixels. The visible result depends on the display's available headroom; the encoded luminance target does not guarantee a measured brightness.</p>
 <p>Nothing is added to the artwork. No halo, no blur, no bright pixels painted around the shape. The white you already have is simply allowed to be brighter than the white of everything else on screen.</p>
 
 <h2>HDR white vs ordinary white</h2>
@@ -170,10 +170,10 @@ font:600 13px 'Inter',sans-serif;color:#111;letter-spacing:.02em}
 <thead><tr><th></th><th>Ordinary white</th><th>HDR white</th></tr></thead>
 <tbody>
 <tr><td><strong>Pixel value</strong></td><td>255, 255, 255</td><td>Any value, interpreted as absolute nits</td></tr>
-<tr><td><strong>Brightness on screen</strong></td><td>Capped at interface white, about 203 nits</td><td>Up to the panel's headroom, 600 to 1,600 nits on consumer HDR screens</td></tr>
-<tr><td><strong>On an SDR screen</strong></td><td>White</td><td>White, identical</td></tr>
+<tr><td><strong>Brightness on screen</strong></td><td>Rendered at the current interface-white level</td><td>Up to the panel's headroom, 600 to 1,600 nits on consumer HDR screens</td></tr>
+<tr><td><strong>On an SDR screen</strong></td><td>White</td><td>No extra HDR brightness; colour and tone mapping can vary</td></tr>
 <tr><td><strong>File type</strong></td><td>Any</td><td>JPEG or PNG with a Rec.2100 PQ profile or cICP tag</td></tr>
-<tr><td><strong>Survives re-encoding?</strong></td><td>Yes</td><td>Only if the ICC profile is kept</td></tr>
+<tr><td><strong>Survives re-encoding?</strong></td><td>Yes</td><td>Only if the new pixels and metadata still describe a valid HDR image</td></tr>
 </tbody>
 </table>
 </div>
@@ -204,6 +204,7 @@ font:600 13px 'Inter',sans-serif;color:#111;letter-spacing:.02em}
 </div>
 <p>The browser side is simple: Chrome, Edge and Safari honour the Rec.2100 PQ profile on a JPEG. Firefox does not. The <a href="/blog/linkedin-hdr-glow-patched">September 2026 LinkedIn change</a> is documented separately, with what still works there.</p>
 
+<h2>Choose a guide for your project</h2><ul><li><a href="/hdr-image-for-website">HDR images for your website</a></li><li><a href="/hdr-email-image">HDR images for email</a></li><li><a href="/brighter-than-white">Brighter than white explained</a></li><li><a href="/hdr-jpeg">How to make an HDR JPEG</a></li></ul>
 <h2>Common uses</h2>
 <ul>
 <li><strong>Logos and wordmarks</strong> on a landing page hero, so the mark reads as lit rather than printed.</li>
@@ -214,7 +215,7 @@ font:600 13px 'Inter',sans-serif;color:#111;letter-spacing:.02em}
 
 <h2>Frequently asked questions</h2>
 <h3>What is HDR white?</h3>
-<p>HDR white is white encoded as an absolute luminance above the display's interface white, which sits at about 203 nits on most systems. An HDR display spends its extra headroom on those pixels, so they render visibly brighter than the white of the page or app around them. On an SDR display the same file looks like ordinary white.</p>
+<p>HDR white is white encoded as an absolute luminance above the display's interface white, whose actual brightness varies by screen and settings. An HDR display spends its extra headroom on those pixels, so they render visibly brighter than the white of the page or app around them. On SDR displays there is no extra HDR brightness; colour and tone mapping can vary.</p>
 <h3>Why does the HDR white swatch look the same as the normal white on my screen?</h3>
 <p>Your display or browser is not giving the page any luminance headroom. Common causes: an SDR monitor, HDR switched off in the operating system, low battery or low power mode on a laptop or phone, or a browser that does not support the CSS rec2100-pq colour space. Recent MacBook Pro, iPhone, iPad Pro and many OLED Android phones show it in Chrome and Safari.</p>
 <h3>How do I make an HDR white image?</h3>

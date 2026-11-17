@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HDR Images for Websites: Add a Brighter-Than-White Logo | Superwhite</title><meta name="description" content="Make a website logo or hero image brighter than white on HDR screens. Export an HDR JPEG, embed it with an img tag, and avoid image optimisation that removes the effect."><meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://superwhite.app/hdr-image-for-website"><meta property="og:title" content="HDR Images for Websites: Add a Brighter-Than-White Logo | Superwhite"><meta property="og:description" content="Make a website logo or hero image brighter than white on HDR screens. Export an HDR JPEG, embed it with an img tag, and avoid image optimisation that removes the effect."><meta property="og:url" content="https://superwhite.app/hdr-image-for-website"><meta property="og:type" content="article"><meta property="og:image" content="https://superwhite.app/og.jpg"><meta property="og:site_name" content="Superwhite"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE8J29XL52"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HE8J29XL52');</script>
+<style>
+:root{--bg:#0D0B14;--surface:#161221;--line:#292139;--violet:#6B2EF5;--violet-hot:#8B5CF6;
+--brand:#5B21F5;--ink:#F2EFFA;--dim:#A79BD9;--faint:#AAA0BD}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.75 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+header{padding:24px 0;display:flex;align-items:center;justify-content:space-between}
+.logo{font:800 26px/1 'Baloo 2',sans-serif;color:var(--brand);-webkit-text-stroke:6px #fff;paint-order:stroke fill;
+text-shadow:0 3px 0 rgba(0,0,0,.35);transform:rotate(-2deg);text-decoration:none}
+.back{font:500 14px 'Inter',sans-serif;color:var(--dim);text-decoration:none}
+article{padding:30px 0 60px}
+h1{font:700 clamp(30px,5vw,44px)/1.15 'Inter',sans-serif;letter-spacing:-.03em;margin-bottom:14px}
+.byline{font:500 13px 'JetBrains Mono',monospace;color:var(--faint);margin-bottom:36px}
+h2{font:700 24px 'Inter',sans-serif;letter-spacing:-.02em;margin:44px 0 14px}
+h3{font:600 19px 'Inter',sans-serif;margin:28px 0 10px}
+p{color:var(--dim);margin-bottom:18px}
+p strong,li strong{color:var(--ink);font-weight:600}
+a{color:var(--violet-hot)}
+ul,ol{margin:0 0 18px 22px;color:var(--dim)}
+li{margin-bottom:8px}
+.callout{border-left:3px solid var(--violet);background:var(--surface);border-radius:0 10px 10px 0;padding:16px 18px;margin-bottom:18px}
+.callout p{margin:0}
+.tablewrap{overflow-x:auto;margin:0 0 22px;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:top}
+th{color:var(--ink);font-weight:600;background:var(--surface);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td strong{color:var(--ink)}
+.hero-cta{margin:26px 0 34px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:24px 26px}
+.hero-cta p{margin:0 0 14px;color:var(--ink)}
+.hero-cta a.btn{display:inline-block;background:var(--violet);color:#fff;text-decoration:none;font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
+.hero-cta small{display:block;margin-top:12px;color:var(--faint);font-size:13px}
+.cta{margin-top:50px;background:var(--surface);border:1px solid var(--violet);border-radius:14px;padding:28px;text-align:center}
+.cta a{display:inline-block;margin-top:14px;background:var(--violet);color:#fff;text-decoration:none;
+font:600 15px 'Inter',sans-serif;padding:13px 26px;border-radius:99px}
+footer{padding:30px 0 50px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
+footer a{color:var(--dim)}
+.related{border-top:1px solid var(--line);padding-top:26px;margin:0 0 10px}
+.related h2{font:700 18px 'Inter',sans-serif;margin:0 0 16px;letter-spacing:-.01em}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{margin-bottom:12px}
+.related a{color:var(--ink);text-decoration:none;font-weight:600;display:block}
+.related a:hover{color:var(--violet-hot)}
+.related span{display:block;color:var(--faint);font-size:14px;font-weight:400;line-height:1.5}
+/* live swatch */
+.swatch{background:#fff;border-radius:14px;padding:22px;margin:0 0 14px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.swatch div{border-radius:10px;height:150px;display:flex;align-items:flex-end;justify-content:center;padding:10px;
+font:600 13px 'Inter',sans-serif;color:#111;letter-spacing:.02em}
+.sw-sdr{background:#fff;border:1px solid #e3e3e3}
+.sw-hdr{background:#fff;border:1px solid #e3e3e3}
+@media(dynamic-range:high){@supports(color:color(rec2100-pq 1 1 1)){
+  .sw-hdr{background:color(rec2100-pq .7518 .7518 .7518);border-color:transparent}
+  .sw-hdr{color:#000}
+}}
+.sw-note{font-size:14px;color:var(--faint);margin-bottom:28px}
+.sw-note b{color:var(--dim);font-weight:600}
+@media(max-width:480px){.swatch{grid-template-columns:1fr}.swatch div{height:110px}}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 22px}
+.grid div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.grid h3{margin:0 0 8px;font-size:16px}
+.grid ul{margin:0 0 0 18px;font-size:15px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+
+.logo{font-family:system-ui,sans-serif;-webkit-text-stroke:0;text-shadow:none;transform:none;color:var(--ink);font-size:22px;letter-spacing:-.04em}pre{overflow:auto;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:12px;font-size:13px;line-height:1.65;margin-bottom:24px}code{font-family:ui-monospace,monospace}p code,li code{font-size:.88em;color:var(--ink)}.breadcrumb{font-size:13px;color:var(--faint);margin:8px 0 26px}a:focus-visible,button:focus-visible{outline:3px solid var(--violet-hot);outline-offset:4px}.byline{margin-bottom:20px}.demo-status{font-size:13px;color:var(--dim)}.related a{display:inline}.related li{margin-bottom:10px}table{min-width:480px}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to put an HDR image on your website", "description": "Make a website logo or hero image brighter than white on HDR screens. Export an HDR JPEG, embed it with an img tag, and avoid image optimisation that removes the effect.", "datePublished": "2026-11-17", "dateModified": "2026-11-17", "mainEntityOfPage": "https://superwhite.app/hdr-image-for-website", "author": {"@type": "Person", "name": "Nimrod Yarkoni", "url": "https://superwhite.app/"}, "publisher": {"@type": "Organization", "name": "Superwhite", "url": "https://superwhite.app/"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Superwhite", "item": "https://superwhite.app/"}, {"@type": "ListItem", "position": 2, "name": "How to put an HDR image on your website", "item": "https://superwhite.app/hdr-image-for-website"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I use an HDR JPEG in a normal img tag?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. A normal img tag can serve the exported JPEG. The viewer still needs a compatible browser, operating system and HDR display, and the image service must preserve the file."}}, {"@type": "Question", "name": "Will WebP or AVIF conversion preserve the glow?", "acceptedAnswer": {"@type": "Answer", "text": "Do not assume it will. These formats have their own HDR capabilities, but a normal optimisation pipeline may strip the profile or tone-map the image. Test the delivered file or serve the original export."}}, {"@type": "Question", "name": "Will the HDR logo look identical on every screen?", "acceptedAnswer": {"@type": "Answer", "text": "No. Available brightness and colour handling vary. Keep an SDR original and test fallback behaviour when consistent appearance matters."}}, {"@type": "Question", "name": "Does this make LinkedIn logos glow?", "acceptedAnswer": {"@type": "Answer", "text": "No. This guide is for a website you control. Superwhite records LinkedIn removing the profile since September 2026."}}]}</script>
+</head><body><div class="wrap"><header><a class="logo" href="/">superwhite</a><a class="back" href="/#try">Open the tool →</a></header><main><article><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Superwhite</a> / <a href="/hdr-white">HDR guides</a></nav><h1>How to put an HDR image on your website</h1><p class="byline">By Nimrod Yarkoni · Updated 17 November 2026</p><p>An HDR image can make the white parts of a logo, wordmark or small illustration brighter than the page around it on a compatible HDR display. Superwhite creates a JPEG for that effect. The key to publishing it is simple: serve the exported file unchanged.</p><div class="hero-cta"><p><strong>Try your image before buying.</strong> Preview it in your browser, then choose the export size you need.</p><a class="btn" href="/#try" data-traffic-cta="preview">Preview my image</a><small>Simple: €3 one time, up to 400px. Creator: €5 one time, up to 1400px. Paid exports, unlimited on your tier. Nothing uploaded.</small></div><h2>A live brighter-than-white comparison</h2><div class="swatch" aria-label="Ordinary white beside a live HDR white patch"><div class="sw-sdr">Ordinary white</div><div class="sw-hdr">HDR white</div></div><p class="sw-note">This CSS demonstration uses the display's extra brightness only where supported. It does not measure your screen's brightness or verify JPEG support. If the patches look alike, try the <a href="/tools/hdr-display-test">HDR display test</a>. Actual results depend on the screen, browser, brightness and power settings.</p><p class="demo-status" id="demoStatus">Open this page on an HDR-capable display to compare the patches.</p>
+<h2>Start with one small, useful highlight</h2><p>Use a logo, a product highlight or a short hero graphic. Keep important text as real HTML, with accessible contrast, and give the image useful alternative text. An entire page of intense white is uncomfortable; a restrained accent is a better starting point. Your design should still make sense when no glow is visible.</p>
+<h2>Export the right size</h2><ol><li>Open <a href="/#try">Superwhite</a> and load your original PNG or JPEG.</li><li>Try Subtle or Standard, then check the result on an HDR-capable screen.</li><li>Download the HDR JPEG. Simple covers exports up to 400px; Creator covers up to 1400px for larger artwork.</li><li>Keep the original SDR image too, so you have a fallback and a source for future edits.</li></ol><p>JPEG does not preserve transparency. Prepare the background you actually want behind the artwork before exporting. For a small logo, set its displayed dimensions deliberately rather than stretching a 400px export across a large hero.</p>
+<h2>Embed the original JPEG</h2><pre><code>&lt;img src=&quot;/images/my-logo-hdr.jpg&quot;
+     alt=&quot;Your company name&quot; width=&quot;400&quot; height=&quot;240&quot;
+     style=&quot;max-width:100%;height:auto&quot;&gt;</code></pre><p>Upload the file to a static asset location that serves its original bytes. The path above is an example: replace it with your own file. Width and height reserve space and reduce layout shifts. Ordinary CSS resizing does not rewrite the file, but an image-processing service can.</p>
+<h2>Watch your CMS, CDN and image optimiser</h2><ul><li><strong>Use an original-file URL.</strong> Some media libraries serve a resized derivative by default.</li><li><strong>Bypass automatic format conversion for this asset.</strong> An optimiser that creates WebP, AVIF or a new JPEG may drop the profile or change how the pixels are interpreted. Those formats can support HDR in other workflows; conversion alone does not preserve this one.</li><li><strong>Check the delivered file.</strong> Download the image from the deployed page and compare it with your export. A successful upload does not prove that the final CDN response is unchanged.</li><li><strong>Test after deployment.</strong> A local preview can work while the production image pipeline removes the effect.</li></ul>
+<h2>Plan for screens that do not show the glow</h2><p>Superwhite's PQ-profile workflow is intended for compatible Chrome, Edge and Safari combinations on HDR displays. Treat Firefox and any unverified browser or operating-system combination as needing an SDR check. Brightness, available headroom and power-saving settings can all change the result.</p><p>A PQ JPEG does not carry a separate SDR rendition. If your brand colours must match precisely everywhere, provide an SDR version and test your selection logic. A browser reporting HDR capability is not proof that every HDR file format will render as intended.</p>
+<h2>When the exported image looks flat</h2><p>First check the display with the <a href="/tools/hdr-display-test">free HDR test</a>. Then open the exported JPEG directly and compare it with the version delivered by your website. If only the deployed version loses the effect, investigate the image pipeline before increasing the glow setting.</p>
+<h2>Frequently asked questions</h2><h3>Can I use an HDR JPEG in a normal img tag?</h3><p>Yes. A normal img tag can serve the exported JPEG. The viewer still needs a compatible browser, operating system and HDR display, and the image service must preserve the file.</p><h3>Will WebP or AVIF conversion preserve the glow?</h3><p>Do not assume it will. These formats have their own HDR capabilities, but a normal optimisation pipeline may strip the profile or tone-map the image. Test the delivered file or serve the original export.</p><h3>Will the HDR logo look identical on every screen?</h3><p>No. Available brightness and colour handling vary. Keep an SDR original and test fallback behaviour when consistent appearance matters.</p><h3>Does this make LinkedIn logos glow?</h3><p>No. This guide is for a website you control. Superwhite records LinkedIn removing the profile since September 2026.</p><div class="cta"><strong>See what your image can do</strong><p>Free preview. Paid exports from €3 one time. Runs locally in your browser.</p><a href="/#try" data-traffic-cta="bottom_preview">Try Superwhite</a></div></article></main><nav class="related" aria-label="Related HDR guides"><h2>Keep exploring</h2><ul><li><a href="/hdr-email-image">HDR images for email</a></li><li><a href="/brighter-than-white">Brighter than white explained</a></li><li><a href="/hdr-jpeg">How to make an HDR JPEG</a></li><li><a href="/hdr-white">What is HDR white?</a></li><li><a href="/tools/hdr-display-test">Free HDR display test</a></li></ul></nav><footer><a href="/">Superwhite</a> · <a href="/tools/">Free tools</a> · <a href="/blog/">Blog</a> · <a href="/blog/linkedin-hdr-glow-patched">LinkedIn status</a></footer></div>
+<script>const high=matchMedia('(dynamic-range: high)').matches;const pq=CSS.supports('color','color(rec2100-pq .7518 .7518 .7518)');document.getElementById('demoStatus').textContent=high&&pq?'Your browser reports HDR headroom and supports this CSS colour. Compare the patches; exact brightness varies.':'Your browser does not report both requirements for this CSS demo. The patches may look identical.';document.querySelectorAll('[data-traffic-cta]').forEach(a=>a.addEventListener('click',()=>gtag('event','guide_cta_click',{guide:'hdr-image-for-website',placement:a.dataset.trafficCta})));</script></body></html>
